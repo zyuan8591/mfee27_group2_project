@@ -66,7 +66,7 @@ a:link {
 	margin-right: 0.75rem;
 }
 .sign_out {
-	padding: 0.15rem .75rem;
+	padding: 0.15rem 0.75rem;
 	background: var(--button-color);
 	border-radius: 5px;
 }
@@ -95,10 +95,13 @@ a:link {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 .3rem;
+	padding: 0 0.3rem;
 	color: white;
 }
 /* XX管理 */
+.main_nav_item a {
+	margin-left: 1rem;
+}
 .main_nav_item svg {
 	width: 1.4rem;
 	height: 1.4rem;
@@ -111,7 +114,6 @@ a:link {
 /* nav_dropdownbtn */
 .nav_dropdown {
 	cursor: pointer;
-
 }
 .nav_dropdown svg {
 	width: 1.2rem;
