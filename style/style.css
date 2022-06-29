@@ -1,0 +1,152 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Noto Sans TC", sans-serif;
+}
+
+a,
+a:link {
+	text-decoration: none;
+	color: black;
+}
+
+:root {
+	--header-height: 80px;
+	--button-color: #aaa;
+	--aside-width: 300px;
+}
+/* module */
+.flex_center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.position_abs {
+	position: absolute;
+}
+
+.d-none {
+	display: none;
+}
+
+.translateYtoNone {
+	transform: translateY(-100%);
+	opacity: 0;
+	z-index: -1;
+	height: 0;
+}
+
+.unstyled_list {
+	list-style-type: none;
+}
+/* --------------------------------------------- */
+/* header */
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #222;
+	padding: 0.5rem 1rem;
+	height: var(--header-height);
+}
+/* logo & title */
+.logo {
+	margin-right: 1rem;
+}
+.title {
+	color: #fff;
+}
+/* user */
+.user_photo {
+	margin-right: 0.5rem;
+}
+.sign_out {
+	padding: 0.25rem 1rem;
+	background: var(--button-color);
+	border-radius: 5px;
+}
+/* --------------------------------------------- */
+/* aside */
+.aside {
+	width: var(--aside-width);
+	height: calc(100vh - var(--header-height));
+	background: #333;
+	padding: 1rem;
+	font-size: 20px;
+	top: calc(var(--header-height));
+	overflow: auto;
+}
+.nav {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.nav a:link,
+.nav a:visited {
+	color: white;
+}
+/* main_nav_item */
+.main_nav_item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 1rem;
+	color: white;
+}
+/* XX管理 */
+.main_nav_item svg {
+	width: 25px;
+	height: 25px;
+	color: #fff;
+}
+.main_nav_item_content {
+	margin-left: 1rem;
+	line-height: 25px;
+}
+/* nav_dropdownbtn */
+.nav_dropdown {
+	cursor: pointer;
+}
+.nav_dropdown_active {
+	transform: rotate(180deg);
+}
+/* XX管理-XXXX */
+.sub_nav_item {
+	padding: 0.5rem 0 0 0;
+	transition: 0.5s;
+	overflow: hidden;
+}
+.sub_nav_item_container {
+	transition: 0.5s;
+}
+.sub_nav_item_active {
+	background: #ccc;
+}
+.sub_nav_item_active:hover {
+	background: #aaa;
+}
+.sub_nav_item_active a:link,
+.sub_nav_item_active a:visited {
+	color: #000;
+}
+.sub_nav_item_container li {
+	padding: 0.5rem;
+	text-align: center;
+	border-radius: 5px;
+	margin: 0 0 0.5rem 0;
+	transition: 0.3s;
+}
+.sub_nav_item_container li:hover {
+	background: #888;
+}
+
+.sub_nav_item_content {
+	display: inline-block;
+	width: 100%;
+	color: white;
+}
