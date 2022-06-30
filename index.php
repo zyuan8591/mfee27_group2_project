@@ -319,8 +319,8 @@
 		<!-- <main>
 			1213123
 		</main> -->
-		<script type="text/javascript" src="./js/app.js">
-			// <?php require "./js/app.js"; ?>
+		<script type="text/javascript" >
+			<?php require "./js/app.js"; ?>
 		</script>
 	</body>
 </html>

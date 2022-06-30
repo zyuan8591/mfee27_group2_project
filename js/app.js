@@ -6,7 +6,10 @@ console.log(subNavItems);
 for (let i = 0; i < mainNavItems.length; i++) {
 	mainNavItems[i].addEventListener("click", function () {
 		for (let j = 0; j < subNavContainer.length; j++) {
-			if (!subNavContainer[j].classList.contains("translateYtoNone")) {
+			if (
+				!subNavContainer[j].classList.contains("translateYtoNone") &&
+				i != j
+			) {
 				navDropBtns[j].classList.toggle("nav_dropdown_active");
 			}
 			if (i != j) {
