@@ -13,6 +13,10 @@ a:link {
 	text-decoration: none;
 	color: black;
 }
+a:hover,
+a:active {
+	color: black;
+}
 
 :root {
 	--header-height: 80px;
