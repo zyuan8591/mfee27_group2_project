@@ -31,3 +31,14 @@ for (let i = 0; i < mainNavItems.length; i++) {
 // 		subNavItems[i].classList.add("sub_nav_item_active");
 // 	});
 // }
+// filter hover
+let filterItems = document.querySelectorAll(".filter-item");
+let filterDropDowm = document.querySelectorAll(".filter-dropdown");
+for (let i = 0; i < filterItems.length; i++) {
+	filterItems[i].addEventListener("mouseover", (e) => {
+		filterDropDowm[i].classList.remove("invisible");
+	});
+	filterItems[i].addEventListener("mouseout", (e) => {
+		filterDropDowm[i].classList.add("invisible");
+	});
+}

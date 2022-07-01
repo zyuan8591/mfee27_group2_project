@@ -29,7 +29,7 @@
 			</svg>
 		</div>
 		<div class="">
-			<a class="sign_out" href="#">登出</a>
+			<a class="btn sign_out" href="#">登出</a>
 		</div>
 	</div>
 </header>

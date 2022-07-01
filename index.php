@@ -311,32 +311,32 @@
 					</div>
 				</form>
 			</div>
-			<div class="class="d-flex justify-content-between align-items-center">
-				<div class="filter">
-					<div class="filter">
-						<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M0.218261 1.27627C0.593094 0.496667 1.39012 0 2.26588 0H26.7374C27.6154 0 28.4085 0.496667 28.7823 1.27627C29.1619 2.05587 29.0429 2.97833 28.4424 3.64576L18.127 16.1221V23.215C18.127 23.8902 17.7418 24.5097 17.1244 24.811C16.5126 25.1124 15.7762 25.051 15.2267 24.6436L11.6013 21.965C11.1425 21.6301 10.8762 21.1 10.8762 20.5363V16.1221L0.512202 3.64576C-0.0422022 2.97833 -0.156629 2.05587 0.218317 1.27627H0.218261Z" fill="black"/>
-						</svg>
-						<div class="category-filter">
-							<button>食譜類別</button>
-								<ul>
-									<li><a href=""></a></li>
-									<li><a href=""></a></li>
-									<li><a href=""></a></li>
-								</ul>							
-						</div>
-						<div class="status-filter">
-							<button>食譜狀態</button>
-							<ul>
-								<li><a href=""></a></li>
-								<li><a href=""></a></li>
-							</ul>
-						</div>
+			<div class="d-flex justify-content-between align-items-center">
+				<div class="filter d-flex align-items-center">					
+					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M0.218261 1.27627C0.593094 0.496667 1.39012 0 2.26588 0H26.7374C27.6154 0 28.4085 0.496667 28.7823 1.27627C29.1619 2.05587 29.0429 2.97833 28.4424 3.64576L18.127 16.1221V23.215C18.127 23.8902 17.7418 24.5097 17.1244 24.811C16.5126 25.1124 15.7762 25.051 15.2267 24.6436L11.6013 21.965C11.1425 21.6301 10.8762 21.1 10.8762 20.5363V16.1221L0.512202 3.64576C-0.0422022 2.97833 -0.156629 2.05587 0.218317 1.27627H0.218261Z" fill="black"/>
+					</svg>
+					<div class="filter-item  position-rel">
+						<button class="btn filter-btn">食譜類別</button>
+						<ul class="filter-dropdown position_abs unstyled_list invisible">
+							<li><a href="">Coffee</a></li>
+							<li><a href="">Cake</a></li>
+							<li><a href=""></a></li>
+						</ul>							
 					</div>
-
+					<div class=" filter-item position-rel">
+						<button class="btn filter-btn">食譜狀態</button>
+						<ul class="filter-dropdown  unstyled_list position_abs invisible">
+							<li><a class="text-nowrap" href="">上架中</a></li>
+							<li><a href="">下架中</a></li>
+						</ul>
+					</div>					
 				</div>
-				<div class="add_recipe"></div>
+				<div class="add_recipe">
+					<a class="btn text-nowrap add-recipe-btn">新增食譜</a>
+				</div>
 			</div>
+			<h2>nextlinenextlinenextlinenextlinenextlinenextline</h2>
 		</main>
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
