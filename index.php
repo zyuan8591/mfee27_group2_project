@@ -335,9 +335,7 @@
 			</div>
 			<h2>nextlinenextlinenextlinenextlinenextlinenextline</h2>
 		</main>
-		<?php
-// require "new-recipe.php";
-?>
+		<?php require "new-recipe.php"; ?>
 
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>

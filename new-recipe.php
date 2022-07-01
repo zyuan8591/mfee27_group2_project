@@ -1,6 +1,7 @@
 <div class="new-recipe-page position_abs flex_center">
     <div class="cover position_abs"></div>
-    <form class="new-recipe-form" action="" method="GET">
+    <form class="new-recipe-form" action="new-recipe-exe.php
+    " method="GET">
         <h2 class="recipe-title text-center">新增食譜</h2>
         <div class="mb-3">
             <label for="" class="form-label">食譜名稱</label>
@@ -16,13 +17,18 @@
         </div>
         <div class="mb-3">
             <label for="" class="form-label">食材</label>
-            <div class="row">
-                <div class="col-8">
-                    <input type="text" class="form-control" name="material" placeholder="請輸入食材名稱">
+            <div class="material-container">
+                <div class="row mb-3">
+                    <div class="col-8">
+                        <input type="text" class="form-control material-name" name="material" placeholder="請輸入食材名稱">
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="form-control material-q" name="material_q" placeholder="請輸入數量" >
+                    </div>
                 </div>
-                <div class="col-4">
-                    <input type="text" class="form-control" name="material_q" placeholder="請輸入數量" >
-                </div>
+            </div>
+            <div class="mb-3  d-flex justify-content-end">
+                <button class="new-material-btn">新增食材</button>
             </div>
         </div>
         <div class="mb-3">
@@ -40,7 +46,7 @@
             <input id="recipe-image" class="d-none" type="file" accept="image/*">
         </div>
         <div class="mb-3 flex_center">
-            <button class="btn">新增食譜</button>
+            <button class="btn" type="submit">新增食譜</button>
             <button class="btn">返回食譜列表</button>
         </div>
     </form>
