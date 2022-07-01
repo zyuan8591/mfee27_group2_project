@@ -1,4 +1,4 @@
-<div class="new-recipe-page position_abs flex_center ">
+<div class="new-recipe-page position_abs flex_center invisible">
     <div class="cover position_abs"></div>
     <form class="new-recipe-form" action="new-recipe-exe.php
     " method="GET">
