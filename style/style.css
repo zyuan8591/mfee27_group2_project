@@ -21,14 +21,17 @@ a:active {
 :root {
 	/* height &width */
 	--header-height: 80px;
-	--aside-width: 280px;
+	--aside-width: 250px;
 
 	/* bg-color */
+	--main-color:#FEFBDD;
 	--main-bg: #f7f7f8;
+	--header-bg: #fff;
 	--sub-bg: #efeff1;
 	/* color */
 	--button-color: #aaa;
 	--button-active: #ccc;
+	--btn-hover: #E5E5E5;
 	--button-hover: #ddd;
 	--main-font-color: #222;
 	/* other */
@@ -63,12 +66,12 @@ a:active {
 .unstyled_list {
 	list-style-type: none;
 }
-.btn {
+/* .btn-main {
 	padding: 0.2rem 0.5rem;
 	border-radius: 3px;
 	margin: 0.25rem;
 	box-shadow: var(--box-shadow);
-}
+} */
 
 .invisible {
 	opacity: 0;
@@ -80,7 +83,7 @@ a:active {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background: var(--main-bg);
+	background: var(--header-bg);
 	padding: 0.5rem 1rem;
 	height: var(--header-height);
 	box-shadow: var(--box-shadow);
@@ -98,9 +101,12 @@ a:active {
 }
 .sign_out {
 	padding: 0.25rem 1rem;
-	background: var(--button-color);
+	background: var(--header-color);
 	box-shadow: var(--box-shadow);
 	border-radius: 5px;
+}
+.sign_out:hover{
+	background: var(--btn-hover);
 }
 /* --------------------------------------------- */
 /* aside */
@@ -196,16 +202,23 @@ a:active {
 	font-weight: normal;
 }
 /* sort by -- */
+.sort-search {
+	margin: 0.5rem 0 0 0;
+}
 .sort {
 	flex: 0 0 auto;
-	margin: 0.5rem 0 1rem 0;
 }
 .sort-btn {
 	padding: 0.2rem 0.5rem;
-	background: var(--sub-bg);
-	border-radius: 3px;
+	background: var(--main-bg);
+	
 	margin: 0.25rem;
 	/* display: inline-block; */
+	
+}
+.sort-btn:hover {
+	background: var(--header-bg);
+	border-radius: 3px;
 	box-shadow: var(--box-shadow);
 }
 .sort-btn:active {
@@ -248,6 +261,11 @@ a:active {
 	width: 100%;
 	margin: 0;
 	white-space: nowrap;
+	background: var(--header-bg);
+}
+.filter-btn:hover{
+	background: var(--header-bg);
+	/* color: #fff; */
 }
 .filter-dropdown {
 	background: var(--button-color);
@@ -259,6 +277,9 @@ a:active {
 	transition: 0.5s;
 }
 /* add new recipe -- */
+.add-recipe-btn {
+	background: var(--main-color);
+}
 .add-recipe-btn:hover {
 	/* border: none; */
 }
