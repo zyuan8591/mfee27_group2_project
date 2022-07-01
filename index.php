@@ -84,7 +84,7 @@
 									<a class="sub_nav_item_content" href="">商品總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">新增商品</a>
+									<a class="sub_nav_item_content" href="">評價總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -173,7 +173,7 @@
 									<a class="sub_nav_item_content" href="">食譜總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">新增食譜</a>
+									<a class="sub_nav_item_content" href="">評價總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -216,13 +216,19 @@
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">會員總覽</a>
+									<a class="sub_nav_item_content" href="">一般會員總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">會員商品收藏</a>
+									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">會員食譜收藏</a>
+									<a class="sub_nav_item_content" href="">會員商品留言</a>
+								</li>
+								<li>
+									<a class="sub_nav_item_content" href="">會員食譜留言</a>
+								</li>
+								<li>
+									<a class="sub_nav_item_content" href="">會員收藏</a>
 								</li>
 							</div>
 						</ul>
@@ -292,9 +298,9 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn" href="">依編號排序</a>
-					<a class="sort-btn" href="">依名稱排序</a>
-					<a class="sort-btn" href="">依日期排序</a>
+					<a class="sort-btn trnasition" href="">依編號排序</a>
+					<a class="sort-btn trnasition" href="">依名稱排序</a>
+					<a class="sort-btn trnasition" href="">依日期排序</a>
 				</div>
 				<form class="recipe_search " action="" method="get">
 					<div class="d-flex align-items-center " >
@@ -317,7 +323,7 @@
 						<path d="M0.218261 1.27627C0.593094 0.496667 1.39012 0 2.26588 0H26.7374C27.6154 0 28.4085 0.496667 28.7823 1.27627C29.1619 2.05587 29.0429 2.97833 28.4424 3.64576L18.127 16.1221V23.215C18.127 23.8902 17.7418 24.5097 17.1244 24.811C16.5126 25.1124 15.7762 25.051 15.2267 24.6436L11.6013 21.965C11.1425 21.6301 10.8762 21.1 10.8762 20.5363V16.1221L0.512202 3.64576C-0.0422022 2.97833 -0.156629 2.05587 0.218317 1.27627H0.218261Z" fill="black"/>
 					</svg>
 					<div class="filter-item  position-rel">
-						<button class="filter-btn">食譜類別</button>
+						<button class="filter-btn trnasition">食譜類別</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="">Coffee</a></li>
 							<li><a href="">Cake</a></li>
@@ -325,7 +331,7 @@
 						</ul>							
 					</div>
 					<div class=" filter-item position-rel">
-						<button class=" filter-btn">食譜狀態</button>
+						<button class=" filter-btn trnasition">食譜狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="">上架中</a></li>
 							<li><a href="">下架中</a></li>
@@ -333,7 +339,7 @@
 					</div>					
 				</div>
 				<div>
-					<a class="add-recipe-btn" href="">新增食譜</a>
+					<a class="add-recipe-btn trnasition" href="">新增食譜</a>
 				</div>
 			</div>
 			<h2>nextlinenextlinenextlinenextlinenextlinenextline</h2>
