@@ -26,6 +26,12 @@ a:link {
 	align-items: center;
 }
 
+.flex_between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .position_abs {
 	position: absolute;
 }
@@ -123,11 +129,11 @@ a:link {
 /* XX管理-XXXX */
 .sub_nav_item {
 	padding: 0.5rem 0 0 0;
-	transition: 0.5s;
+
 	overflow: hidden;
 }
 .sub_nav_item_container {
-	transition: 0.5s;
+	transition: 2s;
 }
 .sub_nav_item_active {
 	background: #ccc;
@@ -144,7 +150,7 @@ a:link {
 	text-align: center;
 	border-radius: 5px;
 	margin: 0 0 0.5rem 0;
-	transition: 0.3s;
+
 }
 .sub_nav_item_container li:hover {
 	background: #888;
@@ -154,4 +160,36 @@ a:link {
 	display: inline-block;
 	width: 100%;
 	color: white;
+}
+
+/* main */
+
+main {
+	margin-left: var(--aside-width);
+	padding: 40px 50px;
+}
+.main-title {
+	font-size: 2.5rem;
+}
+.filter {
+	padding: 40px 0;
+}
+.filter a {
+	padding: 5px 7.5px;
+	margin-right: 2px;
+	background: #ccc;
+}
+.border_radius_left {
+	border-radius:3px 0 0 3px;
+}
+.border_radius_right {
+	border-radius: 0 3px 3px 0 ;
+}
+
+.search_btn svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
