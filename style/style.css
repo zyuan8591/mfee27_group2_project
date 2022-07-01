@@ -4,7 +4,8 @@
 	padding: 0;
 }
 
-body {
+body,
+*::placeholder {
 	font-family: "Noto Sans TC", sans-serif;
 }
 
@@ -34,6 +35,7 @@ a:active {
 	/* other */
 	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1);
 	--outline: var(--button-active) solid 4px;
+	--input-border: #ced4da;
 }
 /* module */
 .flex_center {
@@ -259,9 +261,46 @@ a:active {
 	transition: 0.5s;
 }
 /* add new recipe -- */
-.add-recipe-btn:hover {
-	/* border: none; */
-}
 .add-recipe-btn:active {
 	outline: var(--outline);
 }
+/* ****************************************************************************** */
+/* add-new-recipe-page--------------------------------------------------------- */
+.new-recipe-page {
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	z-index: 50;
+}
+.cover {
+	height: 100vh;
+	width: 100vw;
+	background: #666;
+	opacity: 0.8;
+}
+.new-recipe-form {
+	background: #fff;
+	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
+	width: 400px;
+	height: 600px;
+	border-radius: 3px;
+	opacity: 1;
+	z-index: 5;
+	padding: 1rem;
+	overflow: auto;
+}
+.recipe-title {
+	border-bottom: 2px solid var(--input-border);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+.form-control:focus {
+	box-shadow: var(--box-shadow);
+	border-color: var(--input-border);
+}
+.recipe-image {
+	cursor: pointer;
+}
+
+/* ****************************************************************************** */

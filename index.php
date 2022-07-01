@@ -286,12 +286,12 @@
 				</ul>
 			</nav>
 		</aside>
-		<main class="main">
+		<main class="main position-rel">
 			<div>
 				<h2 class="main-title">食譜總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap">
-				<div class="sort">
+				<div class="sort flex_center">
 					<a class="sort-btn" href="">依編號排序</a>
 					<a class="sort-btn" href="">依名稱排序</a>
 					<a class="sort-btn" href="">依日期排序</a>
@@ -332,12 +332,13 @@
 						</ul>
 					</div>					
 				</div>
-				<div class="add_recipe">
-					<a class="btn text-nowrap add-recipe-btn">新增食譜</a>
-				</div>
 			</div>
 			<h2>nextlinenextlinenextlinenextlinenextlinenextline</h2>
 		</main>
+		<?php
+// require "new-recipe.php";
+?>
+
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
 		</script>

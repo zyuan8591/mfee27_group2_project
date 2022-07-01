@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header position-rel">
 	<div class="flex_center">
 		<div class="logo">
 			<svg
