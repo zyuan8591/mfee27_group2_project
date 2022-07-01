@@ -48,6 +48,12 @@ a:active {
 	align-items: center;
 }
 
+.flex_between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .position_abs {
 	position: absolute;
 }
@@ -162,11 +168,11 @@ a:active {
 /* XX管理-XXXX */
 .sub_nav_item {
 	padding: 0.5rem 0 0 0;
-	transition: 0.5s;
+
 	overflow: hidden;
 }
 .sub_nav_item_container {
-	transition: 0.5s;
+	transition: .2s;
 }
 .sub_nav_item_active {
 	background: var(--button-active);
@@ -181,7 +187,7 @@ a:active {
 	text-align: center;
 	border-radius: 5px;
 	margin: 0 0 0.5rem 0;
-	transition: 0.3s;
+
 }
 .sub_nav_item_container li:hover {
 	background: var(--button-hover);
@@ -273,7 +279,6 @@ a:active {
 }
 .filter-btn:hover {
 	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
 }
 .filter-dropdown {
 	background: var(--header-bg);
