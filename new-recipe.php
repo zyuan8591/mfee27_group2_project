@@ -1,4 +1,4 @@
-<div class="new-recipe-page position_abs flex_center">
+<div class="new-recipe-page position_abs flex_center invisible">
     <div class="cover position_abs"></div>
     <form class="new-recipe-form" action="new-recipe-exe.php
     " method="GET">
@@ -47,7 +47,7 @@
         </div>
         <div class="mb-3 flex_center">
             <button class="btn" type="submit">新增食譜</button>
-            <button class="btn">返回食譜列表</button>
+            <button class="btn back-to-recipe">返回食譜列表</button>
         </div>
     </form>
 </div>

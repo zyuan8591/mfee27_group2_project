@@ -75,3 +75,22 @@ newMaterialBtn.addEventListener("click", (e) => {
 	row.appendChild(col_4);
 	materialContainer.appendChild(row);
 });
+
+let addRecipeBtn = document.querySelector(".add-recipe-btn");
+let backToRecipe = document.querySelector(".back-to-recipe");
+let newRecipePage = document.querySelector(".new-recipe-page");
+let cover = document.querySelector(".cover");
+
+addRecipeBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	newRecipePage.classList.remove("invisible");
+});
+
+backToRecipe.addEventListener("click", (e) => {
+	e.preventDefault();
+	newRecipePage.classList.add("invisible");
+});
+
+cover.addEventListener("click", (e) => {
+	newRecipePage.classList.add("invisible");
+});
