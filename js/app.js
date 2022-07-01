@@ -2,7 +2,6 @@ let navDropBtns = document.querySelectorAll(".nav_dropdown");
 let subNavContainer = document.querySelectorAll(".sub_nav_item_container");
 let mainNavItems = document.querySelectorAll(".main_nav_item");
 let subNavItems = document.querySelectorAll(".sub_nav_item_container li");
-console.log(subNavItems);
 // navbar animation ------------------------------------------------------------
 for (let i = 0; i < mainNavItems.length; i++) {
 	mainNavItems[i].addEventListener("click", function () {
@@ -42,3 +41,37 @@ for (let i = 0; i < filterItems.length; i++) {
 		filterDropDowm[i].classList.add("invisible");
 	});
 }
+// add new material btn
+let newMaterialBtn = document.querySelector(".new-material-btn");
+let materialName = document.querySelector(".material-name");
+let materialQ = document.querySelector(".material-q");
+let materialContainer = document.querySelector(".material-container");
+console.log(newMaterialBtn);
+let i = 1;
+newMaterialBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	let row = document.createElement("div");
+	row.classList.add("row", "mb-3");
+	let col_8 = document.createElement("div");
+	col_8.classList.add("col-8");
+	let col_4 = document.createElement("div");
+	col_4.classList.add("col-4");
+
+	let newMaterialName = materialName.cloneNode();
+	let newMaterialQ = materialQ.cloneNode();
+	if (i == 1) {
+		newMaterialName.name = `material-name-${i}`;
+		newMaterialQ.name = `material-q-${i}`;
+		i++;
+	} else {
+		newMaterialName.name = `material-name-${i}`;
+		newMaterialQ.name = `material-q-${i}`;
+		i++;
+	}
+	console.log(newMaterialQ);
+	col_8.appendChild(newMaterialName);
+	col_4.appendChild(newMaterialQ);
+	row.appendChild(col_8);
+	row.appendChild(col_4);
+	materialContainer.appendChild(row);
+});
