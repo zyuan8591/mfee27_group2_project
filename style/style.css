@@ -279,7 +279,6 @@ a:active {
 }
 .filter-btn:hover {
 	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
 }
 .filter-dropdown {
 	background: var(--header-bg);
