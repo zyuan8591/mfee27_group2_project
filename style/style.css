@@ -332,18 +332,29 @@ a:active {
 .new-recipe-form {
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
-	width: 400px;
+	width: 500px;
 	height: 600px;
 	border-radius: 3px;
 	opacity: 1;
 	z-index: 5;
-	padding: 1rem;
+	padding: 2rem;
 	overflow: auto;
 }
 .recipe-title {
 	border-bottom: 2px solid var(--input-border);
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
+}
+.new-material-btn {
+	background: var(--header-bg);
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	padding: 5px;
+}
+.new-material-btn:active {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
 }
 .form-control:focus {
 	box-shadow: var(--box-shadow);
@@ -352,5 +363,18 @@ a:active {
 .recipe-image {
 	cursor: pointer;
 }
+.recipe-btn {
+	background: var(--header-bg);
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	padding: 7.5px;
+	margin: 5px;
+}
+.recipe-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+
 
 /* ****************************************************************************** */

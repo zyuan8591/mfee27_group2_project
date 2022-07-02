@@ -46,8 +46,8 @@
             <input id="recipe-image" class="d-none" type="file" accept="image/*">
         </div>
         <div class="mb-3 flex_center">
-            <button class="btn" type="submit">新增食譜</button>
-            <button class="btn back-recipe">返回食譜列表</button>
+            <button class="recipe-btn" type="submit">新增食譜</button>
+            <button class="recipe-btn back-recipe">返回食譜列表</button>
         </div>
     </form>
 </div>
