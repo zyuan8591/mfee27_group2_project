@@ -5,7 +5,11 @@
 }
 
 body,
-*::placeholder {
+*::placeholder,
+*,
+select,
+option,
+input {
 	font-family: "Noto Sans TC", sans-serif;
 }
 
@@ -72,7 +76,6 @@ a:active {
 	list-style-type: none;
 }
 .btn-main {
-	width: 100%;
 	white-space: nowrap;
 	padding: 0.3rem 0.75rem;
 	background: var(--header-bg);
@@ -80,6 +83,7 @@ a:active {
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
 }
 .btn-main:hover {
 	background: var(--btn-hover);
@@ -88,7 +92,7 @@ a:active {
 .invisible {
 	opacity: 0;
 }
-.trnasition {
+.transition {
 	transition: background 0.3s, box-shadow 0.3s;
 }
 .object-cover {

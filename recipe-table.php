@@ -18,10 +18,10 @@
 			<td>氣炸鍋</td>
 			<td>上架中</td>
 			<td>2022/06/17</td>
-			<td>
-				<a class="btn-main trnasition me-3 on-shelf" href="">上架</a>
-				<a class="btn-main trnasition me-3 off-shelf" href="">下架</a>
-				<a class="btn-main trnasition me-3 detail" href="">詳細資料</a>
+			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
+				<a class="btn-main transition me-3 on-shelf " href="">上架</a>
+				<a class="btn-main transition me-3 off-shelf" href="">下架</a>
+				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
 		</tr>
 		<tr>
@@ -31,10 +31,10 @@
 			<td>氣泡水機</td>
 			<td>下架中</td>
 			<td>2022/06/30</td>
-			<td>
-				<a class="btn-main trnasition me-3" href="">上架</a>
-				<a class="btn-main trnasition me-3" href="">下架</a>
-				<a class="btn-main trnasition me-3" href="">詳細資料</a>
+			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
+				<a class="btn-main transition me-3 on-shelf" href="">上架</a>
+				<a class="btn-main transition me-3 off-shelf" href="">下架</a>
+				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
 		</tr>
 	</tbody>

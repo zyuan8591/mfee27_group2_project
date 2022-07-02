@@ -170,24 +170,12 @@
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
-.recipe-image {
+.food-img {
+	width: 130px;
+	height: 130px;
+}
+.add-recipe-image {
 	cursor: pointer;
-}
-.save-and-add-recipe-btn,
-.back-recipe {
-	white-space: nowrap;
-	padding: 0.3rem 0.75rem;
-	background: var(--header-bg);
-	margin: 0;
-	border: 0;
-	border-radius: 3px;
-	box-shadow: var(--box-shadow);
-	font-family: "Noto Sans TC", sans-serif;
-}
-.save-and-add-recipe-btn:hover,
-.back-recipe:hover {
-	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
 }
 
 /* ****************************************************************************** */
