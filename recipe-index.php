@@ -19,6 +19,8 @@
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
+			<?php require "./style/recipe-style.css"; ?>
+
 		</style>
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
 		<script type="text/javascript" src="./js/jquery.min.js"></script>
@@ -346,6 +348,7 @@
 		<?php require "recipe-table.php"; ?>
 		</main>
 		<?php require "recipe-add.php"; ?>
+		<?php require "recipe-detail.php"; ?>
 
 		<script type="text/javascript" >
 			<?php require "./js/recipe-app.js"; ?>
