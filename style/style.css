@@ -362,7 +362,7 @@ a:active {
 	overflow: auto;
 }
 .fa-xmark {
-	top: 0.5rem;
+	top: .75rem;
 	right: 1rem;
 	font-size: 1.5rem;
 	cursor: pointer;

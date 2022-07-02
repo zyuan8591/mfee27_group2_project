@@ -43,6 +43,7 @@ let newProductPage = document.querySelector(".new-product-page");
 let addProductBtn = document.querySelector(".add-product-btn");
 let backToProduct = document.querySelector(".back-product");
 let cover = document.querySelector(".cover");
+let xMark = document.querySelector(".fa-xmark");
 
 addProductBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -52,6 +53,6 @@ backToProduct.addEventListener("click", function (e) {
     e.preventDefault();
     newProductPage.classList.add("invisible");
 });
-cover.addEventListener("click", function (e) {
-    newProductPage.classList.add("invisible");
+xMark.addEventListener("click", function (e) {
+	newProductPage.classList.add("invisible");
 });

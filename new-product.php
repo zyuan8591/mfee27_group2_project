@@ -2,6 +2,7 @@
     <div class="cover position_abs"></div>
     <form class="new-product-form" action="new-product-exe.php
     " method="GET">
+        <i class="fa-solid fa-xmark position_abs"></i>
         <h2 class="product-title text-center">新增商品</h2>
         <div class="mb-3">
             <label for="" class="form-label">商品名稱</label>

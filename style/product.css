@@ -39,6 +39,12 @@
 	padding: 1rem 2.5rem;
 	overflow: auto;
 }
+.fa-xmark {
+	top: .75rem;
+	right: 1rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
 .product-title {
 	border-bottom: 2px solid var(--input-border);
 	padding-bottom: 1rem;
