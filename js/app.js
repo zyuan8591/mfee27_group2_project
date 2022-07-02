@@ -76,38 +76,25 @@ newMaterialBtn.addEventListener("click", (e) => {
 	materialContainer.appendChild(row);
 });
 
-// let newRecipePage = document.querySelector(".new-recipe-page");
-// let addRecipeBtn = document.querySelector(".add-recipe-btn");
-// let backToRecipe = document.querySelector(".back-recipe");
-// let cover = document.querySelector(".cover");
+let newRecipePage = document.querySelector(".new-recipe-page");
+let addRecipeBtn = document.querySelector(".add-recipe-btn");
+let backToRecipe = document.querySelector(".back-recipe");
+let cover = document.querySelector(".cover");
+let xMark = document.querySelector(".fa-xmark");
 
-// addRecipeBtn.addEventListener("click", function (e) {
-// 	e.preventDefault();
-// 	newRecipePage.classList.remove("invisible");
-// });
-// backToRecipe.addEventListener("click", function (e) {
-// 	console.log("click");
+addRecipeBtn.addEventListener("click", function (e) {
+	e.preventDefault();
+	newRecipePage.classList.remove("invisible");
+});
+backToRecipe.addEventListener("click", function (e) {
+	console.log("click");
 
-// 	e.preventDefault();
-// 	newRecipePage.classList.add("invisible");
-// });
+	e.preventDefault();
+	newRecipePage.classList.add("invisible");
+});
 // cover.addEventListener("click", function (e) {
 // 	newRecipePage.classList.add("invisible");
 // });
-
-let newProductPage = document.querySelector(".new-product-page");
-let addProductBtn = document.querySelector(".add-product-btn");
-let backToProduct = document.querySelector(".back-product");
-let cover = document.querySelector(".cover");
-
-addProductBtn.addEventListener("click", function (e) {
-	e.preventDefault();
-	newProductPage.classList.remove("invisible");
-});
-backToProduct.addEventListener("click", function (e) {
-	e.preventDefault();
-	newProductPage.classList.add("invisible");
-});
-cover.addEventListener("click", function (e) {
-	newProductPage.classList.add("invisible");
+xMark.addEventListener("click", function (e) {
+	newRecipePage.classList.add("invisible");
 });

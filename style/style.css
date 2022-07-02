@@ -358,8 +358,14 @@ a:active {
 	border-radius: 3px;
 	opacity: 1;
 	z-index: 5;
-	padding: 1rem 2.5rem;
+	padding: 1.5rem 2.5rem 1rem 2.5rem;
 	overflow: auto;
+}
+.fa-xmark {
+	top: 0.5rem;
+	right: 1rem;
+	font-size: 1.5rem;
+	cursor: pointer;
 }
 .recipe-title {
 	border-bottom: 2px solid var(--input-border);
