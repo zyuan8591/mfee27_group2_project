@@ -75,12 +75,20 @@ a:active {
 .unstyled_list {
 	list-style-type: none;
 }
-/* .btn-main {
-	padding: 0.2rem 0.5rem;
+.btn-main {
+	width: 100%;
+	white-space: nowrap;
+	padding: 0.3rem 0.75rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
 	border-radius: 3px;
-	margin: 0.25rem;
 	box-shadow: var(--box-shadow);
-} */
+}
+.btn-main:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
 
 .invisible {
 	opacity: 0;
@@ -225,7 +233,7 @@ a:active {
 	top: var(--header-height);
 	left: var(--aside-width);
 	background: var(--main-bg);
-	padding: 1rem;
+	padding: 1rem 2.5rem;
 	width: calc(100vw - var(--aside-width));
 }
 .main-title {
@@ -334,6 +342,9 @@ a:active {
 .add-recipe-btn:active {
 	outline: var(--outline);
 }
+/* ****************************************************************************** */
+/* data table */
+
 /* ****************************************************************************** */
 /* add-new-recipe-page--------------------------------------------------------- */
 .new-recipe-page {

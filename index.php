@@ -343,7 +343,7 @@
 					<a class="add-recipe-btn trnasition" href="">新增食譜</a>
 				</div>
 			</div>
-			<h2>nextlinenextlinenextlinenextlinenextlinenextline</h2>
+		<?php require "table.html"; ?>
 		</main>
 		<?php require "new-recipe.php"; ?>
 
