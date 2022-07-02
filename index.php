@@ -351,7 +351,7 @@
 		<?php require "new-product.php"; ?>
 
 		<script type="text/javascript" >
-			<?php require "./js/app.js"; ?>
+			<?php require "./js/app-product.js"; ?>
 		</script>
 	</body>
 </html>

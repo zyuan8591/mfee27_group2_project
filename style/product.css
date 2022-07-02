@@ -62,7 +62,7 @@
 }
 .product-btn{
 	white-space: nowrap;
-	padding: 0.3rem 0.5rem;
+	padding: 0.4rem 0.5rem;
 	background: var(--header-bg);
 	margin: .3rem;
 	border: 0;
@@ -70,7 +70,7 @@
 	box-shadow: var(--box-shadow);
 	font-family: "Noto Sans TC", sans-serif;
 }
-.back-product:hover {
+.product-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
