@@ -1,0 +1,76 @@
+/* add new product */
+
+.add-product-btn {
+	width: 100%;
+	white-space: nowrap;
+	padding: 0.3rem 0.75rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+}
+.add-product-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.add-product-btn:active {
+	outline: var(--outline);
+}
+
+/* add-new-recipe-page */
+
+.new-product-page {
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	transition: 0.5s;
+}
+.new-product-form {
+	background: var(--header-bg);
+	box-shadow: var(--box-shadow);
+	width: 500px;
+	height: 600px;
+	border-radius: 3px;
+	opacity: 1;
+	z-index: 5;
+	padding: 1rem 2.5rem;
+	overflow: auto;
+}
+.product-title {
+	border-bottom: 2px solid var(--input-border);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+.new-product-btn {
+	white-space: nowrap;
+	background: var(--header-bg);
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	padding: .25rem;
+	font-family: "Noto Sans TC", sans-serif;
+}
+.new-product-btn:active {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.product-image {
+	cursor: pointer;
+}
+.product-btn{
+	white-space: nowrap;
+	padding: 0.3rem 0.5rem;
+	background: var(--header-bg);
+	margin: .3rem;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.back-product:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}

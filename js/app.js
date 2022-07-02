@@ -94,3 +94,19 @@ backToRecipe.addEventListener("click", function (e) {
 cover.addEventListener("click", function (e) {
 	newRecipePage.classList.add("invisible");
 });
+
+let newProductPage = document.querySelector(".new-product-page");
+let addProductBtn = document.querySelector(".add-product-btn");
+let backToProduct = document.querySelector(".back-product");
+
+addProductBtn.addEventListener("click", function (e) {
+	e.preventDefault();
+	newProductPage.classList.remove("invisible");
+});
+backToProduct.addEventListener("click", function (e) {
+	e.preventDefault();
+	newProductPage.classList.add("invisible");
+});
+cover.addEventListener("click", function (e) {
+	newProductPage.classList.add("invisible");
+});

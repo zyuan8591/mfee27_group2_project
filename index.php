@@ -17,7 +17,10 @@
 		/>
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
-			<?php require "./style/style.css"; ?>
+			<?php 
+			require "./style/style.css";
+			require "../mfee27_group2_project/style/product.css";
+			?>
 		</style>
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
 		<script type="text/javascript" src="./js/jquery.min.js"></script>
@@ -292,7 +295,7 @@
 				</ul>
 			</nav>
 		</aside>
-		<main class="main position-rel">
+		<!-- <main class="main position-rel">
 			<div>
 				<h2 class="main-title">食譜總覽</h2>
 			</div>
@@ -343,8 +346,9 @@
 				</div>
 			</div>
 			<h2>nextlinenextlinenextlinenextlinenextlinenextline</h2>
-		</main>
-		<?php require "new-recipe.php"; ?>
+		</main> -->
+		<?php require "product.php";	?>	
+		<?php require "new-product.php"; ?>
 
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
