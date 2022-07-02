@@ -21,20 +21,21 @@
             <div class="product-container">
                 <div class="row mb-3">
                     <div class="col-8">
-                        <input type="text" class="form-control product-name" name="product" placeholder="請輸入商品價格">
+                        <input type="text" class="form-control " name="price" placeholder="請輸入商品價格">
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control product-q" name="product_q" placeholder="請輸入數量" >
+                        <input type="text" class="form-control " name="inventory" placeholder="請輸入數量" >
                     </div>
                 </div>
-            </div>
-            <div class="mb-3 d-flex justify-content-end">
-                <button class="new-product-btn transition">新增食材</button>
             </div>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">商品簡介</label>
-            <input type="text" class="form-control" name="content" >
+            <input type="text" class="form-control" name="intro" >
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">商品規格</label>
+            <input type="text" class="form-control" name="spec" >
         </div>        
         <div class="mb-3 d-flex flex-column align-items-start">
             <label for="" class="form-label">商品圖片</label>
