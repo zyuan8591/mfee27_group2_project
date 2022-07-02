@@ -343,12 +343,12 @@
 					<a class="add-recipe-btn trnasition" href="">新增食譜</a>
 				</div>
 			</div>
-		<?php require "table.html"; ?>
+		<?php require "recipe-table.php"; ?>
 		</main>
-		<?php require "new-recipe.php"; ?>
+		<?php require "recipe-add.php"; ?>
 
 		<script type="text/javascript" >
-			<?php require "./js/app.js"; ?>
+			<?php require "./js/recipe-app.js"; ?>
 		</script>
 	</body>
 </html>
