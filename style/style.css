@@ -37,7 +37,7 @@ a:active {
 	--main-font-color: #222;
 	/* other */
 	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1);
-	--hover-shadow:3px 2px #bbb;
+	--hover-shadow: 3px 2px #bbb;
 	--outline: var(--button-active) solid 4px;
 	--input-border: #ced4da;
 }
@@ -85,6 +85,14 @@ a:active {
 .invisible {
 	opacity: 0;
 }
+.trnasition {
+	transition: background 0.3s, box-shadow 0.3s;
+}
+.object-cover {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
 
 /* --------------------------------------------- */
 /* header */
@@ -107,7 +115,20 @@ a:active {
 /* user */
 .user_photo {
 	margin-right: 0.75rem;
+	height: 50px;
+	width: 50px;
+	padding: 0.3rem;
+	border-radius: 50%;
+	background: linear-gradient(
+		135deg,
+		rgba(226, 226, 226, 1) 0%,
+		rgba(219, 219, 219, 1) 50%,
+		rgba(209, 209, 209, 1) 51%,
+		rgba(254, 254, 254, 1) 100%
+	);
+	box-shadow: var(--box-shadow);
 }
+
 .sign_out {
 	display: inline-block;
 	padding: 0.25rem 1rem;
@@ -116,7 +137,6 @@ a:active {
 	border-radius: 5px;
 }
 .sign_out:hover {
-
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
@@ -172,7 +192,7 @@ a:active {
 	overflow: hidden;
 }
 .sub_nav_item_container {
-	transition: .2s;
+	transition: 0.2s;
 }
 .sub_nav_item_active {
 	background: var(--button-active);
@@ -187,7 +207,6 @@ a:active {
 	text-align: center;
 	border-radius: 5px;
 	margin: 0 0 0.5rem 0;
-
 }
 .sub_nav_item_container li:hover {
 	background: var(--button-hover);
@@ -276,6 +295,7 @@ a:active {
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
 }
 .filter-btn:hover {
 	background: var(--btn-hover);
@@ -291,13 +311,13 @@ a:active {
 }
 .filter-dropdown li {
 	border-radius: 4px;
+	transition: 0.5s;
 }
-.filter-dropdown li:hover{
+.filter-dropdown li:hover {
 	background: var(--button-hover);
 }
 /* add new recipe -- */
 .add-recipe-btn {
-
 	width: 100%;
 	white-space: nowrap;
 	padding: 0.3rem 0.75rem;
@@ -322,6 +342,7 @@ a:active {
 	top: 0;
 	left: 0;
 	z-index: 50;
+	transition: 0.5s;
 }
 .cover {
 	height: 100vh;
@@ -337,7 +358,7 @@ a:active {
 	border-radius: 3px;
 	opacity: 1;
 	z-index: 5;
-	padding: 2rem;
+	padding: 1rem 2.5rem;
 	overflow: auto;
 }
 .recipe-title {
@@ -360,21 +381,38 @@ a:active {
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
-.recipe-image {
-	cursor: pointer;
-}
-.recipe-btn {
+.new-material-btn {
+	white-space: nowrap;
+	padding: .5rem;
 	background: var(--header-bg);
+	margin: 0;
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
-	padding: 7.5px;
-	margin: 5px;
+	font-family: "Noto Sans TC", sans-serif;
 }
-.recipe-btn:hover {
+.new-material-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
-
+.recipe-image {
+	cursor: pointer;
+}
+.save-and-add-recipe-btn,
+.back-recipe {
+	white-space: nowrap;
+	padding: 0.3rem 0.75rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.save-and-add-recipe-btn:hover,
+.back-recipe:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
 
 /* ****************************************************************************** */

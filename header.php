@@ -17,19 +17,11 @@
 		<h1 class="title">廚聚</h1>
 	</div>
 	<div class="user flex_center">
-		<div class="user_photo">
-			<svg
-				width="50"
-				height="50"
-				viewBox="0 0 50 50"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<circle cx="25" cy="25" r="25" fill="#D9D9D9" />
-			</svg>
+		<div class="user_photo flex_center">
+			<img class="object-cover" src="img/user_img/peter.png" alt="">
 		</div>
 		<div class="">
-			<a class="sign_out" href="#">登出</a>
+			<a class="sign_out trnasition" href="#">登出</a>
 		</div>
 	</div>
 </header>
