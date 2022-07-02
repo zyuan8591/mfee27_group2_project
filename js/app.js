@@ -80,6 +80,7 @@ let newRecipePage = document.querySelector(".new-recipe-page");
 let addRecipeBtn = document.querySelector(".add-recipe-btn");
 let backToRecipe = document.querySelector(".back-recipe");
 let cover = document.querySelector(".cover");
+let xMark = document.querySelector(".fa-xmark");
 
 addRecipeBtn.addEventListener("click", function (e) {
 	e.preventDefault();
@@ -87,10 +88,12 @@ addRecipeBtn.addEventListener("click", function (e) {
 });
 backToRecipe.addEventListener("click", function (e) {
 	console.log("click");
-
 	e.preventDefault();
 	newRecipePage.classList.add("invisible");
 });
-cover.addEventListener("click", function (e) {
+// cover.addEventListener("click", function (e) {
+// 	newRecipePage.classList.add("invisible");
+// });
+xMark.addEventListener("click", function (e) {
 	newRecipePage.classList.add("invisible");
 });
