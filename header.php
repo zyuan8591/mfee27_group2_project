@@ -21,7 +21,7 @@
 			<img class="object-cover" src="img/user_img/peter.png" alt="">
 		</div>
 		<div class="">
-			<a class="sign_out trnasition" href="#">登出</a>
+			<a class="sign_out transition" href="#">登出</a>
 		</div>
 	</div>
 </header>

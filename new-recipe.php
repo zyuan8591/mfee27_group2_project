@@ -27,8 +27,8 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-3  d-flex justify-content-end">
-                <button class="new-material-btn trnasition">新增食材</button>
+            <div class="mb-3 d-flex justify-content-end">
+                <button class="new-material-btn transition">新增食材</button>
             </div>
         </div>
         <div class="mb-3">
@@ -46,8 +46,8 @@
             <input id="recipe-image" class="d-none" type="file" accept="image/*">
         </div>
         <div class="mb-3 flex_center">
-            <button class="btn save-and-add-recipe-btn me-3" type="submit trnasition">新增食譜</button>
-            <button class="btn back-recipe trnasition">返回食譜列表</button>
+            <button class="btn save-and-add-recipe-btn " type="submit transition">新增食譜</button>
+            <button class="btn back-recipe transition">返回食譜列表</button>
         </div>
     </form>
 </div>

@@ -85,7 +85,7 @@ a:active {
 .invisible {
 	opacity: 0;
 }
-.trnasition {
+.transition {
 	transition: background 0.3s, box-shadow 0.3s;
 }
 .object-cover {
@@ -367,11 +367,13 @@ a:active {
 	margin-bottom: 1rem;
 }
 .new-material-btn {
+	white-space: nowrap;
 	background: var(--header-bg);
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
-	padding: 5px;
+	padding: .25rem;
+	font-family: "Noto Sans TC", sans-serif;
 }
 .new-material-btn:active {
 	background: var(--btn-hover);
@@ -381,29 +383,15 @@ a:active {
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
-.new-material-btn {
-	white-space: nowrap;
-	padding: .5rem;
-	background: var(--header-bg);
-	margin: 0;
-	border: 0;
-	border-radius: 3px;
-	box-shadow: var(--box-shadow);
-	font-family: "Noto Sans TC", sans-serif;
-}
-.new-material-btn:hover {
-	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
-}
 .recipe-image {
 	cursor: pointer;
 }
 .save-and-add-recipe-btn,
 .back-recipe {
 	white-space: nowrap;
-	padding: 0.3rem 0.75rem;
+	padding: 0.3rem 0.5rem;
 	background: var(--header-bg);
-	margin: 0;
+	margin: .3rem;
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
