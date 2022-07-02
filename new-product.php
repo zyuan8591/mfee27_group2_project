@@ -1,6 +1,6 @@
 <div class="new-product-page position_abs flex_center invisible">
     <div class="cover position_abs"></div>
-    <form class="new-product-form" action="new-product-exe.php
+    <form class="new-product-form position-rel" action="new-product-exe.php
     " method="GET">
         <i class="fa-solid fa-xmark position_abs"></i>
         <h2 class="product-title text-center">新增商品</h2>
