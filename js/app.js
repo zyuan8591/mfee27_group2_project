@@ -98,3 +98,5 @@ backToRecipe.addEventListener("click", function (e) {
 xMark.addEventListener("click", function (e) {
 	newRecipePage.classList.add("invisible");
 });
+
+

@@ -1,7 +1,6 @@
 /* add new product */
 
 .add-product-btn {
-	width: 100%;
 	white-space: nowrap;
 	padding: 0.3rem 0.75rem;
 	background: var(--header-bg);
@@ -79,4 +78,14 @@
 .product-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
+}
+.table-btn {
+	white-space: nowrap;
+	padding: .4rem .7rem;
+	background: var(--header-bg);
+	margin: .3rem;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
 }
