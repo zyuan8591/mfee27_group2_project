@@ -44,6 +44,8 @@ let addProductBtn = document.querySelector(".add-product-btn");
 let backToProduct = document.querySelector(".back-product");
 let cover = document.querySelector(".cover");
 let xMark = document.querySelector(".fa-xmark");
+let detailPage=document.querySelector(".detail-page");
+let detailBtn=document.querySelector(".detail-btn");
 
 addProductBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -56,3 +58,7 @@ backToProduct.addEventListener("click", function (e) {
 xMark.addEventListener("click", function (e) {
 	newProductPage.classList.add("invisible");
 });
+detailBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    detailPage.classList.remove("invisible");
+})

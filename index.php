@@ -298,13 +298,14 @@
 		</aside>
 		<?php require "product.php";	?>	
 		<?php require "new-product.php"; ?>
+		<?php require "detail.php"; ?>
 		<!-- <?php require "new-recipe.php"; ?> -->
 	
 		<!-- <script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
 		</script> -->
 		<script type="text/javascript" >
-			<?php require "./js/app-product.js"; ?>
+			<?php require "./js/product.js"; ?>
 		</script>
 	</body>
 </html>
