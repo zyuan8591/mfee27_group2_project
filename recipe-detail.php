@@ -70,6 +70,33 @@
 					value="便便水餃"
 				/>
 			</div>
+			<div class="col-3">
+				<input
+					type="text"
+					readonly="readonly"
+					class="form-control-plaintext detail-item-input"
+					value="1顆"
+				/>
+			</div>			
+		</div>
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">　　　　</label>
+			<div class="col">
+				<input
+					type="text"
+					readonly="readonly"
+					class="form-control-plaintext detail-item-input"
+					value="便便水餃"
+				/>
+			</div>
+			<div class="col-3">
+				<input
+					type="text"
+					readonly="readonly"
+					class="form-control-plaintext detail-item-input"
+					value="400公克"
+				/>
+			</div>			
 		</div>
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">食譜內容</label>
