@@ -307,9 +307,9 @@
 				</div>
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="1">每頁顯示5筆</option>
-						<option value="2">每頁顯示15筆</option>
-						<option value="3">每頁顯示20筆</option>
+						<option value="5">每頁顯示5筆</option>
+						<option value="15">每頁顯示15筆</option>
+						<option value="20">每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
