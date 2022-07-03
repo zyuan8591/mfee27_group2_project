@@ -78,7 +78,7 @@ a:active {
 .btn-main {
 	white-space: nowrap;
 	padding: 0.25rem 0.65rem;
-	background: var(--header-bg);	
+	background: var(--header-bg);
 	margin: 0;
 	border: 0;
 	border-radius: 3px;
@@ -91,20 +91,6 @@ a:active {
 } */
 .btn-main:hover {
 	background: #ccc;
-	box-shadow: var(--hover-shadow);
-}
-.add-detail-btn {
-	white-space: nowrap;
-	padding: 0.4rem .75rem;
-	background: var(--header-bg);
-	margin: 0;
-	border: 0;
-	border-radius: 3px;
-	box-shadow: var(--box-shadow);
-	font-family: "Noto Sans TC", sans-serif;
-}
-.add-detail-btn:hover {
-	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
 .invisible {
@@ -155,7 +141,7 @@ a:active {
 
 .sign_out {
 	display: inline-block;
-	padding: 0.25rem .8rem;
+	padding: 0.25rem 0.8rem;
 	background: var(--header-color);
 	box-shadow: var(--box-shadow);
 	border-radius: 5px;
