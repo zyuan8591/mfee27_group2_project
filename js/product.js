@@ -39,10 +39,13 @@ for (let i = 0; i < filterItems.length; i++) {
     });
 }
 
+// add product page & detail page
+
 let newProductPage = document.querySelector(".new-product-page");
 let addProductBtn = document.querySelector(".add-product-btn");
-let backToProduct = document.querySelector(".back-product");
-let cover = document.querySelector(".cover");
+let backProduct = document.querySelector(".back-product");
+let backToProduct = document.querySelector(".back-to-product");
+let cover = document.querySelector(".detail-cover");
 let xMark = document.querySelector(".fa-xmark");
 let detailPage=document.querySelector(".detail-page");
 let detailBtn=document.querySelector(".detail-btn");
@@ -51,9 +54,13 @@ addProductBtn.addEventListener("click", function (e) {
     e.preventDefault();
     newProductPage.classList.remove("invisible");
 });
-backToProduct.addEventListener("click", function (e) {
+backProduct.addEventListener("click", function (e) {
     e.preventDefault();
     newProductPage.classList.add("invisible");
+});
+backToProduct.addEventListener("click", function (e) {
+    e.preventDefault();
+    detailPage.classList.add("invisible");
 });
 xMark.addEventListener("click", function (e) {
 	newProductPage.classList.add("invisible");
@@ -61,4 +68,40 @@ xMark.addEventListener("click", function (e) {
 detailBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     detailPage.classList.remove("invisible");
+})
+cover.addEventListener("click", (e)=>{
+    e.preventDefault();
+    detailPage.classList.add("invisible");
+})
+// detail page funcition
+
+let saveBtn=document.querySelector(".save-btn");
+let reviseBtn=document.querySelector(".revise-btn");
+let input=document.querySelectorAll(".product-input");
+
+reviseBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    saveBtn.disabled=false;
+    reviseBtn.disabled=true;
+    reviseBtn.classList.remove("revise-hover");
+    saveBtn.classList.add("save-hover");
+    for (i=0;i<input.length;i++){
+        input[i].removeAttribute("readonly");
+        input[i].classList.remove("form-control-plaintext");
+        input[i].classList.add("form-control");
+        input[i].disabled=false;
+    }
+})
+saveBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    saveBtn.disabled=true;
+    reviseBtn.disabled=false;
+    reviseBtn.classList.add("revise-hover");
+    saveBtn.classList.remove("save-hover");
+    for (i=0;i<input.length;i++){
+        input[i].setAttribute("readonly", "readonly");
+        input[i].classList.add("form-control-plaintext");
+        input[i].classList.remove("form-control");
+        input[i].disabled=true;
+    }
 })

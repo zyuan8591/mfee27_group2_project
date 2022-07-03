@@ -115,3 +115,23 @@
 	padding: 1.5rem 2.5rem;
 	overflow: auto;
 }
+.detail-cover {
+	height: 100vh;
+	width: 100vw;
+	background: #666;
+	opacity: 0.8;
+}
+.revise-btn, .save-btn {
+	white-space: nowrap;
+	padding: 0.4rem 0.5rem;
+	background: var(--header-bg);
+	margin: .3rem;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.revise-hover:hover, .save-hover:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
