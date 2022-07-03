@@ -77,7 +77,7 @@ a:active {
 }
 .btn-main {
 	white-space: nowrap;
-	padding: 0.3rem 0.75rem;
+	padding: 0.25rem 0.65rem;
 	background: var(--header-bg);
 	margin: 0;
 	border: 0;
@@ -137,7 +137,7 @@ a:active {
 
 .sign_out {
 	display: inline-block;
-	padding: 0.25rem 1rem;
+	padding: 0.25rem .8rem;
 	background: var(--header-color);
 	box-shadow: var(--box-shadow);
 	border-radius: 5px;

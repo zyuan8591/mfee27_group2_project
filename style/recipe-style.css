@@ -158,7 +158,7 @@
 }
 .new-material-btn {
 	white-space: nowrap;
-	padding: 0.3rem 0.75rem;
+	padding: 0.3rem 0.5rem;
 	background: var(--header-bg);
 	margin: 0;
 	border: 0;
