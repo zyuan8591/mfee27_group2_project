@@ -225,7 +225,7 @@ a:active {
 	top: var(--header-height);
 	left: var(--aside-width);
 	background: var(--main-bg);
-	padding: 1rem;
+	padding: 2.2rem 2.5rem;
 	width: calc(100vw - var(--aside-width));
 }
 .main-title {

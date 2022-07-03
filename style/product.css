@@ -81,11 +81,15 @@
 }
 .table-btn {
 	white-space: nowrap;
-	padding: .4rem .7rem;
+	padding: .5rem .7rem;
 	background: var(--header-bg);
-	margin: .3rem;
+	margin: 0 .3rem .2rem ;
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
 	font-family: "Noto Sans TC", sans-serif;
+}
+.table-btn:hover {
+	background: #ccc;
+	box-shadow: var(--hover-shadow);
 }

@@ -55,18 +55,19 @@
 				<thead class="table-dark">
 					<tr class="">
 						<th class="text-center" scope="col">商品編號</th>
+						<th scope="col">店家</th>
 						<th scope="col">商品名稱</th>
 						<th scope="col">商品主類別</th>
 						<th scope="col">商品次類別</th>
 						<th scope="col">商品狀態</th>
 						<th scope="col">新增日期</th>
 						<th scope="col">編輯商品</th>
-						<th scope="col">店家</th>
 					</tr>
 				</thead>
 				<tbody class="">
 					<tr class="">
 						<th class="text-center" scope="row">1</th>
+						<td>SodaStream</td>
 						<td>氣泡水機</td>
 						<td>冷熱調理</td>
 						<td>氣泡水機</td>
@@ -77,7 +78,6 @@
 							<button class="table-btn">下架</button>
 							<button class="table-btn">詳細資訊</button>	
 						</td>
-						<td>SodaStream</td>
 					</tr>
 				</tbody>
 			</table>
