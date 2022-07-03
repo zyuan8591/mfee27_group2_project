@@ -116,17 +116,17 @@
 			/>
 		</div>
 		<div class="mb-3 flex_center">
-			<button class="btn-main modify-detail-btn me-3" type="submit transition">
+			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
 				修改食譜
 			</button>
 			<button
-				class="btn-main save-detail-btn me-3"
+				class="add-detail-btn save-detail-btn me-3"
 				type="submit transition"
 				disabled="true"
 			>
 				儲存食譜
 			</button>
-			<button class="btn-main back-recipe-de transition">返回食譜列表</button>
+			<button class="add-detail-btn back-recipe-de transition">返回食譜列表</button>
 		</div>
 	</form>
 </div>
