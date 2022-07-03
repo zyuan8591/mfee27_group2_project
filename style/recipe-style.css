@@ -205,7 +205,8 @@
 	padding: 1.5rem 2.5rem 1rem 2.5rem;
 	overflow: auto;
 }
-.add-detail-btn {
+.add-detail-btn,
+.save-detail-btn {
 	white-space: nowrap;
 	padding: 0.4rem 0.75rem;
 	background: var(--header-bg);
@@ -216,6 +217,10 @@
 	font-family: "Noto Sans TC", sans-serif;
 }
 .add-detail-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.save-detail-btn-hover:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }

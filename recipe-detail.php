@@ -147,7 +147,7 @@
 				修改食譜
 			</button>
 			<button
-				class="add-detail-btn save-detail-btn me-3"
+				class="save-detail-btn me-3"
 				type="submit transition"
 				disabled="true"
 			>

@@ -126,6 +126,7 @@ modifyBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	modifyBtn.disabled = true;
 	saveBtn.disabled = false;
+	saveBtn.classList.add("save-detail-btn-hover");
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].removeAttribute("readonly");
 		detailInputs[i].classList.remove("form-control-plaintext");
@@ -141,6 +142,7 @@ modifyBtn.addEventListener("click", (e) => {
 saveBtn.addEventListener("click", (e) => {
 	modifyBtn.disabled = false;
 	saveBtn.disabled = true;
+	saveBtn.classList.remove("save-detail-btn-hover");
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].setAttribute("readonly", "readonly");
 		detailInputs[i].classList.remove("form-control");
@@ -159,6 +161,7 @@ backToRecipeDe.addEventListener("click", function (e) {
 	detailPage.classList.add("invisible");
 	modifyBtn.disabled = false;
 	saveBtn.disabled = true;
+	saveBtn.classList.remove("save-detail-btn-hover");
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].setAttribute("readonly", "readonly");
 		detailInputs[i].classList.remove("form-control");
