@@ -66,7 +66,7 @@
 								</svg>
 								<a class="main_nav_item_content" href="">商品管理</a>
 							</div>
-							<div class="nav_dropdown ">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -83,8 +83,8 @@
 						</div>
 						<!-- 商品管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container translateYtoNone">
-								<li class="">
+							<div class="sub_nav_item_container ">
+								<li class="sub_nav_item_active">
 									<a class="sub_nav_item_content" href="">商品總覽</a>
 								</li>
 								<li>
@@ -155,7 +155,7 @@
 								<a class="main_nav_item_content" href="">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown ">
 								<svg
 									width="24"
 									height="13"
@@ -172,8 +172,8 @@
 						</div>
 						<!-- 食譜管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container ">
-								<li class="sub_nav_item_active">
+							<div class="sub_nav_item_container translateYtoNone">
+								<li class="">
 									<a class="sub_nav_item_content" href="">食譜總覽</a>
 								</li>
 								<li>
