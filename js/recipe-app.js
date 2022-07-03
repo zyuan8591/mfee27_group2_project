@@ -187,3 +187,4 @@ detailXMark.addEventListener("click", function (e) {
 		detailImgs[i].disabled = true;
 	}
 });
+
