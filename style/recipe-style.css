@@ -33,6 +33,11 @@
 .sort-btn:active {
 	outline: var(--button-active) solid 4px;
 }
+/* per page */
+
+.per-page {
+	width: auto;
+}
 /* search -- */
 .search-box {
 	padding: 0.25rem;
@@ -40,7 +45,7 @@
 	border: 2px solid var(--button-active);
 	height: 36px;
 	position: relative;
-	width: 365px;
+	max-width: 365px;
 	flex-shrink: 1;
 }
 .search-box:focus {
@@ -152,7 +157,8 @@
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 }
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }

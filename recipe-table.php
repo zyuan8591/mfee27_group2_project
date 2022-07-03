@@ -39,3 +39,25 @@
 		</tr>
 	</tbody>
 </table>
+<div class="row w-100">
+	<div class="col-4 d-flex justify-content-start">
+		<!-- <select class="form-select per-page" name="per-page" >
+			<option value="1">每頁顯示5筆</option>
+			<option value="2">每頁顯示15筆</option>
+			<option value="3">每頁顯示20筆</option>
+		</select> -->
+	</div>
+	<div class="col-4">
+		<div class="btn-group me-2" role="group" aria-label="First group">
+			<a type="button" class="btn btn-outline-dark">上一頁</a>
+			<a type="button" class="btn btn-outline-dark">1</a>
+			<a type="button" class="btn btn-outline-dark">2</a>
+			<a type="button" class="btn btn-outline-dark">3</a>
+			<a type="button" class="btn btn-outline-dark">4</a>
+			<a type="button" class="btn btn-outline-dark">下一頁</a>
+		</div>
+	</div>
+	<div class="col-4"></div>
+
+
+</div>

@@ -104,6 +104,11 @@ a:active {
 	width: 100%;
 	height: 100%;
 }
+.btn-group a:focus {
+	box-shadow: var(--box-shadow);
+	border-color: var(--input-border);
+}
+
 /* --------------------------------------------- */
 /* header */
 .header {

@@ -305,8 +305,13 @@
 					<a class="sort-btn transition" href="">依名稱排序</a>
 					<a class="sort-btn transition" href="">依日期排序</a>
 				</div>
-				<form class="recipe_search " action="" method="get">
-					<div class="d-flex align-items-center " >
+				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="" method="get">
+					<select class="form-select per-page" name="per-page" >
+						<option value="1">每頁顯示5筆</option>
+						<option value="2">每頁顯示15筆</option>
+						<option value="3">每頁顯示20筆</option>
+					</select>
+					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
 							<input class="form-control search-box " type="text" name="recipe_search" placeholder="搜尋食譜名稱">
 						</div>
