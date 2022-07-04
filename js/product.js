@@ -68,6 +68,10 @@ xMark.addEventListener("click", function (e) {
 detailBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     detailPage.classList.remove("invisible");
+    saveBtn.disabled=true;
+    saveBtn.classList.remove("save-hover");
+    reviseBtn.disabled=false;
+    reviseBtn.classList.add("revise-hover");
 })
 cover.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -104,4 +108,13 @@ saveBtn.addEventListener("click", (e)=>{
         input[i].classList.remove("form-control");
         input[i].disabled=true;
     }
+})
+
+// list & unlist
+
+let listBtn=document.querySelector(".list");
+let unlistBtn=document.querySelector(".unlist");
+
+listBtn.addEventListener("click", (e)=>{
+    
 })

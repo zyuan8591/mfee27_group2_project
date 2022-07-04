@@ -74,8 +74,8 @@
 						<td>上架中</td>
 						<td>2022/07/01</td>
 						<td class="">
-							<button class="table-btn">上架</button>
-							<button class="table-btn">下架</button>
+							<button class="table-btn list" disabled>上架</button>
+							<button class="table-btn unlist" disabled>下架</button>
 							<button class="table-btn detail-btn">詳細資料</button>	
 						</td>
 					</tr>
