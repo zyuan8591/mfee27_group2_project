@@ -454,12 +454,12 @@ foreach ($rowsCatProduct as $row) {
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=
 							">全部</a></li>
 							<?php foreach ($rowsCatFood as $row): ?>
 							<li><a href="
 							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
-							&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $row["id"] ?>
+							&page=1&search=<?= $search ?>&foodCate=<?= $row["id"] ?>
 							">
 								<?= $row["name"] ?>
 							</a></li>
@@ -481,15 +481,15 @@ foreach ($rowsCatProduct as $row) {
 						</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
 							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&valid=
 							">全部</a></li>
 							<li><a class="text-nowrap " href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
 							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&valid=1
 							">上架中</a></li>
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
 							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&valid=0
 							">下架中</a></li>
 						</ul>

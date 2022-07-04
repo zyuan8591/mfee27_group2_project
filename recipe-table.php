@@ -58,7 +58,9 @@
 			<?php for ($i = 1; $i <= $pages; $i++): ?>
 			<a href ="
 			recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-			" type="button" class="btn btn-outline-dark">
+			" type="button" class="btn btn-outline-dark <?php if ($page == $i) {
+   	echo "active";
+   } ?> ">
 				<?= $i ?>
 			</a>
 			<?php endfor; ?>
