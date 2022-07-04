@@ -1,3 +1,10 @@
+//perPage
+let perPage = document.querySelector(".per-page");
+let searchForm = document.querySelector(".recipe_search");
+perPage.addEventListener("change", function () {
+	searchForm.submit();
+});
+
 // filter hover
 let filterItems = document.querySelectorAll(".filter-item");
 let filterDropDowm = document.querySelectorAll(".filter-dropdown");
@@ -14,7 +21,7 @@ let newMaterialBtn = document.querySelector(".new-material-btn");
 let materialName = document.querySelector(".material-name");
 let materialQ = document.querySelector(".material-q");
 let materialContainer = document.querySelector(".material-container");
-console.log(newMaterialBtn);
+// console.log(newMaterialBtn);
 let i = 1;
 newMaterialBtn.addEventListener("click", (e) => {
 	e.preventDefault();

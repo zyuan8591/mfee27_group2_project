@@ -7,6 +7,8 @@
 	background: var(--main-bg);
 	padding: 2.2rem 2.5rem;
 	width: calc(100vw - var(--aside-width));
+	overflow: auto;
+	height: calc(100vh - var(--header-height));
 }
 .main-title {
 	font-size: 2rem;
