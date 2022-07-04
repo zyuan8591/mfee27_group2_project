@@ -23,7 +23,6 @@
 
 		</style>
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
-		<script type="text/javascript" src="./js/jquery.min.js"></script>
 	</head>
 	<body>
 		<?php require "header.php"; ?>
