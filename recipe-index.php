@@ -356,6 +356,7 @@
 		<?php require "recipe-detail.php"; ?>
 
 		<script type="text/javascript" >
+			<?php require "./js/app.js"; ?>
 			<?php require "./js/recipe-app.js"; ?>
 		</script>
 	</body>
