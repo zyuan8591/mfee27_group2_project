@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "admin";
 $password = "12345";
-$dbname = "mfee27_group2_project";
+$dbname = "group2";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // 檢查連線
