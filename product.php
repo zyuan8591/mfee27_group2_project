@@ -1,3 +1,5 @@
+<main class="main position-rel">
+
 <?php
 require "./db-connect.php";
 
@@ -25,18 +27,19 @@ switch ($order) {
 		$orderType = "id ASC";
 		break;
 }
-
+$sqlWhereSearch = "";
 if (!isset($_GET["product_search"])) {
 	$product_search = "";
 	$productCount = 0;
 } else {
 	$product_search = $_GET["product_search"];
-
-	$sql = "SELECT * FROM products WHERE name LIKE '%$product_search%' AND valid=1 ORDER BY $orderType ";
-	$result = $conn->query($sql);
-	$rows = $result->fetch_all(MYSQLI_ASSOC);
-	$productCount = $result->num_rows;
+	$sqlWhereSearch = "AND name LIKE '%$product_search%'";
 }
+$sql = "SELECT * FROM products WHERE valid=1 $sqlWhereSearch ORDER BY $orderType ";
+
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+$productCount = $result->num_rows;
 
 $sqlCompany = "SELECT id, name FROM company_users";
 $resultCompany = $conn->query($sqlCompany);
@@ -59,7 +62,6 @@ foreach ($rowsCateSub as $row) {
 	$cateSub[$row["id"]] = $row["name"];
 }
 ?>
-<main class="main position-rel">
 	<div>
 		<h2 class="main-title">商品總覽</h2>
 	</div>
@@ -88,7 +90,7 @@ foreach ($rowsCateSub as $row) {
 				<option value="2">Two</option>
 				<option value="3">Three</option>
 			</select>
-			<form class="product_search " action="" method="get">
+			<form class="product.php" action="" method="get">
 				<div class="d-flex align-items-center ">
 					<div class="d-flex ">
 						<input class="form-control search-box " type="text" name="product_search" placeholder="搜尋商品名稱">
