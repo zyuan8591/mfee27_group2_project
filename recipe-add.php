@@ -1,6 +1,6 @@
 <div class="new-recipe-page position_abs flex_center invisible">
     <div class="cover position_abs"></div>
-    <form class="new-recipe-form position-rel" action="new-recipe-exe.php
+    <form class="new-recipe-form position-rel" action="recipe-add-exe.php
     " method="GET">
         <i class="fa-solid fa-xmark position_abs"></i>
         <h2 class="recipe-title text-center">新增食譜</h2>
@@ -10,31 +10,18 @@
         </div>
         <div class="mb-3">
             <label for="" class="form-label">食物分類</label>
-            <select class="form-select" name="category_main">
-                <option value="1">烘焙點心</option>
-                <option value="2">飲料冰品</option>
-                <option value="3">異國料理</option>
-                <option value="4">日式料理</option>
-                <option value="5">韓式料理</option>
-                <option value="6">台式料理</option>
-                <option value="7">泰式料理</option>
+            <select class="form-select" name="category_food">
+                <?php foreach ($rowsCatFood as $row): ?>
+                <option value="<?= $row["id"] ?>"><?= $row["name"] ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">商品分類</label>
-            <select class="form-select" name="product_id">
-                <option value="1">氣炸鍋</option>
-                <option value="2">咖啡機</option>
-                <option value="3">氣泡水機</option>
-                <option value="4">快煮壺</option>
-                <option value="5">磨豆機</option>
-                <option value="6">果汁機</option>
-                <option value="7">料理鍋</option>         
-                <option value="8">烤箱/氣炸烤箱</option>
-                <option value="9">電烤盤</option>
-                <option value="10">隨行果汁機</option>
-                <option value="11">鬆餅機/熱壓吐司機</option>
-                <option value="12">攪拌機</option>
+            <select class="form-select" name="category_product">
+                <?php foreach ($rowsCatProduct as $row): ?>
+                <option value="<?= $row["id"] ?>"><?= $row["name"] ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="mb-3">
@@ -42,10 +29,10 @@
             <div class="material-container">
                 <div class="row mb-3">
                     <div class="col-8">
-                        <input type="text" class="form-control material-name" name="material" placeholder="請輸入食材名稱">
+                        <input type="text" class="form-control material-name" name="material-name-0" placeholder="請輸入食材名稱">
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control material-q" name="material_q" placeholder="請輸入數量" >
+                        <input type="text" class="form-control material-q" name="material_q-0" placeholder="請輸入數量" >
                     </div>
                 </div>
             </div>

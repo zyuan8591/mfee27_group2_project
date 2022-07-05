@@ -473,13 +473,13 @@ foreach ($rowsCatProduct as $row) {
 
 					<div class="filter-item  position-rel">
 						<button class="filter-btn transition">
-							<?php if ($recipeCount == 0) {
-       	echo "食譜類別";
-       } elseif ($foodCate == "") {
-       	echo "食譜類別";
-       } else {
-       	echo $category_food[$foodCate];
-       } ?>
+						<?php if ($recipeCount == 0) {
+      	echo "食譜類別";
+      } elseif ($foodCate == "") {
+      	echo "食譜類別";
+      } else {
+      	echo $category_food[$foodCate];
+      } ?>
 							
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
@@ -489,9 +489,8 @@ foreach ($rowsCatProduct as $row) {
 							<?php foreach ($rowsCatFood as $row): ?>
 							<li><a href="
 							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
-							&page=1&search=<?= $search ?>&foodCate=<?= $row[
-	"id"
-] ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+							&page=1&search=<?= $search ?>&foodCate=
+							<?= $row["id"] ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 							">
 								<?= $row["name"] ?>
 							</a></li>
