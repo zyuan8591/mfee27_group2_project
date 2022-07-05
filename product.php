@@ -1,54 +1,54 @@
 <?php
-require("./db-connect.php");
+require "./db-connect.php";
+
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+switch ($order) {
+	case 1:
+		$orderType = "id ASC";
+		break;
+	case 2:
+		$orderType = "id DESC";
+		break;
+	case 3:
+		$orderType = "name ASC";
+		break;
+	case 4:
+		$orderType = "name DESC";
+		break;
+	case 5:
+		$orderType = "create_time ASC";
+		break;
+	case 6:
+		$orderType = "create_time DESC";
+		break;
+	default:
+		$orderType = "id ASC";
+		break;
+}
 
 $sql = "SELECT * FROM products WHERE valid=1 ORDER BY $orderType ";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-$order=isset($_GET["order"])?$_GET["order"]:1;
-switch ($order){
-	case 1:
-		$orderType= "id ASC";
-		break;
-	case 2:
-		$orderType="id DESC";
-		break;
-	case 3:
-		$orderType="name ASC";
-		break;
-	case 4:
-		$orderType="name DESC";
-		break;
-	case 5:
-		$orderType="create_time ASC";
-		break;
-	case 6:
-		$orderType="create_time DESC";
-		break;
-	default:
-		$orderType="id ASC";
-		break;
-	};
-
-$sqlCompany="SELECT id, name FROM company_users";
+$sqlCompany = "SELECT id, name FROM company_users";
 $resultCompany = $conn->query($sqlCompany);
-$rowsCompany=$resultCompany->fetch_all(MYSQLI_ASSOC);
-foreach ($rowsCompany as $row){
-	$companyName[$row["id"]]=$row["name"];
+$rowsCompany = $resultCompany->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsCompany as $row) {
+	$companyName[$row["id"]] = $row["name"];
 }
 
-$sqlCate="SELECT id, name FROM products_category";
-$resultCate=$conn->query($sqlCate);
-$rowsCate=$resultCate->fetch_all(MYSQLI_ASSOC);
-foreach($rowsCate as $row){
-	$cate[$row["id"]]=$row["name"];
+$sqlCate = "SELECT id, name FROM products_category";
+$resultCate = $conn->query($sqlCate);
+$rowsCate = $resultCate->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsCate as $row) {
+	$cate[$row["id"]] = $row["name"];
 }
 
-$sqlCateSub="SELECT id, name FROM products_category_sub";
-$resultCateSub=$conn->query($sqlCateSub);
-$rowsCateSub=$resultCateSub->fetch_all(MYSQLI_ASSOC);
-foreach($rowsCateSub as $row){
-	$cateSub[$row["id"]]=$row["name"];
+$sqlCateSub = "SELECT id, name FROM products_category_sub";
+$resultCateSub = $conn->query($sqlCateSub);
+$rowsCateSub = $resultCateSub->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsCateSub as $row) {
+	$cateSub[$row["id"]] = $row["name"];
 }
 ?>
 <main class="main position-rel">
@@ -126,15 +126,15 @@ foreach($rowsCateSub as $row){
 			</tr>
 		</thead>
 		<tbody class="">
-			<?php foreach ($rows as $row) : ?>
+			<?php foreach ($rows as $row): ?>
 				<tr class="">
-					<th class="text-center" scope="row"><?= $row["id"]; ?></th>
+					<th class="text-center" scope="row"><?= $row["id"] ?></th>
 					<td><?= $companyName[$row["company_id"]] ?></td>
-					<td><?=$row["name"]?></td>
-					<td><?=$cate[$row["category_main"]]?></td>
-					<td><?=$cateSub[$row["category_sub"]]?></td>
-					<td><?=$row["valid"]?></td>
-					<td><?=$row["create_time"]?></td>
+					<td><?= $row["name"] ?></td>
+					<td><?= $cate[$row["category_main"]] ?></td>
+					<td><?= $cateSub[$row["category_sub"]] ?></td>
+					<td><?= $row["valid"] ?></td>
+					<td><?= $row["create_time"] ?></td>
 					<td class="">
 						<button class="table-btn list">上架</button>
 						<button class="table-btn unlist">下架</button>
