@@ -68,7 +68,7 @@ switch ($order) {
 		$orderType = "name DESC";
 		break;
 	default:
-		$orderType = "id ASC"; 
+		$orderType = "id ASC";
 		break;
 }
 

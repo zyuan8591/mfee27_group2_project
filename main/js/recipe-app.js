@@ -1,35 +1,10 @@
-let navDropBtns = document.querySelectorAll(".nav_dropdown");
-let subNavContainer = document.querySelectorAll(".sub_nav_item_container");
-let mainNavItems = document.querySelectorAll(".main_nav_item");
-let subNavItems = document.querySelectorAll(".sub_nav_item_container li");
-// navbar animation ------------------------------------------------------------
-for (let i = 0; i < mainNavItems.length; i++) {
-	mainNavItems[i].addEventListener("click", function () {
-		for (let j = 0; j < subNavContainer.length; j++) {
-			if (
-				!subNavContainer[j].classList.contains("translateYtoNone") &&
-				i != j
-			) {
-				navDropBtns[j].classList.toggle("nav_dropdown_active");
-			}
-			if (i != j) {
-				subNavContainer[j].classList.add("translateYtoNone");
-			}
-		}
-		subNavContainer[i].classList.toggle("translateYtoNone");
-		navDropBtns[i].classList.toggle("nav_dropdown_active");
-	});
-} 
+//perPage
+let perPage = document.querySelector(".per-page");
+let searchForm = document.querySelector(".recipe_search");
+perPage.addEventListener("change", function () {
+	searchForm.submit();
+});
 
-// navbar sub item click active class ------------------------------------------
-// for (let i = 0; i < subNavItems.length; i++) {
-// 	subNavItems[i].addEventListener("click", (e) => {
-// 		for (let j = 0; j < subNavItems; j++) {
-// 			subNavItems[j].classList.remove("sub_nav_item_active");
-// 		}
-// 		subNavItems[i].classList.add("sub_nav_item_active");
-// 	});
-// }
 // filter hover
 let filterItems = document.querySelectorAll(".filter-item");
 let filterDropDowm = document.querySelectorAll(".filter-dropdown");
@@ -46,7 +21,7 @@ let newMaterialBtn = document.querySelector(".new-material-btn");
 let materialName = document.querySelector(".material-name");
 let materialQ = document.querySelector(".material-q");
 let materialContainer = document.querySelector(".material-container");
-console.log(newMaterialBtn);
+// console.log(newMaterialBtn);
 let i = 1;
 newMaterialBtn.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -96,7 +71,7 @@ xMark.addEventListener("click", function (e) {
 
 // call detail page
 let detailPage = document.querySelector(".recipe-datail");
-let detailBtn = document.querySelectorAll(".detail"); //
+let detailBtn = document.querySelectorAll(".detail");
 let detailCover = document.querySelector(".cover-detail");
 let backToRecipeDe = document.querySelector(".back-recipe-de");
 let detailXMark = document.querySelector(".detail-xMark");
@@ -126,6 +101,7 @@ modifyBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	modifyBtn.disabled = true;
 	saveBtn.disabled = false;
+	saveBtn.classList.add("save-detail-btn-hover");
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].removeAttribute("readonly");
 		detailInputs[i].classList.remove("form-control-plaintext");
@@ -141,6 +117,7 @@ modifyBtn.addEventListener("click", (e) => {
 saveBtn.addEventListener("click", (e) => {
 	modifyBtn.disabled = false;
 	saveBtn.disabled = true;
+	saveBtn.classList.remove("save-detail-btn-hover");
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].setAttribute("readonly", "readonly");
 		detailInputs[i].classList.remove("form-control");
@@ -159,6 +136,7 @@ backToRecipeDe.addEventListener("click", function (e) {
 	detailPage.classList.add("invisible");
 	modifyBtn.disabled = false;
 	saveBtn.disabled = true;
+	saveBtn.classList.remove("save-detail-btn-hover");
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].setAttribute("readonly", "readonly");
 		detailInputs[i].classList.remove("form-control");
