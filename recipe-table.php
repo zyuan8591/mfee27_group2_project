@@ -1,10 +1,3 @@
-<?php
-require("db-connect.php");
-
-$sql="SELECT * FROM customer_users WHERE valid=1";
-$result = $conn->query($sql);
-?>
-
 
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">

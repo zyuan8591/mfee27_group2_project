@@ -1,5 +1,5 @@
-<div class="vh-100 d-flex justify-content-center align-items-center " id="openMsg">
-    <div class="customer-add-main close" >
+<div class="vh-100 d-flex justify-content-center align-items-center " >
+    <div class="customer-add-main close" ></div>
         <div class="contain">
             <h2 class="text-center border-bottom pb-3">一般會員註冊</h2>
             <form action="doSignUp.php" method="post">

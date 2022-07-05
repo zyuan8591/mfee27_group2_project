@@ -1,3 +1,13 @@
+<?php
+require("db-connect.php");
+
+$sql="SELECT * FROM customer_users";
+$result = $conn->query($sql);
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -24,7 +34,7 @@
 			
 		</style>
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
-		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		
 	</head>
 	<body>
 		<?php require "header.php"; ?>
@@ -302,9 +312,9 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="">依編號排序</a>
+					<a class="sort-btn transition" href="recipe-index.php">依編號排序</a>
 					<a class="sort-btn transition" href="">依名稱排序</a>
-					<a class="sort-btn transition" href="">依日期排序</a>
+					<!-- <a class="sort-btn transition" href="">依日期排序</a> -->
 				</div>
 				<form class="recipe_search " action="" method="get">
 					<div class="d-flex align-items-center " >
@@ -344,7 +354,7 @@
 					</div>					
 				</div>
 				<div>
-					<a class=" transition" href="" id="customer-add-openBtn">新增會員</a>
+					<a class=" transition" id="customer-add-openBtn">新增會員</a>
 				</div>
 			</div>
 		<?php require "recipe-table.php"; ?>
@@ -353,7 +363,7 @@
 		<?php require "recipe-detail.php"; ?>
 
 		<script type="text/javascript">
-			<?php require "./js/jquery.min.js";?>
+			
 			<?php require "js/customer.js";?>
 		
 
