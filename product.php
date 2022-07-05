@@ -90,7 +90,7 @@ foreach ($rowsCateSub as $row) {
 				<option value="2">Two</option>
 				<option value="3">Three</option>
 			</select>
-			<form class="product.php" action="" method="get">
+			<form class="product_search" action="product-index.php" method="get">
 				<div class="d-flex align-items-center ">
 					<div class="d-flex ">
 						<input class="form-control search-box " type="text" name="product_search" placeholder="搜尋商品名稱">
