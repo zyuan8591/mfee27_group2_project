@@ -135,3 +135,13 @@
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
+
+/* .list {
+	pointer-events: none;
+	color: var(--btn-hover);
+}
+
+.unlist {
+	pointer-events: none;
+	color: var(--btn-hover);
+} */
