@@ -1,37 +1,34 @@
 <?php
 require "db-connect.php";
 
-$sqlAll="SELECT * FROM customer_users WHERE valid=1";
+$sqlAll = "SELECT * FROM customer_users WHERE valid=1";
 $resultAll = $conn->query($sqlAll);
-$rows=$resultAll->fetch_all(MYSQLI_ASSOC);
-$customerCount=$resultAll-> num_rows;
+$rows = $resultAll->fetch_all(MYSQLI_ASSOC);
+$customerCount = $resultAll->num_rows;
 // order
 
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
 
-$order=isset($_GET["order"]) ? $_GET["order"] : 1;
-
-switch($order){
-  case 1:
-    $orderType="id ASC";
-    break;
-  case 2:
-    $orderType="id DESC";
-    break;
-  case 3:
-    $orderType="name ASC";
-    break;
-  case 4:
-    $orderType="name DESC";
-    break;
-  default:
-    $orderType="id ASC"; 
+switch ($order) {
+	case 1:
+		$orderType = "id ASC";
+		break;
+	case 2:
+		$orderType = "id DESC";
+		break;
+	case 3:
+		$orderType = "name ASC";
+		break;
+	case 4:
+		$orderType = "name DESC";
+		break;
+	default:
+		$orderType = "id ASC";
 }
 
-$sql="SELECT * FROM customer_users WHERE valid=1 ORDER BY $orderType ";
+$sql = "SELECT * FROM customer_users WHERE valid=1 ORDER BY $orderType ";
 $result = $conn->query($sql);
-$pageCustomerCount=$result-> num_rows;
-
-
+$pageCustomerCount = $result->num_rows;
 ?>
 
 <!DOCTYPE html>
