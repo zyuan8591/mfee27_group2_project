@@ -26,9 +26,17 @@ switch ($order) {
 		break;
 }
 
-$sql = "SELECT * FROM products WHERE valid=1 ORDER BY $orderType ";
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
+if (!isset($_GET["product_search"])) {
+	$product_search = "";
+	$productCount = 0;
+} else {
+	$product_search = $_GET["product_search"];
+
+	$sql = "SELECT * FROM products WHERE name LIKE '%$product_search%' AND valid=1 ORDER BY $orderType ";
+	$result = $conn->query($sql);
+	$rows = $result->fetch_all(MYSQLI_ASSOC);
+	$productCount = $result->num_rows;
+}
 
 $sqlCompany = "SELECT id, name FROM company_users";
 $resultCompany = $conn->query($sqlCompany);
@@ -57,9 +65,21 @@ foreach ($rowsCateSub as $row) {
 	</div>
 	<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 		<div class="sort d-flex align-items-center">
-			<a class="sort-btn transition" href="">依編號排序</a>
-			<a class="sort-btn transition" href="">依名稱排序</a>
-			<a class="sort-btn transition" href="">依日期排序</a>
+			<a class="sort-btn transition" href="<?php if (
+   	$order == 1
+   ): ?>product-index.php?order=2<?php elseif (
+   	$order == 2
+   ): ?>product-index.php?order=1<?php else: ?>product-index.php?order=1<?php endif; ?>">依編號排序</a>
+			<a class="sort-btn transition" href="<?php if (
+   	$order == 3
+   ): ?>product-index.php?order=4<?php elseif (
+   	$order == 4
+   ): ?>product-index.php?order=3<?php else: ?>product-index.php?order=3<?php endif; ?>">依名稱排序</a>
+			<a class="sort-btn transition" href="<?php if (
+   	$order == 5
+   ): ?>product-index.php?order=6<?php elseif (
+   	$order == 6
+   ): ?>product-index.php?order=5<?php else: ?>product-index.php?order=5<?php endif; ?>">依日期排序</a>
 		</div>
 		<div class="d-flex">
 			<select class="form-select mx-2" aria-label="Default select example">
@@ -74,7 +94,7 @@ foreach ($rowsCateSub as $row) {
 						<input class="form-control search-box " type="text" name="product_search" placeholder="搜尋商品名稱">
 					</div>
 					<div class="">
-						<button class="search-btn form-control">
+						<button class="search-btn form-control" type="submit">
 							<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M17.7292 18.8489L10.8802 11.9999C10.3594 12.4513 9.75174 12.8029 9.05729 13.0546C8.36285 13.3063 7.625 13.4322 6.84375 13.4322C4.96875 13.4322 3.38021 12.7812 2.07812 11.4791C0.776042 10.177 0.125 8.60582 0.125 6.76554C0.125 4.92527 0.776042 3.35409 2.07812 2.052C3.38021 0.749919 4.96007 0.098877 6.81771 0.098877C8.65799 0.098877 10.2248 0.749919 11.5182 2.052C12.8116 3.35409 13.4583 4.92527 13.4583 6.76554C13.4583 7.51207 13.3368 8.23256 13.0937 8.927C12.8507 9.62145 12.4861 10.2725 12 10.8801L18.875 17.703L17.7292 18.8489ZM6.81771 11.8697C8.22396 11.8697 9.42188 11.3706 10.4115 10.3723C11.401 9.37405 11.8958 8.17179 11.8958 6.76554C11.8958 5.35929 11.401 4.15704 10.4115 3.15877C9.42188 2.16051 8.22396 1.66138 6.81771 1.66138C5.3941 1.66138 4.18316 2.16051 3.1849 3.15877C2.18663 4.15704 1.6875 5.35929 1.6875 6.76554C1.6875 8.17179 2.18663 9.37405 3.1849 10.3723C4.18316 11.3706 5.3941 11.8697 6.81771 11.8697Z" fill="#222222" />
 							</svg>
@@ -112,6 +132,7 @@ foreach ($rowsCateSub as $row) {
 			<a class="add-product-btn transition" href="">新增商品</a>
 		</div>
 	</div>
+	<div>共<?= $productCount ?>筆</div>
 	<table class="table table-hover">
 		<thead class="table-dark">
 			<tr class="">
@@ -121,7 +142,6 @@ foreach ($rowsCateSub as $row) {
 				<th scope="col">商品主類別</th>
 				<th scope="col">商品次類別</th>
 				<th scope="col">商品狀態</th>
-				<th scope="col">新增日期</th>
 				<th scope="col">編輯商品</th>
 			</tr>
 		</thead>
@@ -134,7 +154,6 @@ foreach ($rowsCateSub as $row) {
 					<td><?= $cate[$row["category_main"]] ?></td>
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
 					<td><?= $row["valid"] ?></td>
-					<td><?= $row["create_time"] ?></td>
 					<td class="">
 						<button class="table-btn list">上架</button>
 						<button class="table-btn unlist">下架</button>
