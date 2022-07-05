@@ -4,13 +4,12 @@ if (empty($page)) {
 	$page = 1;
 }
 
-require ("db-connect.php");
+require "db-connect.php";
 
-$sql = "SELECT * FROM company_users WHERE valid=1";
+$sql = "SELECT * FROM company_users  WHERE valid=1";
 $result = $conn->query($sql);
 $CompanyUsersCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
