@@ -1,4 +1,4 @@
-<table class="recipe-table table table-hover">
+<table class="coupon-table table table-hover">
 	<thead class="table-dark">
 		<tr>
 			<th class="text-center" scope="col">優惠券編號</th>

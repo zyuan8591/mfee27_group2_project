@@ -96,8 +96,8 @@
 .filter-dropdown li:hover {
 	background: var(--button-hover);
 }
-/* add new recipe -- */
-.add-recipe-btn {
+/* add new coupon -- */
+.add-coupon-btn {
 	width: 100%;
 	white-space: nowrap;
 	padding: 0.3rem 0.75rem;
@@ -107,16 +107,16 @@
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
 }
-.add-recipe-btn:hover {
+.add-coupon-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
-.add-recipe-btn:active {
+.add-coupon-btn:active {
 	outline: var(--outline);
 }
 
-/* add-new-recipe-page--------------------------------------------------------- */
-.new-recipe-page {
+/* add-new-coupon-page--------------------------------------------------------- */
+.new-coupon-page {
 	height: 100vh;
 	width: 100vw;
 	top: 0;
@@ -130,7 +130,7 @@
 	background: #666;
 	opacity: 0.8;
 }
-.new-recipe-form {
+.new-coupon-form {
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
 	width: 450px;
@@ -147,7 +147,7 @@
 	font-size: 1.5rem;
 	cursor: pointer;
 }
-.recipe-title {
+.coupon-title {
 	border-bottom: 2px solid var(--input-border);
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
@@ -174,13 +174,13 @@
 	width: 130px;
 	height: 130px;
 }
-.add-recipe-image {
+.add-coupon-image {
 	cursor: pointer;
 }
 
 /* ****************************************************************************** */
-/* recipe-detail */
-.recipe-datail {
+/* coupon-detail */
+.coupon-datail {
 	height: 100vh;
 	width: 100vw;
 	top: 0;
@@ -214,10 +214,11 @@
 	box-shadow: var(--hover-shadow);
 }
 
+
 /* coupon add X */
 .coupon-xmark {
 	top: 0.5rem;
 	right: 1rem;
 	font-size: 1.5rem;
-	cursor: pointer;
+	cursor: pointer;	
 }

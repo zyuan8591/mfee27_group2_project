@@ -19,26 +19,7 @@
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/recipe-style.css"; ?>
-
-/* add new coupon -- */
-.add-coupon-btn {
-	width: 100%;
-	white-space: nowrap;
-	padding: 0.3rem 0.75rem;
-	background: var(--header-bg);
-	margin: 0;
-	border: 0;
-	border-radius: 3px;
-	box-shadow: var(--box-shadow);
-}
-.add-coupon-btn:hover {
-	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
-}
-.add-coupon-btn:active {
-	outline: var(--outline);
-}
+			<?php require "./style/coupon-style.css"; ?>
 
 		</style>
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
@@ -368,12 +349,10 @@
 			</div>
 		<?php require "coupon-table.php"; ?>
 		</main>
-		<?php require "coupon-add.php"; ?>
-		<?php require "coupon-detail.php"; ?>
+		<?php require "coupon-add.php"; ?>		
 
 		<script type="text/javascript" >
-			<?php require "./js/recipe-app.js"; ?>
-	
-
+			<?php require "./js/coupon-app.js"; ?>
+		</script>
 	</body>
 </html>

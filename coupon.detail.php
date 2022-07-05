@@ -1,13 +1,13 @@
-<div class="recipe-datail position_abs flex_center invisible">
+<div class="coupone-datail position_abs flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
-		action="recipe-detail-modify.php
+		action="coupon-detail-modify.php
     "
 		method="GET"
 	>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
-		<h2 class="recipe-title text-center">XX詳細資料</h2>
+		<h2 class="coupon-title text-center">XX詳細資料</h2>
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">優惠券名稱</label>
 			<div class="col">
@@ -77,7 +77,7 @@
 			>
 				儲存
 			</button>
-			<button class="add-detail-btn back-recipe-de transition">返回</button>
+			<button class="add-detail-btn back-coupon-de transition">返回</button>
 		</div>
 	</form>
 </div>
