@@ -59,3 +59,17 @@ backToCoupon.addEventListener("click", function (e) {
 couponXMark.addEventListener("click", function (e) {
 	newCouponPage.classList.add("invisible");
 });
+
+// call coupon-detail page
+let detailPage = document.querySelector(".recipe-datail");
+let detailBtn = document.querySelectorAll(".detail");
+let detailCover = document.querySelector(".cover-detail");
+let backToRecipeDe = document.querySelector(".back-recipe-de");
+let detailXMark = document.querySelector(".detail-xMark");
+
+for (let i = 0; i < detailBtn.length; i++) {
+	detailBtn[i].addEventListener("click", (e) => {
+		e.preventDefault();
+		detailPage.classList.remove("invisible");
+	});
+}

@@ -213,11 +213,3 @@
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
-
-/* coupon add X */
-.coupon-xmark {
-	top: 0.5rem;
-	right: 1rem;
-	font-size: 1.5rem;
-	cursor: pointer;
-}

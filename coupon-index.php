@@ -349,7 +349,9 @@
 			</div>
 		<?php require "coupon-table.php"; ?>
 		</main>
-		<?php require "coupon-add.php"; ?>		
+		<?php require "coupon-add.php"; ?>
+		<?php require "coupon-detail.php"; ?>
+		
 
 		<script type="text/javascript" >
 			<?php require "./js/coupon-app.js"; ?>
