@@ -404,14 +404,17 @@ foreach ($rowsCatProduct as $row) {
 					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					<?php endif; ?>
 					">依編號排序</a>
-					<!-- <a class="sort-btn transition" id="nameSort" href="
-					">依編號倒序</a> -->
+
 					<a class="sort-btn transition" id="dateSort" href="
+					<?php if ($order == 4): ?>
 					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					">依名稱排序</a>
-					<a class="sort-btn transition" id="dateSort" href="
+					<?php elseif ($order == 2): ?>
 					recipe-index.php?order=4&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					">依名稱倒序</a>
+					<?php else: ?>
+					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					<?php endif; ?>					
+					">依名稱排序</a>
+
 				</div>
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipe-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >

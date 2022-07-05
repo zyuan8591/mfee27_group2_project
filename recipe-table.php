@@ -33,11 +33,11 @@
 				<a class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {
     	echo "point-event-none";
     } ?>
-				" href="">上架</a>
+				" href="recipe-onoff-shelf.php?valid=<?= $row["valid"] ?>">上架</a>
 				<a class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {
     	echo "point-event-none";
     } ?>
-				" href="">下架</a>
+				" href="recipe-onoff-shelf.php?valid=<?= $row["valid"] ?>">下架</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
 		</tr>
