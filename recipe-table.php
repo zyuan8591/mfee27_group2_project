@@ -54,7 +54,16 @@
 	</div>
 	<div class="col-4">
 		<div class="btn-group me-2" role="group" >
-			<a href="" type="button" class="btn btn-outline-dark">上一頁</a>
+			<a href="
+			recipe-index.php?order=1&per-page=<?= $perPage ?>
+			&page=<?php
+   $prePage = $page - 1;
+   if ($prePage < 1) {
+   	$prePage = 1;
+   }
+   echo $prePage;
+   ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+			" type="button" class="btn btn-outline-dark">上一頁</a>
 			<?php for ($i = 1; $i <= $pages; $i++): ?>
 			<a href ="
 			recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
@@ -64,7 +73,16 @@
 				<?= $i ?>
 			</a>
 			<?php endfor; ?>
-			<a href="" type="button" class="btn btn-outline-dark">下一頁</a>
+			<a href="
+			recipe-index.php?order=1&per-page=<?= $perPage ?>
+			&page=<?php
+   $nextPage = $page + 1;
+   if ($nextPage > $pages) {
+   	$nextPage = $pages;
+   }
+   echo $nextPage;
+   ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+			" type="button" class="btn btn-outline-dark">下一頁</a>
 		</div>
 	</div>
 	<div class="col-4"></div>

@@ -13,6 +13,8 @@ if (empty($order)) {
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 if (empty($page)) {
 	$page = 1;
+} elseif ($page < 1) {
+	$page = 1;
 }
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 if (empty($search)) {
@@ -394,11 +396,16 @@ foreach ($rowsCatProduct as $row) {
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
 					<a class="sort-btn transition" id="idSort" href="
+					<?php if ($order == 3): ?>
 					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					">依編號排序</a>
-					<a class="sort-btn transition" id="nameSort" href="
+					<?php elseif ($order == 1): ?>
 					recipe-index.php?order=3&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					">依編號倒序</a>
+					<?php else: ?>
+					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					<?php endif; ?>
+					">依編號排序</a>
+					<!-- <a class="sort-btn transition" id="nameSort" href="
+					">依編號倒序</a> -->
 					<a class="sort-btn transition" id="dateSort" href="
 					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					">依名稱排序</a>
