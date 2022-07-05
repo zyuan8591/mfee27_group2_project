@@ -1,11 +1,8 @@
 <?php
-require("db-connect.php");
+require "db-connect.php";
 
-$sql="SELECT * FROM customer_users";
+$sql = "SELECT * FROM customer_users";
 $result = $conn->query($sql);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -364,7 +361,7 @@ $result = $conn->query($sql);
 
 		<script type="text/javascript">
 			
-			<?php require "js/customer.js";?>
+			<?php require "js/customer.js"; ?>
 		
 
 		</script>
