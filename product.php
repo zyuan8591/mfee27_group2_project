@@ -5,6 +5,8 @@ $sql = "SELECT * FROM products WHERE valid=1 ORDER BY id ASC ";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 var_dump($rows);
+
+
 ?>
 <main class="main position-rel">
 	<div>
@@ -84,12 +86,12 @@ var_dump($rows);
 			<?php foreach ($rows as $row) : ?>
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"]; ?></th>
-					<td><?= $row["name"] ?></td>
-					<td>氣泡水機</td>
-					<td>冷熱調理</td>
-					<td>氣泡水機</td>
-					<td>上架中</td>
-					<td>2022/07/01</td>
+					<td><?= $row["company_id"] ?></td>
+					<td><?=$row["name"]?></td>
+					<td><?=$row["category_main"]?></td>
+					<td><?=$row["category_sub"]?></td>
+					<td><?=$row["valid"]?></td>
+					<td><?=$row["create_time"]?></td>
 					<td class="">
 						<button class="table-btn list">上架</button>
 						<button class="table-btn unlist">下架</button>
