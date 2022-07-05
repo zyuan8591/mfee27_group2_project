@@ -153,7 +153,7 @@
 								<a class="main_nav_item_content" href="">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
