@@ -27,7 +27,7 @@
 		<script type="text/javascript" src="./js/jquery.min.js"></script>
 	</head>
 	<body>
-		<?php require "header.php"; ?>
+		<?php require "product-header.php"; ?>
 		<aside class="aside position_abs">
 			<!-- <div class="smaller_sidebar">
 				<svg
@@ -298,7 +298,7 @@
 		</aside>
 		<?php require "product.php";	?>	
 		<?php require "new-product.php"; ?>
-		<?php require "detail.php"; ?>
+		<?php require "product-detail.php"; ?>
 	
 		<!-- <script type="text/javascript" >
 			<?php require "./js/recipe-app.js"; ?>

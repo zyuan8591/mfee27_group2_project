@@ -1,3 +1,15 @@
+<?php
+require("./db-connect.php");
+
+$sql="SELECT * FROM products";
+$result=$conn->query($sql);
+$rows=$result->fetch_all(MYSQLI_ASSOC);
+
+$sqlCompany="SELECT id, name FROM company_users";
+$resultCompany=$conn->query($sqlCompany);
+$rows
+?>
+<?php foreach($rows as $row):?>
 <div class="detail-page position_abs flex_center invisible">
     <div class="detail-cover position_abs"></div>
     <form class="detail-form position-rel text-nowrap " action="detail-exe.php
@@ -6,7 +18,7 @@
         <div class="mb-3 row">
             <label for="" class="col-sm-auto col-form-label">店家　　</label>
             <div class="col">
-            <input type="text" readonly class="form-control-plaintext product-input" name="brand" value="SodaStream">
+            <input type="text" readonly class="form-control-plaintext product-input" name="brand" value="<?=$row[""]?>">
             </div>
         </div>
         <div class="mb-3 row">
@@ -54,7 +66,13 @@
                     <input type="number" readonly class="form-control-plaintext product-input" name="inventory" placeholder="2" >
                 </div>
             </div>
-        </div>            
+        </div>
+        <div class="mb-3 row">
+            <label for="" class="col-sm-auto col-form-label ">新增日期</label>
+            <div class="col">
+                <input type="text" readonly class="form-control-plaintext product-input" name="create_time" value="">
+            </div>
+        </div>           
         <div class="mb-3 d-flex flex-column align-items-start">
             <label for="" class="form-label">商品圖片　</label>
             <label for="product-image" class="product-image" >
@@ -72,3 +90,4 @@
         </div>
     </form>
 </div>
+<?php endforeach;?>

@@ -239,6 +239,7 @@ a:active {
 	width: calc(100vw - var(--aside-width));
 	height: calc(100vh - var(--header-height));
 	overflow: auto;
+	z-index: 49;
 }
 .main-title {
 	font-size: 2rem;
