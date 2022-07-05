@@ -12,7 +12,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php while($row=$result->fetch_assoc()): ?>
+	<?php foreach($rows as $row): ?>
 
 		<tr>
 			<th class="text-center" scope="row"><?=$row["id"]?></th>
@@ -27,7 +27,7 @@
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
 		</tr>
-		<?php endwhile; ?>
+		<?php endforeach; ?>
 
 		<!-- <tr>
 			<th class="text-center" scope="row">2</th>
@@ -44,3 +44,6 @@
 		</tr> -->
 	</tbody>
 </table>
+<div class="py-2">
+	共<?=$userCount;?>筆資料
+</div>

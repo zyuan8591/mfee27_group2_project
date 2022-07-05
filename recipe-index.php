@@ -1,10 +1,33 @@
 <?php
 require("db-connect.php");
 
-$sql="SELECT * FROM customer_users";
+$sqlAll="SELECT * FROM customer_users WHERE valid=1";
+$resultAll = $conn->query($sqlAll);
+$rows=$resultAll->fetch_all(MYSQLI_ASSOC);
+$userCount=$resultAll-> num_rows;
+
+$order=isset($_GET["order"]) ? $_GET["order"] : 1;
+
+switch($order){
+  case 1:
+    $orderType="id ASC";
+    break;
+  case 2:
+    $orderType="id DESC";
+    break;
+  case 3:
+    $orderType="name ASC";
+    break;
+  case 4:
+    $orderType="name DESC";
+    break;
+  default:
+    $orderType="id ASC"; 
+}
+
+$sql="SELECT * FROM customer_users WHERE valid=1 ORDER BY $orderType ";
 $result = $conn->query($sql);
-
-
+$pageUserCount=$result-> num_rows;
 
 ?>
 
@@ -312,8 +335,10 @@ $result = $conn->query($sql);
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="recipe-index.php">依編號排序</a>
-					<a class="sort-btn transition" href="">依名稱排序</a>
+					<a class="sort-btn transition" href="recipe-index.php?order=1">依編號排序></a>
+					<a class="sort-btn transition" href="recipe-index.php?order=2">依編號排序<</a>
+					<a class="sort-btn transition" href="recipe-index.php?order=3">依名稱排序></a>
+					<a class="sort-btn transition" href="recipe-index.php?order=4">依名稱排序<</a>
 					<!-- <a class="sort-btn transition" href="">依日期排序</a> -->
 				</div>
 				<form class="recipe_search " action="" method="get">
