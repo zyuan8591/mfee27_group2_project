@@ -34,6 +34,19 @@ if (empty($foodCate)) {
 	$sqlWhereFoodCate = "";
 }
 
+// filter_category_product
+if (isset($_GET["productCate"])) {
+	$productCate = $_GET["productCate"];
+	$sqlWhereProductCate = "AND category_product = $productCate ";
+} else {
+	$productCate = "";
+	$sqlWhereProductCate = "";
+}
+if (empty($productCate)) {
+	$productCate = "";
+	$sqlWhereProductCate = "";
+}
+
 //filter_valid
 if (isset($_GET["valid"])) {
 	$valid = $_GET["valid"];
@@ -47,7 +60,7 @@ if ($valid == "") {
 	$sqlWhereValid = "";
 }
 
-$sqlAll = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereValid ";
+$sqlAll = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid ";
 $resultAll = $conn->query($sqlAll);
 $recipeCountAll = $resultAll->num_rows;
 
@@ -74,7 +87,7 @@ switch ($order) {
 		break;
 }
 
-$sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereValid ORDER BY $orderType LIMIT $start, $perPage ";
+$sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid ORDER BY $orderType LIMIT $start, $perPage ";
 $result = $conn->query($sql);
 $recipeCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -398,20 +411,26 @@ foreach ($rowsCatProduct as $row) {
 					<a class="sort-btn transition" id="idSort" href="
 					<?php if ($order == 3): ?>
 					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php elseif ($order == 1): ?>
 					recipe-index.php?order=3&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php else: ?>
 					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php endif; ?>
 					">依編號排序</a>
 
 					<a class="sort-btn transition" id="dateSort" href="
 					<?php if ($order == 4): ?>
 					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php elseif ($order == 2): ?>
 					recipe-index.php?order=4&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php else: ?>
 					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php endif; ?>					
 					">依名稱排序</a>
 
@@ -446,6 +465,7 @@ foreach ($rowsCatProduct as $row) {
 				</form>
 			</div>
 			<div class="d-flex justify-content-between align-items-center my-3">
+<!-- 食譜類別******************************************************************************************************** -->
 				<div class="filter d-flex align-items-center">					
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
@@ -464,12 +484,14 @@ foreach ($rowsCatProduct as $row) {
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=
-							">全部</a></li>
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=&productCate=<?= $productCate ?>
+							&valid=<?= $valid ?>">全部</a></li>
 							<?php foreach ($rowsCatFood as $row): ?>
 							<li><a href="
 							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
-							&page=1&search=<?= $search ?>&foodCate=<?= $row["id"] ?>
+							&page=1&search=<?= $search ?>&foodCate=<?= $row[
+	"id"
+] ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 							">
 								<?= $row["name"] ?>
 							</a></li>
@@ -477,6 +499,36 @@ foreach ($rowsCatProduct as $row) {
 							<?php endforeach; ?>
 						</ul>							
 					</div>
+<!-- 商品類別******************************************************************************************************** -->
+					<div class="filter-item  position-rel">
+						<button class="filter-btn transition">
+							<?php if ($recipeCount == 0) {
+       	echo "商品類別";
+       } elseif ($productCate == "") {
+       	echo "商品類別";
+       } else {
+       	echo $category_product[$productCate];
+       } ?>
+							
+						</button>
+						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
+							<li><a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=
+							&valid=<?= $valid ?>
+							">全部</a></li>
+							<?php foreach ($rowsCatProduct as $row): ?>
+							<li><a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
+							&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+							&productCate=<?= $row["id"] ?>&valid=<?= $valid ?>">
+								<?= $row["name"] ?>
+							</a></li>
+							
+							<?php endforeach; ?>
+						</ul>							
+					</div>	
+<!-- 食譜狀態******************************************************************************************************** -->
+					
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">
 							<?php if ($valid == "") {
@@ -492,15 +544,15 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="
 							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&valid=
+							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=
 							">全部</a></li>
 							<li><a class="text-nowrap " href="
 							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&valid=1
+							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=1
 							">上架中</a></li>
 							<li><a href="
 							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&valid=0
+							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=0
 							">下架中</a></li>
 						</ul>
 					</div>					

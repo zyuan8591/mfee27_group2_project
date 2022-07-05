@@ -33,28 +33,26 @@
 				<a class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {
     	echo "point-event-none";
     } ?>
-				" href="recipe-onoff-shelf.php?valid=<?= $row["valid"] ?>">上架</a>
+				" href="recipe-onoff-shelf.php?id=<?= $row[
+    	"id"
+    ] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
+<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>">上架</a>
 				<a class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {
     	echo "point-event-none";
     } ?>
-				" href="recipe-onoff-shelf.php?valid=<?= $row["valid"] ?>">下架</a>
+				" href="recipe-onoff-shelf.php?id=<?= $row[
+    	"id"
+    ] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
+<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>">下架</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<div class="row w-100">
-	<div class="col-4 d-flex justify-content-start">
-		<!-- <select class="form-select per-page" name="per-page" >
-			<option value="1">每頁顯示5筆</option>
-			<option value="2">每頁顯示15筆</option>
-			<option value="3">每頁顯示20筆</option>
-		</select> -->
-	</div>
-	<div class="col-4">
-		<div class="btn-group me-2" role="group" >
-			<a href="
+<div class=" w-100 d-flex justify-content-center">
+	<div class="btn-group me-2" role="group" >
+		<a href="
 			recipe-index.php?order=1&per-page=<?= $perPage ?>
 			&page=<?php
    $prePage = $page - 1;
@@ -62,30 +60,29 @@
    	$prePage = 1;
    }
    echo $prePage;
-   ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-			" type="button" class="btn btn-outline-dark">上一頁</a>
+   ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+			" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
 			<?php for ($i = 1; $i <= $pages; $i++): ?>
-			<a href ="
-			recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-			" type="button" class="btn btn-outline-dark <?php if ($page == $i) {
-   	echo "active";
-   } ?> ">
-				<?= $i ?>
-			</a>
-			<?php endfor; ?>
-			<a href="
-			recipe-index.php?order=1&per-page=<?= $perPage ?>
-			&page=<?php
-   $nextPage = $page + 1;
-   if ($nextPage > $pages) {
-   	$nextPage = $pages;
-   }
-   echo $nextPage;
-   ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-			" type="button" class="btn btn-outline-dark">下一頁</a>
-		</div>
+		<a href ="
+		recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+		&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+		" type="button" class="btn btn-outline-dark <?php if ($page == $i) {
+  	echo "active";
+  } ?> ">
+			<?= $i ?>
+		</a>
+		<?php endfor; ?>
+		<a href="
+		recipe-index.php?order=1&per-page=<?= $perPage ?>
+		&page=<?php
+  $nextPage = $page + 1;
+  if ($nextPage > $pages) {
+  	$nextPage = $pages;
+  }
+  echo $nextPage;
+  ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+			" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 	</div>
-	<div class="col-4"></div>
 </div>
 <?php else: ?>
 <div>目前尚無食譜</div>
