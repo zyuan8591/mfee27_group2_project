@@ -11,7 +11,7 @@
 	justify-content: center;
 }
 .close {
-	opacity: 0;
+	left: -100%;
 }
 
 .contain {
