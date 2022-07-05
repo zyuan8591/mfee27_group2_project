@@ -41,40 +41,6 @@ for (let i = 0; i < filterItems.length; i++) {
 		filterDropDowm[i].classList.add("invisible");
 	});
 }
-// add new material btn
-let newMaterialBtn = document.querySelector(".new-material-btn");
-let materialName = document.querySelector(".material-name");
-let materialQ = document.querySelector(".material-q");
-let materialContainer = document.querySelector(".material-container");
-console.log(newMaterialBtn);
-let i = 1;
-newMaterialBtn.addEventListener("click", (e) => {
-	e.preventDefault();
-	let row = document.createElement("div");
-	row.classList.add("row", "mb-3");
-	let col_8 = document.createElement("div");
-	col_8.classList.add("col-8");
-	let col_4 = document.createElement("div");
-	col_4.classList.add("col-4");
-
-	let newMaterialName = materialName.cloneNode();
-	let newMaterialQ = materialQ.cloneNode();
-	if (i == 1) {
-		newMaterialName.name = `material-name-${i}`;
-		newMaterialQ.name = `material-q-${i}`;
-		i++;
-	} else {
-		newMaterialName.name = `material-name-${i}`;
-		newMaterialQ.name = `material-q-${i}`;
-		i++;
-	}
-	console.log(newMaterialQ);
-	col_8.appendChild(newMaterialName);
-	col_4.appendChild(newMaterialQ);
-	row.appendChild(col_8);
-	row.appendChild(col_4);
-	materialContainer.appendChild(row);
-});
 
 // call add page
 let newRecipePage = document.querySelector(".new-recipe-page");
@@ -120,7 +86,7 @@ let saveBtn = document.querySelector(".save-detail-btn");
 let modifyForm = document.querySelector(".modify-ricepe-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
-let detailSelects = document.querySelectorAll(".detail-item-select");
+// let detailSelects = document.querySelectorAll(".detail-item-select");
 let detailImgs = document.querySelectorAll(".detail-item-img");
 modifyBtn.addEventListener("click", (e) => {
 	e.preventDefault();

@@ -130,7 +130,7 @@
 	background: #666;
 	opacity: 0.8;
 }
-.new-recipe-form {
+.new-company-form {
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
 	width: 450px;
@@ -147,7 +147,7 @@
 	font-size: 1.5rem;
 	cursor: pointer;
 }
-.recipe-title {
+.company-title {
 	border-bottom: 2px solid var(--input-border);
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
@@ -173,9 +173,6 @@
 .food-img {
 	width: 130px;
 	height: 130px;
-}
-.add-recipe-image {
-	cursor: pointer;
 }
 
 /* ****************************************************************************** */

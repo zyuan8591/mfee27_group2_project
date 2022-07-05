@@ -1,3 +1,5 @@
+<?php if($pagesCount > 0): ?>
+<div class="py-1">共<?=$CompanyUsersCountAll?>筆</div>
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -24,13 +26,17 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-	<div class="py-2">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item">
-            <a class="page-link" href="">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
-        </nav>
-    </div>
+<div class="col-4">
+	<div class="btn-group me-2" role="group" >
+		<!-- <a href="" type="button" class="btn btn-outline-dark">上一頁</a> -->
+		<?php for ($i=1; $i<=$totalPage; $i++): ?>
+		<a href ="company-member-all-index.php?page=<?=$i?>" type="button" class="btn btn-outline-dark">
+			<?=$i?>
+		</a>
+		<?php endfor; ?>
+		<!-- <a href="" type="button" class="btn btn-outline-dark">下一頁</a> -->
+	</div>
+</div>
+<?php else: ?>
+<div>目前沒有資料</div>
+<?php endif; ?>

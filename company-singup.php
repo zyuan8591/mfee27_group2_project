@@ -27,7 +27,7 @@
             </div>
             <div class="mb-2">
               <label for="" >帳號(信箱)</label>
-              <input type="text" name="account" class="form-control">
+              <input type="text" name="email" class="form-control">
             </div>
             <div class="mb-2">
               <label for="" >密碼</label>
