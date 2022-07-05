@@ -1,4 +1,4 @@
-<div class="coupon-datail position_abs flex_center ">
+<div class="coupon-datail position_abs flex_center invisible">
 <div class="cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
