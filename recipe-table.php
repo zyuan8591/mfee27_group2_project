@@ -44,6 +44,7 @@
 		</tr> -->
 	</tbody>
 </table>
+
 <div class="py-2">
-	共<?=$userCount;?>筆資料
+共<?=$customerCount;?>筆資料
 </div>

@@ -1,8 +1,8 @@
-<div class="vh-100 d-flex justify-content-center align-items-center " >
-    <div class="customer-add-main close" ></div>
+<div class="vh-100 d-flex justify-content-center align-items-center user-add-page d-none" >
+    <div class="customer-add-main close" id="customer-add-main"></div>
         <div class="contain">
             <h2 class="text-center border-bottom pb-3">一般會員註冊</h2>
-            <form action="doSignUp.php" method="post">
+            <form action="doSignUp.php" method="post" id="signUpform" class="signUpform">
                 <div class="mb-2">
                     <label for="">姓名</label>
                     <input type="text" class="form-control" name="name">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="d-flex mt-5 justify-content-center">
                     <button class="btn" type="submit" id="customer-add-openBtn">新增會員</button>
-                    <button id="closeBtn" class="btn ms-5">返回會員列表</button>     
+                    <button id="customer-close-btn" class="btn ms-5">返回會員列表</button>     
                 </div>
             </form>
         </div>

@@ -1,10 +1,12 @@
 <?php
-require("db-connect.php");
+require "db-connect.php";
 
 $sqlAll="SELECT * FROM customer_users WHERE valid=1";
 $resultAll = $conn->query($sqlAll);
 $rows=$resultAll->fetch_all(MYSQLI_ASSOC);
-$userCount=$resultAll-> num_rows;
+$customerCount=$resultAll-> num_rows;
+// order
+
 
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 
@@ -27,7 +29,8 @@ switch($order){
 
 $sql="SELECT * FROM customer_users WHERE valid=1 ORDER BY $orderType ";
 $result = $conn->query($sql);
-$pageUserCount=$result-> num_rows;
+$pageCustomerCount=$result-> num_rows;
+
 
 ?>
 
@@ -388,8 +391,8 @@ $pageUserCount=$result-> num_rows;
 		<?php require "recipe-detail.php"; ?>
 
 		<script type="text/javascript">
-			
-			<?php require "js/customer.js";?>
+			<?php require "js/recipe-app.js"; ?>
+			<?php require "js/customer.js"; ?>
 		
 
 		</script>
