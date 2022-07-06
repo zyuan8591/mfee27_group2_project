@@ -6,9 +6,18 @@ if (empty($page)) {
 
 require "db-connect.php";
 
-$sql = "SELECT * FROM company_users  WHERE valid=1";
+$sqlAll = "SELECT * FROM company_users WHERE valid=1 ";
+$resultAll = $conn->query($sqlAll);
+$CompanyUsersCountAll = $resultAll->num_rows;
+$rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
+
+$perpage = 10;
+$start = ($page - 1) * $perpage;
+$totalPage = ceil($CompanyUsersCountAll / $perpage);
+
+$sql = "SELECT * FROM company_users WHERE valid=1 LIMIT $start, 10";
 $result = $conn->query($sql);
-$CompanyUsersCount = $result->num_rows;
+$pagesCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
@@ -354,11 +363,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 			</div>
 		<?php require "company-table.php"; ?>
 		</main>
-		<?php require "recipe-add.php"; ?>
+		<?php require "company-add.php"; ?>
 		<?php require "company-detail.php"; ?>
 
 		<script type="text/javascript" >
-			<?php require "./js/recipe-app.js"; ?>
+			<?php require "./js/company-app.js"; ?>
 		</script>
 	</body>
 </html>
