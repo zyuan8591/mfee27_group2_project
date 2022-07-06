@@ -29,6 +29,7 @@ if (isset($_GET["foodCate"])) {
 	$foodCate = "";
 	$sqlWhereFoodCate = "";
 }
+
 if (empty($foodCate)) {
 	$foodCate = "";
 	$sqlWhereFoodCate = "";
@@ -87,7 +88,8 @@ switch ($order) {
 		break;
 }
 
-$sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid ORDER BY $orderType LIMIT $start, $perPage ";
+$sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid 
+ORDER BY $orderType LIMIT $start, $perPage ";
 $result = $conn->query($sql);
 $recipeCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -473,14 +475,13 @@ foreach ($rowsCatProduct as $row) {
 
 					<div class="filter-item  position-rel">
 						<button class="filter-btn transition">
-						<?php if ($recipeCount == 0) {
-      	echo "食譜類別";
-      } elseif ($foodCate == "") {
-      	echo "食譜類別";
-      } else {
-      	echo $category_food[$foodCate];
-      } ?>
-							
+<?php if ($recipeCount == 0) {
+	echo "食譜類別";
+} elseif ($foodCate == "") {
+	echo "食譜類別";
+} else {
+	echo $category_food[$foodCate];
+} ?>
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="

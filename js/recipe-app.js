@@ -50,6 +50,18 @@ newMaterialBtn.addEventListener("click", (e) => {
 	row.appendChild(col_4);
 	materialContainer.appendChild(row);
 });
+// add page image
+let addImg = document.querySelector("#add-recipe-image");
+let preImg = document.querySelector("#recipeImgPre");
+let preSvg = document.querySelector("#recipeSvgPre");
+addImg.addEventListener("change", (e) => {
+	let file = addImg.files[0].name;
+	if (file) {
+		preImg.classList.remove("d-none");
+		preImg.src = `img/recipe_img/${file}`;
+		preSvg.classList.add("d-none");
+	}
+});
 
 // call add page
 let newRecipePage = document.querySelector(".new-recipe-page");
