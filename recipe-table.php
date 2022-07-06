@@ -25,8 +25,8 @@
 			</td>
 			<td><?=$row["create_time"]?></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
-				<a class="btn-main transition me-3 on-shelf " href="customer-doValid1.php?id=<?=$row["id"]?>" >啟用</a>
-				<a class="btn-main transition me-3 off-shelf " id="onShelf" href="customer-doValid0.php?id=<?=$row["id"]?>">停用</a>
+				<a class="btn-main transition me-3 on-shelf <?php if($row["valid"]==1)echo "valid-btn"?>" href="customer-doValid1.php?id=<?=$row["id"]?>" >啟用</a>
+				<a class="btn-main transition me-3 off-shelf <?php if($row["valid"]==0)echo "valid-btn"?>" id="onShelf" href="customer-doValid0.php?id=<?=$row["id"]?>">停用</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
 		</tr>
