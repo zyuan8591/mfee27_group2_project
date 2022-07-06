@@ -2,7 +2,7 @@
     <div class="cover position_abs"></div>
     <form class="new-recipe-form position-rel" action="recipe-add-exe.php
     " method="GET">
-        <i class="fa-solid fa-xmark position_abs"></i>
+        <i class="fa-solid fa-xmark addXMark position_abs"></i>
         <h2 class="recipe-title text-center">新增食譜</h2>
         <div class="mb-3">
             <label for="" class="form-label">食譜名稱</label>

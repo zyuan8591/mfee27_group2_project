@@ -1,4 +1,4 @@
-//perPage
+//perPage onchange
 let perPage = document.querySelector(".per-page");
 let searchForm = document.querySelector(".recipe_search");
 perPage.addEventListener("change", function () {
@@ -21,7 +21,6 @@ let newMaterialBtn = document.querySelector(".new-material-btn");
 let materialName = document.querySelector(".material-name");
 let materialQ = document.querySelector(".material-q");
 let materialContainer = document.querySelector(".material-container");
-// console.log(newMaterialBtn);
 let i = 1;
 newMaterialBtn.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -43,12 +42,30 @@ newMaterialBtn.addEventListener("click", (e) => {
 		newMaterialQ.name = `material-q-${i}`;
 		i++;
 	}
-	console.log(newMaterialQ);
+	// console.log(newMaterialQ);
 	col_8.appendChild(newMaterialName);
 	col_4.appendChild(newMaterialQ);
 	row.appendChild(col_8);
 	row.appendChild(col_4);
 	materialContainer.appendChild(row);
+});
+// call add page
+let newRecipePage = document.querySelector(".new-recipe-page");
+let addRecipeBtn = document.querySelector(".add-recipe-btn");
+let backToRecipe = document.querySelector(".back-recipe");
+let xMark = document.querySelector(".addXMark");
+console.log(xMark);
+
+addRecipeBtn.addEventListener("click", function (e) {
+	e.preventDefault();
+	newRecipePage.classList.remove("invisible");
+});
+backToRecipe.addEventListener("click", function (e) {
+	e.preventDefault();
+	newRecipePage.classList.add("invisible");
+});
+xMark.addEventListener("click", function (e) {
+	newRecipePage.classList.add("invisible");
 });
 // add page image
 let addImg = document.querySelector("#add-recipe-image");
@@ -61,24 +78,6 @@ addImg.addEventListener("change", (e) => {
 		preImg.src = `img/recipe_img/${file}`;
 		preSvg.classList.add("d-none");
 	}
-});
-
-// call add page
-let newRecipePage = document.querySelector(".new-recipe-page");
-let addRecipeBtn = document.querySelector(".add-recipe-btn");
-let backToRecipe = document.querySelector(".back-recipe");
-let xMark = document.querySelector(".fa-xmark");
-
-addRecipeBtn.addEventListener("click", function (e) {
-	e.preventDefault();
-	newRecipePage.classList.remove("invisible");
-});
-backToRecipe.addEventListener("click", function (e) {
-	e.preventDefault();
-	newRecipePage.classList.add("invisible");
-});
-xMark.addEventListener("click", function (e) {
-	newRecipePage.classList.add("invisible");
 });
 
 // call detail page
@@ -95,9 +94,21 @@ for (let i = 0; i < detailBtn.length; i++) {
 	});
 }
 
-// detailCover.addEventListener("click", (e) => {
-// 	detailPage.classList.add("invisible");
-// });
+//detail page img
+let modifyImg = document.querySelectorAll(".detail-file");
+let detailImg = document.querySelectorAll(".detailImgPre");
+console.log(detailImg);
+console.log(modifyImg);
+for (let i = 0; i < modifyImg.length; i++) {
+	modifyImg[i].addEventListener("change", (e) => {
+		console.log("change");
+		let file = modifyImg[i].files[0].name;
+		console.log(file);
+		if (file) {
+			detailImg[i].src = `img/recipe_img/${file}`;
+		}
+	});
+}
 
 // modify detail ---------------------------------------
 // modify & save btn
@@ -156,7 +167,6 @@ for (let j = 0; j < saveBtn.length; j++) {
 for (let j = 0; j < backToRecipeDe.length; j++) {
 	backToRecipeDe[j].addEventListener("click", function (e) {
 		e.preventDefault();
-		console.log("click");
 		detailPage[j].classList.add("invisible");
 		for (let i = 0; i < modifyBtn.length; i++) {
 			modifyBtn[i].disabled = false;
