@@ -7,7 +7,7 @@
 		method="GET"
 	>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
-		<h2 class="recipe-title text-center">XX詳細資料</h2>
+		<h2 class="recipe-title text-center"><?= $row["name"] ?>詳細資料</h2>
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">食譜名稱</label>
 			<div class="col">
@@ -27,13 +27,10 @@
 					name="category_main"
 					disabled="true"
 				>
-					<option value="1">烘焙點心</option>
-					<option value="2">飲料冰品</option>
-					<option value="3">異國料理</option>
-					<option value="4">日式料理</option>
-					<option value="5">韓式料理</option>
-					<option value="6">台式料理</option>
-					<option value="7">泰式料理</option>
+				<?php foreach($rowsCatFood as $rowFood): ?>
+					<option value="<?= $rowFood["id"] ?>" <?php if($row["category_food"]==$rowFood["id"]){echo "selected";} ?> 
+					><?= $rowFood["name"] ?></option>
+				<?php endforeach; ?>
 				</select>
 			</div>
 		</div>
@@ -45,18 +42,10 @@
 					name="product_id"
 					disabled="true"
 				>
-					<option value="1">氣炸鍋</option>
-					<option value="2">咖啡機</option>
-					<option value="3">氣泡水機</option>
-					<option value="4">快煮壺</option>
-					<option value="5">磨豆機</option>
-					<option value="6">果汁機</option>
-					<option value="7">料理鍋</option>
-					<option value="8">烤箱/氣炸烤箱</option>
-					<option value="9">電烤盤</option>
-					<option value="10">隨行果汁機</option>
-					<option value="11">鬆餅機/熱壓吐司機</option>
-					<option value="12">攪拌機</option>
+				<?php foreach($rowsCatProduct as $rowProduct): ?>
+					<option value="<?= $rowProduct["id"] ?>" <?php if($row["category_product"]==$rowProduct["id"]){echo "selected";} ?>
+					><?= $rowProduct["name"] ?></option>
+				<?php endforeach; ?>
 				</select>
 			</div>
 		</div>
@@ -80,33 +69,14 @@
 			</div>			
 		</div>
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">　　　　</label>
-			<div class="col">
-				<input
-					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
-				/>
-			</div>
-			<div class="col-3">
-				<input
-					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="400公克"
-				/>
-			</div>			
-		</div>
-		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">食譜內容</label>
 			<div class="col">
-				<input
+				<textarea
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
-				/>
+					rows="5"
+				><?= $row["content"] ?></textarea>
 			</div>
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">

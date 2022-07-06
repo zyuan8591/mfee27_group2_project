@@ -101,7 +101,7 @@ for (let i = 0; i < detailBtn.length; i++) {
 
 // modify detail ---------------------------------------
 // modify & save btn
-let modifyBtn = document.querySelector(".modify-detail-btn");
+let modifyBtn = document.querySelectorAll(".modify-detail-btn");
 let saveBtn = document.querySelector(".save-detail-btn");
 // form
 let modifyForm = document.querySelector(".modify-ricepe-detail-form");
@@ -109,25 +109,29 @@ let modifyForm = document.querySelector(".modify-ricepe-detail-form");
 let detailInputs = document.querySelectorAll(".detail-item-input");
 let detailSelects = document.querySelectorAll(".detail-item-select");
 let detailImgs = document.querySelectorAll(".detail-item-img");
-modifyBtn.addEventListener("click", (e) => {
-	e.preventDefault();
-	modifyBtn.disabled = true;
-	saveBtn.disabled = false;
-	saveBtn.classList.add("save-detail-btn-hover");
-	for (let i = 0; i < detailInputs.length; i++) {
-		detailInputs[i].removeAttribute("readonly");
-		detailInputs[i].classList.remove("form-control-plaintext");
-		detailInputs[i].classList.add("form-control");
-	}
-	for (let i = 0; i < detailSelects.length; i++) {
-		detailSelects[i].disabled = false;
-	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = false;
-	}
-});
+for (let i = 0; i < modifyBtn.length; i++) {
+	modifyBtn[i].addEventListener("click", (e) => {
+		e.preventDefault();
+		modifyBtn[i].disabled = true;
+		saveBtn.disabled = false;
+		saveBtn.classList.add("save-detail-btn-hover");
+		for (let i = 0; i < detailInputs.length; i++) {
+			detailInputs[i].removeAttribute("readonly");
+			detailInputs[i].classList.remove("form-control-plaintext");
+			detailInputs[i].classList.add("form-control");
+		}
+		for (let i = 0; i < detailSelects.length; i++) {
+			detailSelects[i].disabled = false;
+		}
+		for (let i = 0; i < detailImgs.length; i++) {
+			detailImgs[i].disabled = false;
+		}
+	});
+}
 saveBtn.addEventListener("click", (e) => {
-	modifyBtn.disabled = false;
+	for (let i = 0; i < modifyBtn.length; i++) {
+		modifyBtn[i].disabled = false;
+	}
 	saveBtn.disabled = true;
 	saveBtn.classList.remove("save-detail-btn-hover");
 	for (let i = 0; i < detailInputs.length; i++) {
@@ -147,7 +151,9 @@ for (let i = 0; i < backToRecipe.length; i++) {
 	backToRecipeDe[i].addEventListener("click", function (e) {
 		e.preventDefault();
 		detailPage[i].classList.add("invisible");
-		modifyBtn.disabled = false;
+		for (let i = 0; i < modifyBtn.length; i++) {
+			modifyBtn[i].disabled = false;
+		}
 		saveBtn.disabled = true;
 		saveBtn.classList.remove("save-detail-btn-hover");
 		for (let i = 0; i < detailInputs.length; i++) {
@@ -166,7 +172,9 @@ for (let i = 0; i < backToRecipe.length; i++) {
 for (let i = 0; i < detailXMark.length; i++) {
 	detailXMark[i].addEventListener("click", function (e) {
 		detailPage[i].classList.add("invisible");
-		modifyBtn.disabled = false;
+		for (let i = 0; i < modifyBtn.length; i++) {
+			modifyBtn.disabled = false;
+		}
 		saveBtn.disabled = true;
 		for (let i = 0; i < detailInputs.length; i++) {
 			detailInputs[i].setAttribute("readonly", "readonly");

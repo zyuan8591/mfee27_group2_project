@@ -96,7 +96,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 //get category_food
 $sqlCatFood = "SELECT * FROM recipe_category";
-$resultCatFood = $conn->query($sqlCatFood);
+$resultCatFood = $conn->	query($sqlCatFood);
 $rowsCatFood = $resultCatFood->fetch_all(MYSQLI_ASSOC);
 foreach ($rowsCatFood as $row) {
 	$category_food[$row["id"]] = $row["name"];
@@ -440,17 +440,11 @@ foreach ($rowsCatProduct as $row) {
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipe-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
 						<option value="5" 
-						<?php if ($perPage == 5) {
-      	echo "selected";
-      } ?> >每頁顯示5筆</option>
+						<?php if ($perPage == 5) {echo "selected";} ?> >每頁顯示5筆</option>
 						<option value="15" 
-						<?php if ($perPage == 15) {
-      	echo "selected";
-      } ?>>每頁顯示15筆</option>
+						<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
 						<option value="20" 
-						<?php if ($perPage == 20) {
-      	echo "selected";
-      } ?>>每頁顯示20筆</option>
+						<?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
@@ -475,13 +469,13 @@ foreach ($rowsCatProduct as $row) {
 
 					<div class="filter-item  position-rel">
 						<button class="filter-btn transition">
-<?php if ($recipeCount == 0) {
-	echo "食譜類別";
-} elseif ($foodCate == "") {
-	echo "食譜類別";
-} else {
-	echo $category_food[$foodCate];
-} ?>
+						<?php if ($recipeCount == 0) {
+							echo "食譜類別";
+						} elseif ($foodCate == "") {
+							echo "食譜類別";
+						} else {
+							echo $category_food[$foodCate];
+						} ?>
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="
@@ -503,13 +497,12 @@ foreach ($rowsCatProduct as $row) {
 					<div class="filter-item  position-rel">
 						<button class="filter-btn transition">
 							<?php if ($recipeCount == 0) {
-       	echo "商品類別";
-       } elseif ($productCate == "") {
-       	echo "商品類別";
-       } else {
-       	echo $category_product[$productCate];
-       } ?>
-							
+								echo "商品類別";
+							} elseif ($productCate == "") {
+								echo "商品類別";
+							} else {
+								echo $category_product[$productCate];
+							} ?>
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="
@@ -532,14 +525,14 @@ foreach ($rowsCatProduct as $row) {
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">
 							<?php if ($valid == "") {
-       	echo "食譜狀態";
-       } elseif ($valid == 0) {
-       	echo "下架中";
-       } elseif ($valid == 1) {
-       	echo "上架中";
-       } else {
-       	echo "食譜狀態";
-       } ?>
+								echo "食譜狀態";
+							} elseif ($valid == 0) {
+								echo "下架中";
+							} elseif ($valid == 1) {
+								echo "上架中";
+							} else {
+								echo "食譜狀態";
+							} ?>
 						</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="
