@@ -1,14 +1,31 @@
 <?php
+$order=isset($_GET["order"]) ? $_GET["order"] : 1;
+$page=isset($_GET["page"]) ? $_GET["page"] : 1;
+$search=isset($_GET["search"]) ? $_GET["search"] : "";
+if(isset($_GET["valid"])){
+	$valid=$_GET["valid"];
+	$validType="AND valid=$valid";
+}else{
+	$valid="";
+	$validType="";
+}
+if ($valid == "") {
+	$valid = "";
+	$validType = "";
+}
+
 require "db-connect.php";
 
-$sqlAll="SELECT * FROM customer_users WHERE valid=1";
+$sqlAll="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType";
 $resultAll = $conn->query($sqlAll);
-$rows=$resultAll->fetch_all(MYSQLI_ASSOC);
+// $Allrows=$resultAll->fetch_all(MYSQLI_ASSOC);
 $customerCount=$resultAll-> num_rows;
-// order
 
 
-$order=isset($_GET["order"]) ? $_GET["order"] : 1;
+
+// order&page
+$perpage=5;
+$start=($page-1)*$perpage;
 
 switch($order){
   case 1:
@@ -27,9 +44,27 @@ switch($order){
     $orderType="id ASC"; 
 }
 
-$sql="SELECT * FROM customer_users WHERE valid=1 ORDER BY $orderType ";
+
+
+$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ORDER BY $orderType LIMIT $start,5";
 $result = $conn->query($sql);
+$rows=$result->fetch_all(MYSQLI_ASSOC);
 $pageCustomerCount=$result-> num_rows;
+
+$stertItem=($page-1)*$perpage+1;
+$endItem=$page*$perpage;
+if($endItem>$customerCount)$endItem=$customerCount;
+
+
+
+$totalPage=ceil($customerCount / $perpage);
+
+// search
+
+$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%'";
+
+$searchrResult = $conn->query($sql);
+$searchCount=$searchrResult-> num_rows;
 
 
 ?>
@@ -338,19 +373,18 @@ $pageCustomerCount=$result-> num_rows;
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="recipe-index.php?order=1">依編號排序></a>
-					<a class="sort-btn transition" href="recipe-index.php?order=2">依編號排序<</a>
-					<a class="sort-btn transition" href="recipe-index.php?order=3">依名稱排序></a>
-					<a class="sort-btn transition" href="recipe-index.php?order=4">依名稱排序<</a>
-					<!-- <a class="sort-btn transition" href="">依日期排序</a> -->
+					<a class="sort-btn transition <?php if($order==1)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=<?=$valid?>">依編號排序></a>
+					<a class="sort-btn transition <?php if($order==2)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=2&search=<?=$search?>&valid=<?=$valid?>">依編號排序<</a>
+					<a class="sort-btn transition <?php if($order==3)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=3&search=<?=$search?>&valid=<?=$valid?>">依名稱排序></a>
+					<a class="sort-btn transition <?php if($order==4)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=4&search=<?=$search?>&valid=<?=$valid?>">依名稱排序<</a>
 				</div>
-				<form class="recipe_search " action="" method="get">
+				<form class="recipe_search " action="recipe-index.php" method="get">
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">
-							<input class="form-control search-box " type="text" name="recipe_search" placeholder="搜尋食譜名稱">
+							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋會員名稱">
 						</div>
 						<div class="">
-							<button class="search-btn form-control">
+							<button class="search-btn form-control" type="submit">
 								<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M17.7292 18.8489L10.8802 11.9999C10.3594 12.4513 9.75174 12.8029 9.05729 13.0546C8.36285 13.3063 7.625 13.4322 6.84375 13.4322C4.96875 13.4322 3.38021 12.7812 2.07812 11.4791C0.776042 10.177 0.125 8.60582 0.125 6.76554C0.125 4.92527 0.776042 3.35409 2.07812 2.052C3.38021 0.749919 4.96007 0.098877 6.81771 0.098877C8.65799 0.098877 10.2248 0.749919 11.5182 2.052C12.8116 3.35409 13.4583 4.92527 13.4583 6.76554C13.4583 7.51207 13.3368 8.23256 13.0937 8.927C12.8507 9.62145 12.4861 10.2725 12 10.8801L18.875 17.703L17.7292 18.8489ZM6.81771 11.8697C8.22396 11.8697 9.42188 11.3706 10.4115 10.3723C11.401 9.37405 11.8958 8.17179 11.8958 6.76554C11.8958 5.35929 11.401 4.15704 10.4115 3.15877C9.42188 2.16051 8.22396 1.66138 6.81771 1.66138C5.3941 1.66138 4.18316 2.16051 3.1849 3.15877C2.18663 4.15704 1.6875 5.35929 1.6875 6.76554C1.6875 8.17179 2.18663 9.37405 3.1849 10.3723C4.18316 11.3706 5.3941 11.8697 6.81771 11.8697Z" fill="#222222"/>
 								</svg>
@@ -365,24 +399,25 @@ $pageCustomerCount=$result-> num_rows;
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
 
-					<div class="filter-item  position-rel">
+					<!-- <div class="filter-item  position-rel">
 						<button class="filter-btn transition">全部會員</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="">Coffee</a></li>
 							<li><a href="">Cake</a></li>
 							<li><a href=""></a></li>
 						</ul>							
-					</div>
+					</div> -->
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">會員狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="">啟用</a></li>
-							<li><a href="">停用</a></li>
+							<li><a class="text-nowrap " href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=1 ">啟用</a></li>
+							<li><a href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=0 ">停用</a></li>
+							<li><a href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid= ">全部會員</a></li>
 						</ul>
 					</div>					
 				</div>
 				<div>
-					<a class=" transition" id="customer-add-openBtn">新增會員</a>
+					<a class=" transition" style="cursor:pointer" id="customer-add-openBtn">新增會員</a>
 				</div>
 			</div>
 		<?php require "recipe-table.php"; ?>
@@ -391,7 +426,7 @@ $pageCustomerCount=$result-> num_rows;
 		<?php require "recipe-detail.php"; ?>
 
 		<script type="text/javascript">
-			<?php require "js/recipe-app.js"; ?>
+			
 			<?php require "js/customer.js"; ?>
 		
 

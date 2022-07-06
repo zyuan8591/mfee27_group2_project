@@ -10,9 +10,9 @@
 	align-items: center;
 	justify-content: center;
 }
-.close {
+/* .close {
 	left: -100%;
-}
+} */
 
 .contain {
 	background: white;
@@ -37,4 +37,7 @@
 }
 .form-control {
 	margin-top: 10px;
+}
+.valid-btn{
+    background: #ccc;
 }

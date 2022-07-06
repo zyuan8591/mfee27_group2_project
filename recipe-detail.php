@@ -1,5 +1,7 @@
+
 <div class="recipe-datail position_abs flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
+	
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
 		action="recipe-detail-modify.php
@@ -7,9 +9,9 @@
 		method="GET"
 	>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
-		<h2 class="recipe-title text-center">XX詳細資料</h2>
+		<h2 class="recipe-title text-center">詳細資料</h2>
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">食譜名稱</label>
+			<label for="" class="col-sm-auto col-form-label">會員名稱</label>
 			<div class="col">
 				<input
 					type="text"
@@ -19,49 +21,9 @@
 				/>
 			</div>
 		</div>
+
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">食物類別</label>
-			<div class="col">
-				<select
-					class="form-select detail-item-select"
-					name="category_main"
-					disabled="true"
-				>
-					<option value="1">烘焙點心</option>
-					<option value="2">飲料冰品</option>
-					<option value="3">異國料理</option>
-					<option value="4">日式料理</option>
-					<option value="5">韓式料理</option>
-					<option value="6">台式料理</option>
-					<option value="7">泰式料理</option>
-				</select>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">食譜名稱</label>
-			<div class="col">
-				<select
-					class="form-select detail-item-select"
-					name="product_id"
-					disabled="true"
-				>
-					<option value="1">氣炸鍋</option>
-					<option value="2">咖啡機</option>
-					<option value="3">氣泡水機</option>
-					<option value="4">快煮壺</option>
-					<option value="5">磨豆機</option>
-					<option value="6">果汁機</option>
-					<option value="7">料理鍋</option>
-					<option value="8">烤箱/氣炸烤箱</option>
-					<option value="9">電烤盤</option>
-					<option value="10">隨行果汁機</option>
-					<option value="11">鬆餅機/熱壓吐司機</option>
-					<option value="12">攪拌機</option>
-				</select>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">食材　　</label>
+			<label for="" class="col-sm-auto col-form-label">生日</label>
 			<div class="col">
 				<input
 					type="text"
@@ -70,39 +32,37 @@
 					value="便便水餃"
 				/>
 			</div>
-			<div class="col-3">
-				<input
-					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="1顆"
-				/>
-			</div>			
 		</div>
+		
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">　　　　</label>
+			<label for="" class="col-sm-auto col-form-label">電話</label>
 			<div class="col">
 				<input
-					type="text"
+					type="tel"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
 					value="便便水餃"
 				/>
 			</div>
-			<div class="col-3">
-				<input
-					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="400公克"
-				/>
-			</div>			
 		</div>
+
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">食譜內容</label>
+			<label for="" class="col-sm-auto col-form-label">信箱</label>
 			<div class="col">
 				<input
-					type="text"
+					type="email"
+					readonly="readonly"
+					class="form-control-plaintext detail-item-input"
+					value="便便水餃"
+				/>
+			</div>
+		</div>
+
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">地址</label>
+			<div class="col">
+				<input
+					type="email"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
 					value="便便水餃"
@@ -110,7 +70,7 @@
 			</div>
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">
-			<label for="" class="form-label">食譜成品圖</label>
+			<label for="" class="form-label">新增圖像</label>
 			<label for="recipe-image" class="recipe-image">
 				<svg
 					width="134"
@@ -141,19 +101,22 @@
 				accept="image/*"
 				disabled="true"
 			/>
+			
 		</div>
+		
 		<div class="mb-3 flex_center">
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
-				修改食譜
+				修改會員資料
 			</button>
 			<button
 				class="save-detail-btn me-3"
 				type="submit transition"
 				disabled="true"
 			>
-				儲存食譜
+				儲存資料
 			</button>
-			<button class="add-detail-btn back-recipe-de transition">返回食譜列表</button>
+			<button class="add-detail-btn back-recipe-de transition">返回會員列表</button>
 		</div>
 	</form>
+	
 </div>
