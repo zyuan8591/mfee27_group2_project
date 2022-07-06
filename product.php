@@ -1,87 +1,89 @@
 <main class="main position-rel">
 
 	<?php
-	require "./db-connect.php";
+ require "./db-connect.php";
 
-	$order = isset($_GET["order"]) ? $_GET["order"] : 1;
-	switch ($order) {
-		case 1:
-			$orderType = "id ASC";
-			break;
-		case 2:
-			$orderType = "id DESC";
-			break;
-		case 3:
-			$orderType = "name ASC";
-			break;
-		case 4:
-			$orderType = "name DESC";
-			break;
-		case 5:
-			$orderType = "create_time ASC";
-			break;
-		case 6:
-			$orderType = "create_time DESC";
-			break;
-		default:
-			$orderType = "id ASC";
-			break;
-	}
-	$sqlWhereSearch = "";
-	if (!isset($_GET["product_search"])) {
-		$product_search = "";
-		$productCount = 0;
-	} else {
-		$product_search = $_GET["product_search"];
-		$sqlWhereSearch = "AND name LIKE '%$product_search%'";
-	}
-	$sql = "SELECT * FROM products WHERE valid=1 $sqlWhereSearch ORDER BY $orderType ";
+ $order = isset($_GET["order"]) ? $_GET["order"] : 1;
+ switch ($order) {
+ 	case 1:
+ 		$orderType = "id ASC";
+ 		break;
+ 	case 2:
+ 		$orderType = "id DESC";
+ 		break;
+ 	case 3:
+ 		$orderType = "name ASC";
+ 		break;
+ 	case 4:
+ 		$orderType = "name DESC";
+ 		break;
+ 	case 5:
+ 		$orderType = "create_time ASC";
+ 		break;
+ 	case 6:
+ 		$orderType = "create_time DESC";
+ 		break;
+ 	default:
+ 		$orderType = "id ASC";
+ 		break;
+ }
+ //  $sqlWhereSearch = "";
+ //  if (!isset($_GET["product_search"])) {
+ //  	$product_search = "";
+ //  	$productCount = 0;
+ //  } else {
+ //  	$product_search = $_GET["product_search"];
+ //  	$sqlWhereSearch = "name LIKE '%$product_search%'";
+ //  }
 
-	$result = $conn->query($sql);
-	$rows = $result->fetch_all(MYSQLI_ASSOC);
-	$productCount = $result->num_rows;
+ $search = isset($_GET["product_search"]) ? $_GET["product_search"] : "";
+ $sql = "SELECT * FROM products WHERE name LIKE '%$search%' ORDER BY $orderType ";
+ //  echo $sql;
+ $result = $conn->query($sql);
+ $rows = $result->fetch_all(MYSQLI_ASSOC);
+ $productCount = $result->num_rows;
 
-	$sqlCompany = "SELECT id, name FROM company_users";
-	$resultCompany = $conn->query($sqlCompany);
-	$rowsCompany = $resultCompany->fetch_all(MYSQLI_ASSOC);
-	foreach ($rowsCompany as $row) {
-		$companyName[$row["id"]] = $row["name"];
-	}
+ $sqlCompany = "SELECT id, name FROM company_users";
+ $resultCompany = $conn->query($sqlCompany);
+ $rowsCompany = $resultCompany->fetch_all(MYSQLI_ASSOC);
+ foreach ($rowsCompany as $row) {
+ 	$companyName[$row["id"]] = $row["name"];
+ }
 
-	$sqlCate = "SELECT id, name FROM products_category";
-	$resultCate = $conn->query($sqlCate);
-	$rowsCate = $resultCate->fetch_all(MYSQLI_ASSOC);
-	foreach ($rowsCate as $row) {
-		$cate[$row["id"]] = $row["name"];
-	}
+ $sqlCate = "SELECT id, name FROM products_category";
+ $resultCate = $conn->query($sqlCate);
+ $rowsCate = $resultCate->fetch_all(MYSQLI_ASSOC);
+ foreach ($rowsCate as $row) {
+ 	$cate[$row["id"]] = $row["name"];
+ }
 
-	$sqlCateSub = "SELECT id, name FROM products_category_sub";
-	$resultCateSub = $conn->query($sqlCateSub);
-	$rowsCateSub = $resultCateSub->fetch_all(MYSQLI_ASSOC);
-	foreach ($rowsCateSub as $row) {
-		$cateSub[$row["id"]] = $row["name"];
-	}
-	?>
+ $sqlCateSub = "SELECT id, name FROM products_category_sub";
+ $resultCateSub = $conn->query($sqlCateSub);
+ $rowsCateSub = $resultCateSub->fetch_all(MYSQLI_ASSOC);
+ foreach ($rowsCateSub as $row) {
+ 	$cateSub[$row["id"]] = $row["name"];
+ }
+ ?>
 	<div>
 		<h2 class="main-title">商品總覽</h2>
 	</div>
 	<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
-														$order == 1
-													) : ?>product-index.php?order=2<?php elseif (
-														$order == 2
-													) : ?>product-index.php?order=1<?php else : ?>product-index.php?order=1<?php endif; ?>">依編號排序</a>
+   	$order == 1
+   ): ?>product-index.php?order=2<?php elseif (
+   	$order == 2
+   ): ?>product-index.php?order=1<?php else: ?>product-index.php?order=1<?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
-														$order == 3
-													) : ?>product-index.php?order=4<?php elseif (
-														$order == 4
-													) : ?>product-index.php?order=3<?php else : ?>product-index.php?order=3<?php endif; ?>">依名稱排序</a>
+   	$order == 3
+   ): ?>product-index.php?order=4<?php elseif (
+   	$order == 4
+   ): ?>product-index.php?order=3<?php else: ?>product-index.php?order=3<?php endif; ?>">依名稱排序</a>
 			<a class="sort-btn transition" href="<?php if (
-														$order == 5
-													) : ?>product-index.php?order=6<?php elseif (
-														$order == 6
-													) : ?>product-index.php?order=5<?php else : ?>product-index.php?order=5<?php endif; ?>">依日期排序</a>
+   	$order == 5
+   ): ?>product-index.php?order=6<?php elseif (
+   	$order == 6
+   ): ?>product-index.php?order=5<?php else: ?>product-index.php?order=5<?php endif; ?>">依日期排序</a>
 		</div>
 		<div class="d-flex">
 			<select class="form-select mx-2" aria-label="Default select example">
@@ -117,8 +119,8 @@
 			<div class="filter-item  position-rel">
 				<button class="filter-btn transition">商品種類</button>
 				<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-				<?php foreach ($rowsCateSub as $row) : ?>
-				<li><a href="product-index.php?filter"><?=$row["name"]?></a></li>
+				<?php foreach ($rowsCateSub as $row): ?>
+				<li><a href="product-index.php?filter"><?= $row["name"] ?></a></li>
 				<?php endforeach; ?>
 				</ul>
 			</div>
@@ -147,14 +149,18 @@
 			</tr>
 		</thead>
 		<tbody class="">
-			<?php foreach ($rows as $row) : ?>
+			<?php foreach ($rows as $row): ?>
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
 					<td><?= $companyName[$row["company_id"]] ?></td>
 					<td><?= $row["name"] ?></td>
 					<td><?= $cate[$row["category_main"]] ?></td>
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
-					<td><?php if ($row["valid"] == 1) : ?><?= "上架中" ?><?php else : ?><?= "下架中" ?><?php endif; ?></td>
+					<td><?php if ($row["valid"] == 1): ?>
+     	上架中
+    <?php else: ?>
+     	下架中
+    <?php endif; ?></td>
 					<td class="">
 						<button class="table-btn list">上架</button>
 						<button class="table-btn unlist">下架</button>
