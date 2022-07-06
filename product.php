@@ -183,11 +183,8 @@
 						<button class="table-btn list">上架</button>
 						<button class="table-btn unlist">下架</button>
 						<button class="table-btn detail-btn">詳細資料</button>
-						<?php 
-					require "product-detail.html"; 
-					?>
+						<?php require "product-detail.php"; ?>
 					</td>
-					
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
