@@ -6,19 +6,27 @@ if (empty($page)) {
 
 require "db-connect.php";
 
+//全部廠商會員
 $sqlAll = "SELECT * FROM company_users WHERE valid=1 ";
 $resultAll = $conn->query($sqlAll);
 $CompanyUsersCountAll = $resultAll->num_rows;
 $rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
 
+//分頁
 $perpage = 10;
 $start = ($page - 1) * $perpage;
 $totalPage = ceil($CompanyUsersCountAll / $perpage);
 
+//每頁會員數量
 $sql = "SELECT * FROM company_users WHERE valid=1 LIMIT $start, 10";
 $result = $conn->query($sql);
 $pagesCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+$startItem=($page-1)*$perpage+1;
+$endItem=$page*$perpage;
+if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
+
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +57,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		<script type="text/javascript" src="./js/jquery.min.js"></script>
 	</head>
 	<body>
+		<!-------------- header -------------->
 		<?php require "header.php"; ?>
 		<aside class="aside position_abs">
 			<!-- <div class="smaller_sidebar">
@@ -67,7 +76,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 				</svg>
 			</div> -->
 
-			<!-- NAVBAR -->
+		<!-------------- NAVBAR -------------->
 			<nav class="">
 				<!-- 商品管理 -->
 				<ul class="nav unstyled_list">
@@ -318,6 +327,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 				</ul>
 			</nav>
 		</aside>
+		<!-------------- main -------------->
 		<main class="main position-rel">
 			<div>
 				<h2 class="main-title">廠商會員總覽</h2>
@@ -359,7 +369,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					</div>					
 				</div>
 				<div>
-					<a class="add-recipe-btn transition" href="">新增廠商</a>
+					<a class="add-company-btn transition" href="">新增廠商</a>
 				</div>
 			</div>
 		<?php require "company-table.php"; ?>

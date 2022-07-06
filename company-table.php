@@ -1,5 +1,5 @@
 <?php if($pagesCount > 0): ?>
-<div class="py-1">共<?=$CompanyUsersCountAll?>筆</div>
+<div class="py-1">第<?=$startItem?>-<?=$endItem?>筆,共<?=$CompanyUsersCountAll?>筆</div>
 <table class="company-table table table-hover">
 	<thead class="table-dark">
 		<tr>
