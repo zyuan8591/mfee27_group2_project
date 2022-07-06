@@ -16,7 +16,7 @@ if ($valid == "") {
 
 require "db-connect.php";
 
-$sqlAll="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType";
+$sqlAll="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ";
 $resultAll = $conn->query($sqlAll);
 // $Allrows=$resultAll->fetch_all(MYSQLI_ASSOC);
 $customerCount=$resultAll-> num_rows;
@@ -66,7 +66,6 @@ $sql="SELECT * FROM customer_users WHERE name LIKE '%$search%'";
 
 $searchrResult = $conn->query($sql);
 $searchCount=$searchrResult-> num_rows;
-
 
 ?>
 
@@ -411,14 +410,14 @@ $searchCount=$searchrResult-> num_rows;
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">會員狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=1 ">啟用</a></li>
-							<li><a href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=0 ">停用</a></li>
+							<li><a class="text-nowrap " href="recipe-index.php?page=1&order=1&search=<?=$search?>&valid=1 ">啟用</a></li>
+							<li><a href="recipe-index.php?page=1&order=1&search=<?=$search?>&valid=0 ">停用</a></li>
 							<li><a href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid= ">全部會員</a></li>
 						</ul>
 					</div>					
 				</div>
 				<div>
-					<a class=" transition" style="cursor:pointer" id="customer-add-openBtn">新增會員</a>
+					<a class="transition" style="cursor:pointer" id="customer-add-openBtn">新增會員</a>
 				</div>
 			</div>
 		<?php require "recipe-table.php"; ?>

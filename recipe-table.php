@@ -28,7 +28,7 @@
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
 				<a class="btn-main transition me-3 on-shelf <?php if($row["valid"]==1)echo "valid-btn" ?>" href="">上架</a>
 				<a class="btn-main transition me-3 off-shelf <?php if($row["valid"]==0)echo "valid-btn" ?>" href="">下架</a>
-				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
+				<a class="btn-main transition me-3 detail" href="recipe-index.php?id=<?=$row["id"]?>">詳細資料</a>
 			</td>
 		</tr>
 		<?php endforeach; ?>

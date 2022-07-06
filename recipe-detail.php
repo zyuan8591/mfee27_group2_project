@@ -1,4 +1,16 @@
+<?php
+if(!isset($_GET["id"])){
+    echo "沒有參數";
+    exit;
+}
+$id=$_GET["id"];
+require("../db-connect.php");
+$sqlDetail="SELECT * FROM customer_users WHERE id=$id ";
+$resultDetail = $conn->query($sqlDetail);
+$rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
+// $userCount=$resultDetail->num_rows;
 
+?>
 <div class="recipe-datail position_abs flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
 	
@@ -8,16 +20,17 @@
     "
 		method="GET"
 	>
+	<?php var_dump ($rowDetail)?>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
-		<h2 class="recipe-title text-center">詳細資料</h2>
+		<h2 class="recipe-title text-center">會員詳細資料</h2>
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">會員名稱</label>
+			<label for="" class="col-sm-auto col-form-label"></label>
 			<div class="col">
 				<input
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
+					value="會員名稱"
 				/>
 			</div>
 		</div>
@@ -29,7 +42,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
+					value="會員名稱"
 				/>
 			</div>
 		</div>
@@ -41,7 +54,7 @@
 					type="tel"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
+					value="會員名稱"
 				/>
 			</div>
 		</div>
@@ -53,7 +66,7 @@
 					type="email"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
+					value="會員名稱"
 				/>
 			</div>
 		</div>
@@ -65,7 +78,7 @@
 					type="email"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
+					value="會員名稱"
 				/>
 			</div>
 		</div>
