@@ -4,16 +4,16 @@ if (empty($page)) {
 	$page = 1;
 }
 
-require ("db-connect.php");
+require "db-connect.php";
 
 $sqlAll = "SELECT * FROM company_users WHERE valid=1 ";
 $resultAll = $conn->query($sqlAll);
 $CompanyUsersCountAll = $resultAll->num_rows;
 $rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
 
-$perpage=10;
-$start=($page-1)*$perpage;
-$totalPage=ceil($CompanyUsersCountAll / $perpage);
+$perpage = 10;
+$start = ($page - 1) * $perpage;
+$totalPage = ceil($CompanyUsersCountAll / $perpage);
 
 $sql = "SELECT * FROM company_users WHERE valid=1 LIMIT $start, 10";
 $result = $conn->query($sql);
