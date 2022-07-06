@@ -199,7 +199,9 @@
 			</ul>
 		</nav>
 	</aside>
+	
 	<?php require "product.php";	?>
+	
 	<?php require "new-product.php"; ?>
 	
 

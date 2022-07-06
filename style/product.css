@@ -39,7 +39,7 @@
 	overflow: auto;
 }
 .fa-xmark {
-	top: .75rem;
+	top: 0.75rem;
 	right: 1rem;
 	font-size: 1.5rem;
 	cursor: pointer;
@@ -55,7 +55,7 @@
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
-	padding: .25rem;
+	padding: 0.25rem;
 	font-family: "Noto Sans TC", sans-serif;
 }
 .new-product-btn:active {
@@ -65,11 +65,11 @@
 .product-image {
 	cursor: pointer;
 }
-.product-btn{
+.product-btn {
 	white-space: nowrap;
 	padding: 0.4rem 0.5rem;
 	background: var(--header-bg);
-	margin: .3rem;
+	margin: 0.3rem;
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
@@ -81,9 +81,9 @@
 }
 .table-btn {
 	white-space: nowrap;
-	padding: .45rem .7rem;
+	padding: 0.45rem 0.7rem;
 	background: var(--header-bg);
-	margin: .2rem .3rem;
+	margin: 0.2rem 0.3rem;
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
@@ -103,6 +103,7 @@
 	left: 0;
 	z-index: 100;
 	transition: 0.5s;
+	position: fixed;
 }
 .detail-form {
 	background: var(--header-bg);
@@ -121,17 +122,19 @@
 	background: #666;
 	opacity: 0.8;
 }
-.revise-btn, .save-btn {
+.revise-btn,
+.save-btn {
 	white-space: nowrap;
 	padding: 0.4rem 0.5rem;
 	background: var(--header-bg);
-	margin: .3rem;
+	margin: 0.3rem;
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
 	font-family: "Noto Sans TC", sans-serif;
 }
-.revise-hover:hover, .save-hover:hover {
+.revise-hover:hover,
+.save-hover:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
