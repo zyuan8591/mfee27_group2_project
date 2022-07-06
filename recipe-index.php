@@ -21,6 +21,7 @@ $resultAll = $conn->query($sqlAll);
 // $Allrows=$resultAll->fetch_all(MYSQLI_ASSOC);
 $customerCount=$resultAll-> num_rows;
 
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
 
 
 // order&page

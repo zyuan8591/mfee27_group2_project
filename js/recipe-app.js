@@ -16,6 +16,7 @@ for (let i = 0; i < filterItems.length; i++) {
 		filterDropDowm[i].classList.add("invisible");
 	});
 }
+
 // add new material btn
 let newMaterialBtn = document.querySelector(".new-material-btn");
 let materialName = document.querySelector(".material-name");
