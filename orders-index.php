@@ -1,3 +1,81 @@
+<?php
+require("db-connect.php");
+
+if(isset($_GET["page"])){
+	$page = $_GET["page"];
+}else{
+	$page=1;
+}
+
+$sqlALL = "SELECT * FROM orders";
+$resultALL = $conn->query($sqlALL);
+$userCount=$resultALL->num_rows;
+
+$perPage=5;
+$start=($page-1)*$perPage;
+
+$order=isset($_GET["order"]) ? $_GET["order"] : 1;
+  
+switch($order){
+	case 1:
+		$orderType = "id ASC";
+		break;
+	
+	case 2:
+		$orderType = "id DESC";
+		break;
+
+	case 3:
+		$orderType = "order_time ASC";
+		break;
+			
+	case 4:
+		$orderType = "order_time DESC";
+		break;
+
+	default:
+		$orderType = "id ASC";
+  }
+
+$sql="SELECT orders.*, customer_users.name FROM orders, customer_users WHERE orders.user_id = customer_users.id
+ORDER BY $orderType LIMIT $start, 5
+";
+
+$result = $conn->query($sql);
+$pageUserCount=$result->num_rows;
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+
+$sqlPrice = "SELECT id, price FROM products";
+$resultPrice = $conn->query($sqlPrice);
+$rowPrice = $resultPrice->fetch_all(MYSQLI_ASSOC);
+foreach ($rowPrice as $row) {
+ $productPrice[$row["id"]] = $row["price"];
+}
+
+$sqlOrderPrice = "SELECT * FROM order_product";
+$resultOrderPrice = $conn->query($sqlOrderPrice);
+$rowsOrderPrice = $resultOrderPrice->fetch_all(MYSQLI_ASSOC);
+$alimamado = 0;
+foreach ($rowsOrderPrice as $row) {
+ $alimamado += $row["product_quantity"] * $productPrice[$row["product_id"]];
+ $orderTotal[$row["order_id"]] = $alimamado;
+}
+
+$sqlDetail="SELECT order_product.*, orders.*, customer_users.name,customer_users.phone,customer_users.address FROM orders,order_product, customer_users WHERE orders.user_id = customer_users.id AND orders.id = order_product.order_id
+";
+
+$resultDetail = $conn->query($sqlDetail);
+$rowDetail = $resultDetail->fetch_assoc();
+// var_dump($orderTotal);
+
+
+$startItem=($page-1)*$perPage+1;
+$endItem=$page*$perPage;
+if($endItem>$userCount)$endItem=$userCount;
+
+$totalPage=ceil($userCount / $perPage);
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,9 +106,11 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="">依編號排序</a>
-					<a class="sort-btn transition" href="">依名稱排序</a>
-					<a class="sort-btn transition" href="">依日期排序</a>
+					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=1" <?php if($order==1)echo "active"?>>依訂單編號正序</a>
+					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=2" <?php if($order==2)echo "active"?>>依訂單編號反序</a>
+					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=3" <?php if($order==3)echo "active"?>>依日期正序</a>
+					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=4" <?php if($order==4)echo "active"?>>依日期反序</a>
+					<a class="sort-btn transition" href="">依價格排序</a>
 					<a class="sort-btn transition" href="">依價格排序</a>
 
 				</div>
@@ -77,7 +157,7 @@
             <?php require "orders-table.php";?>
 		</main>
 		<?php require "recipe-add.php"; ?>
-		<?php require "recipe-detail.php"; ?>
+		<?php require "order-detail.php"; ?>
 		
       <script type="text/javascript" >
 			<?php require "./js/app.js"; ?>

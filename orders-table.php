@@ -1,13 +1,3 @@
-<?php
-require("db-connect.php");
-
-$sql="SELECT orders.id, customer_users.name, orders.create_time FROM orders, customer_users WHERE orders.user_id = customer_users.id
-";
-
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-
-?>
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -36,10 +26,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		<?php foreach($rows as $row): ?>
 		<tr>
 			<th class="text-center" scope="row"><?=$row["id"]?></th>
-			<td><?=$row["create_time"]?></td>
+			<td><?=$row["order_time"]?></td>
 			<td><?=$row["name"]?></td>
-			<td>已送達</td>
-			<td>500</td>
+			<td></td>
+			<td></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
                 <a class="btn-main transition me-3 detail" href="">刪除</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
@@ -70,10 +60,12 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 	<div class="col-4">
 		<div class="btn-group me-2" role="group" aria-label="First group">
 			<a type="button" class="btn btn-outline-dark">上一頁</a>
-			<a type="button" class="btn btn-outline-dark">1</a>
-			<a type="button" class="btn btn-outline-dark">2</a>
-			<a type="button" class="btn btn-outline-dark">3</a>
-			<a type="button" class="btn btn-outline-dark">4</a>
+
+            <?php for($i=1;$i<=$totalPage;$i++): ?>
+			<a href="orders-index.php?page=<?=$i?>&order=<?=$order?>" type="button" class="btn btn-outline-dark <?php
+            if($page==$i)echo "active";?>"><?=$i?></a>
+			<?php endfor; ?>
+
 			<a type="button" class="btn btn-outline-dark">下一頁</a>
 		</div>
 	</div>
