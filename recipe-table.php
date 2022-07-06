@@ -45,6 +45,8 @@
     ] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
 <?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>">下架</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
+		<?php require "recipe-detail.php"; ?>
+
 			</td>
 		</tr>
 		<?php endforeach; ?>

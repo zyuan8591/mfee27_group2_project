@@ -564,7 +564,6 @@ foreach ($rowsCatProduct as $row) {
 		<?php require "recipe-table.php"; ?>
 		</main>
 		<?php require "recipe-add.php"; ?>
-		<?php require "recipe-detail.php"; ?>
 
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>

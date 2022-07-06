@@ -1,4 +1,4 @@
-<div class="recipe-datail position_abs flex_center invisible">
+<div class="recipe-datail flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
@@ -15,7 +15,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="便便水餃"
+					value="<?= $row["name"] ?>"
 				/>
 			</div>
 		</div>

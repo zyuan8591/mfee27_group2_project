@@ -82,16 +82,16 @@ xMark.addEventListener("click", function (e) {
 });
 
 // call detail page
-let detailPage = document.querySelector(".recipe-datail");
+let detailPage = document.querySelectorAll(".recipe-datail");
 let detailBtn = document.querySelectorAll(".detail");
 let detailCover = document.querySelector(".cover-detail");
-let backToRecipeDe = document.querySelector(".back-recipe-de");
-let detailXMark = document.querySelector(".detail-xMark");
+let backToRecipeDe = document.querySelectorAll(".back-recipe-de");
+let detailXMark = document.querySelectorAll(".detail-xMark");
 
 for (let i = 0; i < detailBtn.length; i++) {
 	detailBtn[i].addEventListener("click", (e) => {
 		e.preventDefault();
-		detailPage.classList.remove("invisible");
+		detailPage[i].classList.remove("invisible");
 	});
 }
 
@@ -143,37 +143,41 @@ saveBtn.addEventListener("click", (e) => {
 	}
 });
 // !! back to recipe index btn
-backToRecipeDe.addEventListener("click", function (e) {
-	e.preventDefault();
-	detailPage.classList.add("invisible");
-	modifyBtn.disabled = false;
-	saveBtn.disabled = true;
-	saveBtn.classList.remove("save-detail-btn-hover");
-	for (let i = 0; i < detailInputs.length; i++) {
-		detailInputs[i].setAttribute("readonly", "readonly");
-		detailInputs[i].classList.remove("form-control");
-		detailInputs[i].classList.add("form-control-plaintext");
-	}
-	for (let i = 0; i < detailSelects.length; i++) {
-		detailSelects[i].disabled = true;
-	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
-});
-detailXMark.addEventListener("click", function (e) {
-	detailPage.classList.add("invisible");
-	modifyBtn.disabled = false;
-	saveBtn.disabled = true;
-	for (let i = 0; i < detailInputs.length; i++) {
-		detailInputs[i].setAttribute("readonly", "readonly");
-		detailInputs[i].classList.remove("form-control");
-		detailInputs[i].classList.add("form-control-plaintext");
-	}
-	for (let i = 0; i < detailSelects.length; i++) {
-		detailSelects[i].disabled = true;
-	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
-});
+for (let i = 0; i < backToRecipe.length; i++) {
+	backToRecipeDe[i].addEventListener("click", function (e) {
+		e.preventDefault();
+		detailPage[i].classList.add("invisible");
+		modifyBtn.disabled = false;
+		saveBtn.disabled = true;
+		saveBtn.classList.remove("save-detail-btn-hover");
+		for (let i = 0; i < detailInputs.length; i++) {
+			detailInputs[i].setAttribute("readonly", "readonly");
+			detailInputs[i].classList.remove("form-control");
+			detailInputs[i].classList.add("form-control-plaintext");
+		}
+		for (let i = 0; i < detailSelects.length; i++) {
+			detailSelects[i].disabled = true;
+		}
+		for (let i = 0; i < detailImgs.length; i++) {
+			detailImgs[i].disabled = true;
+		}
+	});
+}
+for (let i = 0; i < detailXMark.length; i++) {
+	detailXMark[i].addEventListener("click", function (e) {
+		detailPage[i].classList.add("invisible");
+		modifyBtn.disabled = false;
+		saveBtn.disabled = true;
+		for (let i = 0; i < detailInputs.length; i++) {
+			detailInputs[i].setAttribute("readonly", "readonly");
+			detailInputs[i].classList.remove("form-control");
+			detailInputs[i].classList.add("form-control-plaintext");
+		}
+		for (let i = 0; i < detailSelects.length; i++) {
+			detailSelects[i].disabled = true;
+		}
+		for (let i = 0; i < detailImgs.length; i++) {
+			detailImgs[i].disabled = true;
+		}
+	});
+}
