@@ -1,3 +1,13 @@
+<?php
+require("db-connect.php");
+
+$sql="SELECT orders.id, customer_users.name, orders.create_time FROM orders, customer_users WHERE orders.user_id = customer_users.id
+";
+
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+?>
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -12,22 +22,22 @@
 	</thead>
 	<tbody>
 
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+			<!-- <tr>
+				<td><span id="id"></span></td>
+				<td><span id="create_time"></span></td>
+				<td><span id="name"></span></td>
 				<td></td>
 				<td></td>
 				<td class="d-flex flex-wrap flex-shrink-1 gap-2">
                 	<a class="btn-main transition me-3 detail" href="">刪除</a>
 					<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 				</td>
-			</tr>
-
-		<!-- <tr>
-			<th class="text-center" scope="row">1</th>
-			<td>2022/08/07</td>
-			<td>87</td>
+			</tr> -->
+		<?php foreach($rows as $row): ?>
+		<tr>
+			<th class="text-center" scope="row"><?=$row["id"]?></th>
+			<td><?=$row["create_time"]?></td>
+			<td><?=$row["name"]?></td>
 			<td>已送達</td>
 			<td>500</td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
@@ -35,7 +45,8 @@
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
 		</tr>
-		<tr>
+		<?php endforeach; ?>
+		<!-- <tr>
 			<th class="text-center" scope="row">2</th>
 			<td>2022/07/08</td>
 			<td>78</td>
