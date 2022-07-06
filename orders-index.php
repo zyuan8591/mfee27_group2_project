@@ -11,7 +11,7 @@ $sqlALL = "SELECT * FROM orders";
 $resultALL = $conn->query($sqlALL);
 $userCount=$resultALL->num_rows;
 
-$perPage=5;
+$perPage=$_GET["per-page"];
 $start=($page-1)*$perPage;
 
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
@@ -38,7 +38,7 @@ switch($order){
   }
 
 $sql="SELECT orders.*, customer_users.name FROM orders, customer_users WHERE orders.user_id = customer_users.id
-ORDER BY $orderType LIMIT $start, 5
+ORDER BY $orderType LIMIT $start, $perPage
 ";
 
 $result = $conn->query($sql);
@@ -106,8 +106,8 @@ $totalPage=ceil($userCount / $perPage);
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=1" <?php if($order==1)echo "active"?>>依訂單編號正序</a>
-					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=2" <?php if($order==2)echo "active"?>>依訂單編號反序</a>
+					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=1&per-page=<?=$perPage?>" <?php if($order==1)echo "active"?>>依訂單編號正序</a>
+					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=2&per-page=<?=$perPage?>" <?php if($order==2)echo "active"?>>依訂單編號反序</a>
 					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=3" <?php if($order==3)echo "active"?>>依日期正序</a>
 					<a class="sort-btn transition" href="orders-index.php?page=<?=$page?>&order=4" <?php if($order==4)echo "active"?>>依日期反序</a>
 					<a class="sort-btn transition" href="">依價格排序</a>
@@ -118,7 +118,7 @@ $totalPage=ceil($userCount / $perPage);
 					<select class="form-select per-page" name="per-page" >
 						<option value="5">每頁顯示5筆</option>
 						<option value="15">每頁顯示15筆</option>
-						<option value="20">每頁顯示20筆</option>
+						<option value="20" selected>每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
