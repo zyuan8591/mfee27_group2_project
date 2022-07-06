@@ -381,7 +381,7 @@ $searchCount=$searchrResult-> num_rows;
 				<form class="recipe_search " action="recipe-index.php" method="get">
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">
-							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋會員名稱">
+							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋">
 						</div>
 						<div class="">
 							<button class="search-btn form-control" type="submit">

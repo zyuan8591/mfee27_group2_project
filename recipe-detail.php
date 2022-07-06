@@ -1,14 +1,13 @@
 <?php
-if(!isset($_GET["id"])){
-    echo "沒有參數";
-    exit;
-}
-$id=$_GET["id"];
-require("../db-connect.php");
-$sqlDetail="SELECT * FROM customer_users WHERE id=$id ";
-$resultDetail = $conn->query($sqlDetail);
-$rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
-// $userCount=$resultDetail->num_rows;
+// if(!isset($_GET["id"])){
+//     echo "沒有參數";
+//     exit;
+// }
+// $id=$_GET["id"];
+// $sqlDetail="SELECT * FROM customer_users WHERE id=$id ";
+// $resultDetail = $conn->query($sqlDetail);
+// $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
+// $detailCount=$resultDetail->num_rows;
 
 ?>
 <div class="recipe-datail position_abs flex_center invisible">
@@ -20,11 +19,10 @@ $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
     "
 		method="GET"
 	>
-	<?php var_dump ($rowDetail)?>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="recipe-title text-center">會員詳細資料</h2>
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label"></label>
+			<label for="" class="col-sm-auto col-form-label">會員名稱</label>
 			<div class="col">
 				<input
 					type="text"
@@ -36,7 +34,7 @@ $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
 		</div>
 
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">生日</label>
+			<label for="" class="col-sm-auto col-form-label">會員生日</label>
 			<div class="col">
 				<input
 					type="text"
@@ -48,7 +46,7 @@ $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">電話</label>
+			<label for="" class="col-sm-auto col-form-label">會員電話</label>
 			<div class="col">
 				<input
 					type="tel"
@@ -60,7 +58,7 @@ $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
 		</div>
 
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">信箱</label>
+			<label for="" class="col-sm-auto col-form-label">會員信箱</label>
 			<div class="col">
 				<input
 					type="email"
@@ -72,7 +70,7 @@ $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
 		</div>
 
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">地址</label>
+			<label for="" class="col-sm-auto col-form-label">會員地址</label>
 			<div class="col">
 				<input
 					type="email"

@@ -1,4 +1,4 @@
-
+//add customer
 let customerOpenBtn = document.querySelector("#customer-add-openBtn");
 let customerCloseBtn = document.querySelector("#customer-close-btn");
 let userAddPage = document.querySelector(".user-add-page");
@@ -15,6 +15,9 @@ customerCloseBtn.addEventListener("click", function (e) {
 	// customerMain.classList.add("close");
 	userAddPage.classList.add("d-none");
 });
+
+
+
 
 // filter hover
 let filterItems = document.querySelectorAll(".filter-item");
@@ -120,3 +123,12 @@ detailXMark.addEventListener("click", function (e) {
 		detailImgs[i].disabled = true;
 	}
 });
+
+
+
+//valid-btn
+// let onShelf = document.querySelector("#on-shelf");
+// let offShelf = document.querySelectorAll(".off-shelf");
+// onShelf.addEventListener("click",function(){
+//     onShelf.classList.add("valid-style");
+// })

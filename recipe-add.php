@@ -2,7 +2,7 @@
     <div class="customer-add-main" id="customer-add-main"></div>
         <div class="contain">
             <h2 class="text-center border-bottom pb-3">一般會員註冊</h2>
-            <form action="doSignUp.php" method="post" id="signUpform" class="signUpform">
+            <form action="doCreate-customer.php" method="post" id="signUpform" class="signUpform">
                 <div class="mb-2">
                     <label for="">姓名</label>
                     <input type="text" class="form-control" name="name">
@@ -11,7 +11,7 @@
                     <label for="">帳號</label>
                     <input type="text" class="form-control" name="account">
                 </div>
-                <div class="mb-2">
+                <!-- <div class="mb-2">
                     <label for="">性別</label>
                     <div class="d-flex mt-2">
                         <div class="form-check">
@@ -25,7 +25,7 @@
                             女</label>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="mb-2">
                     <label for="">生日</label>
                     <div class="">
@@ -53,7 +53,7 @@
                     <input type="password" class="form-control" name="repassword">
                 </div>
                 <div class="d-flex mt-5 justify-content-center">
-                    <button class="btn" type="submit" id="customer-add-openBtn">新增會員</button>
+                    <button class="btn" type="submit" >新增會員</button>
                     <button id="customer-close-btn" class="btn ms-5">返回會員列表</button>     
                 </div>
             </form>
