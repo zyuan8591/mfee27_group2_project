@@ -1,3 +1,115 @@
+<?php
+require "db-connect.php";
+
+//$_GET data
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+if (empty($order)) {
+	$order = 1;
+}
+$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 5;
+if (empty($order)) {
+	$order = 5;
+}
+$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+if (empty($page)) {
+	$page = 1;
+} elseif ($page < 1) {
+	$page = 1;
+}
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
+if (empty($search)) {
+	$search = "";
+}
+
+// filter_category_food
+if (isset($_GET["foodCate"])) {
+	$foodCate = $_GET["foodCate"];
+	$sqlWhereFoodCate = "AND category_food = $foodCate ";
+} else {
+	$foodCate = "";
+	$sqlWhereFoodCate = "";
+}
+
+if (empty($foodCate)) {
+	$foodCate = "";
+	$sqlWhereFoodCate = "";
+}
+
+// filter_category_product
+if (isset($_GET["productCate"])) {
+	$productCate = $_GET["productCate"];
+	$sqlWhereProductCate = "AND category_product = $productCate ";
+} else {
+	$productCate = "";
+	$sqlWhereProductCate = "";
+}
+if (empty($productCate)) {
+	$productCate = "";
+	$sqlWhereProductCate = "";
+}
+
+//filter_valid
+if (isset($_GET["valid"])) {
+	$valid = $_GET["valid"];
+	$sqlWhereValid = "AND valid = $valid ";
+} else {
+	$valid = "";
+	$sqlWhereValid = "";
+}
+if ($valid == "") {
+	$valid = "";
+	$sqlWhereValid = "";
+}
+
+$sqlAll = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid ";
+$resultAll = $conn->query($sqlAll);
+$recipeCountAll = $resultAll->num_rows;
+
+//pages
+$pages = ceil($recipeCountAll / $perPage);
+$start = ($page - 1) * $perPage;
+
+//sort data
+switch ($order) {
+	case 1:
+		$orderType = "id ASC";
+		break;
+	case 2:
+		$orderType = "name ASC";
+		break;
+	case 3:
+		$orderType = "id DESC";
+		break;
+	case 4:
+		$orderType = "name DESC";
+		break;
+	default:
+		$orderType = "id ASC";
+		break;
+}
+
+$sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid 
+ORDER BY $orderType LIMIT $start, $perPage ";
+$result = $conn->query($sql);
+$recipeCount = $result->num_rows;
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+//get category_food
+$sqlCatFood = "SELECT * FROM recipe_category";
+$resultCatFood = $conn->	query($sqlCatFood);
+$rowsCatFood = $resultCatFood->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsCatFood as $row) {
+	$category_food[$row["id"]] = $row["name"];
+}
+
+//get category_product
+$sqlCatProduct = "SELECT * FROM products_category_sub";
+$resultCatProduct = $conn->query($sqlCatProduct);
+$rowsCatProduct = $resultCatProduct->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsCatProduct as $row) {
+	$category_product[$row["id"]] = $row["name"];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -20,9 +132,7 @@
 		<style>
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/recipe-style.css"; ?>
-
 		</style>
-		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
 	</head>
 	<body>
 		<?php require "header.php"; ?>
@@ -300,22 +410,48 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="">依編號排序</a>
-					<a class="sort-btn transition" href="">依名稱排序</a>
-					<a class="sort-btn transition" href="">依日期排序</a>
+					<a class="sort-btn transition" id="idSort" href="
+					<?php if ($order == 3): ?>
+					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+					<?php elseif ($order == 1): ?>
+					recipe-index.php?order=3&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+					<?php else: ?>
+					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+					<?php endif; ?>
+					">依編號排序</a>
+
+					<a class="sort-btn transition" id="dateSort" href="
+					<?php if ($order == 4): ?>
+					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+					<?php elseif ($order == 2): ?>
+					recipe-index.php?order=4&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+					<?php else: ?>
+					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+					<?php endif; ?>					
+					">依名稱排序</a>
+
 				</div>
-				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="" method="get">
+				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipe-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5">每頁顯示5筆</option>
-						<option value="15">每頁顯示15筆</option>
-						<option value="20">每頁顯示20筆</option>
+						<option value="5" 
+						<?php if ($perPage == 5) {echo "selected";} ?> >每頁顯示5筆</option>
+						<option value="15" 
+						<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
+						<option value="20" 
+						<?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
-							<input class="form-control search-box " type="text" name="recipe_search" placeholder="搜尋食譜名稱">
+							<input value="<?= $search ?>" class="form-control search-box " type="text" name="search" placeholder="搜尋食譜名稱">
 						</div>
 						<div class="">
-							<button class="search-btn form-control">
+							<button class="search-btn form-control" type="submit">
 								<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M17.7292 18.8489L10.8802 11.9999C10.3594 12.4513 9.75174 12.8029 9.05729 13.0546C8.36285 13.3063 7.625 13.4322 6.84375 13.4322C4.96875 13.4322 3.38021 12.7812 2.07812 11.4791C0.776042 10.177 0.125 8.60582 0.125 6.76554C0.125 4.92527 0.776042 3.35409 2.07812 2.052C3.38021 0.749919 4.96007 0.098877 6.81771 0.098877C8.65799 0.098877 10.2248 0.749919 11.5182 2.052C12.8116 3.35409 13.4583 4.92527 13.4583 6.76554C13.4583 7.51207 13.3368 8.23256 13.0937 8.927C12.8507 9.62145 12.4861 10.2725 12 10.8801L18.875 17.703L17.7292 18.8489ZM6.81771 11.8697C8.22396 11.8697 9.42188 11.3706 10.4115 10.3723C11.401 9.37405 11.8958 8.17179 11.8958 6.76554C11.8958 5.35929 11.401 4.15704 10.4115 3.15877C9.42188 2.16051 8.22396 1.66138 6.81771 1.66138C5.3941 1.66138 4.18316 2.16051 3.1849 3.15877C2.18663 4.15704 1.6875 5.35929 1.6875 6.76554C1.6875 8.17179 2.18663 9.37405 3.1849 10.3723C4.18316 11.3706 5.3941 11.8697 6.81771 11.8697Z" fill="#222222"/>
 								</svg>
@@ -325,24 +461,92 @@
 				</form>
 			</div>
 			<div class="d-flex justify-content-between align-items-center my-3">
+<!-- 食譜類別******************************************************************************************************** -->
 				<div class="filter d-flex align-items-center">					
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
 
 					<div class="filter-item  position-rel">
-						<button class="filter-btn transition">食譜類別</button>
+						<button class="filter-btn transition">
+						<?php if ($recipeCount == 0) {
+							echo "食譜類別";
+						} elseif ($foodCate == "") {
+							echo "食譜類別";
+						} else {
+							echo $category_food[$foodCate];
+						} ?>
+						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="">Coffee</a></li>
-							<li><a href="">Cake</a></li>
-							<li><a href=""></a></li>
+							<li><a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=&productCate=<?= $productCate ?>
+							&valid=<?= $valid ?>">全部</a></li>
+							<?php foreach ($rowsCatFood as $row): ?>
+							<li><a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
+							&page=1&search=<?= $search ?>&foodCate=
+							<?= $row["id"] ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+							">
+								<?= $row["name"] ?>
+							</a></li>
+							
+							<?php endforeach; ?>
 						</ul>							
 					</div>
+<!-- 商品類別******************************************************************************************************** -->
+					<div class="filter-item  position-rel">
+						<button class="filter-btn transition">
+							<?php if ($recipeCount == 0) {
+								echo "商品類別";
+							} elseif ($productCate == "") {
+								echo "商品類別";
+							} else {
+								echo $category_product[$productCate];
+							} ?>
+						</button>
+						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
+							<li><a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=
+							&valid=<?= $valid ?>
+							">全部</a></li>
+							<?php foreach ($rowsCatProduct as $row): ?>
+							<li><a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
+							&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+							&productCate=<?= $row["id"] ?>&valid=<?= $valid ?>">
+								<?= $row["name"] ?>
+							</a></li>
+							
+							<?php endforeach; ?>
+						</ul>							
+					</div>	
+<!-- 食譜狀態******************************************************************************************************** -->
+					
 					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition">食譜狀態</button>
+						<button class=" filter-btn transition">
+							<?php if ($valid == "") {
+								echo "食譜狀態";
+							} elseif ($valid == 0) {
+								echo "下架中";
+							} elseif ($valid == 1) {
+								echo "上架中";
+							} else {
+								echo "食譜狀態";
+							} ?>
+						</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="">上架中</a></li>
-							<li><a href="">下架中</a></li>
+							<li><a class="text-nowrap " href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=
+							">全部</a></li>
+							<li><a class="text-nowrap " href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=1
+							">上架中</a></li>
+							<li><a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=0
+							">下架中</a></li>
 						</ul>
 					</div>					
 				</div>
@@ -353,7 +557,6 @@
 		<?php require "recipe-table.php"; ?>
 		</main>
 		<?php require "recipe-add.php"; ?>
-		<?php require "recipe-detail.php"; ?>
 
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>

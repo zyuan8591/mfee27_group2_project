@@ -185,6 +185,13 @@
 .add-recipe-image {
 	cursor: pointer;
 }
+.preview-add-img-container {
+	height: 134px;
+	width: 134px;
+}
+#recipeImgPre {
+	border-radius: 5px;
+}
 
 /* ****************************************************************************** */
 /* recipe-detail */
@@ -195,10 +202,11 @@
 	left: 0;
 	z-index: 50;
 	transition: 0.5s;
+	position: fixed;
 }
 .container-detail {
 	width: 600px;
-	height: 600px;
+	height: 700px;
 	z-index: 5;
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;

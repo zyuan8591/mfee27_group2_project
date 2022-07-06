@@ -108,6 +108,15 @@ a:active {
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
+.point-event-none {
+	pointer-events: none;
+	opacity: 0.5;
+}
+/* .btn-outline-dark:focus {
+	box-shadow: var(--box-shadow) !important;
+	border-color: var(--input-border);
+	outline: 1 !important;
+} */
 
 /* --------------------------------------------- */
 /* header */
