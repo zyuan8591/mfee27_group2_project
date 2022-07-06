@@ -1,6 +1,6 @@
-<div class="new-recipe-page position_abs flex_center invisible">
+<div class=" new-company-page position_abs flex_center invisible">
     <div class="cover position_abs"></div>
-    <form class="new-company-form position-rel" action="new-recipe-exe.php
+    <form class="new-company-form position-rel" action="
     " method="GET">
         <i class="fa-solid fa-xmark position_abs"></i>
         <h2 class="company-title text-center">新增廠商</h2>
@@ -26,11 +26,11 @@
         </div>    
         <div class="mb-3">
             <label for="" class="form-label">公司簡介</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="" rows="3"></textarea>
         </div>        
         <div class="mb-3 flex_center">
-            <button class="add-detail-btn save-and-add-recipe-btn me-3" type="submit transition">新增食譜</button>
-            <button class="add-detail-btn back-recipe transition">返回食譜列表</button>
+            <button class="add-detail-btn save-and-add-company-btn me-3" type="submit transition">新增廠商</button>
+            <button class="add-detail-btn back-company transition">返回廠商會員列表</button>
         </div>
     </form>
 </div>

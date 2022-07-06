@@ -42,29 +42,29 @@ for (let i = 0; i < filterItems.length; i++) {
 	});
 }
 
-// call add page
-let newRecipePage = document.querySelector(".new-recipe-page");
-let addRecipeBtn = document.querySelector(".add-recipe-btn");
-let backToRecipe = document.querySelector(".back-recipe");
+// call add page 新增廠商
+let newCompanyPage = document.querySelector(".new-company-page");
+let addCompanyBtn = document.querySelector(".add-company-btn");
+let backToCompany = document.querySelector(".back-company");
 let xMark = document.querySelector(".fa-xmark");
 
-addRecipeBtn.addEventListener("click", function (e) {
+addCompanyBtn.addEventListener("click", function (e) {
 	e.preventDefault();
-	newRecipePage.classList.remove("invisible");
+	newCompanyPage.classList.remove("invisible");
 });
-backToRecipe.addEventListener("click", function (e) {
+backToCompany.addEventListener("click", function (e) {
 	e.preventDefault();
-	newRecipePage.classList.add("invisible");
+	newCompanyPage.classList.add("invisible");
 });
 xMark.addEventListener("click", function (e) {
-	newRecipePage.classList.add("invisible");
+	newCompanyPage.classList.add("invisible");
 });
 
-// call detail page
-let detailPage = document.querySelector(".recipe-datail");
-let detailBtn = document.querySelectorAll(".detail"); //
+// call detail page 詳細資料
+let detailPage = document.querySelector(".company-datail");
+let detailBtn = document.querySelectorAll(".detail"); 
 let detailCover = document.querySelector(".cover-detail");
-let backToRecipeDe = document.querySelector(".back-recipe-de");
+let backToCompanyDe = document.querySelector(".back-company-de");
 let detailXMark = document.querySelector(".detail-xMark");
 
 for (let i = 0; i < detailBtn.length; i++) {
@@ -83,7 +83,7 @@ for (let i = 0; i < detailBtn.length; i++) {
 let modifyBtn = document.querySelector(".modify-detail-btn");
 let saveBtn = document.querySelector(".save-detail-btn");
 // form
-let modifyForm = document.querySelector(".modify-ricepe-detail-form");
+let modifyForm = document.querySelector(".modify-company-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
 // let detailSelects = document.querySelectorAll(".detail-item-select");
@@ -120,7 +120,7 @@ saveBtn.addEventListener("click", (e) => {
 	}
 });
 // !! back to recipe index btn
-backToRecipeDe.addEventListener("click", function (e) {
+backToCompanyDe.addEventListener("click", function (e) {
 	e.preventDefault();
 	detailPage.classList.add("invisible");
 	modifyBtn.disabled = false;

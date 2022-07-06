@@ -352,7 +352,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">廠商狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="">啟用</a></li>
+							<li><a class="text-nowrap " href="">全部</a></li>
+							<li><a href="">啟用</a></li>
 							<li><a href="">停用</a></li>
 						</ul>
 					</div>					

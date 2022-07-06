@@ -1,6 +1,6 @@
 <?php if($pagesCount > 0): ?>
 <div class="py-1">共<?=$CompanyUsersCountAll?>筆</div>
-<table class="recipe-table table table-hover">
+<table class="company-table table table-hover">
 	<thead class="table-dark">
 		<tr>
 			<th class="text-center" scope="col">廠商編號</th>
