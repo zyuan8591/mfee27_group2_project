@@ -11,7 +11,20 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="d-flex flex-wrap flex-shrink-1 gap-2">
+                	<a class="btn-main transition me-3 detail" href="">刪除</a>
+					<a class="btn-main transition me-3 detail" href="">詳細資料</a>
+				</td>
+			</tr>
+
+		<!-- <tr>
 			<th class="text-center" scope="row">1</th>
 			<td>2022/08/07</td>
 			<td>87</td>
@@ -32,7 +45,7 @@
                 <a class="btn-main transition me-3 detail" href="">刪除</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>
-		</tr>
+		</tr> -->
 	</tbody>
 </table>
 <div class="row w-100">
