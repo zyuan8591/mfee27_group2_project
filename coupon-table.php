@@ -37,5 +37,4 @@
 	<?php else:?>
 		目前沒有資料
 	<?php endif;?>
-<script>	
-</script>
+

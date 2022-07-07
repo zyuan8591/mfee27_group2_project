@@ -1,10 +1,17 @@
 <?php
 require("./db-connect.php");
-$sql="SELECT * FROM coupon";
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
+if (empty($search)) {
+	$search = "";
+}
+
+$sql="SELECT * FROM coupon WHERE name LIKE '%$search%'";
 
 $result = $conn->query($sql);
 $couponCount=$result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+//----------------------------------------------
+
 ?>
 
 <!DOCTYPE html>
@@ -315,10 +322,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<a class="sort-btn transition" href="">依起始日期排序</a>
 					<a class="sort-btn transition" href="">依結束日期排序</a>
 				</div>
-				<form class="recipe_search " action="" method="get">
+				<form class="recipe_search " action="coupon-index.php" method="get">
 					<div class="d-flex align-items-center " >
-						<div class="d-flex ">
-							<input class="form-control search-box " type="text" name="ccoupon_search" placeholder="搜尋優惠券名稱">
+						<div class="d-flex ">  <?php //下面要改?>
+							<input class="form-control search-box " type="text" name="search" placeholder="搜尋優惠券名稱">
 						</div>
 						<div class="">
 							<button class="search-btn form-control">
