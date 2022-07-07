@@ -9,9 +9,14 @@ if(isset($_GET["page"])){
 
 $sqlALL = "SELECT * FROM orders";
 $resultALL = $conn->query($sqlALL);
-$userCount=$resultALL->num_rows;
+$ordersCount=$resultALL->num_rows;
 
-$perPage=$_GET["per-page"];
+if(isset($_GET["per-page"])){
+	$perPage=$_GET["per-page"];	
+}else{
+	$perPage = 5;
+};
+
 $start=($page-1)*$perPage;
 
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
@@ -72,9 +77,9 @@ $rowDetail = $resultDetail->fetch_assoc();
 
 $startItem=($page-1)*$perPage+1;
 $endItem=$page*$perPage;
-if($endItem>$userCount)$endItem=$userCount;
+if($endItem>$ordersCount)$endItem=$ordersCount;
 
-$totalPage=ceil($userCount / $perPage);
+$totalPage=ceil($ordersCount / $perPage);
 ?>
 <!doctype html>
 <html lang="en">
@@ -116,9 +121,9 @@ $totalPage=ceil($userCount / $perPage);
 				</div>
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5">每頁顯示5筆</option>
+						<option value="5" >每頁顯示5筆</option>
 						<option value="15">每頁顯示15筆</option>
-						<option value="20" selected>每頁顯示20筆</option>
+						<option value="20" >每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
@@ -157,7 +162,7 @@ $totalPage=ceil($userCount / $perPage);
             <?php require "orders-table.php";?>
 		</main>
 		<?php require "recipe-add.php"; ?>
-		<?php require "order-detail.php"; ?>
+		
 		
       <script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
