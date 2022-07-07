@@ -56,13 +56,13 @@ while (
 	$material[$i][$_POST["detail-material-name-$i"]] = $_POST["detail-material-q-$i"];
 	$i++;
 }
-var_dump($material);
+// var_dump($material);
 
 foreach ($material as $row) {
 	$materialName = key($row);
 	$materialQ = current($row);
 	$sqlAddMaterial = "INSERT INTO recipe_material(name, recipe_id, quantity)
-	VALUES('$materialName', $recipe_id, '$materialQ' )";
+	VALUES('$materialName', $id, '$materialQ' )";
 	if ($conn->query($sqlAddMaterial)) {
 		echo "食材新增成功 <br>";
 	} else {
