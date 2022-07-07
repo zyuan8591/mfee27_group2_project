@@ -31,10 +31,9 @@
 			<label for="" class="col-sm-auto col-form-label">主要類型</label>
 			<div class="col">
 				<select name="category_main" class="form-select product-input" disabled>
-					 <?php foreach($rowsCate as $item):?> 
-					<option value="<?=$item["id"]?>"><?=$item["name"]?></option>
+				<?php foreach($rowsCate as $item):?>
+					<option value="<?=$item["id"]?>"<?php if($row["category_main"]==$item["id"]){echo "selected";} ?>><?=$item["name"]?></option>
 					<?php endforeach; ?>
-					<!-- <option value="2">冷熱調理</option> -->
 				</select>
 			</div>
 		</div>
@@ -42,8 +41,10 @@
 			<label for="" class="col-sm-auto col-form-label">次要類型</label>
 			<div class="col">
 				<select name="category_sub" class="form-select product-input" disabled>
-					<option value="1">氣炸鍋</option>
-					<option value="2">咖啡機</option>
+					<?php foreach($rowsCateSub as $item):?>
+					<option value="<?=$row["category_sub"]?>"<?php if($row["category_sub"]==$item["id"]){echo "selected";} ?>><?=$item["name"]?></option>
+					<?php endforeach;?>
+					<!-- <option value="2">咖啡機</option>
 					<option value="3">氣泡水機</option>
 					<option value="4">快煮壺</option>
 					<option value="5">磨豆機</option>
@@ -53,7 +54,7 @@
 					<option value="9">電烤盤</option>
 					<option value="10">隨行果汁機</option>
 					<option value="11">鬆餅機/熱壓吐司機</option>
-					<option value="12">攪拌機</option>
+					<option value="12">攪拌機</option> -->
 				</select>
 			</div>
 		</div>

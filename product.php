@@ -194,8 +194,8 @@
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
 					<td><?php if ($row["valid"] == 1) : ?><?= "上架中" ?><?php else : ?><?= "下架中" ?><?php endif; ?></td>
 					<td class="">
-						<a href="list-unlist.php" class="table-btn list">上架</a>
-						<a href="list-unlist.php" class="table-btn unlist">下架</a>
+						<a href="" class="table-btn list">上架</a>
+						<a href="" class="table-btn unlist">下架</a>
 						<button class="table-btn detail-btn">詳細資料</button>
 						<?php require "product-detail.php"; ?>
 					</td>
