@@ -19,24 +19,24 @@ var_dump($rowOnoffshelf);
 $sqlUpadate = "";
 
 if ($rowOnoffshelf["valid"] == 0) {
-	$sqlUpadate = "UPDATE recipe SET valid=1 WHERE id='$id' ";
+    $sqlUpadate = "UPDATE recipe SET valid=1 WHERE id='$id' ";
 }
 
 if ($rowOnoffshelf["valid"] == 1) {
-	$sqlUpadate = "UPDATE recipe SET valid=0 WHERE id='$id' ";
+    $sqlUpadate = "UPDATE recipe SET valid=0 WHERE id='$id' ";
 }
 
 if ($conn->query($sqlUpadate) == true) {
-	echo "修改資料成功";
+    echo "修改資料成功";
 } else {
-	echo "error: " . $conn->error;
-	exit();
+    echo "error: " . $conn->error;
+    exit();
 }
 echo $sqlUpadate;
 $conn->close();
 
 header(
-	"location: recipe-index.php?order=$order&per-page=$perPage&page=$page&search=$search&foodCate=$foodCate&productCate=$productCate&valid=$valid"
+    "location: recipe-index.php?order=$order&per-page=$perPage&page=$page&search=$search&foodCate=$foodCate&productCate=$productCate&valid=$valid"
 );
 
 ?>
