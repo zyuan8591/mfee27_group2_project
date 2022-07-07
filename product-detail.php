@@ -1,3 +1,4 @@
+
 <div class="detail-page flex_center invisible">
 	<div class="detail-cover position_abs"></div>
 	<form class="detail-form text-nowrap" action="detail-exe.php" method="GET">
@@ -10,7 +11,7 @@
 					readonly
 					class="form-control-plaintext product-input"
 					name="brand"
-					value=""
+					value="<?=$company[$row["id"]]?>"
 				/>
 			</div>
 		</div>
@@ -22,7 +23,7 @@
 					readonly
 					class="form-control-plaintext product-input"
 					name="name"
-					value=""
+					value="<?=$row["name"]?>"
 				/>
 			</div>
 		</div>

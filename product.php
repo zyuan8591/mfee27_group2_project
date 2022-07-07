@@ -51,13 +51,13 @@
 
 	$search = isset($_GET["product_search"]) ? $_GET["product_search"] : "";
 
-	$filterNum = isset($_GET["filter"])?$_GET["filter"]:"";
+	$filterNum = isset($_GET["filter"]) ? $_GET["filter"] : "";
 	if (empty($_GET["filter"])) {
 		$filter = "";
 	} else {
 		$filter = "AND category_sub=$filterNum";
 	}
-	$validNum = isset ($_GET["valid"])?$_GET["valid"]:"";
+	$validNum = isset($_GET["valid"]) ? $_GET["valid"] : "";
 	if ($validNum == "") {
 		$valid = "";
 	} elseif ($validNum == 0) {
@@ -66,47 +66,63 @@
 		$valid = "AND valid=$validNum";
 	}
 
-	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid ORDER BY $orderType ";
+	if (isset($_GET["page"])) {
+		$page = $_GET["page"];
+	} else {
+		$page = 1;
+	}
+
+	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid";
+	$resultAll = $conn->query($sqlAll);
+	$productCountAll = $resultAll->num_rows;
+
+	$per = isset($_GET["per"]) ? $_GET["per"] : 10;
+	$start = ($page - 1) * $per;
+	$startPage = ($page - 1) * $per + 1;
+
+	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid ORDER BY $orderType LIMIT $start, $per";
 
 	$result = $conn->query($sql);
 	$rows = $result->fetch_all(MYSQLI_ASSOC);
 	$productCount = $result->num_rows;
 
-	$per = 10;
+	$totalPage = ceil($productCountAll / $per);
+	$totalPage = ceil($productCountAll / $per);
+
 
 	?>
 	<div>
 		<h2 class="main-title">商品總覽</h2>
 	</div>
-	
+
 	<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
 														$order == 1
 													) : ?>product-index.php?order=2&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php elseif (
-																																$order == 2
-																															) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依編號排序</a>
+																																	$order == 2
+																																) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 3
 													) : ?>product-index.php?order=4&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php elseif (
-																																$order == 4
-																															) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依名稱排序</a>
+																																	$order == 4
+																																) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依名稱排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 5
 													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php elseif (
-																																$order == 6
-																															) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依日期排序</a>
+																																	$order == 6																														) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依日期排序</a>
 		</div>
-		
-		<div class="d-flex">
-			<select class="form-select mx-2" aria-label="Default select example">
-				<option selected>筆數</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
-			
-			<form class="product_search" action="product-index.php" method="get">
+
+			<form class="product_search d-flex align-items-center " action="product-index.php" method="get">
+			<div class="mx-3">
+				<select class="form-select mx-2 per-page" aria-label="Default select example" name="per">
+
+					<option value="10" <?php if($per == 10){echo "selected";}?>>10</option>
+					<option value="20" <?php if ($per == 20){echo "selected";}?>>20</option>
+					<option value="<?= $productCountAll ?>"<?php if ($per == $productCountAll){echo "selected";}?>>all</option>
+
+				</select>
+			</div>
 				<div class="d-flex align-items-center ">
 					<div class="d-flex ">
 						<input class="form-control search-box " type="text" name="product_search" placeholder="搜尋商品名稱">
@@ -120,8 +136,6 @@
 					</div>
 				</div>
 			</form>
-			
-		</div>
 	</div>
 	<div class="d-flex justify-content-between align-items-center my-3">
 		<div class="filter d-flex align-items-center">
@@ -140,9 +154,9 @@
 					<?php endforeach; ?>
 				</ul>
 			</div>
-			
+
 			<div class=" filter-item position-rel">
-				<button class=" filter-btn transition">商品狀態</button>
+				<button class=" filter-btn transition"><?php if ($validNum == 1) : echo "上架中" ?><?php elseif ($validNum == ""): echo "商品狀態"?><?php elseif($validNum == 0) : echo "下架中" ?><?php else : echo "商品狀態" ?><?php endif; ?></button>
 				<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 					<li><a class="text-nowrap " href="product-index.php?filter=<?= $filterNum ?>&valid=">全部</a></li>
 					<li><a class="text-nowrap " href="product-index.php?filter=<?= $filterNum ?>&valid=1">上架中</a></li>
@@ -154,8 +168,8 @@
 			<a class="add-product-btn transition" href="">新增商品</a>
 		</div>
 	</div>
-	<div>共<?= $productCount ?>筆</div>
-	
+	<div>共<?= $productCountAll ?>筆</div>
+
 	<table class="table table-hover">
 		<thead class="table-dark">
 			<tr class="">
@@ -168,10 +182,10 @@
 				<th scope="col">編輯商品</th>
 			</tr>
 		</thead>
-		
+
 		<tbody class="">
 			<?php foreach ($rows as $row) : ?>
-				
+
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
 					<td><?= $companyName[$row["company_id"]] ?></td>
@@ -180,21 +194,20 @@
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
 					<td><?php if ($row["valid"] == 1) : ?><?= "上架中" ?><?php else : ?><?= "下架中" ?><?php endif; ?></td>
 					<td class="">
-						<button class="table-btn list">上架</button>
-						<button class="table-btn unlist">下架</button>
+						<a href="list-unlist.php" class="table-btn list">上架</a>
+						<a href="list-unlist.php" class="table-btn unlist">下架</a>
 						<button class="table-btn detail-btn">詳細資料</button>
-						<?php 
-					require "product-detail.php"; 
-					?>
+						<?php require "product-detail.php"; ?>
 					</td>
-					
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
 	<div class="page d-flex justify-content-center">
 		<div class="btn-group me-2" role="group" aria-label="First group">
-			<button type="button" class="btn btn-outline-dark">1</button>
+			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
+				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>"><?= $i ?></a>
+			<?php endfor; ?>
 		</div>
 	</div>
 </main>

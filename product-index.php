@@ -204,11 +204,6 @@
 	
 	<?php require "new-product.php"; ?>
 	
-
-
-	<!-- <script type="text/javascript" >
-			<?php require "./js/recipe-app.js"; ?>
-		</script> -->
 	<script type="text/javascript">
 		<?php require "./js/product.js"; ?>
 	</script>
