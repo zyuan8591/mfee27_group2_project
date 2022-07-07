@@ -60,16 +60,72 @@ couponXMark.addEventListener("click", function (e) {
 	newCouponPage.classList.add("invisible");
 });
 
-// call coupon-detail page
-let detailPage = document.querySelector(".recipe-datail");
-let detailBtn = document.querySelectorAll(".detail");
+
+// call detail page
+let detailCouponPage = document.querySelector(".detail-coupon-page");
+let couponDetailBtn = document.querySelectorAll(".coupon-detail"); 
 let detailCover = document.querySelector(".cover-detail");
-let backToRecipeDe = document.querySelector(".back-recipe-de");
+let backCoupon = document.querySelector(".backCoupon");
 let detailXMark = document.querySelector(".detail-xMark");
 
-for (let i = 0; i < detailBtn.length; i++) {
-	detailBtn[i].addEventListener("click", (e) => {
+for (let i = 0; i < couponDetailBtn.length; i++) {
+	couponDetailBtn[i].addEventListener("click", (e) => {
 		e.preventDefault();
-		detailPage.classList.remove("invisible");
+		detailCouponPage.classList.remove("invisible");
 	});
 }
+
+// detailCover.addEventListener("click", (e) => {
+// 	detailPage.classList.add("invisible");
+// });
+
+// modify detail ---------------------------------------
+// modify & save btn
+let modifyBtn = document.querySelector(".modify-detail-btn");
+let saveBtn = document.querySelector(".save-detail-btn");
+// form
+let modifyForm = document.querySelector(".modify-coupon-detail-form");
+// inputs
+let detailInputs = document.querySelectorAll(".detail-item-input");
+
+modifyBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	modifyBtn.disabled = true;
+	saveBtn.disabled = false;
+	for (let i = 0; i < detailInputs.length; i++) {
+		detailInputs[i].removeAttribute("readonly");
+		detailInputs[i].classList.remove("form-control-plaintext");
+		detailInputs[i].classList.add("form-control");
+	}
+});
+saveBtn.addEventListener("click", (e) => {
+	modifyBtn.disabled = false;
+	saveBtn.disabled = true;
+	for (let i = 0; i < detailInputs.length; i++) {
+		detailInputs[i].setAttribute("readonly", "readonly");
+		detailInputs[i].classList.remove("form-control");
+		detailInputs[i].classList.add("form-control-plaintext");
+	}
+});
+// !! back to recipe index btn
+backCoupon.addEventListener("click", function (e) {
+	e.preventDefault();
+	detailCouponPage.classList.add("invisible");
+	modifyBtn.disabled = false;
+	saveBtn.disabled = true;
+	for (let i = 0; i < detailInputs.length; i++) {
+		detailInputs[i].setAttribute("readonly", "readonly");
+		detailInputs[i].classList.remove("form-control");
+		detailInputs[i].classList.add("form-control-plaintext");
+	}
+});
+detailXMark.addEventListener("click", function (e) {
+	detailCouponPage.classList.add("invisible");
+	modifyBtn.disabled = false;
+	saveBtn.disabled = true;
+	for (let i = 0; i < detailInputs.length; i++) {
+		detailInputs[i].setAttribute("readonly", "readonly");
+		detailInputs[i].classList.remove("form-control");
+		detailInputs[i].classList.add("form-control-plaintext");
+	}
+});

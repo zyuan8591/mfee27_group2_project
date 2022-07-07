@@ -1,7 +1,7 @@
-<div class="coupon-datail position_abs flex_center invisible">
-<div class="cover position_abs"></div>
+<div class="detail-coupon-page position_abs flex_center invisible">
+<div class="cover-detail cover position_abs"></div>
 	<form
-		class="container-detail position-rel modify-ricepe-detail-form"
+		class="container-detail position-rel modify-coupon-detail-form"
 		action="    "  <?//回傳位置?>       
 		method="GET"
 	>
@@ -10,31 +10,31 @@
         <div class="mb-3 row ">
             <label for="" class=" form-label">優惠券名稱</label>
             <div class="col">
-            <input type="text" class="form-control " readonly="readonly" value="登入送好禮" >
+            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="登入送好禮" >
             </div>
         </div>		
         <div class="mb-3 row ">
             <label for="" class=" form-label">序號</label>
             <div class="col">
-            <input type="text" class="form-control " readonly="readonly" value="TK888" >
+            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="TK888" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">起始日期</label>
             <div class="col">
-            <input type="date" class="form-control " readonly="readonly" value="2022-06-15" >
+            <input type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="2022-06-15" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">結束日期</label>
             <div class="col">
-            <input type="text" class="form-control " readonly="readonly" value="2022-07-15" >
+            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="2022-07-15" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">優惠折扣</label>
             <div class="col">
-            <input type="text" class="form-control " readonly="readonly" value="75%" >
+            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="75%" >
             </div>
         </div>		
         
@@ -50,7 +50,7 @@
 			>
 				儲存優惠券
 			</button>
-			<button class="add-detail-btn back-recipe-de transition">返回優惠券</button>
+			<button class="add-detail-btn backCoupon transition">返回優惠券</button>
 		</div>
 	</form>
 

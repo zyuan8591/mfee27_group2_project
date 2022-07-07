@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -309,7 +311,7 @@
 				<form class="recipe_search " action="" method="get">
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">
-							<input class="form-control search-box " type="text" name="recipe_search" placeholder="搜尋優惠券名稱">
+							<input class="form-control search-box " type="text" name="ccoupon_search" placeholder="搜尋優惠券名稱">
 						</div>
 						<div class="">
 							<button class="search-btn form-control">
