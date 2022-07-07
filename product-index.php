@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -174,7 +175,6 @@
 							</svg>
 							<a class="main_nav_item_content" href=""> 活動管理 </a>
 						</div>
-
 						<div class="nav_dropdown">
 							<svg width="24" height="13" viewBox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M11.9991 13C11.4873 13 10.9754 12.8186 10.5854 12.4559L0.585907 3.1702C-0.195302 2.44475 -0.195302 1.26953 0.585907 0.544085C1.36712 -0.181362 2.63268 -0.181362 3.41388 0.544085L11.9991 8.51964L20.5861 0.545535C21.3673 -0.179911 22.6329 -0.179911 23.4141 0.545535C24.1953 1.27098 24.1953 2.4462 23.4141 3.17165L13.4146 12.4574C13.024 12.8201 12.5115 13 11.9991 13Z" fill="black" />
@@ -199,11 +199,8 @@
 			</ul>
 		</nav>
 	</aside>
-	
 	<?php require "product.php";	?>
-	
 	<?php require "new-product.php"; ?>
-	
 	<script type="text/javascript">
 		<?php require "./js/product.js"; ?>
 	</script>

@@ -126,3 +126,13 @@ let listBtn = document.querySelector(".list");
 let unlistBtn = document.querySelector(".unlist");
 
 listBtn.addEventListener("click", (e) => {});
+
+// page & count
+
+let perPage=document.querySelector(".per-page");
+let productSearch=document.querySelector(".product_search")
+
+perPage.addEventListener("change", function(e){
+    productSearch.submit();
+})
+

@@ -11,7 +11,7 @@
 					readonly
 					class="form-control-plaintext product-input"
 					name="brand"
-					value="<?=$company[$row["id"]]?>"
+					value="<?=$companyName[$row["company_id"]]?>"
 				/>
 			</div>
 		</div>
@@ -31,8 +31,10 @@
 			<label for="" class="col-sm-auto col-form-label">主要類型</label>
 			<div class="col">
 				<select name="category_main" class="form-select product-input" disabled>
-					<option value="1">料理電器</option>
-					<option value="2">冷熱調理</option>
+					 <?php foreach($rowsCate as $item):?> 
+					<option value="<?=$item["id"]?>"><?=$item["name"]?></option>
+					<?php endforeach; ?>
+					<!-- <option value="2">冷熱調理</option> -->
 				</select>
 			</div>
 		</div>
@@ -64,7 +66,7 @@
 						readonly
 						class="form-control-plaintext product-input"
 						name="price"
-						value=""
+						value="<?=$row["price"]?>"
 					/>
 				</div>
 				<label for="" class="col-sm-2 col-form-label">數量</label>
@@ -74,7 +76,7 @@
 						readonly
 						class="form-control-plaintext product-input"
 						name="inventory"
-						value=""
+						value="<?=$row["inventory"]?>"
 					/>
 				</div>
 			</div>
@@ -87,7 +89,7 @@
 					readonly
 					class="form-control-plaintext"
 					name="create_time"
-					value=""
+					value="<?=$row["create_time"]?>"
 					disabled
 				/>
 			</div>
