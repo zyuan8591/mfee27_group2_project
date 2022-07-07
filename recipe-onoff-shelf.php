@@ -2,7 +2,7 @@
 require "db-connect.php";
 
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;
-$perPage = isset($_GET["perPage"]) ? $_GET["perPage"] : 5;
+$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 5;
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 $foodCate = isset($_GET["foodCate"]) ? $_GET["foodCate"] : "";
 $productCate = isset($_GET["productCate"]) ? $_GET["productCate"] : "";

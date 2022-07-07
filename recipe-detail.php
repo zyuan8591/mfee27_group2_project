@@ -2,8 +2,7 @@
 	<div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
-		action="recipe-detail-modify.php
-    "
+		action="recipe-detail-modify.php"
 		method="POST"
 	>
 		<input type="hidden" value="<?= $row["id"] ?>" name="id">
@@ -68,10 +67,12 @@
 						readonly="readonly"
 						class="form-control-plaintext detail-item-input border-bottom
 						detail-material-name"
-						name="detail-material-name-<?= $materialNum ?>"
+						name="detail-material-name-<?= $row["id"] ?>-<?= $materialNum ?>"
 						value="<?= $rowMaterial["name"] ?>"
 						placeholder="請輸入食材名稱"
 						required
+						data-id=<?= $row["id"] ?>
+						data-materialNum=<?= $materialNum ?>
 					/>
 				</div>
 				<div class="col-3">
@@ -80,7 +81,7 @@
 						readonly="readonly"
 						class="form-control-plaintext detail-item-input border-bottom
 						detail-material-q"
-						name="detail-material-q-<?= $materialNum ?>"
+						name="detail-material-q-<?= $row["id"] ?>-<?= $materialNum ?>"
 						value="<?= $rowMaterial["quantity"] ?>"
 						placeholder="請輸入數量"
 						required
@@ -90,7 +91,7 @@
 			<?php $materialNum++ ?>
 			<?php endforeach?>
 		</div>
-		<div class="mb-3  d-flex justify-content-end">
+		<div class="mb-3  d-flex justify-content-end d-none">
             <button class="detail-material-btn transition point-event-none" >新增食材</button>
         </div>
 		<div class="mb-3 row">

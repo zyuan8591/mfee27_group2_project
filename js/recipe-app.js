@@ -111,15 +111,23 @@ for (let i = 0; i < modifyImg.length; i++) {
 // add detail material
 let detailMaterialBtns = document.querySelectorAll(".detail-material-btn");
 let detailMaterialName = document.querySelectorAll(".detail-material-name");
+let detailMaterialQ = document.querySelectorAll(".detail-material-q");
 let detailMaterialContainer = document.querySelectorAll(
 	".detail-material-container"
 );
-let detailMaterialQ = document.querySelectorAll(".detail-material-q");
 let x = 1;
-
+// console.log(detailMaterialName);
 for (let i = 0; i < detailMaterialBtns.length; i++) {
 	detailMaterialBtns[i].addEventListener("click", (e) => {
+		//select Name & Q input
+
 		e.preventDefault();
+
+		let id = detailMaterialName[0].dataset.id;
+		console.log(id);
+		let materialNum =
+			detailMaterialName[detailMaterialName.length - 1].materialNum;
+		console.log(materialNum);
 
 		let row = document.createElement("div");
 		row.classList.add("row", "mb-3", "ms-3");
