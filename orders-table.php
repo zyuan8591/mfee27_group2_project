@@ -26,19 +26,18 @@
 		<?php foreach($rows as $row): ?>
 		<tr>
 			<th class="text-center" scope="row"><?=$row["id"]?></th>
-			<td><?=$row["order_time"]?></td>
+			<td><?=$row["create_time"]?></td>
 			<td><?=$row["name"]?></td>
 			<td></td>
 			<td></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
-                <a class="btn-main transition me-3 detail" href="">刪除</a>
+                <a class="btn-main transition me-3 " href="">刪除</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
-				<?php require "order-detail.php"; ?>
-
+			<?php require "order-detail.php"; ?>
 			</td>
 
 		</tr>
-
+		
 		<?php endforeach; ?>
 		<!-- <tr>
 			<th class="text-center" scope="row">2</th>
@@ -53,6 +52,7 @@
 		</tr> -->
 	</tbody>
 </table>
+
 <div class="row w-100">
 	<div class="col-4 d-flex justify-content-start">
 		<!-- <select class="form-select per-page" name="per-page" >

@@ -1,4 +1,4 @@
-<div class="recipe-datail position_abs flex_center invisible">
+<div class="recipe-datail position_abs flex_center invisible ">
 	<div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
@@ -37,7 +37,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["phone"]?>"
+					value=""
 				/>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["address"]?>"
+					value=""
 				/>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["name"]?>"
+					value=""
 				/>
 			</div>
 		</div>
@@ -70,7 +70,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["memo"]?>"
+					value=""
 				/>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["coupon_id"]?>"
+					value=""
 				/>
 			</div>
 		</div>
@@ -93,36 +93,33 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["create_time"]?>"
+					value=""
 				/>
 			</div>
 		</div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>品名</th>
-                    <th>單價</th>
-                    <th>數量</th>
-                    <th>總價</th> 
-                </tr>
-            </thead>
-            <tbody>
-                <?php //foreach($rows as $row): ?>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>    
-                <?php //endforeach; ?>    
-            </tbody>
-        </table>
-        
-		
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>品名</th>
+						<th>單價</th>
+						<th>數量</th>
+						<th>總價</th> 
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>    
+				</tbody>
+			</table>
 		</div>
-		<div class="mb-3 d-flex flex-column align-items-start">
+		<div class="mb-3 row">
 			<label for="" class="form-label">食譜成品圖</label>
 			<label for="recipe-image" class="recipe-image">
 				<svg
@@ -147,15 +144,17 @@
 					/>
 				</svg>
 			</label>
-			<input
-				id="recipe-image"
-				class="d-none detail-item-img"
-				type="file"
-				accept="image/*"
-				disabled="true"
-			/>
+			<div class="mb-3 d-flex flex-column align-items-start">
+				<input
+					id="recipe-image"
+					class="d-none detail-item-img"
+					type="file"
+					accept="image/*"
+					disabled="true"
+				/>
+			</div>
 		</div>
-		<div class="mb-3 flex_center">
+		<div class="d-flex justify-content-center">
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
 				修改食譜
 			</button>
