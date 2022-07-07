@@ -18,22 +18,25 @@
 .sort-search {
 	margin: 0.5rem 0 0 0;
 }
-.sort {
+/* .sort {
 	flex: 0 0 auto;
-}
-.sort-btn {
+} */
+/* .sort-btn {
 	padding: 0.2rem 0.5rem;
 	background: var(--header-bg);
 	margin: 0.25rem;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
-}
+} */
 .sort-btn:hover {
 	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
+	/* box-shadow: var(--hover-shadow); */
 }
-.sort-btn:active {
+/* .sort-btn:active {
 	outline: var(--button-active) solid 4px;
+} */
+.sort{
+	z-index: 50;	
 }
 /* search -- */
 .search-box {

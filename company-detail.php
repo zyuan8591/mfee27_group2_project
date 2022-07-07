@@ -75,7 +75,12 @@ $rows = $result->fetch_assoc();
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">公司簡介：</label>
 			<div class="col">
-			<div class="form-control-plaintext detail-item-input word-wrap text-justify" id="company-intro" rows="7"><?=$rows["intro"]?></div>
+			<input
+					type="text"
+					readonly="readonly"
+					class="form-control-plaintext detail-item-input"
+					value="<?=$rows["intro"]?>"
+				/>
 			</div>
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">

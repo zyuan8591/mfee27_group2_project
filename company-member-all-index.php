@@ -1,13 +1,37 @@
 <?php
+//$_GET data
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 if (empty($page)) {
 	$page = 1;
 }
 
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+if (empty($order)) {
+	$order = 1;
+}
+
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
+if (empty($search)) {
+	$search = "";
+}
+
+if (isset($_GET["valid"])) {
+	$valid = $_GET["valid"];
+	$sqlWhereValid = "AND valid = $valid ";
+} else {
+	$valid = "";
+	$sqlWhereValid = "";
+}
+if ($valid == "") {
+	$valid = "";
+	$sqlWhereValid = "";
+}
+
+
 require "db-connect.php";
 
 //全部廠商會員
-$sqlAll = "SELECT * FROM company_users WHERE valid=1 ";
+$sqlAll = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid";
 $resultAll = $conn->query($sqlAll);
 $CompanyUsersCountAll = $resultAll->num_rows;
 $rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
@@ -17,8 +41,28 @@ $perpage = 10;
 $start = ($page - 1) * $perpage;
 $totalPage = ceil($CompanyUsersCountAll / $perpage);
 
+//sort data 排序
+switch($order){
+	case 1:
+		$orderType = "id ASC";
+		break;
+	case 2:
+		$orderType = "id DESC";
+		break;
+	case 3:
+		$orderType = "create_time ASC";
+		break;
+	case 4:
+		$orderType = "create_time DESC";
+		break;
+	default:
+		$orderType = "id DESC";
+		break;
+}
+
+
 //每頁會員數量
-$sql = "SELECT * FROM company_users WHERE valid=1 LIMIT $start, 10";
+$sql = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid ORDER BY $orderType LIMIT $start, 10 ";
 $result = $conn->query($sql);
 $pagesCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -333,15 +377,34 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 				<h2 class="main-title">廠商會員總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
-				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="">依編號排序</a>
-					<a class="sort-btn transition" href="">依名稱排序</a>
-					<a class="sort-btn transition" href="">依日期排序</a>
+				<div class="sort d-flex align-items-center position-rel">
+					<div class=" filter-item position-rel">
+						<button class=" filter-btn transition">依編號排序</button>
+						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+							<li>
+								<a class="sort-btn transition fa-solid fa-arrow-up <?php if ($order == 1) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=1">從高到低</a>
+							</li>
+							<li>
+								<a class="sort-btn text-nowrap  transition fa-solid fa-arrow-down <?php if ($order == 2) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=2">從低到高</a>
+							</li>
+						</ul>
+					</div>
+					<div class=" filter-item position-rel">
+						<button class=" filter-btn transition">依日期排序</button>
+						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">	
+							<li>
+								<a class="sort-btn transition fa-solid fa-arrow-up <?php if ($order == 3) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=3">從舊到新</a>
+							</li>
+							<li>
+								<a class="sort-btn text-nowrap  transition fa-solid fa-arrow-down <?php if ($order == 4) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=4">從新到舊</a>
+							</li>
+						</ul>
+					</div>		
 				</div>
-				<form class="recipe_search " action="" method="get">
+				<form class="company_search " action="company-member-all-index.php" method="get">
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">
-							<input class="form-control search-box " type="text" name="recipe_search" placeholder="搜尋廠商名稱">
+							<input class="form-control search-box " type="text" name="search" value="<?= $search ?>" placeholder="搜尋廠商名稱">
 						</div>
 						<div class="">
 							<button class="search-btn form-control">
@@ -360,11 +423,20 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 					</svg>
 
 					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition">廠商狀態</button>
+						<button class=" filter-btn transition"><?php if($valid == ""){
+							echo "廠商狀態";
+						}elseif($valid == 0){
+							echo "停用";
+						}elseif($valid == 1){
+							echo "啟用";
+						}else{
+							echo "全部";
+						}
+						?></button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="">全部</a></li>
-							<li><a href="">啟用</a></li>
-							<li><a href="">停用</a></li>
+							<li><a class="text-nowrap " href="company-member-all-index.php?valid=">全部</a></li>
+							<li><a href="company-member-all-index.php?page=<?=$page?>&order=<?=$order?>&valid=1">啟用</a></li>
+							<li><a href="company-member-all-index.php?valid=0">停用</a></li>
 						</ul>
 					</div>					
 				</div>
