@@ -150,8 +150,8 @@ $totalPage=ceil($ordersCount / $perPage);
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="">已送達</a></li>
                             <li><a class="text-nowrap " href="">已出貨</a></li>
-                            <li><a class="text-nowrap " href="">待出貨'</a></li>
-							<li><a href="">未出貨</a></li>
+                            <li><a class="text-nowrap " href="">待出貨</a></li>
+							<li><a href="">已取消</a></li>
 						</ul>
 					</div>					
 				</div>
