@@ -2,41 +2,46 @@
 <div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-coupon-detail-form"
-		action="    "  <?//回傳位置?>       
+		action="coupon-detail-modify.php"       
 		method="GET"
 	>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="coupon-title text-center">詳細資料</h2>
+        
         <div class="mb-3 row ">
             <label for="" class=" form-label">優惠券名稱</label>
             <div class="col">
-            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="登入送好禮" >
+            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["name"]?>" >
             </div>
         </div>		
         <div class="mb-3 row ">
             <label for="" class=" form-label">序號</label>
             <div class="col">
-            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="TK888" >
+            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["number"]?>" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">起始日期</label>
             <div class="col">
-            <input type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="2022-06-15" >
+            <input type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["start_date"]?>" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">結束日期</label>
             <div class="col">
-            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="2022-07-15" >
+            <input type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["end_date"]?>" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">優惠折扣</label>
             <div class="col">
-            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="75%" >
+            <input type="text" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["discount"]?>" >
             </div>
-        </div>		
+        </div>
+        
+       
+        
+       	
         
         
 		<div class="mb-3 flex_center">

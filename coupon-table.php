@@ -1,11 +1,4 @@
-<?php
-require("./db-connect.php");
-$sql="SELECT * FROM coupon";
 
-$result = $conn->query($sql);
-$couponCount=$result->num_rows;
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-?>
 
 
 <table class="coupon-table table table-hover">	
@@ -35,6 +28,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 				<a class="btn-main transition me-3 on-shelf " href="">上架</a>
 				<a class="btn-main transition me-3 off-shelf" href="">下架</a>
 				<a class="btn-main transition me-3 coupon-detail" href="">詳細資料</a>
+				<?php require "coupon-detail.php"; ?>					
 			</td>
 		</tr>
 		<?php endforeach;?>

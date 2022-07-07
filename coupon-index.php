@@ -1,4 +1,11 @@
+<?php
+require("./db-connect.php");
+$sql="SELECT * FROM coupon";
 
+$result = $conn->query($sql);
+$couponCount=$result->num_rows;
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -351,8 +358,7 @@
 			</div>
 		<?php require "coupon-table.php"; ?>
 		</main>
-		<?php require "coupon-add.php"; ?>
-		<?php require "coupon-detail.php"; ?>
+		<?php require "coupon-add.php"; ?>		
 		
 
 		<script type="text/javascript" >

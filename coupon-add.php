@@ -2,7 +2,7 @@
     <div class="cover position_abs"></div>
     <form class="new-coupon-form position-rel" action="new-coupon-exe.php
     " method="POST">        
-        <i class="fa-solid coupon-xmark position_abs">x</i>
+        <i class="fa-solid fa-xmark position_abs coupon-xmark"></i>
         <h2 class="coupon-title text-center">新增優惠券</h2>
 		<div class="mb-3">
             <label for="" class="form-label">優惠券名稱</label>
