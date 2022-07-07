@@ -184,7 +184,7 @@
 						<button class="table-btn unlist">下架</button>
 						<button class="table-btn detail-btn">詳細資料</button>
 						<?php 
-					require "product-detail.html"; 
+					require "product-detail.php"; 
 					?>
 					</td>
 					
