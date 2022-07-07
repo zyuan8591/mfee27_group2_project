@@ -5,10 +5,10 @@
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
-			<th class="text-center" scope="col">食譜編號</th>
+			<th class="text-center" scope="col">評價編號</th>
 			<th scope="col">食譜名稱</th>
-			<th scope="col">食譜類別</th>
-			<th scope="col">商品類別</th>
+			<th scope="col">使用者名稱</th>
+			<th scope="col">評價分數</th>
 			<th scope="col">食譜狀態</th>
 			<th scope="col">新增日期</th>
 			<th scope="col">編輯食譜</th>
@@ -23,7 +23,7 @@
 			<td></td>
 			<td></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
-				<a class="" href="">上架</a>
+				<a class="" href="">刪除</a>
 				<a class="" href="">下架</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			</td>

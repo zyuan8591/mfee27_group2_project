@@ -6,7 +6,7 @@ $order = isset($_GET["order"]) ? $_GET["order"] : 1;
 if (empty($order)) {
 	$order = 1;
 }
-$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 5;
+$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 10;
 if (empty($order)) {
 	$order = 5;
 }
@@ -127,6 +127,7 @@ foreach ($rowsCatProduct as $row) {
 			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap"
 			rel="stylesheet"
 		/>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
@@ -433,8 +434,8 @@ foreach ($rowsCatProduct as $row) {
 				</div>
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipe-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5" 
-						<?php if ($perPage == 5) {echo "selected";} ?> >每頁顯示5筆</option>
+						<option value="10" 
+						<?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
 						<option value="15" 
 						<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
 						<option value="20" 
@@ -542,7 +543,15 @@ foreach ($rowsCatProduct as $row) {
 							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=0
 							">下架中</a></li>
 						</ul>
-					</div>					
+					</div>
+					<div class="filter-item position-rel">
+						<button  class="filter-btn transition">
+							<a href="
+							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							&search=<?= $search ?>&foodCate=&productCate=&valid=
+							" >全部顯示</a>
+						</button>
+					</div>				
 				</div>
 				<div>
 					<a class="add-recipe-btn transition" href="">新增食譜</a>
@@ -551,7 +560,10 @@ foreach ($rowsCatProduct as $row) {
 		<?php require "recipe-table.php"; ?>
 		</main>
 		<?php require "recipe-add.php"; ?>
-
+		<!-- tostufy -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+		<!-- jquery -->
+		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
 			<?php require "./js/recipe-app.js"; ?>
