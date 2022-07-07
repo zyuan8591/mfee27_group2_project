@@ -42,6 +42,9 @@ newMaterialBtn.addEventListener("click", (e) => {
 		newMaterialQ.name = `material-q-${i}`;
 		i++;
 	}
+	newMaterialName.value = "";
+	newMaterialQ.value = "";
+
 	// console.log(newMaterialQ);
 	col_8.appendChild(newMaterialName);
 	col_4.appendChild(newMaterialQ);
@@ -54,7 +57,6 @@ let newRecipePage = document.querySelector(".new-recipe-page");
 let addRecipeBtn = document.querySelector(".add-recipe-btn");
 let backToRecipe = document.querySelector(".back-recipe");
 let xMark = document.querySelector(".addXMark");
-console.log(xMark);
 
 addRecipeBtn.addEventListener("click", function (e) {
 	e.preventDefault();
@@ -97,16 +99,55 @@ for (let i = 0; i < detailBtn.length; i++) {
 //detail page img
 let modifyImg = document.querySelectorAll(".detail-file");
 let detailImg = document.querySelectorAll(".detailImgPre");
-console.log(detailImg);
-console.log(modifyImg);
+
 for (let i = 0; i < modifyImg.length; i++) {
 	modifyImg[i].addEventListener("change", (e) => {
-		console.log("change");
 		let file = modifyImg[i].files[0].name;
-		console.log(file);
 		if (file) {
 			detailImg[i].src = `img/recipe_img/${file}`;
 		}
+	});
+}
+// add detail material
+let detailMaterialBtns = document.querySelectorAll(".detail-material-btn");
+let detailMaterialName = document.querySelectorAll(".detail-material-name");
+let detailMaterialContainer = document.querySelectorAll(
+	".detail-material-container"
+);
+let detailMaterialQ = document.querySelectorAll(".detail-material-q");
+let x = 1;
+
+for (let i = 0; i < detailMaterialBtns.length; i++) {
+	detailMaterialBtns[i].addEventListener("click", (e) => {
+		e.preventDefault();
+
+		let row = document.createElement("div");
+		row.classList.add("row", "mb-3", "ms-3");
+		let col = document.createElement("div");
+		col.classList.add("col");
+		let col_3 = document.createElement("div");
+		col_3.classList.add("col-3");
+
+		let newDetailMaterialName = detailMaterialName[i].cloneNode();
+		let newDetailMaterialQ = detailMaterialQ[i].cloneNode();
+		if (x == 1) {
+			newDetailMaterialName.name = `material-name-${x}`;
+			newDetailMaterialQ.name = `material-q-${x}`;
+			x++;
+		} else {
+			newDetailMaterialName.name = `material-name-${x}`;
+			newDetailMaterialQ.name = `material-q-${x}`;
+			x++;
+		}
+		newDetailMaterialName.value = "";
+		newDetailMaterialQ.value = "";
+
+		// console.log(newMaterialQ);
+		col.appendChild(newDetailMaterialName);
+		col_3.appendChild(newDetailMaterialQ);
+		row.appendChild(col);
+		row.appendChild(col_3);
+		detailMaterialContainer[i].appendChild(row);
 	});
 }
 
@@ -117,12 +158,13 @@ let saveBtn = document.querySelectorAll(".save-detail-btn");
 // form
 let modifyForm = document.querySelector(".modify-ricepe-detail-form");
 // inputs
-let detailInputs = document.querySelectorAll(".detail-item-input");
+// let detailInputs = document.querySelectorAll(".detail-item-input");
 let detailSelects = document.querySelectorAll(".detail-item-select");
 let detailImgs = document.querySelectorAll(".detail-item-img");
 
 for (let j = 0; j < modifyBtn.length; j++) {
 	modifyBtn[j].addEventListener("click", (e) => {
+		let detailInputs = document.querySelectorAll(".detail-item-input");
 		e.preventDefault();
 		for (let i = 0; i < modifyBtn.length; i++) {
 			modifyBtn[i].disabled = true;
@@ -140,16 +182,19 @@ for (let j = 0; j < modifyBtn.length; j++) {
 		for (let i = 0; i < detailImgs.length; i++) {
 			detailImgs[i].disabled = false;
 		}
+		for (let i = 0; i < detailMaterialBtns.length; i++) {
+			detailMaterialBtns[i].classList.remove("point-event-none");
+		}
 	});
 }
 for (let j = 0; j < saveBtn.length; j++) {
 	saveBtn[j].addEventListener("click", (e) => {
+		let detailInputs = document.querySelectorAll(".detail-item-input");
 		for (let i = 0; i < modifyBtn.length; i++) {
 			modifyBtn[i].disabled = false;
 			saveBtn.disabled = true;
 			saveBtn.classList.remove("save-detail-btn-hover");
 		}
-
 		for (let i = 0; i < detailInputs.length; i++) {
 			detailInputs[i].setAttribute("readonly", "readonly");
 			detailInputs[i].classList.remove("form-control");
@@ -161,11 +206,15 @@ for (let j = 0; j < saveBtn.length; j++) {
 		for (let i = 0; i < detailImgs.length; i++) {
 			detailImgs[i].disabled = true;
 		}
+		for (let i = 0; i < detailMaterialBtns.length; i++) {
+			detailMaterialBtns[i].classList.add("point-event-none");
+		}
 	});
 }
 // !! back to recipe index btn
 for (let j = 0; j < backToRecipeDe.length; j++) {
 	backToRecipeDe[j].addEventListener("click", function (e) {
+		let detailInputs = document.querySelectorAll(".detail-item-input");
 		e.preventDefault();
 		detailPage[j].classList.add("invisible");
 		for (let i = 0; i < modifyBtn.length; i++) {
@@ -185,10 +234,14 @@ for (let j = 0; j < backToRecipeDe.length; j++) {
 		for (let i = 0; i < detailImgs.length; i++) {
 			detailImgs[i].disabled = true;
 		}
+		for (let i = 0; i < detailMaterialBtns.length; i++) {
+			detailMaterialBtns[i].classList.add("point-event-none");
+		}
 	});
 }
 for (let j = 0; j < detailXMark.length; j++) {
 	detailXMark[j].addEventListener("click", function (e) {
+		let detailInputs = document.querySelectorAll(".detail-item-input");
 		detailPage[j].classList.add("invisible");
 		for (let i = 0; i < modifyBtn.length; i++) {
 			modifyBtn[i].disabled = false;
@@ -204,6 +257,9 @@ for (let j = 0; j < detailXMark.length; j++) {
 		}
 		for (let i = 0; i < detailImgs.length; i++) {
 			detailImgs[i].disabled = true;
+		}
+		for (let i = 0; i < detailMaterialBtns.length; i++) {
+			detailMaterialBtns[i].classList.add("point-event-none");
 		}
 	});
 }

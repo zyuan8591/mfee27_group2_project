@@ -5,8 +5,8 @@
         <i class="fa-solid fa-xmark addXMark position_abs"></i>
         <h2 class="recipe-title text-center">新增食譜</h2>
         <div class="mb-3">
-            <label for="" class="form-label">食譜名稱</label>
-            <input type="text" class="form-control" name="name" >
+            <label for="name" class="form-label">食譜名稱</label>
+            <input type="text" class="form-control" name="name" required id="name" >
         </div>
         <div class="mb-3">
             <label for="" class="form-label">食物分類</label>
@@ -29,10 +29,12 @@
             <div class="material-container">
                 <div class="row mb-3">
                     <div class="col-8">
-                        <input type="text" class="form-control material-name" name="material-name-0" placeholder="請輸入食材名稱">
+                        <input type="text" class="form-control material-name" name="material-name-0" placeholder="請輸入食材名稱"
+                        required >
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control material-q" name="material-q-0" placeholder="請輸入數量" >
+                        <input type="text" class="form-control material-q" name="material-q-0" placeholder="請輸入數量" 
+                        required >
                     </div>
                 </div>
             </div>
@@ -42,7 +44,7 @@
         </div>
         <div class="mb-3">
             <label for="" class="form-label">食譜簡介</label>
-            <textarea type="text" class="form-control" name="content" id="floatingTextarea" ></textarea>
+            <textarea type="text" class="form-control" name="content" id="floatingTextarea" required></textarea>
         </div>        
         <div class="mb-3 d-flex flex-column align-items-start">
             <label for="" class="form-label">食譜成品圖</label>              
@@ -55,7 +57,7 @@
                     </svg>
                 </div>
             </label>
-            <input  id="add-recipe-image" class="d-none" type="file" name="addRecipeFile">
+            <input  id="add-recipe-image" class="d-none" type="file" name="addRecipeFile" required>
         </div>
         <div class="mb-3 flex_center">
             <button class="add-detail-btn save-and-add-recipe-btn me-3" type="submit transition">新增食譜</button>

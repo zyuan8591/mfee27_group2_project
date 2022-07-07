@@ -51,4 +51,6 @@ foreach ($material as $row) {
 		echo "error: " . $conn->error;
 	}
 }
+
+header("location: recipe-index.php");
 ?>

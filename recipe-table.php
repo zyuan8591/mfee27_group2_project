@@ -33,6 +33,7 @@
 				<a class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" 
 				href="recipe-onoff-shelf.php?id=<?= $row["id"] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
 				<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>">上架</a>
+
 				<a class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" 
 				href="recipe-onoff-shelf.php?id=<?= $row["id"] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
 				<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>">下架</a>
@@ -47,13 +48,11 @@
 	<div class="btn-group me-2" role="group" >
 		<a href="
 			recipe-index.php?order=1&per-page=<?= $perPage ?>
-			&page=<?php
-   $prePage = $page - 1;
-   if ($prePage < 1) {
-   	$prePage = 1;
-   }
-   echo $prePage;
-   ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+			&page=<?php $prePage = $page - 1;
+			if ($prePage < 1) {
+				$prePage = 1;
+			}
+			echo $prePage;?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 			" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
 			<?php for ($i = 1; $i <= $pages; $i++): ?>
 		<a href ="
