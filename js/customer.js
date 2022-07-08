@@ -163,12 +163,15 @@ let fileSvg = document.querySelectorAll(".file-svg");
 
 for(let s=0; s<inputImg.length; s++){
 	inputImg[s].addEventListener("change",function(){
+		avatarImg[s].classList.remove("d-none");
+		fileSvg[s].classList.add("d-none");
+
 		let fileName=this.files[0].name;
 		console.log(fileName);
 		if(fileName){
 			avatarImg[s].src=`customer_img/${fileName}`	;
 		}
-		console.log(avatarImg[s].src=`"customer_img/${fileName}"`);
+		console.log(avatarImg[s].src=`customer_img/${fileName}`);
 			
 })
 }

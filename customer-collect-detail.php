@@ -4,7 +4,7 @@
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 		action="customer-detail-modify.php"
-		method="post" enctype="multipart/form-data"
+		method="post"
 	>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="recipe-title text-center">會員詳細資料</h2>
@@ -139,7 +139,6 @@
 			<?php endif; ?>
 
 			</label>
-			<input type="hidden" value="<?= $row["img"] ?>" name="image_original">
 			<input
 				id="customer-image-<?= $row["id"] ?>"
 				class=" detail-item-img detail-input-img"
