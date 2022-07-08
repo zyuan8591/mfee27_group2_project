@@ -1,5 +1,7 @@
 <?php
 require "db-connect.php";
+session_start();
+$recipeOnoffShelf=0;
 
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;
 $perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 5;
@@ -20,10 +22,12 @@ $sqlUpadate = "";
 
 if ($rowOnoffshelf["valid"] == 0) {
 	$sqlUpadate = "UPDATE recipe SET valid=1 WHERE id='$id' ";
+	$recipeOnoffShelf = 1; //上架
 }
 
 if ($rowOnoffshelf["valid"] == 1) {
 	$sqlUpadate = "UPDATE recipe SET valid=0 WHERE id='$id' ";
+	$recipeOnoffShelf = 2; //下架
 }
 
 if ($conn->query($sqlUpadate) == true) {
@@ -32,7 +36,13 @@ if ($conn->query($sqlUpadate) == true) {
 	echo "error: " . $conn->error;
 	exit();
 }
-echo $sqlUpadate;
+
+if($recipeOnoffShelf != 0){
+	$_SESSION["recipeOnoffShelf"]=[
+		"condition" => $recipeOnoffShelf
+	];
+}
+
 $conn->close();
 
 header(
