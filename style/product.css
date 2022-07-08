@@ -141,10 +141,5 @@
 
 .point-none {
 	pointer-events: none;
-<<<<<<< HEAD
 	opacity: .5;
-=======
-	color: var(--btn-hover);
-	opacity: 0.5;
->>>>>>> 90b39a2ce8e47a86a6944b5587052fcce769c1d0
 }
