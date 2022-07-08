@@ -17,5 +17,12 @@ $intro=$_GET["intro"];
 $spec=$_GET["spec"];
 $pic=$_GET["product_main_img"];
 
-$sqlRevise="UPDATE products  SET (name, category_main, category_sub, price, inventory, intro, spec, product_main_img) = ('$name', '$categoryMain', '$categorySub', '$price', '$inventory', '$intro', '$spec', '$pic')"
+$sqlRevise="UPDATE products SET name=$name, category_main=$categoryMain, category_sub=$categorySub, price=$price, inventory=$inventory, intro=$intro, spec=$spec, pic=$pic";
+
+echo $sqlRevise;
+if ($conn->query($sqlRevise) === TRUE) {
+    echo "商品已更新";
+} else {
+    echo "更新失敗" . $conn->error;
+}
 ?>

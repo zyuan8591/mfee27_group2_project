@@ -90,7 +90,7 @@ let reviseBtn = document.querySelectorAll(".revise-btn");
 let input = document.querySelectorAll(".product-input");
 for (let j = 0; j < reviseBtn.length; j++) {
     reviseBtn[j].addEventListener("click", (e) => {
-        e.preventDefault();
+
         saveBtn[j].disabled = false;
         reviseBtn[j].disabled = true;
         reviseBtn[j].classList.remove("revise-hover");
@@ -106,7 +106,7 @@ for (let j = 0; j < reviseBtn.length; j++) {
 }
 for (let j = 0; j < reviseBtn.length; j++) {
     saveBtn[j].addEventListener("click", (e) => {
-        e.preventDefault();
+
         saveBtn[j].disabled = true;
         reviseBtn[j].disabled = false;
         reviseBtn[j].classList.add("revise-hover");

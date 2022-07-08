@@ -1,6 +1,6 @@
 <div class="detail-page flex_center invisible">
 	<div class="detail-cover position_abs"></div>
-	<form class="detail-form text-nowrap" action="detail-exe.php" method="GET">
+	<form class="detail-form text-nowrap" action="revise-product-exe.php" method="GET">
 		<h2 class="product-title text-center">商品詳細資料</h2>
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">店家　　</label>
@@ -127,6 +127,7 @@
 				class="d-none product-input"
 				type="file"
 				accept="image/*"
+				name="product_main_img"
 			/>
 		</div>
 		<div class="mb-3 flex_center">
