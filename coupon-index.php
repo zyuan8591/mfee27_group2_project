@@ -41,7 +41,8 @@ switch($order){
 	case 8:
 		$orderType="end_date DESC";
 		break;
-}if($order == 1 or $order == 3 or $order == 5 or $order == 7){
+};
+if($order == 1 or $order == 3 or $order == 5 or $order == 7){
 		$idOrder= 2;
 		$nameOrder=4;
 		$startDateOrder=6;

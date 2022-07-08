@@ -37,7 +37,7 @@
 	<?php else:?>
 		目前沒有資料
 	<?php endif;?>
-	<div class="py-2">
+	<div class="py-2 w-100 d-flex justify-content-center">
 	<nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
