@@ -48,7 +48,7 @@
             <input id="product-image" class="d-none" type="file" accept="image/*">
         </div>
         <div class="mb-3 flex_center">
-            <button class="product-btn" type="submit transition">新增商品</button>
+            <button class="product-btn transition" type="submit">新增商品</button>
             <button class="product-btn back-product transition">返回商品列表</button>
         </div>
     </form>
