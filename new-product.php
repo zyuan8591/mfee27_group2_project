@@ -5,37 +5,53 @@
         <i class="fa-solid fa-xmark position_abs"></i>
         <h2 class="product-title text-center">新增商品</h2>
         <div class="mb-3">
+            <label for="" class="form-label">選擇廠商</label>
+            <select name="company_id" class="form-select product-input">
+                <?php foreach ($rowsCompany as $item):?>
+					<option value="<?=$item["id"]?>"><?=$item["name"]?></option>
+                <?php endforeach;?>
+			</select>
+        </div>
+        <div class="mb-3">
             <label for="" class="form-label">商品名稱</label>
-            <input type="text" class="form-control" name="name" >
+            <input type="text" class="form-control" name="name" required>
         </div>
         <div class="mb-3">
-            <label for="" class="form-label">商品主分類</label>
-            <input type="text" class="form-control" name="category_main" >
+            <label for="" class="form-label">主要類型</label>
+            <select name="category_main" class="form-select product-input">
+			    <?php foreach($rowsCate as $item):?>
+				    <option value="<?=$item["id"]?>"><?=$item["name"]?></option>
+				<?php endforeach; ?>
+			</select>
         </div>
         <div class="mb-3">
-            <label for="" class="form-label">商品次分類</label>
-            <input type="text" class="form-control" name="category_sub" >
+            <label for="" class="form-label">次要類型</label>
+            <select name="category_sub" class="form-select product-input">
+				<?php foreach($rowsCateSub as $item):?>
+					<option value="<?=$item["id"]?>"><?=$item["name"]?></option>
+				<?php endforeach;?>
+			</select>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">價格</label>
             <div class="product-container">
                 <div class="row mb-3">
                     <div class="col-8">
-                        <input type="text" class="form-control " name="price" placeholder="請輸入商品價格">
+                        <input type="text" class="form-control " name="price" placeholder="請輸入商品價格" required>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control " name="inventory" placeholder="請輸入數量" >
+                        <input type="text" class="form-control " name="inventory" placeholder="請輸入數量" required>
                     </div>
                 </div>
             </div>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">商品簡介</label>
-            <input type="text" class="form-control" name="intro" >
+            <input type="text" class="form-control" name="intro" required>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">商品規格</label>
-            <input type="text" class="form-control" name="spec" >
+            <input type="text" class="form-control" name="spec" required>
         </div>        
         <div class="mb-3 d-flex flex-column align-items-start">
             <label for="" class="form-label">商品圖片</label>

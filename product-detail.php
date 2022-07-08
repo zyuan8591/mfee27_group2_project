@@ -1,4 +1,3 @@
-
 <div class="detail-page flex_center invisible">
 	<div class="detail-cover position_abs"></div>
 	<form class="detail-form text-nowrap" action="detail-exe.php" method="GET">
@@ -9,7 +8,7 @@
 				<input
 					type="text"
 					readonly
-					class="form-control-plaintext product-input"
+					class="form-control-plaintext "
 					name="brand"
 					value="<?=$companyName[$row["company_id"]]?>"
 				/>
@@ -44,17 +43,6 @@
 					<?php foreach($rowsCateSub as $item):?>
 					<option value="<?=$row["category_sub"]?>"<?php if($row["category_sub"]==$item["id"]){echo "selected";} ?>><?=$item["name"]?></option>
 					<?php endforeach;?>
-					<!-- <option value="2">咖啡機</option>
-					<option value="3">氣泡水機</option>
-					<option value="4">快煮壺</option>
-					<option value="5">磨豆機</option>
-					<option value="6">果汁機</option>
-					<option value="7">料理鍋</option>
-					<option value="8">烤箱/氣炸烤箱</option>
-					<option value="9">電烤盤</option>
-					<option value="10">隨行果汁機</option>
-					<option value="11">鬆餅機/熱壓吐司機</option>
-					<option value="12">攪拌機</option> -->
 				</select>
 			</div>
 		</div>
@@ -82,6 +70,20 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="mb-3 row">
+            <label for="" class="col-sm-auto col-form-label">商品簡介</label>
+			<div class="col">
+            	<input type="text" class="form-control product-input" readonly name="intro" required value="<?=$row["intro"]?>">
+			</div>
+		</div>
+        <div class="mb-3 row">
+            <label for="" class="col-sm-auto col-form-label">商品規格</label>
+			<div class="col">
+            	<input type="text" class="form-control product-input" readonly name="spec" required value="<?=$row["spec"]?>">
+			</div>
+		</div>
+		
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">新增日期</label>
 			<div class="col">
