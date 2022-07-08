@@ -120,13 +120,6 @@ for (let j = 0; j < reviseBtn.length; j++) {
     });
 }
 
-// list & unlist
-
-let listBtn = document.querySelector(".list");
-let unlistBtn = document.querySelector(".unlist");
-
-listBtn.addEventListener("click", (e) => {});
-
 // page & count
 
 let perPage=document.querySelector(".per-page");

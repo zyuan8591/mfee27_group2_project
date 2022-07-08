@@ -76,7 +76,9 @@
 	$resultAll = $conn->query($sqlAll);
 	$productCountAll = $resultAll->num_rows;
 
+
 	$per = isset($_GET["per"]) ? $_GET["per"] : 10;
+	
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
 
@@ -87,8 +89,9 @@
 	$productCount = $result->num_rows;
 
 	$totalPage = ceil($productCountAll / $per);
-	$totalPage = ceil($productCountAll / $per);
-
+	if($productCountAll<10){
+		$per=$productCountAll;
+	}
 
 	?>
 	<div>
@@ -99,18 +102,18 @@
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
 														$order == 1
-													) : ?>product-index.php?order=2&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php elseif (
+													) : ?>product-index.php?order=2&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
 																																	$order == 2
-																																) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依編號排序</a>
+																																) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 3
-													) : ?>product-index.php?order=4&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php elseif (
+													) : ?>product-index.php?order=4&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
 																																	$order == 4
-																																) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依名稱排序</a>
+																																) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依名稱排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 5
-													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php elseif (
-																																	$order == 6																														) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?><?php endif; ?>">依日期排序</a>
+													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
+																																	$order == 6	) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依日期排序</a>
 		</div>
 
 			<form class="product_search d-flex align-items-center " action="product-index.php" method="get">
@@ -119,7 +122,7 @@
 
 					<option value="10" <?php if($per == 10){echo "selected";}?>>10</option>
 					<option value="20" <?php if ($per == 20){echo "selected";}?>>20</option>
-					<option value="<?= $productCountAll ?>"<?php if ($per == $productCountAll){echo "selected";}?>>all</option>
+					<option value="<?=$productCountAll?>"<?php if ($per == $productCountAll){echo "selected";}?>>all</option>
 
 				</select>
 			</div>
@@ -150,17 +153,17 @@
 				<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 					<li><a class="text-nowrap " href="product-index.php?filter=&valid=<?= $validNum ?>">全部</a></li>
 					<?php foreach ($rowsCateSub as $row) : ?>
-						<li><a href="product-index.php?filter=<?= $row["id"] ?>&valid="><?= $row["name"] ?></a></li>
+						<li><a href="product-index.php?filter=<?= $row["id"] ?>&valid=<?= $validNum ?>"><?= $row["name"] ?></a></li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
 
-			<div class=" filter-item position-rel">
+			<div class=" filter-item position-rel ">
 				<button class=" filter-btn transition"><?php if ($validNum == 1) : echo "上架中" ?><?php elseif ($validNum == ""): echo "商品狀態"?><?php elseif($validNum == 0) : echo "下架中" ?><?php else : echo "商品狀態" ?><?php endif; ?></button>
-				<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-					<li><a class="text-nowrap " href="product-index.php?filter=<?= $filterNum ?>&valid=">全部</a></li>
-					<li><a class="text-nowrap " href="product-index.php?filter=<?= $filterNum ?>&valid=1">上架中</a></li>
-					<li><a class="text-nowrap " href="product-index.php?filter=<?= $filterNum ?>&valid=0">下架中</a></li>
+				<ul class="filter-dropdown  unstyled_list position_abs invisible text-center ">
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=">全部</a></li>
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=1">上架中</a></li>
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=0">下架中</a></li>
 				</ul>
 			</div>
 		</div>
@@ -194,8 +197,8 @@
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
 					<td><?php if ($row["valid"] == 1) : ?><?= "上架中" ?><?php else : ?><?= "下架中" ?><?php endif; ?></td>
 					<td class="">
-						<a href="list-unlist.php?id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn list">上架</a>
-						<a href="list-unlist.php?id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn unlist">下架</a>
+						<a href="list-unlist.php?order=<?=$order?>&filter=<?= $filterNum ?>&page=<?=$page?>&id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn <?php if ($row["valid"]==1){echo "point-none";} ?>">上架</a>
+						<a href="list-unlist.php?order=<?=$order?>&filter=<?= $filterNum ?>&page=<?=$page?>&id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn <?php if ($row["valid"]==0){echo "point-none";} ?>">下架</a>
 						<button class="table-btn detail-btn">詳細資料</button>
 						<?php require "product-detail.php"; ?>
 					</td>

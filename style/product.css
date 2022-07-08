@@ -139,12 +139,7 @@
 	box-shadow: var(--hover-shadow);
 }
 
-/* .list {
+.point-none {
 	pointer-events: none;
 	color: var(--btn-hover);
 }
-
-.unlist {
-	pointer-events: none;
-	color: var(--btn-hover);
-} */
