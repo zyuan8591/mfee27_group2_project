@@ -1,15 +1,33 @@
 <?php
+if(isset($_GET["page"])){
+	$page=$_GET["page"];
+}else{
+	$page=1;
+};
+
 require("./db-connect.php");
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 if (empty($search)) {
 	$search = "";
 }
+$sqlAll="SELECT * FROM coupon WHERE valid=1";
+$resultAll = $conn->query($sqlAll);
+$couponCount=$resultAll->num_rows;
 
-$sql="SELECT * FROM coupon WHERE name LIKE '%$search%' LIMIT 4" ;
 
+// $page=3;
+$perPage=5;
+$start=($page-1)*$perPage;
+$startItem=($page-1)*$perPage+1;
+$endItem=$page*$perPage;
+if($endItem>$couponCount)$endItem=$couponCount;
+$totalPage=ceil($couponCount / $perPage);
+// $sql="SELECT * FROM coupon WHERE  name LIKE '%$search%' LIMIT 4" ;
+$sql="SELECT * FROM coupon WHERE valid=1 ORDER BY id DESC LIMIT $start,5";
 $result = $conn->query($sql);
-$couponCount=$result->num_rows;
+$pageCouponCount=$result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+
 //----------------------------------------------
 
 ?>
@@ -322,7 +340,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<a class="sort-btn transition" href="">依起始日期排序</a>
 					<a class="sort-btn transition" href="">依結束日期排序</a>
 				</div>
-				<form class="recipe_search " action="coupon-index.php" method="get">
+				<form class="recipe_search " action="coupon-index .php" method="get">
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">  <?php //下面要改?>
 							<input class="form-control search-box " type="text" name="search" placeholder="搜尋優惠券名稱">
@@ -363,7 +381,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<a class="add-coupon-btn transition" href="">新增優惠券</a>
 				</div>
 			</div>
-		<?php require "coupon-table.php"; ?>
+		<?php require "coupon-table copy.php"; ?>
 		</main>
 		<?php require "coupon-add.php"; ?>		
 		
