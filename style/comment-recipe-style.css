@@ -1,0 +1,101 @@
+/* sort by -- */
+.sort-search {
+	margin: 0.5rem 0 0 0;
+}
+.sort {
+	flex: 0 0 auto;
+}
+.sort-btn {
+	padding: 0.2rem 0.5rem;
+	background: var(--header-bg);
+	margin: 0.25rem;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+}
+.sort-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.sort-btn:active {
+	outline: var(--button-active) solid 4px;
+}
+/* per page */
+
+.per-page {
+	width: auto;
+}
+/* search -- */
+.search-box {
+	padding: 0.25rem;
+	border-radius: 0;
+	border: 2px solid var(--button-active);
+	height: 36px;
+	position: relative;
+	max-width: 365px;
+	flex-shrink: 1;
+}
+.search-box:focus {
+	z-index: 5;
+}
+.search-box::placeholder {
+	font-family: "Noto Sans TC", sans-serif;
+	color: var(--button-active);
+}
+.search-btn {
+	border: 2px solid var(--button-active);
+	padding: 0 1rem;
+	border-left: none;
+	height: 36px;
+	border-radius: 0;
+	position: relative;
+}
+/* filter -- */
+.filter {
+	padding: 0.5rem;
+}
+.filter-item {
+	min-width: 100px;
+	margin-left: 0.5rem;
+}
+.filter-btn {
+	width: 100%;
+	white-space: nowrap;
+	padding: 0.3rem 0.5rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.filter-btn:hover {
+	background: var(--btn-hover);
+}
+.filter-dropdown {
+	background: var(--header-bg);
+	padding: 0.5rem;
+	width: 100%;
+	box-shadow: var(--box-shadow);
+	border-radius: 3px;
+	margin-top: 1px;
+	transition: 0.5s;
+}
+.filter-dropdown li {
+	border-radius: 4px;
+	transition: 0.5s;
+}
+.filter-dropdown li:hover {
+	background: var(--button-hover);
+}
+/* table---------------------------- */
+.page-hint {
+	right: 0;
+}
+
+.evalution {
+	font-size: 1.25rem;
+	color: #393939;
+}
+.evalution:hover {
+	color: #ffbe0b;
+}

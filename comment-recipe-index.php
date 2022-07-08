@@ -1,3 +1,53 @@
+<?php
+require "db-connect.php";
+
+//order
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+if(empty($order)){ $order = 1; };
+switch($order){
+	case 1:
+		$orderType = "id ASC";
+		break;
+	// case 2:
+}
+//search
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
+
+
+// sql All
+$sql="SELECT * FROM customer_recipe_message";
+$result = $conn->query($sql);
+$countAll=$result->num_rows;
+
+// sql 
+// $sqlMsg = "SELECT * FROM customer_recipe_message WHERE content LIKE '%$search%'";
+$sqlMsg ="SELECT customer_recipe_message.*, recipe.name AS recipeName FROM customer_recipe_message
+JOIN recipe ON customer_recipe_message.recipe_id = recipe.id 
+WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%'))";
+// echo $sqlMsg;
+$resultMsg = $conn->query($sqlMsg);
+$rowsMsg = $resultMsg->fetch_all(MYSQLI_ASSOC);
+$count=$resultMsg->num_rows;
+
+//user assoc
+$sqlUser = "SELECT id, name FROM customer_users";
+$resultUser = $conn->query($sqlUser);
+$rowsUser = $resultUser->fetch_all(MYSQLI_ASSOC);
+foreach($rowsUser as $row){
+	$user[$row["id"]]=$row["name"];
+}
+//recipe assoc
+$sqlRecipe = "SELECT id, name FROM recipe";
+$resultRecipe = $conn->query($sqlRecipe);
+$rowsRecipe = $resultRecipe->fetch_all(MYSQLI_ASSOC);
+foreach($rowsRecipe as $row){
+	$recipe[$row["id"]]=$row["name"];
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -19,7 +69,7 @@
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/recipe-style.css"; ?>
+			<?php require "./style/comment-recipe-style.css"; ?>
 		</style>
 	</head>
 	<body>
@@ -292,18 +342,26 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" id="idSort" href="">依編號排序</a>
-					<a class="sort-btn transition" id="dateSort" href="">依會員排序</a>
+					<a class="sort-btn transition" id="idSort" href="
+					comment-recipe-index.php?order=1
+					">依編號排序</a>
+					<a class="sort-btn transition" id="dateSort" href="
+					comment-recipe-index.php?order=2
+					">依會員排序</a>
+					<a class="sort-btn transition" id="dateSort" href="
+					comment-recipe-index.php?order=3
+					">依分數排序</a>
+
 				</div>
-				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipe-index.php" method="get">
+				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="comment-recipe-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5" >每頁顯示5筆</option>
+						<option value="10" >每頁顯示10筆</option>
 						<option value="15" >每頁顯示15筆</option>
 						<option value="20" >每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
-							<input value="" class="form-control search-box " type="text" name="search" placeholder="搜尋食譜名稱">
+							<input value="" class="form-control search-box" type="text" name="search" placeholder="搜尋">
 						</div>
 						<div class="">
 							<button class="search-btn form-control" type="submit">
@@ -316,37 +374,19 @@
 				</form>
 			</div>
 			<div class="d-flex justify-content-between align-items-center my-3">
-<!-- 食譜類別******************************************************************************************************** -->
+<!-- 篩選評價分數******************************************************************************************************** -->
 				<div class="filter d-flex align-items-center">					
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
+					<a class="ms-2" href=""><i class="fa-solid fa-star evalution"></i></a>
+					<a class="ms-2" href=""><i class="fa-solid fa-star evalution"></i></a>
+					<a class="ms-2" href=""><i class="fa-solid fa-star evalution"></i></a>
+					<a class="ms-2" href=""><i class="fa-solid fa-star evalution"></i></a>
+					<a class="ms-2" href=""><i class="fa-solid fa-star evalution"></i></a>
 
-					<div class="filter-item  position-rel">
-						<button class="filter-btn transition"></button>
-						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="">全部</a></li>						
-							<li><a href=""></a></li>
-						</ul>							
-					</div>
-<!-- 商品類別******************************************************************************************************** -->
-					<div class="filter-item  position-rel">
-						<button class="filter-btn transition"></button>
-						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="">全部</a></li>
-							<li><a href=""></a></li>
-						</ul>							
-					</div>	
-<!-- 食譜狀態******************************************************************************************************** -->
 					
-					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition"></button>
-						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="">全部</a></li>
-							<li><a class="text-nowrap " href="">上架中</a></li>
-							<li><a href="">下架中</a></li>
-						</ul>
-					</div>					
+
 				</div>
 			</div>
 		<?php require "comment-recipe-table.php"; ?>
