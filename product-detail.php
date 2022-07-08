@@ -134,7 +134,7 @@
 			<button class="revise-btn revise-hover" type="submit transition">
 				修改內容
 			</button>
-			<button class="save-btn save-hover" type="submit transition">
+			<button class="save-btn save-hover transition" type="submit ">
 				儲存內容
 			</button>
 			<button class="product-btn back-to-product transition">
