@@ -52,7 +52,8 @@ switch($order){
 		$startDateOrder=5;
 		$endDateOrder=7;	
 	};
-
+//上下架
+$valid = isset($_GET["valid"]) ? $_GET["valid"] : 1;
 
 //page
 $perPage=5;
@@ -62,7 +63,7 @@ $endItem=$page*$perPage;
 if($endItem>$couponCount)$endItem=$couponCount;
 $totalPage=ceil($couponCount / $perPage);
 // $sql="SELECT * FROM coupon WHERE  name LIKE '%$search%' LIMIT 4" ;
-$sql="SELECT * FROM coupon WHERE valid=1 AND name LIKE '%$search%' ORDER BY $orderType LIMIT $start,5";
+$sql="SELECT * FROM coupon WHERE valid=$valid AND name LIKE '%$search%' ORDER BY $orderType LIMIT $start,5";
 $result = $conn->query($sql);
 $pageCouponCount=$result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -374,13 +375,12 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 				<h2 class="main-title">優惠券總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
-				<div class="sort d-flex align-items-center">					
-					
-					
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$idOrder?>&search=<?=$search?>">依編號排序</a>					
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$nameOrder?>&search=<?=$search?>">依名稱排序</a>
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$startDateOrder?>&search=<?=$search?>">依起始日期排序</a>
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>">依結束日期排序</a>
+				<div class="sort d-flex align-items-center">	
+										
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$idOrder?>&search=<?=$search?>&valid=<?=$valid?>">依編號排序</a>					
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$nameOrder?>&search=<?=$search?>&valid=<?=$valid?>">依名稱排序</a>
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$startDateOrder?>&search=<?=$search?>&valid=<?=$valid?>">依起始日期排序</a>
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=<?=$valid?>">依結束日期排序</a>
 				</div>
 				<form class="recipe_search " action="coupon-index.php" method="get">
 					<div class="d-flex align-items-center " >
@@ -403,19 +403,19 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
 
-					<div class="filter-item  position-rel">
+					<!-- <div class="filter-item  position-rel">
 						<button class="filter-btn transition">食譜類別</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="">Coffee</a></li>
 							<li><a href="">Cake</a></li>
 							<li><a href=""></a></li>
 						</ul>							
-					</div>
+					</div> -->
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">優惠券狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="">上架中</a></li>
-							<li><a href="">下架中</a></li>
+							<li><a class="text-nowrap " href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=1">上架中</a></li>
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=0">下架中</a></li>
 						</ul>
 					</div>					
 				</div>

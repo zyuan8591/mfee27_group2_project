@@ -46,7 +46,7 @@
       </a>
     </li>
 	<?php for($i=1;$i<=$totalPage;$i++):?>
-    <li class="page-item"><a class="page-link <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>"><?=$i?></a></li>
+    <li class="page-item"><a class="page-link <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>"><?=$i?></a></li>
 	<?php endfor;?>
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next">
