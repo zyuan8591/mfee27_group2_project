@@ -18,21 +18,47 @@
 			<td><?= $row["recipeName"] ?></td>
 			<td><?= $user[$row["user_id"]] ?></td>
 			<td><?= $row["content"] ?></td>
-			<td><?= $row["evaluation"] ?></td>
+			<td class="table-stars"><?= $row["evaluation"] ?></td>
 			<td><?= $row["create_time"] ?></td>
-			<td class="text-center fw-bold"><a class="delete-btn" href="">刪除</a></td>
+			<td class="text-center"><a class="delete-btn" href="">刪除</a></td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
 </table>
 <div class=" w-100 flex_center position-rel">
 	<div class="btn-group me-2" role="group" >
-		<a href="" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
-		<a href="" type="button" class="btn btn-outline-dark "></a>
-		<a href="" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
+		<a href="
+		comment-recipe-index.php?page=
+		<?php
+		$prePage = $page - 1;
+		if($prePage < 1){
+			echo 1 ;
+		} else {
+			echo $prePage;
+		}
+		?>
+		&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>
+		" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
+		<?php for($i = 1; $i <= $pages; $i++): ?>
+		<a href="
+		comment-recipe-index.php?page=<?= $i ?>&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>
+		" type="button" class="btn btn-outline-dark <?php if($page==$i){echo "active";} ?> "><?= $i ?></a>
+		<?php endfor; ?>
+		<a href="
+		comment-recipe-index.php?page=
+		<?php
+		$nextPage = $page + 1;
+		if($nextPage > $pages){
+			echo $pages ;
+		} else {
+			echo $nextPage;
+		}
+		?>
+		&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>
+		" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 	</div>
 	<div class="page-hint position_abs">
-		
+		共<?= $countAll ?>筆
 	</div>
 </div>
 <?php else: ?>

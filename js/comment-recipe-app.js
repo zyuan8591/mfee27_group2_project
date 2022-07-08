@@ -43,3 +43,14 @@ for (let i = 0; i < filterItems.length; i++) {
 // 		}
 // 	});
 // }
+
+let tableStars = document.querySelectorAll(".table-stars");
+for (let i = 0; i < tableStars.length; i++) {
+	let stars = parseInt(tableStars[i].innerText);
+	let star = `<i class="fa-solid fa-star table-evaluation"></i>`;
+	result = "";
+	for (let j = 0; j < stars; j++) {
+		result += star;
+	}
+	tableStars[i].innerHTML = result;
+}

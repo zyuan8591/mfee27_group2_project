@@ -11,7 +11,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
 $id = isset($_GET["id"]) ? $_GET["id"] : "";
 
-$sqlOnoffshelf = "SELECT id,valid FROM recipe WHERE id='$id'";
+$sqlOnoffshelf = "SELECT id, valid FROM recipe WHERE id='$id'";
 $resultOnoffshelf = $conn->query($sqlOnoffshelf);
 $rowOnoffshelf = $resultOnoffshelf->fetch_assoc();
 

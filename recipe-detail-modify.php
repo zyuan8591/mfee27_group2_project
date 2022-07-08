@@ -29,6 +29,7 @@ echo "<br>";
 if(empty($image)){
     $sqlUpadate = "UPDATE recipe SET name='$name', content='$content', category_food='$categoryFood', 
     category_product='$categoryProduct' WHERE id='$id' ";
+    
 } else {
     $sqlUpadate = "UPDATE recipe SET name='$name', content='$content', category_food='$categoryFood', 
     category_product='$categoryProduct', image='$image' WHERE id='$id' ";

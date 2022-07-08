@@ -3,7 +3,7 @@
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
 		action="recipe-detail-modify.php"
-		method="POST" id="detail-form"
+		method="POST"
 	>
 		<input type="hidden" value="<?= $row["id"] ?>" name="id">
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>

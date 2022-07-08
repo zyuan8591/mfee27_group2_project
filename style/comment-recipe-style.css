@@ -92,10 +92,15 @@
 	right: 0;
 }
 
-.evalution {
+.evaluation {
 	font-size: 1.25rem;
 	color: #393939;
 }
-.evalution:hover {
+.evaluation:hover {
 	color: #ffbe0b;
+}
+.table-evaluation {
+	font-size: 1rem;
+	color: #ffbe0b;
+	margin-right: 0.1rem;
 }
