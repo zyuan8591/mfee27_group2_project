@@ -548,7 +548,7 @@ foreach ($rowsCatProduct as $row) {
 						<button  class="filter-btn transition">
 							<a href="
 							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=<?= $search ?>&foodCate=&productCate=&valid=
+							&search=&foodCate=&productCate=&valid=
 							" >全部顯示</a>
 						</button>
 					</div>				
