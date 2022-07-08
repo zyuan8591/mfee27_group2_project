@@ -22,13 +22,14 @@
    			} ?></td>
 			<td><?=$row["create_time"]?></td>
 			<td>
-				<a class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {
-					echo "active";
-    			} ?>" href="">啟用</a>	
-				<a class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {
-					echo "point-event-none";
-    			} ?>" href="">停用</a>
-				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
+				<button type="submit" class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {
+					echo "on-off-btn";
+    			} ?>" href="">啟用</button> 	
+				<button type="submit" class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {
+					echo "on-off-btn";
+    			} ?>" href="">停用</button>
+				<button type="submit" class="btn-main transition me-3 detail" href="">詳細資料</button>
+				<?php require "company-detail.php"; ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>
@@ -37,7 +38,9 @@
 <div class="col-4">
 	<div class="btn-group me-2" role="group" >
 		<?php for ($i=1; $i<=$totalPage; $i++): ?>
-		<a href ="company-member-all-index.php?page=<?=$i?>" type="button" class="btn btn-outline-dark">
+		<a href ="company-member-all-index.php?page=<?=$i?>" type="button" class="btn btn-outline-dark <?php if ($page==$i) {
+					echo "active";
+    			} ?>">
 			<?=$i?>
 		</a>
 		<?php endfor; ?>

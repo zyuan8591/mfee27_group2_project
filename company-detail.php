@@ -1,31 +1,22 @@
-<?php
-// $id = isset($_GET["id"]) ? $_GET["id"] : echo "沒有參數";
-
-$id=$_GET["id"];
-
-require "db-connect.php";
-
-$sqlAll = "SELECT * FROM company_users WHERE id=$id AND valid=1 ";
-$result = $conn->query($sql);
-$userCount=$result->num_rows;
-$rows = $result->fetch_assoc();
-?>
-
-<div class="company-datail position_abs flex_center invisible">
+<div class="company-datail  flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
-	<?php if($userCount>0):?>
 	<form
 		class="container-detail position-rel modify-company-detail-form"
-		action="company-detail-modify.php
-    "
-		method="GET" 
+		action="companyUpdate.php"
+		method="POST" 
 	>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="company-title text-center">廠商詳細資料</h2>
 		<div class="mb-3 row align-items-center">
 			<label for="" class="col-sm-auto col-form-label">廠商編號：</label>
 			<div class="col">
-				<?=$rows["id"]?>
+				<input 
+					type="text" 
+					readonly="readonly"
+					class="form-control-plaintext"
+					name="id" 
+					value="<?=$row["id"]?>"
+				>
 			</div>
 		</div>
 		<div class="mb-3 row">
@@ -35,7 +26,8 @@ $rows = $result->fetch_assoc();
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="【<?=$rows["name"]?>】"
+					name="name"
+					value="<?=$row["name"]?>"
 				>
 			</div>
 		</div>
@@ -46,7 +38,8 @@ $rows = $result->fetch_assoc();
 					type="email"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$rows["email"]?>"
+					name="email"
+					value="<?=$row["email"]?>"
 				/>
 			</div>
 		</div>
@@ -57,7 +50,8 @@ $rows = $result->fetch_assoc();
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$rows["phone"]?>"
+					name="phone"
+					value="<?=$row["phone"]?>"
 				/>
 			</div>
 		</div>
@@ -68,24 +62,29 @@ $rows = $result->fetch_assoc();
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$rows["address"]?>"
+					name="address"
+					value="<?=$row["address"]?>"
 				/>
 			</div>
 		</div>
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">公司簡介：</label>
 			<div class="col">
-			<input
-					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="<?=$rows["intro"]?>"
-				/>
+				<textarea 
+				rows="5" 
+				readonly="readonly"
+				class="form-control-plaintext detail-item-input"
+				name="intro"
+				><?=$row["intro"]?>
+				</textarea>
 			</div>
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">
 			<label for="" class="form-label">公司圖像</label>
-			<label for="recipe-image" class="recipe-image">
+			<label for="add-company-image" class="add-company-image">
+				<div class="add-image-container mb-1">
+					<img src="./company_img/<?= $row["logo_img"]?>" alt="" class="object-cover">
+				</div>
 				<svg
 					width="134"
 					height="134"
@@ -109,28 +108,26 @@ $rows = $result->fetch_assoc();
 				</svg>
 			</label>
 			<input
-				id="recipe-image"
-				class="d-none detail-item-img"
+				id="company-image"
+				class="detail-item-img invisible"
 				type="file"
 				accept="image/*"
 				disabled="true"
+				enctype="multipart/form-data"
 			/>
 		</div>
 		<div class="mb-3 flex_center">
-			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
-				修改食譜
+			<button class="add-detail-btn modify-detail-btn me-3 transition" type="submit ">
+				修改
 			</button>
 			<button
-				class="add-detail-btn save-detail-btn me-3"
-				type="submit transition"
+				class="add-detail-btn save-detail-btn me-3 transition"
+				type="submit"
 				disabled="true"
 			>
-				儲存食譜
+				儲存
 			</button>
-			<button class="add-detail-btn back-company-de transition">返回食譜列表</button>
+			<button class="add-detail-btn back-company-de transition">返回廠商列表</button>
 		</div>
 	</form>
-	<?php else: ?>
-            沒有該使用者
-    <?php endif; ?>
 </div>

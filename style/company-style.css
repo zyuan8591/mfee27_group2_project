@@ -8,7 +8,7 @@
 	padding: 2.2rem 2.5rem;
 	width: calc(100vw - var(--aside-width));
 	height: 100vh;
-	overflow-y: auto;
+	/* overflow-y: auto; */
 }
 .main-title {
 	font-size: 2rem;
@@ -36,7 +36,7 @@
 	outline: var(--button-active) solid 4px;
 } */
 .sort{
-	z-index: 50;	
+	z-index: 5;	
 }
 /* search -- */
 .search-box {
@@ -119,8 +119,11 @@
 .add-company-btn:active {
 	outline: var(--outline);
 }
-
-/* add-new-company-page--新增廠商頁面--------------------------------------------------- */
+/* on & off btn 啟用 停用 */
+.on-off-btn{
+	background-color: var(--button-active);
+}
+/* add-new-company-page--廠商詳細資料頁--------------------------------------------------- */
 .new-company-page {
 	height: 100vh;
 	width: 100vw;
@@ -165,7 +168,18 @@
 	width: 130px;
 	height: 130px;
 }
-
+.add-company-image{
+	cursor: pointer;
+}
+.add-image-container { 
+	height: 134px;
+	width: 134px;
+}
+.object-cover{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
 /* ****************************************************************************** */
 /* company-detail 詳細資料*/
 .company-datail {
@@ -175,6 +189,7 @@
 	left: 0;
 	z-index: 50;
 	transition: 0.5s;
+	position: fixed;
 }
 .container-detail {
 	width: 600px;

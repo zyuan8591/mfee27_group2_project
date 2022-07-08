@@ -43,10 +43,10 @@ for (let i = 0; i < filterItems.length; i++) {
 }
 
 // call add page 新增廠商
-let newCompanyPage = document.querySelector(".new-company-page");
-let addCompanyBtn = document.querySelector(".add-company-btn");
-let backToCompany = document.querySelector(".back-company");
-let xMark = document.querySelector(".fa-xmark");
+let newCompanyPage = document.querySelector(".new-company-page");// 新增廠商頁面
+let addCompanyBtn = document.querySelector(".add-company-btn");// 新增廠商btn
+let backToCompany = document.querySelector(".back-company");// 返回列表btn
+let xMark = document.querySelector(".xmark-add");
 
 addCompanyBtn.addEventListener("click", function (e) {
 	e.preventDefault();
@@ -61,16 +61,16 @@ xMark.addEventListener("click", function (e) {
 });
 
 // call detail page 詳細資料
-let detailPage = document.querySelector(".company-datail");
-let detailBtn = document.querySelectorAll(".detail"); 
+let detailPage = document.querySelectorAll(".company-datail");
+let detailBtn = document.querySelectorAll(".detail"); //詳細資料btn
 let detailCover = document.querySelector(".cover-detail");
-let backToCompanyDe = document.querySelector(".back-company-de");
-let detailXMark = document.querySelector(".detail-xMark");
+let backToCompanyDe = document.querySelectorAll(".back-company-de");
+let detailXMark = document.querySelectorAll(".detail-xMark");
 
 for (let i = 0; i < detailBtn.length; i++) {
 	detailBtn[i].addEventListener("click", (e) => {
 		e.preventDefault();
-		detailPage.classList.remove("invisible");
+		detailPage[i].classList.remove("invisible");
 	});
 }
 
@@ -79,77 +79,78 @@ for (let i = 0; i < detailBtn.length; i++) {
 // });
 
 // modify detail ---------------------------------------
-// modify & save btn
-let modifyBtn = document.querySelector(".modify-detail-btn");
-let saveBtn = document.querySelector(".save-detail-btn");
+// modify & save btn 儲存
+let modifyBtn = document.querySelectorAll(".modify-detail-btn"); //修改btn
+let saveBtn = document.querySelectorAll(".save-detail-btn");
 // form
-let modifyForm = document.querySelector(".modify-company-detail-form");
+let modifyForm = document.querySelectorAll(".modify-company-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
-// let detailSelects = document.querySelectorAll(".detail-item-select");
-let detailImgs = document.querySelectorAll(".detail-item-img");
-modifyBtn.addEventListener("click", (e) => {
+// let detailImgs = document.querySelectorAll(".detail-item-img");
+
+for(let j=0; j<modifyBtn.length; j++){
+modifyBtn[j].addEventListener("click", (e) => {
 	e.preventDefault();
-	modifyBtn.disabled = true;
-	saveBtn.disabled = false;
+	modifyBtn[j].disabled = true;
+	saveBtn[j].disabled = false;
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].removeAttribute("readonly");
 		detailInputs[i].classList.remove("form-control-plaintext");
 		detailInputs[i].classList.add("form-control");
 	}
-	for (let i = 0; i < detailSelects.length; i++) {
-		detailSelects[i].disabled = false;
-	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = false;
-	}
+
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = false;
+	// }
 });
-saveBtn.addEventListener("click", (e) => {
-	modifyBtn.disabled = false;
-	saveBtn.disabled = true;
+}
+for(let j=0; j<saveBtn.length; j++){
+saveBtn[j].addEventListener("click", () => {
+	modifyBtn[j].disabled = false;
+	saveBtn[j].disabled = true;
+    modifyForm[j].submit();
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].setAttribute("readonly", "readonly");
 		detailInputs[i].classList.remove("form-control");
 		detailInputs[i].classList.add("form-control-plaintext");
 	}
-	for (let i = 0; i < detailSelects.length; i++) {
-		detailSelects[i].disabled = true;
-	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
+
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = true;
+	// }
 });
-// !! back to recipe index btn
-backToCompanyDe.addEventListener("click", function (e) {
+}
+// !! back to recipe index btn 返回列表
+for(let j=0; j<backToCompanyDe.length; j++){
+backToCompanyDe[j].addEventListener("click", function (e) {
 	e.preventDefault();
-	detailPage.classList.add("invisible");
-	modifyBtn.disabled = false;
-	saveBtn.disabled = true;
+	detailPage[j].classList.add("invisible");
+	modifyBtn[j].disabled = false;
+	saveBtn[j].disabled = true;
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].setAttribute("readonly", "readonly");
 		detailInputs[i].classList.remove("form-control");
 		detailInputs[i].classList.add("form-control-plaintext");
 	}
-	for (let i = 0; i < detailSelects.length; i++) {
-		detailSelects[i].disabled = true;
-	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
+
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = true;
+	// }
 });
-detailXMark.addEventListener("click", function (e) {
-	detailPage.classList.add("invisible");
-	modifyBtn.disabled = false;
-	saveBtn.disabled = true;
+}
+for(let j=0; j<detailXMark.length; j++){
+detailXMark[j].addEventListener("click", function (e) {
+	detailPage[j].classList.add("invisible");
+	modifyBtn[j].disabled = false;
+	saveBtn[j].disabled = true;
 	for (let i = 0; i < detailInputs.length; i++) {
 		detailInputs[i].setAttribute("readonly", "readonly");
 		detailInputs[i].classList.remove("form-control");
 		detailInputs[i].classList.add("form-control-plaintext");
 	}
-	for (let i = 0; i < detailSelects.length; i++) {
-		detailSelects[i].disabled = true;
-	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
+
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = true;
+	// }
 });
+}

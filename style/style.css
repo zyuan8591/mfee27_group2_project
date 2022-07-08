@@ -160,6 +160,8 @@ a:active {
 	padding: 1rem;
 	font-size: 1rem;
 	top: calc(var(--header-height));
+	position: fixed;
+	z-index: 50;
 	overflow: auto;
 }
 .nav {
@@ -199,7 +201,6 @@ a:active {
 /* XX管理-XXXX */
 .sub_nav_item {
 	padding: 0.5rem 0 0 0;
-
 	overflow: hidden;
 }
 .sub_nav_item_container {

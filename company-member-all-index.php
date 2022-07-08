@@ -382,10 +382,10 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 						<button class=" filter-btn transition">依編號排序</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 							<li>
-								<a class="sort-btn transition fa-solid fa-arrow-up <?php if ($order == 1) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=1">從高到低</a>
+								<a class="sort-btn transition fa-solid fa-arrow-up <?php if ($order == 2) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=2">從高到低</a>
 							</li>
 							<li>
-								<a class="sort-btn text-nowrap  transition fa-solid fa-arrow-down <?php if ($order == 2) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=2">從低到高</a>
+								<a class="sort-btn text-nowrap  transition fa-solid fa-arrow-down <?php if ($order == 1) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=1">從低到高</a>
 							</li>
 						</ul>
 					</div>
@@ -447,7 +447,6 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 		<?php require "company-table.php"; ?>
 		</main>
 		<?php require "company-add.php"; ?>
-		<?php require "company-detail.php"; ?>
 
 		<script type="text/javascript" >
 			<?php require "./js/company-app.js"; ?>
