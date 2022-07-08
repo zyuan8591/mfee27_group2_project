@@ -49,6 +49,11 @@
 	border-radius: 0;
 	position: relative;
 }
+.form-control:focus,
+.form-select:focus {
+	box-shadow: var(--box-shadow);
+	border-color: var(--input-border);
+}
 /* filter -- */
 .filter {
 	padding: 0.5rem;
@@ -88,15 +93,15 @@
 	background: var(--button-hover);
 }
 /* table---------------------------- */
-.page-hint {
-	right: 0;
-}
-
 .evaluation {
 	font-size: 1.25rem;
 	color: #393939;
+	transition: 0.3s;
 }
-.evaluation:hover {
+.evaluation-hover {
+	color: #ffbe0b;
+}
+.evaluation-active {
 	color: #ffbe0b;
 }
 .table-evaluation {

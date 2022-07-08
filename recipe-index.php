@@ -561,7 +561,7 @@ foreach ($rowsCatProduct as $row) {
 		<?php require "recipe-table.php"; ?>
 		</main>
 		<?php require "recipe-add.php"; ?>
-		<!-- tostufy -->
+		<!-- tostify -->
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 		<!-- jquery -->
 		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>

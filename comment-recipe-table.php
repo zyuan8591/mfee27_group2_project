@@ -1,4 +1,5 @@
 <?php if($countAll>0): ?>
+第<?= $page ?>頁，共<?= $pages ?>頁，共<?= $countAll ?>筆
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -20,7 +21,9 @@
 			<td><?= $row["content"] ?></td>
 			<td class="table-stars"><?= $row["evaluation"] ?></td>
 			<td><?= $row["create_time"] ?></td>
-			<td class="text-center"><a class="delete-btn" href="">刪除</a></td>
+			<td class="text-center"><a class="delete-btn" href="
+			comment-delete-recipe-exe.php?id=<?= $row["id"] ?>.php
+			">刪除</a></td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
@@ -56,9 +59,6 @@
 		?>
 		&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>
 		" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
-	</div>
-	<div class="page-hint position_abs">
-		共<?= $countAll ?>筆
 	</div>
 </div>
 <?php else: ?>

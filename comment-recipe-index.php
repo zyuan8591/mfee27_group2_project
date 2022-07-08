@@ -1,6 +1,6 @@
 <?php
 require "db-connect.php";
-
+session_start();
 //order
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;
 if(empty($order)){ $order = 1; };
@@ -102,6 +102,7 @@ foreach($rowsRecipe as $row){
 			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap"
 			rel="stylesheet"
 		/>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
@@ -381,29 +382,29 @@ foreach($rowsRecipe as $row){
 				<div class="sort d-flex align-items-center">
 					<a class="sort-btn transition" id="idSort" href="
 					<?php if($order == 2): ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php elseif ($order == 1): ?>
-					comment-recipe-index.php?order=2&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=2&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php else: ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php endif; ?>
 					">依編號排序</a>
 					<a class="sort-btn transition" id="dateSort" href="
 					<?php if($order == 4): ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php elseif ($order == 3): ?>
-					comment-recipe-index.php?order=4&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=4&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php else: ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php endif; ?>
 					">依會員排序</a>
 					<a class="sort-btn transition" id="dateSort" href="
 					<?php if($order == 6): ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php elseif ($order == 5): ?>
-					comment-recipe-index.php?order=6&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=6&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php else: ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>
+					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
 					<?php endif; ?>
 					">依分數排序</a>
 
@@ -434,21 +435,15 @@ foreach($rowsRecipe as $row){
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
+					<?php for($i = 1; $i <=5 ; $i++): ?>
 					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=1
-					"><i class="fa-solid fa-star evaluation"></i></a>
-					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=2
-					"><i class="fa-solid fa-star evaluation"></i></a>
-					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=3
-					"><i class="fa-solid fa-star evaluation"></i></a>
-					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=4
-					"><i class="fa-solid fa-star evaluation"></i></a>
-					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=5
-					"><i class="fa-solid fa-star evaluation"></i></a>
+					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=<?= $i ?>
+					"><i class="fa-solid fa-star evaluation
+					<?php if($stars >= $i){ echo "evaluation-active";} ?>
+					"></i></a>
+					<?php endfor; ?>
+
+					
 					<a href="
 					comment-recipe-index.php?order=1&search=&page=1&per-page=&stars=
 					" class="ms-3 sort-btn transition text-center" >清空篩選條件</a>
@@ -456,10 +451,30 @@ foreach($rowsRecipe as $row){
 			</div>
 		<?php require "comment-recipe-table.php"; ?>
 		</main>
-
+		<!-- tostify -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
 			<?php require "./js/comment-recipe-app.js"; ?>
 		</script>
+
+		<?php if($_SESSION["deleteRecipeComment"]["condition"]==1): ?>
+		<script type="text/javascript" >
+		Toastify({
+		text: "成功刪除留言",
+		duration: 3000,
+		newWindow: true,
+		close: true,
+		gravity: "bottom", // `top` or `bottom`
+		position: "left", // `left`, `center` or `right`
+		stopOnFocus: true, // Prevents dismissing of toast on hover
+		style: {
+			background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+		},
+		onClick: function(){} // Callback after click
+		}).showToast();
+		</script>
+		<?php unset($_SESSION["deleteRecipeComment"]) ?>
+		<?php endif; ?>
 	</body>
 </html>

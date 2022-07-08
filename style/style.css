@@ -46,7 +46,9 @@ a:active {
 }
 /* module */
 /* button */
-.delete-btn {
+.delete-btn,
+.delete-btn:link,
+.delete-btn:hover {
 	padding: 0.25rem 0.65rem;
 	background: #d90429;
 	color: #fff;

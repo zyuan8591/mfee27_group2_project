@@ -1,6 +1,7 @@
 
 
 <?php if ($recipeCount > 0): ?>
+第<?= $page ?>頁，共<?= $pages ?>頁，共<?= $recipeCountAll ?>筆
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -68,9 +69,6 @@
 		echo $nextPage; ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 		&productCate=<?= $productCate ?>&valid=<?= $valid ?>" 
 		type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
-	</div>
-	<div class="position_abs page-hint">
-		第<?= $page ?>頁，共<?= $pages ?>頁，共<?= $recipeCountAll ?>筆
 	</div>
 </div>
 <?php else: ?>
