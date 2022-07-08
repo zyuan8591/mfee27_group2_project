@@ -2,6 +2,9 @@
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
+$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 5;
+$id=isset($_GET["id"]) ? $_GET["id"] : "";
+
 if(isset($_GET["valid"])){
 	$valid=$_GET["valid"];
 	$validType="AND valid=$valid";
@@ -25,7 +28,7 @@ $order = isset($_GET["order"]) ? $_GET["order"] : 1;
 
 
 // order&page
-$perpage=5;
+$perpage=$selectPages;
 $start=($page-1)*$perpage;
 
 switch($order){
@@ -47,7 +50,7 @@ switch($order){
 
 
 
-$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ORDER BY $orderType LIMIT $start,5";
+$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ORDER BY $orderType LIMIT $start,$perpage";
 $result = $conn->query($sql);
 $rows=$result->fetch_all(MYSQLI_ASSOC);
 $pageCustomerCount=$result-> num_rows;
@@ -373,13 +376,37 @@ $searchCount=$searchrResult-> num_rows;
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition <?php if($order==1)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=<?=$valid?>">依編號排序></a>
-					<a class="sort-btn transition <?php if($order==2)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=2&search=<?=$search?>&valid=<?=$valid?>">依編號排序<</a>
-					<a class="sort-btn transition <?php if($order==3)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=3&search=<?=$search?>&valid=<?=$valid?>">依名稱排序></a>
-					<a class="sort-btn transition <?php if($order==4)echo "active"?>" href="recipe-index.php?page=<?=$page?>&order=4&search=<?=$search?>&valid=<?=$valid?>">依名稱排序<</a>
+					<a class="sort-btn transition" href="
+					<?php if($order==2): ?>
+					recipe-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php elseif($order==1): ?>
+					recipe-index.php?page=<?=$page?>&order=2&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php else: ?>
+					recipe-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>	
+					<?php endif; ?>
+					">依編號排序</a>
+					<a class="sort-btn transition" href="
+					<?php if($order==4): ?>
+					recipe-index.php?page=<?=$page?>&order=3&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php elseif($order==3): ?>
+					recipe-index.php?page=<?=$page?>&order=4&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php else: ?>
+					recipe-index.php?page=<?=$page?>&order=3&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>	
+					<?php endif; ?>
+					">依名稱排序</a>
 				</div>
+				
 				<form class="recipe_search " action="recipe-index.php" method="get">
-					<div class="d-flex align-items-center " >
+					<div class="d-flex align-items-center" >
+						<select class="me-3 form-control rounded-1 select-border" name="selectPages" id="">
+							<option value="5" 
+							<?php if($selectPages == 5) echo 'selected="15"' ?>>每頁顯示5筆</option>
+							<option value="10" <?php if($selectPages == 10) echo 'selected="15"' ?>
+							>每頁顯示10筆</option>
+							<option value="15" 
+							<?php if($selectPages == 15) echo 'selected="15"' ?>
+							>每頁顯示15筆</option>
+						</select>
 						<div class="d-flex ">
 							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋">
 						</div>
@@ -410,9 +437,9 @@ $searchCount=$searchrResult-> num_rows;
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">會員狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap" href="recipe-index.php?page=1&order=1&search=<?=$search?>&valid=1 ">啟用</a></li>
-							<li><a href="recipe-index.php?page=1&order=1&search=<?=$search?>&valid=0 ">停用</a></li>
-							<li><a href="recipe-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid= ">全部會員</a></li>
+							<li><a class="text-nowrap" href="recipe-index.php?page=1&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=1 ">啟用</a></li>
+							<li><a href="recipe-index.php?page=1&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=0 ">停用</a></li>
+							<li><a href="recipe-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid= ">全部會員</a></li>
 						</ul>
 					</div>					
 				</div>
@@ -423,7 +450,7 @@ $searchCount=$searchrResult-> num_rows;
 		<?php require "recipe-table.php"; ?>
 		</main>
 		<?php require "recipe-add.php"; ?>
-		<?php require "recipe-detail.php"; ?>
+		
 
 		<script type="text/javascript">
 			
