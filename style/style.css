@@ -45,6 +45,16 @@ a:active {
 	--input-border: #ced4da;
 }
 /* module */
+/* button */
+.delete-btn,
+.delete-btn:link,
+.delete-btn:hover {
+	padding: 0.25rem 0.65rem;
+	background: #d90429;
+	color: #fff;
+	border-radius: 3px;
+}
+
 .flex_center {
 	display: flex;
 	justify-content: center;
@@ -237,4 +247,19 @@ a:active {
 .sub_nav_item_content {
 	display: inline-block;
 	width: 100%;
+}
+/* main */
+.main {
+	position: absolute;
+	top: var(--header-height);
+	left: var(--aside-width);
+	background: var(--main-bg);
+	padding: 2.2rem 2.5rem;
+	width: calc(100vw - var(--aside-width));
+	overflow: auto;
+	height: calc(100vh - var(--header-height));
+}
+.main-title {
+	font-size: 2rem;
+	font-weight: normal;
 }

@@ -163,8 +163,6 @@ for (let i = 0; i < detailMaterialBtns.length; i++) {
 // modify & save btn
 let modifyBtn = document.querySelectorAll(".modify-detail-btn");
 let saveBtn = document.querySelectorAll(".save-detail-btn");
-// form
-let modifyForm = document.querySelector(".modify-ricepe-detail-form");
 // inputs
 // let detailInputs = document.querySelectorAll(".detail-item-input");
 let detailSelects = document.querySelectorAll(".detail-item-select");
@@ -198,7 +196,6 @@ for (let j = 0; j < modifyBtn.length; j++) {
 
 for (let j = 0; j < saveBtn.length; j++) {
 	saveBtn[j].addEventListener("click", (e) => {
-		e.preventDefault();
 		let detailInputs = document.querySelectorAll(".detail-item-input");
 		for (let i = 0; i < modifyBtn.length; i++) {
 			modifyBtn[i].disabled = false;
@@ -219,24 +216,6 @@ for (let j = 0; j < saveBtn.length; j++) {
 		for (let i = 0; i < detailMaterialBtns.length; i++) {
 			detailMaterialBtns[i].classList.add("point-event-none");
 		}
-		Toastify({
-			text: "This is a toast",
-			duration: 3000,
-			destination: "https://github.com/apvarun/toastify-js",
-			newWindow: true,
-			close: true,
-			gravity: "top", // `top` or `bottom`
-			position: "left", // `left`, `center` or `right`
-			stopOnFocus: true, // Prevents dismissing of toast on hover
-			style: {
-				background: "linear-gradient(to right, #00b09b, #96c93d)",
-			},
-			onClick: function () {}, // Callback after click
-		}).showToast();
-		setTimeout(function () {
-			let detailForm = document.querySelector("#detail-form");
-			detailForm.submit();
-		}, 3000);
 	});
 }
 // !! back to recipe index btn

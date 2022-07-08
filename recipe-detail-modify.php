@@ -1,6 +1,8 @@
 <?php
 require "db-connect.php";
+session_start();
 
+$modifyRecipe = 0;
 if(isset($_POST["name"])){
     $name = $_POST["name"] ;
     if(empty($name)){
@@ -27,6 +29,7 @@ echo "<br>";
 if(empty($image)){
     $sqlUpadate = "UPDATE recipe SET name='$name', content='$content', category_food='$categoryFood', 
     category_product='$categoryProduct' WHERE id='$id' ";
+    
 } else {
     $sqlUpadate = "UPDATE recipe SET name='$name', content='$content', category_food='$categoryFood', 
     category_product='$categoryProduct', image='$image' WHERE id='$id' ";
@@ -34,16 +37,20 @@ if(empty($image)){
 
 if($conn->query($sqlUpadate)){
     echo "資料更新成功 <br>";
+    $modifyRecipe = 1;
 } else {
     echo "error: " . $conn->error;
+    $modifyRecipe = 0;
 }
 
 echo $id . $categoryFood . $categoryProduct;
 $sqlMaterialDelete="DELETE FROM recipe_material WHERE recipe_id = $id";
 if($conn->query($sqlMaterialDelete)){
     echo "資料刪除成功 <br>";
+    $modifyRecipe = 1;
 } else {
     echo "error: " . $conn->error;
+    $modifyRecipe = 0;
 }
 
 // add material
@@ -69,9 +76,16 @@ foreach ($material as $row) {
 	VALUES('$materialName', $id, '$materialQ' )";
 	if ($conn->query($sqlAddMaterial)) {
 		echo "食材新增成功 <br>";
+        $modifyRecipe = 1;
 	} else {
 		echo "error: " . $conn->error;
+        $modifyRecipe = 0;
 	}
+}
+if($modifyRecipe == 1){
+    $_SESSION["modifyRecipe"]=[
+        "condition" => $modifyRecipe
+    ];
 }
 
 header("location: recipe-index.php")

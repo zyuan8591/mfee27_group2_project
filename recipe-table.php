@@ -1,7 +1,7 @@
 
 
 <?php if ($recipeCount > 0): ?>
-<div>共<?= $recipeCountAll ?>筆</div>
+第<?= $page ?>頁，共<?= $pages ?>頁，共<?= $recipeCountAll ?>筆
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -44,8 +44,8 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<div class=" w-100 d-flex justify-content-center">
-	<div class="btn-group me-2" role="group" >
+<div class="flex_center w-100 position-rel">
+	<div class="btn-group align-self-center" role="group" >
 		<a href="
 			recipe-index.php?order=1&per-page=<?= $perPage ?>
 			&page=<?php $prePage = $page - 1;
@@ -53,27 +53,22 @@
 				$prePage = 1;
 			}
 			echo $prePage;?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-			" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
+			" type="button" class="btn btn-outline-dark text-nowrap ">上一頁</a>
 			<?php for ($i = 1; $i <= $pages; $i++): ?>
 		<a href ="
-		recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-		&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-		" type="button" class="btn btn-outline-dark <?php if ($page == $i) {
-  	echo "active";
-  } ?> ">
+			recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+			&productCate=<?= $productCate ?>&valid=<?= $valid ?>
+			" type="button" class="btn btn-outline-dark <?php if ($page == $i) {echo "active";} ?> ">
 			<?= $i ?>
 		</a>
 		<?php endfor; ?>
 		<a href="
 		recipe-index.php?order=1&per-page=<?= $perPage ?>
-		&page=<?php
-  $nextPage = $page + 1;
-  if ($nextPage > $pages) {
-  	$nextPage = $pages;
-  }
-  echo $nextPage;
-  ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-			" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
+		&page=<?php $nextPage = $page + 1;
+		if ($nextPage > $pages) {$nextPage = $pages;}
+		echo $nextPage; ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+		&productCate=<?= $productCate ?>&valid=<?= $valid ?>" 
+		type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 	</div>
 </div>
 <?php else: ?>
