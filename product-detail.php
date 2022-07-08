@@ -23,6 +23,7 @@
 					class="form-control-plaintext product-input"
 					name="name"
 					value="<?=$row["name"]?>"
+					required
 				/>
 			</div>
 		</div>
@@ -56,6 +57,7 @@
 						class="form-control-plaintext product-input"
 						name="price"
 						value="<?=$row["price"]?>"
+						required
 					/>
 				</div>
 				<label for="" class="col-sm-2 col-form-label">數量</label>
@@ -66,6 +68,7 @@
 						class="form-control-plaintext product-input"
 						name="inventory"
 						value="<?=$row["inventory"]?>"
+						required
 					/>
 				</div>
 			</div>
@@ -74,13 +77,13 @@
 		<div class="mb-3 row">
             <label for="" class="col-sm-auto col-form-label">商品簡介</label>
 			<div class="col">
-            	<input type="text" class="form-control product-input" readonly name="intro" required value="<?=$row["intro"]?>">
+            	<textarea type="text" class="form-control-plaintext product-input " readonly name="intro" required ><?=$row["intro"]?></textarea>
 			</div>
 		</div>
         <div class="mb-3 row">
             <label for="" class="col-sm-auto col-form-label">商品規格</label>
 			<div class="col">
-            	<input type="text" class="form-control product-input" readonly name="spec" required value="<?=$row["spec"]?>">
+            	<textarea type="text" class="form-control-plaintext product-input spec" readonly name="spec" required ><?=$row["spec"]?></textarea>
 			</div>
 		</div>
 		
@@ -99,6 +102,9 @@
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">
 			<label for="" class="form-label">商品圖片　</label>
+			<div class="product-img d-none preview position_rel">
+				<img class="object-cover " src="../img/powerman.jpg" alt="">
+			</div>
 			<label for="product-image" class="product-image">
 				<svg
 					width="134"
@@ -124,7 +130,7 @@
 			</label>
 			<input
 				id="product-image"
-				class="d-none product-input"
+				class="d-none product-input "
 				type="file"
 				accept="image/*"
 				name="product_main_img"
@@ -134,7 +140,7 @@
 			<button class="revise-btn revise-hover" type="submit transition">
 				修改內容
 			</button>
-			<button class="save-btn save-hover transition" type="submit ">
+			<button class="save-btn save-hover transition " type="submit">
 				儲存內容
 			</button>
 			<button class="product-btn back-to-product transition">

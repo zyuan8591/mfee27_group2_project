@@ -88,6 +88,7 @@ for (let i = 0; i < cover.length; i++) {
 let saveBtn = document.querySelectorAll(".save-btn");
 let reviseBtn = document.querySelectorAll(".revise-btn");
 let input = document.querySelectorAll(".product-input");
+let detailForm=document.querySelectorAll(".detail-form");
 for (let j = 0; j < reviseBtn.length; j++) {
     reviseBtn[j].addEventListener("click", (e) => {
 
@@ -104,13 +105,14 @@ for (let j = 0; j < reviseBtn.length; j++) {
         }
     });
 }
-for (let j = 0; j < reviseBtn.length; j++) {
+for (let j = 0; j < saveBtn.length; j++) {
     saveBtn[j].addEventListener("click", (e) => {
 
         saveBtn[j].disabled = true;
         reviseBtn[j].disabled = false;
         reviseBtn[j].classList.add("revise-hover");
         saveBtn[j].classList.remove("save-hover");
+        detailForm[j].submit(); 
         for (let i = 0; i < input.length; i++) {
             input[i].setAttribute("readonly", "readonly");
             input[i].classList.add("form-control-plaintext");
@@ -129,3 +131,14 @@ perPage.addEventListener("change", function(e){
     productSearch.submit();
 })
 
+// img 
+
+let preview=document.querySelector(".preview");
+let picIcon=document.querySelector(".product-image");
+let imgInput=document.querySelector("#product-image");
+
+imgInput.addEventListener("change", function(e){
+    preview.classList.remove("d-none");
+    picIcon.classList.add("d-none");
+
+})

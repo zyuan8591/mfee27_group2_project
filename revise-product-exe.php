@@ -8,6 +8,13 @@ $search = isset($_GET["product_search"]) ? $_GET["product_search"] : "";
 $page = isset($_GET["page"]) ? $_GET["page"]:1;
 $per = isset($_GET["per"]) ? $_GET["per"] : 10;
 
+$sql="SELECT id FROM products";
+$result=$conn->query($sql);
+$rows=$result->fetch_all(MYSQLI_ASSOC);
+foreach ($rows as $row){
+    
+}
+$id=$row["id"] ;
 $name=$_GET["name"];
 $categoryMain=$_GET["category_main"];
 $categorySub=$_GET["category_sub"];
@@ -17,7 +24,7 @@ $intro=$_GET["intro"];
 $spec=$_GET["spec"];
 $pic=$_GET["product_main_img"];
 
-$sqlRevise="UPDATE products SET name=$name, category_main=$categoryMain, category_sub=$categorySub, price=$price, inventory=$inventory, intro=$intro, spec=$spec, pic=$pic";
+$sqlRevise="UPDATE products SET name='$name', category_main='$categoryMain', category_sub='$categorySub', price='$price', inventory='$inventory', intro='$intro', spec='$spec' WHERE id=$id ";
 
 echo $sqlRevise;
 if ($conn->query($sqlRevise) === TRUE) {
@@ -25,4 +32,5 @@ if ($conn->query($sqlRevise) === TRUE) {
 } else {
     echo "更新失敗" . $conn->error;
 }
+header("location: product-index.php?order=$order&filter=$filterNum&page=$page&id=$id&per=$per&product_search=$search")
 ?>
