@@ -53,7 +53,7 @@ if($order == 1 or $order == 3 or $order == 5 or $order == 7){
 		$startDateOrder=5;
 		$endDateOrder=7;	
 	};
-//上下架
+//上下架篩選
 $valid = isset($_GET["valid"]) ? $_GET["valid"] : 1;
 
 //page

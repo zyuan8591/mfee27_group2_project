@@ -37,23 +37,30 @@
 	<?php else:?>
 		目前沒有資料
 	<?php endif;?>
-	<div class="py-2 w-100 d-flex justify-content-center">
-	<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-	<?php for($i=1;$i<=$totalPage;$i++):?>
-    <li class="page-item"><a class="page-link <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>"><?=$i?></a></li>
-	<?php endfor;?>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+<div class="row w-100">
+	<div class="col-4 d-flex justify-content-start">
+		<!-- <select class="form-select per-page" name="per-page" >
+			<option value="1">每頁顯示5筆</option>
+			<option value="2">每頁顯示15筆</option>
+			<option value="3">每頁顯示20筆</option>
+		</select> -->
+	</div>
+	<div class="col-4">
+		<div class="btn-group me-2" role="group" aria-label="First group">
+			<?php if($page != 1):?>
+			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$page-1?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">上一頁</a>
+			<?php endif;?>
+			<?php for($i=1;$i<=$totalPage;$i++):?>
+			<a type="button" class="btn btn-outline-dark <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>"><?=$i?></a>			
+			<?php endfor;?>			
+			<?php if($page != $totalPage):?>			
+			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$page+1?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">下一頁</a>
+			<?php endif;?>
+
+		</div>
+	</div>
+	<div class="col-4"></div>
+
+
 </div>
 
