@@ -2,8 +2,8 @@
 
 
 <table class="coupon-table table table-hover">	
-	<div class="py-2">共<?=$couponCount?>筆資料</div>
-	<?php if($couponCount>0):?>
+	<div class="py-2">第<?=$startItem?>筆-第<?=$endItem?>筆,共<?=$couponCount?>筆資料</div>
+	<?php if($pageCouponCount>0):?>
 		<thead class="table-dark">
 		<tr>
 			<th class="text-center" scope="col">優惠券編號</th>
@@ -37,4 +37,23 @@
 	<?php else:?>
 		目前沒有資料
 	<?php endif;?>
+	<div class="py-2">
+	<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+	<?php for($i=1;$i<=$totalPage;$i++):?>
+    <li class="page-item"><a class="page-link <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>"><?=$i?></a></li>
+	<?php endfor;?>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
 

@@ -1,15 +1,72 @@
 <?php
+if(isset($_GET["page"])){
+	$page=$_GET["page"];
+}else{
+	$page=1;
+};
+
 require("./db-connect.php");
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 if (empty($search)) {
 	$search = "";
 }
+$sqlAll="SELECT * FROM coupon WHERE valid=1";
+$resultAll = $conn->query($sqlAll);
+$couponCount=$resultAll->num_rows;
 
-$sql="SELECT * FROM coupon WHERE name LIKE '%$search%' LIMIT 4" ;
+//order
+$order=isset($_GET["order"])?$_GET["order"]:1;
+switch($order){
+	case 1:
+		$orderType="id ASC";
+		break;
+	case 2:
+		$orderType="id DESC";
+		break;
+	case 3:
+		$orderType="name ASC";
+		break;
+	case 4:
+		$orderType="name DESC";
+		break;
+	case 5:
+		$orderType="start_date ASC";
+		break;
+	case 6:
+		$orderType="start_date DESC";
+		break;
+	case 7:
+		$orderType="end_date ASC";
+		break;
+	case 8:
+		$orderType="end_date DESC";
+		break;
+}if($order == 1 or $order == 3 or $order == 5 or $order == 7){
+		$idOrder= 2;
+		$nameOrder=4;
+		$startDateOrder=6;
+		$endDateOrder=8;						
+	}else{
+		$idOrder= 1;
+		$nameOrder=3;
+		$startDateOrder=5;
+		$endDateOrder=7;	
+	};
 
+
+//page
+$perPage=5;
+$start=($page-1)*$perPage;
+$startItem=($page-1)*$perPage+1;
+$endItem=$page*$perPage;
+if($endItem>$couponCount)$endItem=$couponCount;
+$totalPage=ceil($couponCount / $perPage);
+// $sql="SELECT * FROM coupon WHERE  name LIKE '%$search%' LIMIT 4" ;
+$sql="SELECT * FROM coupon WHERE valid=1 AND name LIKE '%$search%' ORDER BY $orderType LIMIT $start,5";
 $result = $conn->query($sql);
-$couponCount=$result->num_rows;
+$pageCouponCount=$result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+
 //----------------------------------------------
 
 ?>
@@ -313,18 +370,21 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		</aside>
 		<main class="main position-rel">
 			<div>
+
 				<h2 class="main-title">優惠券總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
-				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="">依編號排序</a>
-					<a class="sort-btn transition" href="">依名稱排序</a>
-					<a class="sort-btn transition" href="">依起始日期排序</a>
-					<a class="sort-btn transition" href="">依結束日期排序</a>
+				<div class="sort d-flex align-items-center">					
+					
+					
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$idOrder?>&search=<?=$search?>">依編號排序</a>					
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$nameOrder?>&search=<?=$search?>">依名稱排序</a>
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$startDateOrder?>&search=<?=$search?>">依起始日期排序</a>
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>">依結束日期排序</a>
 				</div>
 				<form class="recipe_search " action="coupon-index.php" method="get">
 					<div class="d-flex align-items-center " >
-						<div class="d-flex ">  <?php //下面要改?>
+						<div class="d-flex ">  
 							<input class="form-control search-box " type="text" name="search" placeholder="搜尋優惠券名稱">
 						</div>
 						<div class="">

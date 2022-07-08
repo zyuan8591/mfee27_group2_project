@@ -14,7 +14,7 @@ $discount=$_POST["discount"];
 // date_default_timezone_set("Asia/Taipei");
 $now=date('Y-m-d H:i:s');
 
-$sql="INSERT INTO coupon (name,number,start_date,end_date,discount,create_time) VALUES ('$name','$number','$startDate','$endDate','$discount','$now')";
+$sql="INSERT INTO coupon (name,number,start_date,end_date,discount,create_time,valid) VALUES ('$name','$number','$startDate','$endDate','$discount','$now','1')";
 
 if($conn->query($sql) === TRUE){
     echo "資料輸入成功";
