@@ -207,3 +207,5 @@ for (let j = 0; j < detailXMark.length; j++) {
 		}
 	});
 }
+
+

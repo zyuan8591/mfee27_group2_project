@@ -1,4 +1,9 @@
+<?php if($ordersCountAll > 0):?>
+	<div class="div">
+		第 <?=$page?>/<?=$totalPage?> 頁，共 <?=$ordersCountAll?> 筆
+	</div>
 <table class="recipe-table table table-hover">
+
 	<thead class="table-dark">
 		<tr>
 			<th class="text-center" scope="col">訂單編號</th>
@@ -7,7 +12,7 @@
 			<th scope="col">訂單狀態</th>
 			<th scope="col">訂單金額</th>
 			<th scope="col">訂單詳情</th>
-			<th scope="col"></th>
+			<!-- <th scope="col"></th> -->
 		</tr>
 	</thead>
 	<tbody>
@@ -26,10 +31,12 @@
 		<?php foreach($rows as $row): ?>
 		<tr>
 			<th class="text-center" scope="row"><?=$row["id"]?></th>
-			<td><?=$row["create_time"]?></td>
+			<td><?=$row["order_time"]?></td>
 			<td><?=$row["name"]?></td>
-			<td></td>
-			<td></td>
+			<td><?=$orderStatusJJ[$row["status_id"]]?></td>
+			<td><?=$orderTotal[$row["id"]]?>
+			
+		</td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
                 <a class="btn-main transition me-3 " href="">刪除</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
@@ -53,6 +60,7 @@
 	</tbody>
 </table>
 
+
 <div class="row w-100">
 	<div class="col-4 d-flex justify-content-start">
 		<!-- <select class="form-select per-page" name="per-page" >
@@ -63,17 +71,21 @@
 	</div>
 	<div class="col-4">
 		<div class="btn-group me-2" role="group" aria-label="First group">
-			<a type="button" class="btn btn-outline-dark">上一頁</a>
+			<a href="orders-index.php?page=<?php $prePage = $page - 1; if($prePage < 1){$prePage = 1;} echo $prePage;?>&order=<?=$order?>&per-page=<?= $perPage ?>&startDate=<?=$startDate?>&endDate=<?=$endDate?>&orderStat=<?=$orderStat?>" type="button" class="btn btn-outline-dark">上一頁</a>
 
             <?php for($i=1;$i<=$totalPage;$i++): ?>
-			<a href="orders-index.php?page=<?=$i?>&order=<?=$order?>" type="button" class="btn btn-outline-dark <?php
+			<a href="orders-index.php?page=<?=$i?>&order=<?=$order?>&per-page=<?= $perPage ?>&orderStat=<?=$orderStat?>&startDate=<?=$startDate?>&endDate=<?=$endDate?>" type="button" class="btn btn-outline-dark <?php
             if($page==$i)echo "active";?>"><?=$i?></a>
 			<?php endfor; ?>
 
-			<a type="button" class="btn btn-outline-dark">下一頁</a>
+			<a href="orders-index.php?page=<?php $nextPage = $page + 1; if($nextPage > $totalPage){$nextPage = $totalPage;} echo $nextPage;?>&order=<?=$order?>&per-page=<?= $perPage ?>&startDate=<?=$startDate?>&endDate=<?=$endDate?>&orderStat=<?=$orderStat?>" type="button" class="btn btn-outline-dark">下一頁</a>
 		</div>
 	</div>
 	<div class="col-4"></div>
+	
 
 
 </div>
+<?php else:?>
+	目前沒有資料
+<?php endif?>
