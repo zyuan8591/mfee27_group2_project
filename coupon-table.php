@@ -46,17 +46,12 @@
 		</select> -->
 	</div>
 	<div class="col-4">
-		<div class="btn-group me-2" role="group" aria-label="First group">
-			<?php if($page != 1):?>
-			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$page-1?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">上一頁</a>
-			<?php endif;?>
+		<div class="btn-group me-2" role="group" aria-label="First group">			
+			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$upPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">上一頁</a>			
 			<?php for($i=1;$i<=$totalPage;$i++):?>
 			<a type="button" class="btn btn-outline-dark <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>"><?=$i?></a>			
-			<?php endfor;?>			
-			<?php if($page != $totalPage):?>			
-			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$page+1?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">下一頁</a>
-			<?php endif;?>
-
+			<?php endfor;?>						
+			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$downPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">下一頁</a>
 		</div>
 	</div>
 	<div class="col-4"></div>

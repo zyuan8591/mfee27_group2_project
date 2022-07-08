@@ -63,6 +63,17 @@ $startItem=($page-1)*$perPage+1;
 $endItem=$page*$perPage;
 if($endItem>$couponCount)$endItem=$couponCount;
 $totalPage=ceil($couponCount / $perPage);
+
+if($page != 1){
+	$upPage=$page-1;
+}else{
+	$upPage=1;
+};?>
+<?php if($page != $totalPage){
+	$downPage=$page+1;
+}else{
+	$downPage=$totalPage;
+};
 // $sql="SELECT * FROM coupon WHERE  name LIKE '%$search%' LIMIT 4" ;
 $sql="SELECT * FROM coupon WHERE valid=$valid AND name LIKE '%$search%' ORDER BY $orderType LIMIT $start,5";
 $result = $conn->query($sql);
