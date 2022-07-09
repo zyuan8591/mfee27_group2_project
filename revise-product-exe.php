@@ -32,5 +32,6 @@ if ($conn->query($sqlRevise) === TRUE) {
 } else {
     echo "更新失敗" . $conn->error;
 }
+
 header("location: product-index.php?order=$order&filter=$filterNum&page=$page&id=$id&per=$per&product_search=$search")
 ?>

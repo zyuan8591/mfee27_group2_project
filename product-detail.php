@@ -77,13 +77,13 @@
 		<div class="mb-3 row">
             <label for="" class="col-sm-auto col-form-label">商品簡介</label>
 			<div class="col">
-            	<textarea type="text" class="form-control-plaintext product-input " readonly name="intro" required ><?=$row["intro"]?></textarea>
+            	<textarea cols="30" rows="10" type="text" class="form-control-plaintext product-input " readonly name="intro" required ><?=$row["intro"]?></textarea>
 			</div>
 		</div>
         <div class="mb-3 row">
             <label for="" class="col-sm-auto col-form-label">商品規格</label>
 			<div class="col">
-            	<textarea type="text" class="form-control-plaintext product-input spec" readonly name="spec" required ><?=$row["spec"]?></textarea>
+            	<textarea cols="30" rows="15" type="text" class="form-control-plaintext product-input spec" readonly name="spec" required ><?=$row["spec"]?></textarea>
 			</div>
 		</div>
 		
