@@ -18,16 +18,16 @@
 		<tbody>
 		<?php foreach($rows as $row):?>
 		<tr>
-			<th class="text-center" scope="row"><?=$row["id"]?></th>
+			<th name="id" class="text-center" scope="row"><?=$row["id"]?></th>
 			<td><?=$row["name"]?></td>
 			<td><?=$row["number"]?></td>
 			<td><?=$row["start_date"]?></td>
 			<td><?=$row["end_date"]?></td>
 			<td><?=$row["discount"]?></td>
-			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
-				<a class="btn-main transition me-3 on-shelf  <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" href="">上架</a>
-				<a class="btn-main transition me-3 off-shelf  <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" href="">下架</a>
-				<a class="btn-main transition me-3 coupon-detail" href="">詳細資料</a>
+			<td class="d-flex flex-wrap flex-shrink-1 gap-2">								
+				<a class="btn-main transition me-3 on-shelf  <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">上架</a>
+				<a class="btn-main transition me-3 off-shelf  <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">下架</a>
+				<a class="btn-main transition me-3 coupon-detail" href="">詳細資料</a>			
 				<?php require "coupon-detail.php"; ?>					
 			</td>
 		</tr>
@@ -55,7 +55,6 @@
 		</div>
 	</div>
 	<div class="col-4"></div>
-
 
 </div>
 
