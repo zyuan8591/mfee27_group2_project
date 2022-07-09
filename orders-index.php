@@ -10,7 +10,7 @@ if(isset($_GET["page"])){
 if(isset($_GET["per-page"])){
 	$perPage=$_GET["per-page"];	
 }else{
-	$perPage = 5;
+	$perPage = 10;
 };
 
 $start=($page-1)*$perPage;
@@ -263,7 +263,7 @@ $totalPage=ceil($ordersCountAll / $perPage);
 				</div>
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="orders-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5" <?php if ($perPage == 5) {echo "selected";} ?> >每頁顯示5筆</option>
+						<option value="5" <?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
 						<option value="15" <?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
 						<option value="20" <?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>

@@ -1,7 +1,5 @@
 <?php if($ordersCountAll > 0):?>
-	<div class="div">
-		第 <?=$page?>/<?=$totalPage?> 頁，共 <?=$ordersCountAll?> 筆
-	</div>
+第 <?=$page?>頁，共<?=$totalPage?>頁，共<?=$ordersCountAll?>筆
 <table class="recipe-table table table-hover">
 
 	<thead class="table-dark">
@@ -10,7 +8,7 @@
 			<th scope="col">訂單日期</th>
 			<th scope="col">會員名稱</th>
 			<th scope="col">訂單狀態</th>
-			<th scope="col">訂單金額</th>
+			<th class="text-end" scope="col">訂單金額</th>
 			<th scope="col">訂單詳情</th>
 			<!-- <th scope="col"></th> -->
 		</tr>
@@ -34,9 +32,7 @@
 			<td><?=$row["order_time"]?></td>
 			<td><?=$row["name"]?></td>
 			<td><?=$orderStatusJJ[$row["status_id"]]?></td>
-			<td><?=$orderTotal[$row["id"]]?>
-			
-		</td>
+			<td class="text-end"><?= number_format($orderTotal[$row["id"]])?> </td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
                 <a class="btn-main transition me-3 " href="">刪除</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
