@@ -116,7 +116,7 @@ a:active {
 	box-shadow: var(--box-shadow);
 	width: 100%;
 	position: fixed;
-	z-index: 50;
+	/* z-index: 50; */
 }
 /* logo & title */
 .logo {
@@ -247,7 +247,6 @@ a:active {
 }
 /* sort by -- */
 .sort-search {
-	
 	margin: 0.5rem 0 0 0;
 }
 .sort {
@@ -297,7 +296,7 @@ a:active {
 	padding: 0.5rem;
 }
 .filter-item {
-	width: 100px;
+	min-width: 100px;
 	margin-left: 0.5rem;
 }
 .filter-btn {
@@ -376,7 +375,7 @@ a:active {
 	overflow: auto;
 }
 .fa-xmark {
-	top: .75rem;
+	top: 0.75rem;
 	right: 1rem;
 	font-size: 1.5rem;
 	cursor: pointer;
@@ -392,7 +391,7 @@ a:active {
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
-	padding: .25rem;
+	padding: 0.25rem;
 	font-family: "Noto Sans TC", sans-serif;
 }
 .new-material-btn:active {
@@ -411,7 +410,7 @@ a:active {
 	white-space: nowrap;
 	padding: 0.3rem 0.5rem;
 	background: var(--header-bg);
-	margin: .3rem;
+	margin: 0.3rem;
 	border: 0;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);

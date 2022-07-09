@@ -1,96 +1,131 @@
 <main class="main position-rel">
 
-<?php
-require "./db-connect.php";
+	<?php
+	require "./db-connect.php";
 
-$order = isset($_GET["order"]) ? $_GET["order"] : 1;
-switch ($order) {
-	case 1:
-		$orderType = "id ASC";
-		break;
-	case 2:
-		$orderType = "id DESC";
-		break;
-	case 3:
-		$orderType = "name ASC";
-		break;
-	case 4:
-		$orderType = "name DESC";
-		break;
-	case 5:
-		$orderType = "create_time ASC";
-		break;
-	case 6:
-		$orderType = "create_time DESC";
-		break;
-	default:
-		$orderType = "id ASC";
-		break;
-}
-$sqlWhereSearch = "";
-if (!isset($_GET["product_search"])) {
-	$product_search = "";
-	$productCount = 0;
-} else {
-	$product_search = $_GET["product_search"];
-	$sqlWhereSearch = "AND name LIKE '%$product_search%'";
-}
-$sql = "SELECT * FROM products WHERE valid=1 $sqlWhereSearch ORDER BY $orderType ";
+	$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+	switch ($order) {
+		case 1:
+			$orderType = "id ASC";
+			break;
+		case 2:
+			$orderType = "id DESC";
+			break;
+		case 3:
+			$orderType = "name ASC";
+			break;
+		case 4:
+			$orderType = "name DESC";
+			break;
+		case 5:
+			$orderType = "create_time ASC";
+			break;
+		case 6:
+			$orderType = "create_time DESC";
+			break;
+		default:
+			$orderType = "id ASC";
+			break;
+	}
 
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-$productCount = $result->num_rows;
+	$sqlCompany = "SELECT id, name FROM company_users";
+	$resultCompany = $conn->query($sqlCompany);
+	$rowsCompany = $resultCompany->fetch_all(MYSQLI_ASSOC);
+	foreach ($rowsCompany as $row) {
+		$companyName[$row["id"]] = $row["name"];
+	}
 
-$sqlCompany = "SELECT id, name FROM company_users";
-$resultCompany = $conn->query($sqlCompany);
-$rowsCompany = $resultCompany->fetch_all(MYSQLI_ASSOC);
-foreach ($rowsCompany as $row) {
-	$companyName[$row["id"]] = $row["name"];
-}
+	$sqlCate = "SELECT id, name FROM products_category";
+	$resultCate = $conn->query($sqlCate);
+	$rowsCate = $resultCate->fetch_all(MYSQLI_ASSOC);
+	foreach ($rowsCate as $row) {
+		$cate[$row["id"]] = $row["name"];
+	}
 
-$sqlCate = "SELECT id, name FROM products_category";
-$resultCate = $conn->query($sqlCate);
-$rowsCate = $resultCate->fetch_all(MYSQLI_ASSOC);
-foreach ($rowsCate as $row) {
-	$cate[$row["id"]] = $row["name"];
-}
+	$sqlCateSub = "SELECT id, name FROM products_category_sub";
+	$resultCateSub = $conn->query($sqlCateSub);
+	$rowsCateSub = $resultCateSub->fetch_all(MYSQLI_ASSOC);
+	foreach ($rowsCateSub as $row) {
+		$cateSub[$row["id"]] = $row["name"];
+	}
 
-$sqlCateSub = "SELECT id, name FROM products_category_sub";
-$resultCateSub = $conn->query($sqlCateSub);
-$rowsCateSub = $resultCateSub->fetch_all(MYSQLI_ASSOC);
-foreach ($rowsCateSub as $row) {
-	$cateSub[$row["id"]] = $row["name"];
-}
-?>
+	$search = isset($_GET["product_search"]) ? $_GET["product_search"] : "";
+
+	$filterNum = isset($_GET["filter"]) ? $_GET["filter"] : "";
+	if (empty($_GET["filter"])) {
+		$filter = "";
+	} else {
+		$filter = "AND category_sub=$filterNum";
+	}
+	$validNum = isset($_GET["valid"]) ? $_GET["valid"] : "";
+	if ($validNum == "") {
+		$valid = "";
+	} elseif ($validNum == 0) {
+		$valid = "AND valid=0";
+	} else {
+		$valid = "AND valid=$validNum";
+	}
+
+	if (isset($_GET["page"])) {
+		$page = $_GET["page"];
+	} else {
+		$page = 1;
+	}
+
+	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid";
+	$resultAll = $conn->query($sqlAll);
+	$productCountAll = $resultAll->num_rows;
+
+
+	$per = isset($_GET["per"]) ? $_GET["per"] : 10;
+	
+	$start = ($page - 1) * $per;
+	$startPage = ($page - 1) * $per + 1;
+
+	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid ORDER BY $orderType LIMIT $start, $per";
+
+	$result = $conn->query($sql);
+	$rows = $result->fetch_all(MYSQLI_ASSOC);
+	$productCount = $result->num_rows;
+
+	$totalPage = ceil($productCountAll / $per);
+	if($productCountAll<10){
+		$per=$productCountAll;
+	}
+
+	?>
 	<div>
 		<h2 class="main-title">商品總覽</h2>
 	</div>
+
 	<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
-   	$order == 1
-   ): ?>product-index.php?order=2<?php elseif (
-   	$order == 2
-   ): ?>product-index.php?order=1<?php else: ?>product-index.php?order=1<?php endif; ?>">依編號排序</a>
+														$order == 1
+													) : ?>product-index.php?order=2&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
+																																	$order == 2
+																																) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
-   	$order == 3
-   ): ?>product-index.php?order=4<?php elseif (
-   	$order == 4
-   ): ?>product-index.php?order=3<?php else: ?>product-index.php?order=3<?php endif; ?>">依名稱排序</a>
+														$order == 3
+													) : ?>product-index.php?order=4&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
+																																	$order == 4
+																																) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依名稱排序</a>
 			<a class="sort-btn transition" href="<?php if (
-   	$order == 5
-   ): ?>product-index.php?order=6<?php elseif (
-   	$order == 6
-   ): ?>product-index.php?order=5<?php else: ?>product-index.php?order=5<?php endif; ?>">依日期排序</a>
+														$order == 5
+													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
+																																	$order == 6	) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依日期排序</a>
 		</div>
-		<div class="d-flex">
-			<select class="form-select mx-2" aria-label="Default select example">
-				<option selected>筆數</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
-			<form class="" action="product-index.php" method="get">
+
+			<form class="product_search d-flex align-items-center " action="product-index.php" method="get">
+			<div class="mx-3">
+				<select class="form-select mx-2 per-page" aria-label="Default select example" name="per">
+
+					<option value="10" <?php if($per == 10){echo "selected";}?>>10</option>
+					<option value="20" <?php if ($per == 20){echo "selected";}?>>20</option>
+					<option value="<?=$productCountAll?>"<?php if ($per == $productCountAll){echo "selected";}?>>all</option>
+
+				</select>
+			</div>
 				<div class="d-flex align-items-center ">
 					<div class="d-flex ">
 						<input class="form-control search-box " type="text" name="product_search" placeholder="搜尋商品名稱">
@@ -104,7 +139,6 @@ foreach ($rowsCateSub as $row) {
 					</div>
 				</div>
 			</form>
-		</div>
 	</div>
 	<div class="d-flex justify-content-between align-items-center my-3">
 		<div class="filter d-flex align-items-center">
@@ -114,19 +148,22 @@ foreach ($rowsCateSub as $row) {
 			<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.5701 1.9264L1.5739 1.9185C1.69657 1.67108 1.96042 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3" />
 			</svg>
-			<div class="filter-item  position-rel">
-				<button class="filter-btn transition">商品種類</button>
+			<div class="filter-item  position-rel ">
+				<button class="filter-btn transition"><?php if ($productCount == 0) : echo "商品類別" ?><?php elseif ($filterNum == "") : echo "商品類別" ?><?php else : echo $cateSub[$filterNum] ?><?php endif; ?></button>
 				<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-					<li><a href="">Coffee</a></li>
-					<li><a href="">Cake</a></li>
-					<li><a href=""></a></li>
+					<li><a class="text-nowrap " href="product-index.php?filter=&valid=<?= $validNum ?>">全部</a></li>
+					<?php foreach ($rowsCateSub as $row) : ?>
+						<li><a href="product-index.php?filter=<?= $row["id"] ?>&valid=<?= $validNum ?>"><?= $row["name"] ?></a></li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
-			<div class=" filter-item position-rel">
-				<button class=" filter-btn transition">商品狀態</button>
-				<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-					<li><a class="text-nowrap " href="">上架中</a></li>
-					<li><a href="">下架中</a></li>
+
+			<div class=" filter-item position-rel ">
+				<button class=" filter-btn transition"><?php if ($validNum == 1) : echo "上架中" ?><?php elseif ($validNum == ""): echo "商品狀態"?><?php elseif($validNum == 0) : echo "下架中" ?><?php else : echo "商品狀態" ?><?php endif; ?></button>
+				<ul class="filter-dropdown  unstyled_list position_abs invisible text-center ">
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=">全部</a></li>
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=1">上架中</a></li>
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=0">下架中</a></li>
 				</ul>
 			</div>
 		</div>
@@ -134,7 +171,8 @@ foreach ($rowsCateSub as $row) {
 			<a class="add-product-btn transition" href="">新增商品</a>
 		</div>
 	</div>
-	<div>共<?= $productCount ?>筆</div>
+	<div>共<?= $productCountAll ?>筆</div>
+
 	<table class="table table-hover">
 		<thead class="table-dark">
 			<tr class="">
@@ -147,19 +185,22 @@ foreach ($rowsCateSub as $row) {
 				<th scope="col">編輯商品</th>
 			</tr>
 		</thead>
+
 		<tbody class="">
-			<?php foreach ($rows as $row): ?>
+			<?php foreach ($rows as $row) : ?>
+
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
 					<td><?= $companyName[$row["company_id"]] ?></td>
 					<td><?= $row["name"] ?></td>
 					<td><?= $cate[$row["category_main"]] ?></td>
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
-					<td><?= $row["valid"] ?></td>
+					<td><?php if ($row["valid"] == 1) : ?><?= "上架中" ?><?php else : ?><?= "下架中" ?><?php endif; ?></td>
 					<td class="">
-						<button class="table-btn list">上架</button>
-						<button class="table-btn unlist">下架</button>
+						<a href="list-unlist.php?order=<?=$order?>&filter=<?= $filterNum ?>&page=<?=$page?>&id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn <?php if ($row["valid"]==1){echo "point-none";} ?>">上架</a>
+						<a href="list-unlist.php?order=<?=$order?>&filter=<?= $filterNum ?>&page=<?=$page?>&id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn <?php if ($row["valid"]==0){echo "point-none";} ?>">下架</a>
 						<button class="table-btn detail-btn">詳細資料</button>
+						<?php require "product-detail.php"; ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
@@ -167,7 +208,9 @@ foreach ($rowsCateSub as $row) {
 	</table>
 	<div class="page d-flex justify-content-center">
 		<div class="btn-group me-2" role="group" aria-label="First group">
-			<button type="button" class="btn btn-outline-dark">1</button>
+			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
+				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>"><?= $i ?></a>
+			<?php endfor; ?>
 		</div>
 	</div>
 </main>
