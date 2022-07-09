@@ -119,7 +119,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="mb-3 row">
+		<!-- <div class="mb-3 row">
 			<label for="" class="form-label">食譜成品圖</label>
 			<label for="recipe-image" class="recipe-image">
 				<svg
@@ -153,7 +153,7 @@
 					disabled="true"
 				/>
 			</div>
-		</div>
+		</div> -->
 		<div class="d-flex justify-content-center">
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
 				修改食譜

@@ -92,22 +92,6 @@
 				><?= $row["content"] ?></textarea>
 			</div>
 		</div>
-		<div class="mb-3 d-flex flex-column align-items-start">
-			<label for="" class="form-label">食譜成品圖</label>
-			<label for="detail-image" class="detail-image">
-                <div class="preview-add-img-container">
-                    <img src="img/recipe_img/<?= $row["image"] ?>" alt="" class="object-cover detailImgPre" id="">
-                    
-                </div>
-			</label>
-			<input
-				id="detail-image"
-				class=" detail-item-img detail-file d-none"
-				type="file"
-				accept="image/*"
-				disabled="true"
-			/>
-		</div>
 		<div class="mb-3 flex_center">
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
 				修改食譜
