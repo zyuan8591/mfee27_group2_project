@@ -1,6 +1,6 @@
 <?php
 if(!isset($_POST["name"])){
-    echo "沒有帶資料";
+    echo "沒有帶資料"; 
     exit;
 }
 
@@ -14,6 +14,8 @@ $phone=$_POST["phone"];
 $address=$_POST["address"];
 $intro=$_POST["intro"];
 $now=date('Y-m-d H:i:s');
+
+// var_dump($_FILES["add-company-file"]);
 
 if(empty($name)){
     echo "請輸入名稱";
@@ -50,17 +52,30 @@ if($userCount>0){
     exit;
 }
 
-$sql="INSERT INTO company_users (name, email, password, phone, address, create_time, logo_img, intro, valid) VALUES ('$name', '$email', '$password', '$phone', '$address', '$now', 'none', '$intro', 1)";
 
-if ($conn->query($sql) === TRUE) {
-    echo "資料表新增成功";
-} else {
-    echo "修改資料表錯誤: " . $conn->error;
+if($_FILES["add-company-file"]["error"]==0){
+
+    if(move_uploaded_file($_FILES["add-company-file"]["tmp_name"],"./company_img/".$_FILES["add-company-file"]["name"])){
+        
+        $fileName=$_FILES["add-company-file"]["name"];
+
+        $sql="INSERT INTO company_users (name, email, password, phone, address, create_time, logo_img, intro, valid) VALUES ('$name', '$email', '$password', '$phone', '$address', '$now', '$fileName', '$intro', 1)";
+        
+
+        if ($conn->query($sql) === TRUE) {
+            echo "資料新增成功";
+        } else {
+            echo "資料新增失敗: " . $conn->error;
+        }
+        echo "upload success!";
+        // header("location: company-member-all-index.php");
+    }else{
+        echo "upload fail!!";
+    }
 }
 
 $conn->close();
 
-// header("location: company-detail.php?");
 
 
 

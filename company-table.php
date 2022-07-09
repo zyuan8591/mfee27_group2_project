@@ -22,12 +22,12 @@
    			} ?></td>
 			<td><?=$row["create_time"]?></td>
 			<td>
-				<button type="submit" class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {
-					echo "on-off-btn";
-    			} ?>" href="">啟用</button> 	
-				<button type="submit" class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {
-					echo "on-off-btn";
-    			} ?>" href="">停用</button>
+				<a type="submit" class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {
+					echo "point-event-none";
+    			} ?>" href="company-onoff-shelf.php?id=<?=$row["id"]?>&per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=<?=$order?>&valid=<?=$valid?>">啟用</a> 	
+				<a type="submit" class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {
+					echo "point-event-none";
+    			} ?>" href="company-onoff-shelf.php?id=<?=$row["id"]?>&per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=<?=$order?>&valid=<?=$valid?>">停用</a>
 				<button type="submit" class="btn-main transition me-3 detail" href="">詳細資料</button>
 				<?php require "company-detail.php"; ?>
 			</td>
@@ -38,7 +38,7 @@
 <div class="col-4">
 	<div class="btn-group me-2" role="group" >
 		<?php for ($i=1; $i<=$totalPage; $i++): ?>
-		<a href ="company-member-all-index.php?page=<?=$i?>" type="button" class="btn btn-outline-dark <?php if ($page==$i) {
+		<a href ="company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$i?>&search=<?=$search?>&order=1&valid=<?=$valid?>" type="button" class="btn btn-outline-dark <?php if ($page==$i) {
 					echo "active";
     			} ?>">
 			<?=$i?>

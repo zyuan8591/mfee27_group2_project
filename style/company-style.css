@@ -14,6 +14,9 @@
 	font-size: 2rem;
 	font-weight: normal;
 }
+.cursor-pointer{
+	cursor: pointer;
+}
 /* sort by -- */
 .sort-search {
 	margin: 0.5rem 0 0 0;
@@ -119,9 +122,11 @@
 .add-company-btn:active {
 	outline: var(--outline);
 }
+
 /* on & off btn 啟用 停用 */
-.on-off-btn{
-	background-color: var(--button-active);
+.point-event-none{
+	pointer-events: none;
+	opacity: 0.5;
 }
 /* add-new-company-page--廠商詳細資料頁--------------------------------------------------- */
 .new-company-page {
@@ -160,16 +165,13 @@
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 }
-.form-control:focus {
+.form-control:focus{
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
 .food-img {
 	width: 130px;
 	height: 130px;
-}
-.add-company-image{
-	cursor: pointer;
 }
 .add-image-container { 
 	height: 134px;

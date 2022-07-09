@@ -3,12 +3,19 @@
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 if (empty($page)) {
 	$page = 1;
+}elseif ($page < 1) {
+	$page = 1;
 }
 
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;
 if (empty($order)) {
 	$order = 1;
 }
+
+$perpage= isset($_GET["per-page"])? $_GET["per-page"] : 10;
+// if (empty($perpage)){
+// 	$perpage = 10;
+// }
 
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 if (empty($search)) {
@@ -28,7 +35,7 @@ if ($valid == "") {
 }
 
 
-require "db-connect.php";
+require ("db-connect.php");
 
 //全部廠商會員
 $sqlAll = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid";
@@ -37,7 +44,7 @@ $CompanyUsersCountAll = $resultAll->num_rows;
 $rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
 
 //分頁
-$perpage = 10;
+// $perpage = 10;
 $start = ($page - 1) * $perpage;
 $totalPage = ceil($CompanyUsersCountAll / $perpage);
 
@@ -62,7 +69,7 @@ switch($order){
 
 
 //每頁會員數量
-$sql = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid ORDER BY $orderType LIMIT $start, 10 ";
+$sql = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid ORDER BY $orderType LIMIT $start, $perpage ";
 $result = $conn->query($sql);
 $pagesCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -378,35 +385,45 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center position-rel">
-					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition">依編號排序</button>
-						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li>
-								<a class="sort-btn transition fa-solid fa-arrow-up <?php if ($order == 2) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=2">從高到低</a>
-							</li>
-							<li>
-								<a class="sort-btn text-nowrap  transition fa-solid fa-arrow-down <?php if ($order == 1) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=1">從低到高</a>
-							</li>
-						</ul>
+					<div >
+						<a 
+							class=" filter-btn transition" 
+							href="<?php if ($order == 2):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=1&valid=<?=$valid?>
+							<?php elseif ($order == 1):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=2&valid=<?=$valid?>
+							<?php else: ?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=1&valid=<?=$valid?>
+							<?php endif; ?>
+							">依編號排序</a>
 					</div>
-					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition">依日期排序</button>
-						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">	
-							<li>
-								<a class="sort-btn transition fa-solid fa-arrow-up <?php if ($order == 3) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=3">從舊到新</a>
-							</li>
-							<li>
-								<a class="sort-btn text-nowrap  transition fa-solid fa-arrow-down <?php if ($order == 4) echo "active" ?>" href="company-member-all-index.php?page=<?=$page?>&order=4">從新到舊</a>
-							</li>
-						</ul>
+					<div >
+						<a 
+							class=" filter-btn transition" 
+							href="<?php if ($order == 3):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=4&valid=<?=$valid?>
+							<?php elseif ($order == 4):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=3&valid=<?=$valid?>
+							<?php else: ?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=4&valid=<?=$valid?>
+							<?php endif; ?>
+							">依日期排序</a>
 					</div>		
 				</div>
-				<form class="company_search " action="company-member-all-index.php" method="get">
+				<form class="company_search d-flex flex-wrap align-items-center gap-2" action="company-member-all-index.php" method="get">
+					<select class="per-page" name="per-page" id="per-page">
+						<option value="5"
+						<?php if ($perpage == 5) {echo "selected";} ?>>每頁顯示5筆</option>
+						<option value="10"
+						<?php if ($perpage == 10) {echo "selected";} ?>>每頁顯示10筆</option>
+						<option value="15"
+						<?php if ($perpage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
+					</select>
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">
 							<input class="form-control search-box " type="text" name="search" value="<?= $search ?>" placeholder="搜尋廠商名稱">
 						</div>
-						<div class="">
+						<div>
 							<button class="search-btn form-control">
 								<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M17.7292 18.8489L10.8802 11.9999C10.3594 12.4513 9.75174 12.8029 9.05729 13.0546C8.36285 13.3063 7.625 13.4322 6.84375 13.4322C4.96875 13.4322 3.38021 12.7812 2.07812 11.4791C0.776042 10.177 0.125 8.60582 0.125 6.76554C0.125 4.92527 0.776042 3.35409 2.07812 2.052C3.38021 0.749919 4.96007 0.098877 6.81771 0.098877C8.65799 0.098877 10.2248 0.749919 11.5182 2.052C12.8116 3.35409 13.4583 4.92527 13.4583 6.76554C13.4583 7.51207 13.3368 8.23256 13.0937 8.927C12.8507 9.62145 12.4861 10.2725 12 10.8801L18.875 17.703L17.7292 18.8489ZM6.81771 11.8697C8.22396 11.8697 9.42188 11.3706 10.4115 10.3723C11.401 9.37405 11.8958 8.17179 11.8958 6.76554C11.8958 5.35929 11.401 4.15704 10.4115 3.15877C9.42188 2.16051 8.22396 1.66138 6.81771 1.66138C5.3941 1.66138 4.18316 2.16051 3.1849 3.15877C2.18663 4.15704 1.6875 5.35929 1.6875 6.76554C1.6875 8.17179 2.18663 9.37405 3.1849 10.3723C4.18316 11.3706 5.3941 11.8697 6.81771 11.8697Z" fill="#222222"/>

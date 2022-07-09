@@ -41,7 +41,12 @@ for (let i = 0; i < filterItems.length; i++) {
 		filterDropDowm[i].classList.add("invisible");
 	});
 }
-
+//perpage 每頁顯示x筆
+let perPage = document.querySelector(".per-page");
+let searchForm = document.querySelector(".company_search");
+perPage.addEventListener("change", function () {
+	searchForm.submit();
+});
 // call add page 新增廠商
 let newCompanyPage = document.querySelector(".new-company-page");// 新增廠商頁面
 let addCompanyBtn = document.querySelector(".add-company-btn");// 新增廠商btn
@@ -60,6 +65,31 @@ xMark.addEventListener("click", function (e) {
 	newCompanyPage.classList.add("invisible");
 });
 
+//add page img
+let addImg = document.querySelector(".add-company-image");
+let newImg = document.querySelector(".add-new-img");
+let svgImg = document.querySelector(".add-svg-img");
+
+addImg.addEventListener("change",(e) => {
+	let file = addImg.files[0].name;
+	if(file){
+		newImg.classList.remove("d-none");
+		newImg.src = `./company_img/${file}`;
+		svgImg.classList.add("d-none");
+	}
+});
+// let addImg = document.querySelector("#add-recipe-image");
+// let preImg = document.querySelector("#recipeImgPre");
+// let preSvg = document.querySelector("#recipeSvgPre");
+// addImg.addEventListener("change", (e) => {
+// 	let file = addImg.files[0].name;
+// 	if (file) {
+// 		preImg.classList.remove("d-none");
+// 		preImg.src = `img/recipe_img/${file}`;
+// 		preSvg.classList.add("d-none");
+// 	}
+// });
+
 // call detail page 詳細資料
 let detailPage = document.querySelectorAll(".company-datail");
 let detailBtn = document.querySelectorAll(".detail"); //詳細資料btn
@@ -74,9 +104,22 @@ for (let i = 0; i < detailBtn.length; i++) {
 	});
 }
 
-// detailCover.addEventListener("click", (e) => {
-// 	detailPage.classList.add("invisible");
-// });
+detailCover.addEventListener("click", (e) => {
+	detailPage.classList.add("invisible");
+});
+
+//detail img
+let modifyImg = document.querySelectorAll(".detail-file");
+let detailImg = document.querySelectorAll(".detailImgPre");
+
+for (let i = 0; i < modifyImg.length; i++) {
+	modifyImg[i].addEventListener("change", (e) => {
+		let file = modifyImg[i].files[0].name;
+		if (file) {
+			detailImg[i].src = `./company_img/${file}`;
+		}
+	});
+}
 
 // modify detail ---------------------------------------
 // modify & save btn 儲存
@@ -86,7 +129,8 @@ let saveBtn = document.querySelectorAll(".save-detail-btn");
 let modifyForm = document.querySelectorAll(".modify-company-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
-// let detailImgs = document.querySelectorAll(".detail-item-img");
+let detailImgs = document.querySelectorAll(".detail-item-img");
+// let addImageContainer = document.querySelectorAll(".add-image-container");
 
 for(let j=0; j<modifyBtn.length; j++){
 modifyBtn[j].addEventListener("click", (e) => {
@@ -99,9 +143,13 @@ modifyBtn[j].addEventListener("click", (e) => {
 		detailInputs[i].classList.add("form-control");
 	}
 
-	// for (let i = 0; i < detailImgs.length; i++) {
-	// 	detailImgs[i].disabled = false;
+	// for (let i = 0; i < addImageContainer; i++){
+	// 	addImageContainer[i].classList.add("form-control");
 	// }
+
+	for (let i = 0; i < detailImgs.length; i++) {
+		detailImgs[i].disabled = false;
+	}
 });
 }
 for(let j=0; j<saveBtn.length; j++){
@@ -115,9 +163,9 @@ saveBtn[j].addEventListener("click", () => {
 		detailInputs[i].classList.add("form-control-plaintext");
 	}
 
-	// for (let i = 0; i < detailImgs.length; i++) {
-	// 	detailImgs[i].disabled = true;
-	// }
+	for (let i = 0; i < detailImgs.length; i++) {
+		detailImgs[i].disabled = true;
+	}
 });
 }
 // !! back to recipe index btn 返回列表
@@ -133,9 +181,9 @@ backToCompanyDe[j].addEventListener("click", function (e) {
 		detailInputs[i].classList.add("form-control-plaintext");
 	}
 
-	// for (let i = 0; i < detailImgs.length; i++) {
-	// 	detailImgs[i].disabled = true;
-	// }
+	for (let i = 0; i < detailImgs.length; i++) {
+		detailImgs[i].disabled = true;
+	}
 });
 }
 for(let j=0; j<detailXMark.length; j++){
@@ -149,8 +197,8 @@ detailXMark[j].addEventListener("click", function (e) {
 		detailInputs[i].classList.add("form-control-plaintext");
 	}
 
-	// for (let i = 0; i < detailImgs.length; i++) {
-	// 	detailImgs[i].disabled = true;
-	// }
+	for (let i = 0; i < detailImgs.length; i++) {
+		detailImgs[i].disabled = true;
+	}
 });
 }

@@ -115,9 +115,9 @@ saveBtn.addEventListener("click", (e) => {
 	for (let i = 0; i < detailSelects.length; i++) {
 		detailSelects[i].disabled = true;
 	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = true;
+	// }
 });
 // !! back to recipe index btn
 backToRecipeDe.addEventListener("click", function (e) {
@@ -133,9 +133,9 @@ backToRecipeDe.addEventListener("click", function (e) {
 	for (let i = 0; i < detailSelects.length; i++) {
 		detailSelects[i].disabled = true;
 	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = true;
+	// }
 });
 detailXMark.addEventListener("click", function (e) {
 	detailPage.classList.add("invisible");
@@ -149,7 +149,7 @@ detailXMark.addEventListener("click", function (e) {
 	for (let i = 0; i < detailSelects.length; i++) {
 		detailSelects[i].disabled = true;
 	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = true;
+	// }
 });
