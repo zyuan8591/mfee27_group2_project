@@ -120,9 +120,10 @@
 			<div class="mx-3">
 				<select class="form-select mx-2 per-page" aria-label="Default select example" name="per">
 
-					<option value="10" <?php if($per == 10){echo "selected";}?>>10</option>
-					<option value="20" <?php if ($per == 20){echo "selected";}?>>20</option>
-					<option value="<?=$productCountAll?>"<?php if ($per == $productCountAll){echo "selected";}?>>all</option>
+					<option value="10" <?php if($per == 10){echo "selected";}?>>每頁顯示10筆</option>
+					<option value="15" <?php if($per == 15){echo "selected";}?>>每頁顯示15筆</option>
+					<option value="20" <?php if($per == 20){echo "selected";}?>>每頁顯示20筆</option>
+					<option value="<?=$productCountAll?>"<?php if ($per == $productCountAll){echo "selected";}?>>全部顯示</option>
 
 				</select>
 			</div>
@@ -171,8 +172,8 @@
 			<a class="add-product-btn transition" href="">新增商品</a>
 		</div>
 	</div>
-	<div>共<?= $productCountAll ?>筆</div>
-
+	<?php if($productCountAll > 0): ?>
+	第<?= $page ?>頁，共<?= $totalPage ?>頁，共<?= $productCountAll ?>筆
 	<table class="table table-hover">
 		<thead class="table-dark">
 			<tr class="">
@@ -208,9 +209,27 @@
 	</table>
 	<div class="page d-flex justify-content-center">
 		<div class="btn-group me-2" role="group" aria-label="First group">
+			<a href="
+			product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>
+			&page=<?php $prePage = $page - 1;
+			if ($prePage < 1) {
+				$prePage = 1;
+			}
+			echo $prePage;?>&per=<?=$per?>
+			" type="button" class="btn btn-outline-dark text-nowrap ">上一頁</a>
 			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
-				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>"><?= $i ?></a>
+				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="
+				product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>"><?= $i ?></a>
 			<?php endfor; ?>
+			<a href="
+			product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>
+			&page=<?php $nextPage = $page + 1;
+			if ($nextPage > $totalPage) {$nextPage = $totalPage;}
+			echo $nextPage; ?>&per=<?=$per?>" 
+			type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 		</div>
 	</div>
 </main>
+<?php else: ?>
+目前尚無資料
+<?php endif;?>
