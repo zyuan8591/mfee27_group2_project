@@ -25,7 +25,7 @@
             <input type="text" class="form-control" name="discount" required>
         </div>
         <div class="mb-3 flex_center">
-            <button class="add-detail-btn save-and-add-coupon-btn me-3" type="submit transition">新增</button>
+            <button class="add-detail-btn save-and-add-coupon-btn me-3 transition" type="submit ">新增</button>
             <button class="add-detail-btn back-coupon transition">返回列表</button>
         </div>
     </form>

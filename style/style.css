@@ -227,3 +227,7 @@ a:active {
 	display: inline-block;
 	width: 100%;
 }
+.point-event-none {
+	pointer-events: none;
+	opacity: 0.5;
+}

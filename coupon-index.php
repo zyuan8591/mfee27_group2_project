@@ -426,7 +426,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">優惠券狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=1">上架中</a></li>
+						<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=1">全部</a></li>
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=1">上架中</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=0">下架中</a></li>
 						</ul>
 					</div>					
