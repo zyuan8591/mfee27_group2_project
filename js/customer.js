@@ -93,9 +93,9 @@ saveBtn[s].addEventListener("click", (e) => {
 	for (let i = 0; i < detailSelects.length; i++) {
 		detailSelects[i].disabled = true;
 	}
-	for (let i = 0; i < detailImgs.length; i++) {
-		detailImgs[i].disabled = true;
-	}
+	// for (let i = 0; i < detailImgs.length; i++) {
+	// 	detailImgs[i].disabled = true;
+	// }
 	submitFrom[s].submit();
 });
 }
@@ -154,13 +154,13 @@ detailXMark[s].addEventListener("click", function (e) {
 	
 // 	}
 
+// update image
 let avatarImg = document.querySelectorAll(".avatar-img");
 console.log(avatarImg);
 let inputImg = document.querySelectorAll(".detail-input-img");
 console.log(inputImg);
 
 let fileSvg = document.querySelectorAll(".file-svg");
-
 for(let s=0; s<inputImg.length; s++){
 	inputImg[s].addEventListener("change",function(){
 		avatarImg[s].classList.remove("d-none");
@@ -175,4 +175,6 @@ for(let s=0; s<inputImg.length; s++){
 			
 })
 }
+
+
 

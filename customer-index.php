@@ -1,15 +1,91 @@
 <?php
+$order=isset($_GET["order"]) ? $_GET["order"] : 1;
+$page=isset($_GET["page"]) ? $_GET["page"] : 1;
+$search=isset($_GET["search"]) ? $_GET["search"] : "";
+$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 5;
+$id=isset($_GET["id"]) ? $_GET["id"] : "";
 
+if(isset($_GET["valid"])){
+	$valid=$_GET["valid"];
+	$validType="AND valid=$valid";
+}else{
+	$valid="";
+	$validType="";
+}
+if ($valid == "") {
+	$valid = "";
+	$validType = "";
+}
 
 require "db-connect.php";
 
-// $sqlAll="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ";
-// $resultAll = $conn->query($sqlAll);
-// // $Allrows=$resultAll->fetch_all(MYSQLI_ASSOC);
-// $customerCount=$resultAll-> num_rows;
+$sqlAll="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ";
+$resultAll = $conn->query($sqlAll);
+// $Allrows=$resultAll->fetch_all(MYSQLI_ASSOC);
+$customerCount=$resultAll-> num_rows;
+
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+
+
+// order&page
+$perpage=$selectPages;
+$start=($page-1)*$perpage;
+
+switch($order){
+  case 1:
+    $orderType="id ASC";
+    break;
+  case 2:
+    $orderType="id DESC";
+    break;
+  case 3:
+    $orderType="name ASC";
+    break;
+  case 4:
+    $orderType="name DESC";
+    break;
+  default:
+    $orderType="id ASC"; 
+}
 
 
 
+$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ORDER BY $orderType LIMIT $start,$perpage";
+$result = $conn->query($sql);
+$rows=$result->fetch_all(MYSQLI_ASSOC);
+$pageCustomerCount=$result-> num_rows;
+
+$stertItem=($page-1)*$perpage+1;
+$endItem=$page*$perpage;
+if($endItem>$customerCount)$endItem=$customerCount;
+
+
+
+$totalPage=ceil($customerCount / $perpage);
+
+// search
+
+$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%'";
+
+$searchrResult = $conn->query($sql);
+$searchCount=$searchrResult-> num_rows;
+
+
+//product-collect
+if(isset($_GET["user_id"])){
+    $user_id=$_GET["user_id"];
+    $sqlUser="SELECT * FROM users WHERE id=$user_id";
+    $resultUser=$conn->query($sqlUser);
+    $rowUser=$resultUser->fetch_assoc();
+
+    $sql="SELECT user_like_product.*, product.name FROM user_like_product
+    JOIN product ON user_like_product.product_id = product.id
+    WHERE user_like_product.user_id=$user_id
+    ";
+    $result = $conn->query($sql);
+    $productRows = $result->fetch_all(MYSQLI_ASSOC);
+
+}
 
 ?>
 
@@ -21,7 +97,7 @@ require "db-connect.php";
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<title>會員收藏</title>
+		<title>廚聚</title>
 		<!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,6 +106,9 @@ require "db-connect.php";
 			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap"
 			rel="stylesheet"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner:wght@600&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
@@ -317,13 +396,29 @@ require "db-connect.php";
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" href="">依編號排序</a>
-					<a class="sort-btn transition" href="">依名稱排序</a>
+					<a class="sort-btn transition" href="
+					<?php if($order==2): ?>
+					customer-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php elseif($order==1): ?>
+					customer-index.php?page=<?=$page?>&order=2&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php else: ?>
+					customer-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>	
+					<?php endif; ?>
+					">依編號排序</a>
+					<a class="sort-btn transition" href="
+					<?php if($order==4): ?>
+					customer-index.php?page=<?=$page?>&order=3&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php elseif($order==3): ?>
+					customer-index.php?page=<?=$page?>&order=4&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php else: ?>
+					customer-index.php?page=<?=$page?>&order=3&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>	
+					<?php endif; ?>
+					">依名稱排序</a>
 				</div>
 				
-				<form class="recipe_search " action="customer-collect-index.php" method="get">
+				<form class="recipe_search " action="customer-index.php" method="get">
 					<div class="d-flex align-items-center" >
-						<select class="me-3 form-control rounded-1 select-border" name="selectPages" id="">
+						<select class="me-3 form-control rounded-1 select-border select-pages-btn" name="selectPages" id="">
 							<option value="5" 
 							<?php if($selectPages == 5) echo 'selected="15"' ?>>每頁顯示5筆</option>
 							<option value="10" <?php if($selectPages == 10) echo 'selected="15"' ?>
@@ -346,26 +441,35 @@ require "db-connect.php";
 				</form>
 			</div>
 			<div class="d-flex justify-content-between align-items-center my-3">
-				<div class="filter d-flex align-items-center">
+				<div class="filter d-flex align-items-center">					
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
+
+					<!-- <div class="filter-item  position-rel">
+						<button class="filter-btn transition">全部會員</button>
+						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
+							<li><a href="">Coffee</a></li>
+							<li><a href="">Cake</a></li>
+							<li><a href=""></a></li>
+						</ul>							
+					</div> -->
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">會員狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap" href="customer-collect-index.php">啟用</a></li>
-							<li><a href="customer-collect-index.php">停用</a></li>
-							<li><a href="customer-collect-index.php">全部會員</a></li>
+							<li><a class="text-nowrap" href="customer-index.php?page=1&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=1 ">啟用</a></li>
+							<li><a href="customer-index.php?page=1&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=0 ">停用</a></li>
+							<li><a href="customer-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid= ">全部會員</a></li>
 						</ul>
 					</div>					
 				</div>
 				<div>
-					<a class="transition" style="cursor:pointer" id="customer-add-openBtn">新增會員</a>
+					<a class="transition" style="cursor:pointer;" id="customer-add-openBtn" >新增會員</a>
 				</div>
 			</div>
-		<?php require "customer-collect-table.php"; ?>
+		<?php require "customer-table.php"; ?>
 		</main>
-		<?php require "recipe-add.php"; ?>
+		<?php require "customer-add.php"; ?>
 		
 
 		<script type="text/javascript">

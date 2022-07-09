@@ -73,5 +73,5 @@ if ($conn->query($customerCreateSql) === TRUE) {
 
 $conn->close();
 
-header("location: recipe-index.php");
+header("location: customer-index.php");
 ?>

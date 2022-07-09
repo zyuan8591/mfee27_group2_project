@@ -2,6 +2,9 @@
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
+$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 5;
+$id=isset($_GET["id"]) ? $_GET["id"] : "";
+
 if(isset($_GET["valid"])){
 	$valid=$_GET["valid"];
 	$validType="AND valid=$valid";
@@ -13,6 +16,7 @@ if ($valid == "") {
 	$valid = "";
 	$validType = "";
 }
+
 require("db-connect.php");
 
 $id=$_GET["id"];
@@ -28,7 +32,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
-header("location: recipe-index.php?page=".$page."&order=".$order."&search=".$search."&valid=".$valid);
-// header("location: recipe-index.php");
+header("location: customer-index.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid);
+// header("location: customer-index.php");
 
 ?>

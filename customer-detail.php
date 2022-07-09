@@ -4,7 +4,7 @@
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 		action="customer-detail-modify.php"
-		method="post"
+		method="post" enctype="multipart/form-data"
 	>
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="recipe-title text-center">會員詳細資料</h2>
@@ -83,7 +83,7 @@
 		<div class="mb-3 d-flex flex-column align-items-start">
 			<label for="" class="form-label">新增圖像</label>
 			
-			<label for="customer-image-<?= $row["id"] ?>" class="recipe-image" >
+			<label for="customer-image-<?=$row["id"]?>" class="recipe-image" >
 			<?php if($row["img"] == ""): ?>	
 				<div class="customer-img">
 					<img class="object-fit avatar-img d-none" src="customer_img/<?=$row["img"]?>" alt="">
@@ -139,8 +139,9 @@
 			<?php endif; ?>
 
 			</label>
+			<input type="hidden" value="<?= $row["img"] ?>" name="image_original">
 			<input
-				id="customer-image-<?= $row["id"] ?>"
+				id="customer-image-<?=$row["id"]?>"
 				class=" detail-item-img detail-input-img"
 				type="file"
 				accept="image/*"
@@ -151,12 +152,12 @@
 		</div>
 		
 		<div class="mb-3 flex_center">
-			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
+			<button class="add-detail-btn modify-detail-btn me-3 transition" type="submit ">
 				修改會員資料
 			</button>
 			<button
-				class="save-detail-btn me-3 submit-img"
-				type="submit transition "
+				class="save-detail-btn me-3 submit-img transition"
+				type="submit  "
 				disabled="true"
 			>
 				儲存資料
