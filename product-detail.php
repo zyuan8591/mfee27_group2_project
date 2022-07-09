@@ -116,6 +116,7 @@
 				name="product_main_img"
 				value="<?=$row["product_main_img"]?>"
 				disabled
+				required
 			/>
 		</div>
 		<div class="mb-3 flex_center">

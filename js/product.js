@@ -138,3 +138,24 @@ perPage.addEventListener("change", function (e) {
 });
 
 // add & revise img
+let detailPreview=document.querySelectorAll(".detail-preview");
+let imgInput=document.querySelectorAll(".detail-img-input");
+
+
+for(let m=0;m<imgInput.length;m++){
+imgInput[m].addEventListener("change", function(e){
+    let file=imgInput[m].files[0].name;
+    detailPreview[m].src=`img/products_main_img/${file}`;
+});
+}
+
+let svg=document.querySelector(".svg");
+let addPreview=document.querySelector(".add-preview");
+let addImgInput=document.querySelector(".add-img-input");
+
+addImgInput.addEventListener("change", (e)=>{
+    let file=addImgInput.files[0].name;
+    svg.classList.add("d-none");
+    addPreview.classList.remove("d-none");
+    addPreview.src=`img/products_main_img/${file}`;
+})
