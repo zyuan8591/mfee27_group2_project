@@ -7,14 +7,14 @@
 	background: var(--main-bg);
 	padding: 2.2rem 2.5rem;
 	width: calc(100vw - var(--aside-width));
-	height: 100vh;
+	height: calc(100vh - var(--header-height));
 	/* overflow-y: auto; */
 }
 .main-title {
 	font-size: 2rem;
 	font-weight: normal;
 }
-.cursor-pointer{
+.cursor-pointer {
 	cursor: pointer;
 }
 /* sort by -- */
@@ -38,8 +38,8 @@
 /* .sort-btn:active {
 	outline: var(--button-active) solid 4px;
 } */
-.sort{
-	z-index: 5;	
+.sort {
+	z-index: 5;
 }
 /* search -- */
 .search-box {
@@ -124,7 +124,7 @@
 }
 
 /* on & off btn 啟用 停用 */
-.point-event-none{
+.point-event-none {
 	pointer-events: none;
 	opacity: 0.5;
 }
@@ -136,6 +136,7 @@
 	left: 0;
 	z-index: 50;
 	transition: 0.5s;
+	position: fixed;
 }
 .cover {
 	height: 100vh;
@@ -165,7 +166,7 @@
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 }
-.form-control:focus{
+.form-control:focus {
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
@@ -173,11 +174,11 @@
 	width: 130px;
 	height: 130px;
 }
-.add-image-container { 
+.add-image-container {
 	height: 134px;
 	width: 134px;
 }
-.object-cover{
+.object-cover {
 	width: 100%;
 	height: 100%;
 	object-fit: contain;

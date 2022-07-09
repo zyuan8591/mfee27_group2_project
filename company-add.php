@@ -1,4 +1,4 @@
-<div class=" new-company-page position_abs flex_center invisible">
+<div class="new-company-page flex_center invisible">
     <div class="cover position_abs"></div>
     <form 
         class="new-company-form position-rel" 
@@ -32,7 +32,7 @@
             <label for="" class="form-label">公司簡介</label>
             <textarea name="intro" class="form-control" id="" rows="3" required></textarea>
         </div>      
-        <div class="mb-3">
+        <div class="mb-3 d-flex flex-column">
             <label for="" class="form-label">公司圖像</label>
             <label for="add-company-image" class="add-company-image cursor-pointer">
                 <div>
