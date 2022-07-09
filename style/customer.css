@@ -43,59 +43,64 @@
 
 /* table-->valid */
 
-.valid-btn{
-    background: #ccc;
+.valid-btn {
+	background: #ccc;
 }
 
 /* ------------ */
 
 /* avatar */
-.customer-img{
-    width: 134px;
-    height: 134px;
+.customer-img {
+	width: 134px;
+	height: 134px;
 }
-.object-fit{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.object-fit {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 /* page */
-.page{
-    margin: auto 0;
+.page {
+	margin: auto 0;
 }
 
-.select-border{
-    width: 8rem;
+.select-border {
+	width: 8rem;
+}
+.page-item {
+	padding: 0.5rem 0.75rem;
+	border: 1px solid black;
+	font-size: 1rem;
 }
 
 /* collect-detail */
-.collect-heaader{
-	font-family: 'Edu QLD Beginner', cursive;
+.collect-heaader {
+	font-family: "Edu QLD Beginner", cursive;
 	font-size: 3rem;
 }
-.collect-text{
+.collect-text {
 	background: rgba(0, 0, 0, 0.905);
-	color:white;
+	color: white;
 	height: 64px;
 }
-.collect-text> p{
+.collect-text > p {
 	margin: auto 0;
 }
-.collect-icon{
+.collect-icon {
 	position: absolute;
-	top:0;
+	top: 0;
 	left: 50%;
-	transform: translate(-10px,-5px);
+	transform: translate(-10px, -5px);
 }
-.fa-heart{
+.fa-heart {
 	color: red;
 }
-.collect-select-button> a{
+.collect-select-button > a {
 	cursor: pointer;
-	font-size: 1.2rem;	
+	font-size: 1.2rem;
 }
-.button-pattern{
+.button-pattern {
 	background: black;
 	color: white;
 	border-radius: 3px;

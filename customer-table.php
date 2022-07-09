@@ -1,4 +1,5 @@
 <?php if($pageCustomerCount>0): ?>
+第<?=$page ?>頁，共<?=$totalPage ?>頁，共<?=$customerCount ?>筆資料
 <table class="recipe-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -35,7 +36,6 @@
 				<a class="btn-main transition me-3 " href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>">商品收藏</a>
 				<?php require "customer-detail.php"; ?>
 			</td>
-			<td> </td>
 		</tr>
 
 		<?php endforeach; ?>
@@ -46,8 +46,8 @@
     <?php endif; ?>
 
 </div>
-<div class="d-flex align-items-center justify-content-between ">
-	<div class="d-flex align-items-center">
+<div class="w-100 d-flex align-items-center justify-content-center ">
+	<div class="d-flex align-items-center d-none">
 		<nav aria-label="..." class="d-flex align-items-center ">
 			<ul class="pagination pagination-md page">
 				<li class="page-item">
@@ -78,7 +78,23 @@
 			</ul>
 		</nav>
 	</div>
-	<div class="text-end">
-		第<?=$stertItem ?>-<?=$endItem ?> 筆, 共<?=$customerCount ?>筆資料
+	<div class="btn-group align-self-center" role="group" >
+		<a class="page-item btn btn-outline-dark text-nowrap" href="customer-index.php?page=
+		<?php
+			$pageIdx=$page-1;
+			if($pageIdx<1)$pageIdx=1;
+			echo $pageIdx;
+		?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>">上一頁
+		</a>
+		<?php for($i=1; $i<=$totalPage; $i++): ?>
+		<a class="page-item btn btn-outline-dark text-nowrap <?php if($page==$i)echo "active" ?>" 
+		href="customer-index.php?page=<?=$i?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>"><?=$i?></a>
+		<?php endfor; ?>
+		<a class="page-item btn btn-outline-dark text-nowrap" href="customer-index.php?page=
+		<?php
+			$pageNext=$page+1;
+			if($pageNext>$totalPage)$pageNext=$totalPage;
+			echo $pageNext;
+		?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>">下一頁</a>
 	</div>
 </div>
