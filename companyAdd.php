@@ -68,7 +68,7 @@ if($_FILES["add-company-file"]["error"]==0){
             echo "資料新增失敗: " . $conn->error;
         }
         echo "upload success!";
-        // header("location: company-member-all-index.php");
+        header("location: company-member-all-index.php");
     }else{
         echo "upload fail!!";
     }

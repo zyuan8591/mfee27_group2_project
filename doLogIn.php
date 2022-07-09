@@ -18,10 +18,19 @@ $loginPassword=md5($loginPassword);
 $sql = "SELECT * FROM company_users WHERE email='$loginEmail' AND password='$loginPassword'";
 
 $result = $conn->query($sql);
-$userCount=$result->num_rows;
+$userCount = $result->num_rows;
 // echo $userCount;
 
 if($userCount > 0){
+    $row = $result->fetch_assoc();
+    $user=[
+        "id"=>$row["id"],
+        "name"=>$row["name"],
+        "email"=>$row["email"]
+    ];
+    unset($_SESSION["error"]);
+    $_SESSION["user"]=$user;
+    header("location: company-member-all-index.php");
 
 } else {
     echo "帳號或密碼錯誤";
@@ -32,6 +41,6 @@ if($userCount > 0){
     } else {
         $_SESSION["error"]["times"]++ ;
     }
-    // header("location: login.php");
+    header("location: login.php");
 }
 ?>

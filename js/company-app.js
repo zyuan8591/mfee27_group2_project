@@ -66,8 +66,8 @@ xMark.addEventListener("click", function (e) {
 });
 
 //add page img
-let addImg = document.querySelector(".add-company-image");
-let newImg = document.querySelector(".add-new-img");
+let addImg = document.querySelector("#add-company-image");
+let newImg = document.querySelector("#add-new-img");
 let svgImg = document.querySelector(".add-svg-img");
 
 addImg.addEventListener("change",(e) => {
@@ -78,17 +78,6 @@ addImg.addEventListener("change",(e) => {
 		svgImg.classList.add("d-none");
 	}
 });
-// let addImg = document.querySelector("#add-recipe-image");
-// let preImg = document.querySelector("#recipeImgPre");
-// let preSvg = document.querySelector("#recipeSvgPre");
-// addImg.addEventListener("change", (e) => {
-// 	let file = addImg.files[0].name;
-// 	if (file) {
-// 		preImg.classList.remove("d-none");
-// 		preImg.src = `img/recipe_img/${file}`;
-// 		preSvg.classList.add("d-none");
-// 	}
-// });
 
 // call detail page 詳細資料
 let detailPage = document.querySelectorAll(".company-datail");

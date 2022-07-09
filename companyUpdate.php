@@ -39,22 +39,11 @@ if($_FILES["myfile-image"]["error"]==0){
 // if(empty($fileName)){
 //     $sql="UPDATE company_users SET name='$name', email='$email', phone='$phone', address='$address', intro='$intro' WHERE id='$id'";
 // }else{
-//     $sql="UPDATE company_users SET name='$name', email='$email', phone='$phone', address='$address', logo_img='$image', intro='$intro' WHERE id='$id'";
+//     $sql="UPDATE company_users SET name='$name', email='$email', phone='$phone', address='$address', logo_img='$fileName', intro='$intro' WHERE id='$id'";
 // }
 
+$conn->close();
 
-
-
-// if ($conn->query($sql) === TRUE) {
-//     echo "資料表 users 修改完成";
-// } else {
-//     echo "修改資料表錯誤: " . $conn->error;
-// }
-
-// $conn->close();
-
-// header("location: company-detail.php?");
-
-
+header("location: company-member-all-index.php");
 
 ?>
