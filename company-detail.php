@@ -88,13 +88,13 @@
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">
 			<label for="" class="form-label">公司圖像</label>
-			<label for="detail-image" class="detail-image">
+			<label for="detail-image-<?= $row["id"] ?>" class="detail-image">
 				<div class="add-image-container cursor-pointer me-2">
 					<img src="./company_img/<?= $row["logo_img"]?>" alt="" class="object-cover detailImgPre">
 				</div>
 			</label>
 			<input
-				id="detail-image"
+				id="detail-image-<?= $row["id"] ?>"
 				class=" detail-item-img detail-file invisible"
 				type="file"
 				accept="image/*"

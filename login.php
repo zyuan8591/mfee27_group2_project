@@ -43,10 +43,10 @@ session_start();
         	/* height &width */
         	--header-height: 80px;
         	/* bg-color */
-        	--header-bg: rgb(200, 228, 239);
+        	--header-bg: rgb(180, 206, 236);
         	/* color */
-        	--main-font-color: #fff;
-            --btn-color: rgb(200, 228, 239);
+        	--main-font-color: rgb(60, 60, 60);
+            --btn-color: rgb(180, 206, 236);
         	/* other */
         	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1);
         	--hover-shadow: 3px 2px #bbb;
@@ -67,6 +67,9 @@ session_start();
     /* logo& title */
         .logo {
     	    margin-right: 1rem;
+        }
+        .logo-name{
+            color: var(--main-font-color);
         }
     /* ------------- */
         .main{
@@ -154,7 +157,7 @@ session_start();
 				/>
 			</svg>
 		</div>
-		<h1 class="m-0">廚聚</h1>
+		<h1 class="m-0 logo-name">廚聚</h1>
 	</div>
 </header>    
     <!---------------------- main ---------------------->
