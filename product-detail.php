@@ -103,14 +103,14 @@
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">
 			<label for="" class="form-label">商品圖片　</label>
-			<label for="product-image" class="product-image">
+			<label for="product-image-<?=$row["id"]?>" class="product-image">
 				<div class="product-img position_rel">
 					<img class="object-cover detail-preview" src="img/products_main_img/<?=$row["product_main_img"]?>" alt="">
 				</div>
 			</label>
 			<input
-				id="product-image"
-				class=" product-input detail-img-input"
+				id="product-image-<?=$row["id"]?>"
+				class=" product-input detail-img-input d-none"
 				type="file"
 				accept="image/*"
 				name="product_main_img"

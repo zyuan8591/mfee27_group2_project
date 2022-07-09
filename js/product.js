@@ -68,16 +68,6 @@ for (let i = 0; i < backToProduct.length; i++) {
 xMark.addEventListener("click", function (e) {
     newProductPage.classList.add("invisible");
 });
-for (let i = 0; i < detailBtn.length; i++) {
-    detailBtn[i].addEventListener("click", (e) => {
-        e.preventDefault();
-        detailPage[i].classList.remove("invisible");
-        saveBtn[i].disabled = true;
-        saveBtn[i].classList.remove("save-hover");
-        reviseBtn[i].disabled = false;
-        reviseBtn[i].classList.add("revise-hover");
-    });
-}
 for (let i = 0; i < cover.length; i++) {
     cover[i].addEventListener("click", (e) => {
         e.preventDefault();
@@ -123,7 +113,20 @@ for (let j = 0; j < saveBtn.length; j++) {
         }
     });
 }
-
+for (let i = 0; i < detailBtn.length; i++) {
+    detailBtn[i].addEventListener("click", (e) => {
+        e.preventDefault();
+        detailPage[i].classList.remove("invisible");
+        saveBtn[i].disabled = true;
+        saveBtn[i].classList.remove("save-hover");
+        reviseBtn[i].disabled = false;
+        reviseBtn[i].classList.add("revise-hover");
+        for (let i = 0; i < input.length; i++) {
+            input[i].setAttribute("readonly", "readonly");
+            input[i].disabled = true;
+        }
+    });
+}
 // page & count
 
 let perPage=document.querySelector(".per-page");
@@ -141,8 +144,8 @@ let imgInput=document.querySelectorAll(".detail-img-input");
 
 for(let m=0;m<imgInput.length;m++){
 imgInput[m].addEventListener("change", function(e){
-    file=imgInput[m].files[0].name;
-    detailPreview.src=`img/products_main_img/${file}`;
+    let file=imgInput[m].files[0].name;
+    detailPreview[m].src=`img/products_main_img/${file}`;
 });
 }
 
@@ -151,7 +154,7 @@ let addPreview=document.querySelector(".add-preview");
 let addImgInput=document.querySelector(".add-img-input");
 
 addImgInput.addEventListener("change", (e)=>{
-    file=addImgInput.files[0].name;
+    let file=addImgInput.files[0].name;
     svg.classList.add("d-none");
     addPreview.classList.remove("d-none");
     addPreview.src=`img/products_main_img/${file}`;
