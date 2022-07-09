@@ -91,7 +91,7 @@ let input = document.querySelectorAll(".product-input");
 let detailForm=document.querySelectorAll(".detail-form");
 for (let j = 0; j < reviseBtn.length; j++) {
     reviseBtn[j].addEventListener("click", (e) => {
-
+        e.preventDefault();
         saveBtn[j].disabled = false;
         reviseBtn[j].disabled = true;
         reviseBtn[j].classList.remove("revise-hover");
@@ -102,6 +102,7 @@ for (let j = 0; j < reviseBtn.length; j++) {
             input[i].classList.remove("form-control-plaintext");
             input[i].classList.add("form-control");
             input[i].disabled = false;
+            
         }
     });
 }
@@ -131,14 +132,17 @@ perPage.addEventListener("change", function(e){
     productSearch.submit();
 })
 
-// img 
+// add & revise img 
 
-let preview=document.querySelector(".preview");
-let picIcon=document.querySelector(".product-image");
-let imgInput=document.querySelector("#product-image");
+let preview=document.querySelectorAll(".preview");
+let imgInput=document.querySelectorAll(".detail-img-input");
 
-imgInput.addEventListener("change", function(e){
-    preview.classList.remove("d-none");
-    picIcon.classList.add("d-none");
+for(let m=0;m<imgInput.length;m++){
+imgInput[m].addEventListener("change", function(e){
+    file=imgInput[m].files[0].name;
 
-})
+    preview.src=`img/products_main_img/${file}`;
+    
+});
+}
+console.log(imgInput);

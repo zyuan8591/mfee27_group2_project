@@ -14,7 +14,7 @@ $rows=$result->fetch_all(MYSQLI_ASSOC);
 foreach ($rows as $row){
     
 }
-$id=$row["id"] ;
+$id=$_GET["id"] ;
 $name=$_GET["name"];
 $categoryMain=$_GET["category_main"];
 $categorySub=$_GET["category_sub"];
@@ -24,14 +24,16 @@ $intro=$_GET["intro"];
 $spec=$_GET["spec"];
 $pic=$_GET["product_main_img"];
 
-$sqlRevise="UPDATE products SET name='$name', category_main='$categoryMain', category_sub='$categorySub', price='$price', inventory='$inventory', intro='$intro', spec='$spec' WHERE id=$id ";
+$sqlRevise="UPDATE products SET name='$name', category_main='$categoryMain', category_sub='$categorySub', price='$price', inventory='$inventory', intro='$intro', spec='$spec', product_main_img='$pic' WHERE id=$id ";
 
 echo $sqlRevise;
+echo "<br>";
+
 if ($conn->query($sqlRevise) === TRUE) {
     echo "商品已更新";
 } else {
     echo "更新失敗" . $conn->error;
 }
 
-header("location: product-index.php?order=$order&filter=$filterNum&page=$page&id=$id&per=$per&product_search=$search")
+// header("location: product-index.php?order=$order&filter=$filterNum&page=$page&id=$id&per=$per&product_search=$search")
 ?>
