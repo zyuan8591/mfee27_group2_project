@@ -127,7 +127,7 @@
 		</div>
 
 		<div class="mb-3 flex_center">
-			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
+			<button class="add-detail-btn modify-detail-btn me-3 transition" type="submit ">
 				修改食譜
 			</button>
 			<button

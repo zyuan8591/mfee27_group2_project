@@ -60,7 +60,7 @@
             <input  id="add-recipe-image" class="d-none" type="file" name="addRecipeFile" required>
         </div>
         <div class="mb-3 flex_center">
-            <button class="add-detail-btn save-and-add-recipe-btn me-3" type="submit transition">新增食譜</button>
+            <button class="add-detail-btn save-and-add-recipe-btn me-3 transition" type="submit">新增食譜</button>
             <button class="add-detail-btn back-recipe transition">返回食譜列表</button>
         </div>
     </form>
