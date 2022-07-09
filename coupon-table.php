@@ -1,9 +1,9 @@
 
 
-
+<?php if($pageCouponCount>0):?>
 <table class="coupon-table table table-hover">	
-	<div class="py-2">第<?=$startItem?>筆-第<?=$endItem?>筆,共<?=$couponCount?>筆資料</div>
-	<?php if($pageCouponCount>0):?>
+	<div class="py-2 d-none ">第<?=$startItem?>筆-第<?=$endItem?>筆,共<?=$couponCount?>筆資料</div>
+	第<?= $page ?>頁，共<?= $totalPage ?>頁，共<?= $couponCount ?>筆資料
 		<thead class="table-dark">
 		<tr>
 			<th class="text-center" scope="col">優惠券編號</th>
@@ -11,7 +11,7 @@
 			<th scope="col">序號</th>
 			<th scope="col">起始日期</th>
 			<th scope="col">結束日期</th>
-			<th scope="col">優惠折扣</th>
+			<th class="text-center" scope="col">優惠折扣</th>
 			<th scope="col">編輯優惠券</th>
 		</tr>
 		</thead>
@@ -23,7 +23,7 @@
 			<td><?=$row["number"]?></td>
 			<td><?=$row["start_date"]?></td>
 			<td><?=$row["end_date"]?></td>
-			<td><?=$row["discount"]?></td>
+			<td class="text-center"><?php echo $row["discount"]*100 . "%" ?></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">								
 				<a class="btn-main transition me-3 on-shelf  <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">上架</a>
 				<a class="btn-main transition me-3 off-shelf  <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">下架</a>
@@ -34,9 +34,7 @@
 		<?php endforeach;?>
 		</tbody>
 </table>
-	<?php else:?>
-		目前沒有資料
-	<?php endif;?>
+
 <div class="row w-100">
 	<div class="col-4 d-flex justify-content-start">
 		<!-- <select class="form-select per-page" name="per-page" >
@@ -58,3 +56,6 @@
 
 </div>
 
+<?php else:?>
+	目前沒有資料
+<?php endif;?>

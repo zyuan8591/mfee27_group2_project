@@ -188,7 +188,8 @@
 	top: 0;
 	left: 0;
 	z-index: 50;
-	transition: 0.5s;	
+	transition: 0.5s;
+	position: fixed;
 }
 .container-detail {
 	width: 600px;
@@ -216,11 +217,10 @@
 	box-shadow: var(--hover-shadow);
 }
 
-
 /* coupon add X */
 .coupon-xmark {
 	top: 0.5rem;
 	right: 1rem;
 	font-size: 1.5rem;
-	cursor: pointer;	
+	cursor: pointer;
 }

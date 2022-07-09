@@ -57,7 +57,7 @@ if($order == 1 or $order == 3 or $order == 5 or $order == 7){
 $valid = isset($_GET["valid"]) ? $_GET["valid"] : 1;
 
 //page
-$perPage=5;
+$perPage=10;
 $start=($page-1)*$perPage;
 $startItem=($page-1)*$perPage+1;
 $endItem=$page*$perPage;
@@ -75,7 +75,7 @@ if($page != 1){
 	$downPage=$totalPage;
 };
 // $sql="SELECT * FROM coupon WHERE  name LIKE '%$search%' LIMIT 4" ;
-$sql="SELECT * FROM coupon WHERE valid=$valid AND name LIKE '%$search%' ORDER BY $orderType LIMIT $start,5";
+$sql="SELECT * FROM coupon WHERE valid=$valid AND name LIKE '%$search%' ORDER BY $orderType LIMIT $start,10";
 $result = $conn->query($sql);
 $pageCouponCount=$result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -240,7 +240,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 								<a class="main_nav_item_content" href="">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown">
 								<svg
 									width="24"
 									height="13"
@@ -259,10 +259,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li class="">
-									<a class="sub_nav_item_content" href="">食譜總覽</a>
+									<a class="sub_nav_item_content" href="recipe-index.php">食譜總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">評價總覽</a>
+									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -310,7 +310,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 								<li>
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a class="sub_nav_item_content" href="">會員商品留言</a>
 								</li>
 								<li>
@@ -318,7 +318,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">會員收藏</a>
-								</li>
+								</li> -->
 							</div>
 						</ul>
 					</li>
@@ -348,7 +348,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 								<a class="main_nav_item_content" href=""> 活動管理 </a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -365,16 +365,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						</div>
 						<!-- 活動管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container ">
+							<div class="sub_nav_item_container">
 								<li class="sub_nav_item_active">
 									<a class="sub_nav_item_content" href="">優惠券</a>
 								</li>
-								<!-- <li>
-									<a class="sub_nav_item_content" href="">銷售通路</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">料理活動</a>
-								</li> -->
 							</div>
 						</ul>
 					</li>
@@ -426,7 +420,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">優惠券狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-						<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=1">全部</a></li>
+						<li><a href="coupon-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=1">全部</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=1">上架中</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=0">下架中</a></li>
 						</ul>

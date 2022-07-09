@@ -1,4 +1,4 @@
-<div class="detail-coupon-page position_abs flex_center invisible">
+<div class="detail-coupon-page flex_center invisible">
 <div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-coupon-detail-form"
