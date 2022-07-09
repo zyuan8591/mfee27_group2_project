@@ -199,10 +199,10 @@
 			</ul>
 		</nav>
 	</aside>
-	<?php require "product.php";	?>
+	<?php require "product.php";?>
 	<?php require "new-product.php"; ?>
 	<script type="text/javascript">
-		<?php require "./js/product.js"; ?>
+		<?php require "./js/product.js";?>
 	</script>
 </body>
 

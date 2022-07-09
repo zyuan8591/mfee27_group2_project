@@ -105,7 +105,7 @@
 			<label for="" class="form-label">商品圖片　</label>
 			<label for="product-image" class="product-image">
 				<div class="product-img position_rel">
-					<img class="object-cover preview" src="img/products_main_img/<?=$row["product_main_img"]?>" alt="">
+					<img class="object-cover detail-preview" src="img/products_main_img/<?=$row["product_main_img"]?>" alt="">
 				</div>
 			</label>
 			<input

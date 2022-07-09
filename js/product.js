@@ -53,6 +53,7 @@ let detailBtn = document.querySelectorAll(".detail-btn");
 addProductBtn.addEventListener("click", function (e) {
     e.preventDefault();
     newProductPage.classList.remove("invisible");
+    addImgInput.disabled=false;
 });
 backProduct.addEventListener("click", function (e) {
     e.preventDefault();
@@ -134,15 +135,24 @@ perPage.addEventListener("change", function(e){
 
 // add & revise img 
 
-let preview=document.querySelectorAll(".preview");
+let detailPreview=document.querySelectorAll(".detail-preview");
 let imgInput=document.querySelectorAll(".detail-img-input");
+
 
 for(let m=0;m<imgInput.length;m++){
 imgInput[m].addEventListener("change", function(e){
     file=imgInput[m].files[0].name;
-
-    preview.src=`img/products_main_img/${file}`;
-    
+    detailPreview.src=`img/products_main_img/${file}`;
 });
 }
-console.log(imgInput);
+
+let svg=document.querySelector(".svg");
+let addPreview=document.querySelector(".add-preview");
+let addImgInput=document.querySelector(".add-img-input");
+
+addImgInput.addEventListener("change", (e)=>{
+    file=addImgInput.files[0].name;
+    svg.classList.add("d-none");
+    addPreview.classList.remove("d-none");
+    addPreview.src=`img/products_main_img/${file}`;
+})
