@@ -335,15 +335,6 @@ foreach ($rowsCatProduct as $row) {
 								<li>
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
 								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員商品留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員食譜留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員收藏</a>
-								</li>
 							</div>
 						</ul>
 					</li>
