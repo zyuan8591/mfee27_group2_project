@@ -1,5 +1,5 @@
 <?php if($pagesCount > 0): ?>
-<div class="py-1">第<?=$startItem?>-<?=$endItem?>筆,共<?=$CompanyUsersCountAll?>筆</div>
+第<?= $page ?>頁，共<?= $pagesCount ?>頁，共<?=$CompanyUsersCountAll?>筆資料
 <table class="company-table table table-hover">
 	<thead class="table-dark">
 		<tr>
@@ -35,15 +35,28 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<div class="col-4">
-	<div class="btn-group me-2" role="group" >
+<div class="flex_center w-100">
+	<div class="btn-group align-self-center" role="group" >
+		<a href="
+		company-member-all-index.php?per-page=<?=$perpage?>
+		&page=<?php $prePage = $page - 1;
+		if ($prePage < 1) {
+			$prePage = 1;
+		}
+		echo $prePage;?>&search=<?= $search ?>&search=<?=$search?>&order=1&valid=<?=$valid?>
+		" type="button" class="btn btn-outline-dark text-nowrap ">上一頁</a>
 		<?php for ($i=1; $i<=$totalPage; $i++): ?>
-		<a href ="company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$i?>&search=<?=$search?>&order=1&valid=<?=$valid?>" type="button" class="btn btn-outline-dark <?php if ($page==$i) {
-					echo "active";
-    			} ?>">
+		<a href ="company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$i?>&search=<?=$search?>&order=1&valid=<?=$valid?>" 
+		type="button" class="btn btn-outline-dark <?php if ($page==$i) {echo "active";} ?>">
 			<?=$i?>
 		</a>
 		<?php endfor; ?>
+		<a href="
+		company-member-all-index.php?per-page=<?=$perpage?>
+		&page=<?php $nextPage = $page + 1;
+		if ($nextPage > $totalPage) {$nextPage = $totalPage;}
+		echo $nextPage; ?>&search=<?= $search ?>&search=<?=$search?>&order=1&valid=<?=$valid?>" 
+		type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 	</div>
 </div>
 <?php else: ?>
