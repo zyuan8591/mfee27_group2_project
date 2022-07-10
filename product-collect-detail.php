@@ -96,7 +96,7 @@ if(isset($_GET["id"])){
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 	>
 		<a href="customer-index.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>"><i class="fa-solid fa-xmark position_abs"></i></a> 
-		<h2 class="recipe-title text-center collect-heaader"><?=$rowUser["name"]?>'s collect</h2>
+		<h2 class="recipe-title text-center collect-header"><?=$rowUser["name"]?>'s collect</h2>
 		<div class="collect-select-button mb-3">
             <a id="c1" class="collect-type button-pattern">食譜收藏</a>
             <a id="c2" class="collect-type ms-4">商品收藏</a>

@@ -11,10 +11,6 @@
 	align-items: center;
 	justify-content: center;
 }
-/* .close {
-	left: -100%;
-} */
-
 .contain {
 	background: white;
 	height: 550px;
@@ -43,30 +39,35 @@
 
 /* table-->valid */
 
-.valid-btn{
-    background: #ccc;
+.valid-btn {
+	background: #ccc;
 }
 
 /* ------------ */
 
 /* avatar */
-.customer-img{
-    width: 134px;
-    height: 134px;
+.customer-img {
+	width: 134px;
+	height: 134px;
 }
-.object-fit{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.object-fit {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 /* page */
-.page{
-    margin: auto 0;
+.page {
+	margin: auto 0;
 }
 
-.select-border{
-    width: 8rem;
+.select-border {
+	width: 8rem;
+}
+.page-item {
+	padding: 0.5rem 0.75rem;
+	border: 1px solid black;
+	font-size: 1rem;
 }
 
 /* collect-detail */
@@ -75,7 +76,7 @@
 	width: 100vw;
 	background: #7388a0;
 }
-.collect-heaader{
+.collect-header{
 	font-family: 'Edu QLD Beginner', cursive;
 	font-size: 3rem;
 }
@@ -83,16 +84,16 @@
 	color:rgb(84, 80, 80);
 	height: 64px;
 }
-.collect-text> p{
+.collect-text > p {
 	margin: auto 0;
 	font-size: 1.1rem;
 }
-.fa-heart{
+.fa-heart {
 	color: red;
 }
-.collect-select-button> a{
+.collect-select-button > a {
 	cursor: pointer;
-	font-size: 1.2rem;	
+	font-size: 1.2rem;
 }
 .button-pattern, .button-pattern:hover{
 	border-left: 5px #37377c solid;

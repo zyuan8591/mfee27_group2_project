@@ -2,7 +2,7 @@
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
-$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 5;
+$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 10;
 $id=isset($_GET["id"]) ? $_GET["id"] : "";
 
 if(isset($_GET["valid"])){
@@ -249,7 +249,7 @@ if(isset($_GET["user_id"])){
 								<a class="main_nav_item_content" href="">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown">
 								<svg
 									width="24"
 									height="13"
@@ -266,8 +266,8 @@ if(isset($_GET["user_id"])){
 						</div>
 						<!-- 食譜管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container ">
-								<li class="sub_nav_item_active">
+							<div class="sub_nav_item_container translateYtoNone">
+								<li class="">
 									<a class="sub_nav_item_content" href="">食譜總覽</a>
 								</li>
 								<li>
@@ -295,7 +295,7 @@ if(isset($_GET["user_id"])){
 								<a class="main_nav_item_content" href="">會員管理</a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -312,21 +312,12 @@ if(isset($_GET["user_id"])){
 						</div>
 						<!-- 會員管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container translateYtoNone">
-								<li>
+							<div class="sub_nav_item_container">
+								<li class="sub_nav_item_active">
 									<a class="sub_nav_item_content" href="">一般會員總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員商品留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員食譜留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員收藏</a>
 								</li>
 							</div>
 						</ul>
@@ -419,13 +410,13 @@ if(isset($_GET["user_id"])){
 				<form class="recipe_search " action="customer-index.php" method="get">
 					<div class="d-flex align-items-center" >
 						<select class="me-3 form-control rounded-1 select-border select-pages-btn" name="selectPages" id="">
-							<option value="5" 
-							<?php if($selectPages == 5) echo 'selected="15"' ?>>每頁顯示5筆</option>
-							<option value="10" <?php if($selectPages == 10) echo 'selected="15"' ?>
-							>每頁顯示10筆</option>
-							<option value="15" 
-							<?php if($selectPages == 15) echo 'selected="15"' ?>
+							<option value="10" 
+							<?php if($selectPages == 10) echo "selected" ?>>每頁顯示10筆</option>
+							<option value="15" <?php if($selectPages == 15) echo 'selected' ?>
 							>每頁顯示15筆</option>
+							<option value="20" 
+							<?php if($selectPages == 20) echo 'selected' ?>
+							>每頁顯示20筆</option>
 						</select>
 						<div class="d-flex ">
 							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋">
@@ -473,7 +464,7 @@ if(isset($_GET["user_id"])){
 		
 
 		<script type="text/javascript">
-			
+			<?php require "js/app.js" ?>
 			<?php require "js/customer.js"; ?>
 		
 
