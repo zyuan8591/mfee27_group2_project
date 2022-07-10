@@ -3,7 +3,7 @@ $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
 $selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 5;
-$product=isset($_GET["product"]) ? $_GET["product"] : 0;
+$exist=isset($_GET["exist"]) ? $_GET["exist"] : 0;
 
 if(isset($_GET["valid"])){
 	$valid=$_GET["valid"];
@@ -46,7 +46,7 @@ if(isset($_GET["id"])){
     $rowUser=$resultUser->fetch_assoc();
 
 	$sqlrecipe="SELECT recipe_like.*, recipe.* FROM recipe_like
-    JOIN recipe ON recipe_like.recipe_id = recipe.id
+    JOIN recipe ON recipe_like.recipe_id = recipe.id AND recipe_like.valid=1
     WHERE recipe_like.user_id=$user_id
     ";
     $recipeResult = $conn->query($sqlrecipe);
@@ -89,37 +89,39 @@ if(isset($_GET["id"])){
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
 	</head>
 	<body>
-	<div class="recipe-datail flex_center">
-	<div class="cover-detail cover position_abs"></div>
+	<div class="recipe-datail flex_center ">
+	<div class="cover-detail collect-main position_abs"></div>
 	
 	<div
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 	>
 		<a href="customer-index.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>"><i class="fa-solid fa-xmark position_abs"></i></a> 
 		<h2 class="recipe-title text-center collect-heaader"><?=$rowUser["name"]?>'s collect</h2>
-		<div class="collect-select-button mb-3 text-center">
+		<div class="collect-select-button mb-3">
             <a id="c1" class="collect-type button-pattern">食譜收藏</a>
             <a id="c2" class="collect-type ms-4">商品收藏</a>
-        </div>
-
+		</div>
 	<!-- recipe-collect -->
 	<div class="row collect-page">
 		<?php if($recipeCount>0): ?>
 		<?php foreach($recipeRows as $recipeItem): ?>
-		<div class="col-6 position-relative">
+		<div class="col-6 ">
 			<div class="collect-card m-2 text-center shadow">
-				<a class="collect-icon" href=""><i class="fa-solid fa-heart fa-lg"></i></a>
+				
 				<div>
-					<img class="object-fit p-3" src="recipe_main_img/<?=$recipeItem["image"]?>" alt="">
+					<img class="object-fit" src="recipe_main_img/<?=$recipeItem["image"]?>" alt="">
 				</div>
-				<div class="collect-text rounded text-center">
+				<div class="collect-text text-center d-flex align-items-center justify-content-center">
 					<p class="p-2"><?=$recipeItem["name"]?></p>
+				</div>
+				<div class="text-center border-top p-2">
+					<a class="collect-icon" href="recipe-collect-cancel.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$user_id?>&exist=0&recipe=<?=$recipeItem["id"]?>"><i class="fa-solid fa-heart fa-lg"></i></a>
 				</div>
 			</div>
 		</div>
 		<?php endforeach; ?>
 		<?php else: ?>
-			該會員目前沒有收藏的商品
+			該會員目前沒有收藏的食譜
 		<?php endif ?>
 	<div class="mb-3 mt-4 flex_center d-flex justify-content-center">
 			<a class="add-detail-btn back-recipe-de transition " href="customer-index.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>">返回會員列表</a>
@@ -128,26 +130,27 @@ if(isset($_GET["id"])){
 	<!-- ------ -->
 
 	<!-- product-collect -->
-	
 	<div class="row collect-page">
 		<?php if($productCount>0): ?>
 		<?php foreach($productRows as $productItem): ?>
-		<div class="col-6 position-relative">
+		<div class="col-6 ">
 			<div class="collect-card m-2 text-center shadow">
-				<a class="collect-icon" href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&product=0"><i class="fa-solid fa-heart fa-lg"></i></a>
+				
 				<div>
-					<img class="object-fit p-3" src="products_main_img/<?=$productItem["product_main_img"]?>" alt="">
+					<img class="object-fit" src="products_main_img/<?=$productItem["product_main_img"]?>" alt="">
 				</div>
-				<div class="collect-text rounded text-center">
+				<div class="collect-text text-center d-flex align-items-center justify-content-center">
 					<p class="p-2"><?=$productItem["name"]?></p>
+				</div>
+				<div class="text-center border-top p-2">
+					<a class="collect-icon" href="product-collect-cancel.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$user_id?>&exist=0&product=<?=$productItem["id"]?>"><i class="fa-solid fa-heart fa-lg"></i></a>
 				</div>
 			</div>
 		</div>
 		<?php endforeach; ?>
 		<?php else: ?>
-			該會員目前沒有收藏的商品
-		<?php endif ?>
-		
+			該會員目前沒有收藏的食譜
+		<?php endif ?>		
 	<div class="mb-3 mt-4 flex_center d-flex justify-content-center">
 			<a class="add-detail-btn back-recipe-de transition " href="customer-index.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>">返回會員列表</a>
 		</div>
