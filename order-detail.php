@@ -1,3 +1,17 @@
+<?php
+require "db-connect.php" ;
+$order_id= $row["id"];
+$sqlOrderProduct = "SELECT order_product.*, products.name AS product_name, products.price AS product_price 
+FROM order_product 
+JOIN products ON order_product.product_id = products.id
+WHERE order_id= $order_id";
+
+
+$resultOrderProduct = $conn->query($sqlOrderProduct);
+$rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
+
+
+?>
 <div class="recipe-datail position_abs flex_center invisible ">
 	<div class="cover-detail cover position_abs"></div>
 	<form
@@ -70,12 +84,11 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="
-					<?php if(!empty($row["memo"])):?>
-					<?=$row["memo"]?>
+					<?php if(!empty($row["memo"])): ?>
+					value="<?= $row["memo"] ?>"
 					<?php else: ?>
-					<?php echo "無"?>
-					<?php endif;?>"
+					value="無"
+					<?php endif; ?>
 				/>
 			</div>
 		</div>
@@ -112,15 +125,18 @@
 						<th>數量</th>
 						<th>總價</th> 
 					</tr>
+					
 				</thead>
 				<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>    
+					<?php foreach($rowsOrderProduct as $rowProduct ): ?>
+					<tr>
+						<td><?= $rowProduct["product_id"] ?></td>
+						<td><?= $rowProduct["product_name"] ?></td>
+						<td class="text-end"><?= number_format($rowProduct["product_price"]) ?></td>
+						<td class="text-end"><?= $rowProduct["product_quantity"] ?></td>
+						<td class="text-end"><?= number_format($rowProduct["product_price"]*$rowProduct["product_quantity"]) ?></td>
+					</tr>    
+					<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>
