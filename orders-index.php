@@ -80,9 +80,10 @@ $resultAll = $conn->query($sqlAll);
 $ordersCountAll = $resultAll->num_rows;
 // echo $ordersCountAll;
 
-$sqlPrice = "SELECT id, price FROM products";
+$sqlPrice = "SELECT * FROM products";
 $resultPrice = $conn->query($sqlPrice);
 $rowPrice = $resultPrice->fetch_all(MYSQLI_ASSOC);
+// var_dump($rowPrice);
 foreach ($rowPrice as $row) {
  $productPrice[$row["id"]] = $row["price"];
 }
@@ -121,7 +122,7 @@ switch($order){
 		break;
 
 	// case 5:
-	// 	$orderType = "  ASC";
+	// 	$orderType = "SUM(products.price * order_product.product_quantity) GROUP BY order_id  ASC";
 	// 	break;
 				
 	// case 6:
@@ -137,12 +138,17 @@ switch($order){
 // $ordersDate = $resultDate->fetch_all(MYSQLI_ASSOC);
 // var_dump($ordersDate);
 
-$sql="SELECT orders.*, customer_users.name FROM orders, customer_users 
+$sql="SELECT orders.*, customer_users.name,customer_users.phone,customer_users.address FROM orders, customer_users 
+-- JOIN order_product ON orders.id = order_product.order_id
+-- JOIN products ON orders.product_id = products.id
 WHERE orders.user_id = customer_users.id $orderStatus $sqlDate
 ORDER BY $orderType LIMIT $start, $perPage
 ";
+// var_dump($sql);
 $result = $conn->query($sql);
+// var_dump($result);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+// var_dump($rows);
 
 
 $sqlStatus="SELECT * FROM order_status";
@@ -154,12 +160,24 @@ foreach ($rowStatus as $row){
 }
 // var_dump($orderStatusJJ);
 
-// $sqlDetail="SELECT order_product.*, orders.*, customer_users.name,customer_users.phone,customer_users.address FROM orders,order_product, customer_users WHERE orders.user_id = customer_users.id AND orders.id = order_product.order_id
-// ";
+if(isset($_GET["id"])){
+	$orderId = $_GET["id"];
+	$sqlOrderInfo = "WHERE order_product.order_id = $orderId";
+	$sqlOrderList = "SELECT id FROM orders WHERE id = $orderId";
+	$resultOrderList = $conn -> query($sqlOrderList);
+	$rowOrderList = $resultOrderList->fetch_assoc();
+}
 
+// $sqlDetail=" SELECT orders.id, order_product.*, products.id, products.price,products.name FROM order_product, products, orders WHERE order_product.order_id = orders.id ";
 // $resultDetail = $conn->query($sqlDetail);
-// $rowDetail = $resultDetail->fetch_assoc();
-// // var_dump($orderTotal);
+// $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
+// // var_dump($rowDetail);
+// foreach ($rowDetail as $row){
+// 	$orderDetail[$row["order_id"]] = $row["product_id"];
+// }
+// // var_dump($orderDetail);
+
+
 
 $totalPage=ceil($ordersCountAll / $perPage);
 ?>

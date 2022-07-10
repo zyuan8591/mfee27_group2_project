@@ -37,7 +37,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["phone"]?>"
 				/>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["address"]?>"
 				/>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$orderStatusJJ[$row["status_id"]]?>"
 				/>
 			</div>
 		</div>
@@ -70,7 +70,12 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="
+					<?php if(!empty($row["memo"])):?>
+					<?=$row["memo"]?>
+					<?php else: ?>
+					<?php echo "無"?>
+					<?php endif;?>"
 				/>
 			</div>
 		</div>
@@ -81,7 +86,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["coupon_id"]?>"
 				/>
 			</div>
 		</div>
@@ -93,7 +98,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["order_time"]?>"
 				/>
 			</div>
 		</div>
@@ -156,16 +161,16 @@
 		</div> -->
 		<div class="d-flex justify-content-center">
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
-				修改食譜
+				編輯訂單
 			</button>
 			<button
 				class="save-detail-btn me-3"
 				type="submit transition"
 				disabled="true"
 			>
-				儲存食譜
+				儲存修改
 			</button>
-			<button class="add-detail-btn back-recipe-de transition">返回食譜列表</button>
+			<button class="add-detail-btn back-recipe-de transition">返回訂單列表</button>
 		</div>
 	</form>
 </div>

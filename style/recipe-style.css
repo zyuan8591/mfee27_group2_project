@@ -234,3 +234,7 @@
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
+
+.detail-item-input{
+	text-align: left;
+}
