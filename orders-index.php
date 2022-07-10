@@ -181,7 +181,7 @@ $totalPage=ceil($ordersCountAll / $perPage);
 	
     <style>
 		<?php require "./style/style.css"; ?>
-		<?php require "./style/recipe-style.css"; ?>
+		<?php require "./style/recipes-style.css"; ?>
 	</style>    
   </head>
   <body>

@@ -82,7 +82,7 @@
 							<svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M21 1.49998C21 0.670871 20.2791 0 19.3882 0H1.61175C0.721707 0 0 0.670871 0 1.49998V22.5C0 23.3291 0.721665 24 1.61175 24H13.6316V17.6628C13.6316 17.2482 13.992 16.9128 14.4375 16.9128H21V1.49998ZM2.42308 3.7584H10.5V5.44966H2.42308V3.7584V3.7584ZM2.42308 8.45638H10.5V10.1476H2.42308V8.45638V8.45638ZM10.5 19.5437H2.42308V17.8524H10.5V19.5437ZM18.1731 14.8457H2.42308V13.1544H18.1731V14.8457ZM18.1731 10.1477H13.125V3.7584H18.1731V10.1477Z" fill="black" />
 							</svg>
-							<a class="main_nav_item_content" href="">訂單管理</a>
+							<a class="main_nav_item_content" href="orders-index.php">訂單管理</a>
 						</div>
 
 						<div class="nav_dropdown">
@@ -95,7 +95,7 @@
 					<ul class="unstyled_list sub_nav_item">
 						<div class="sub_nav_item_container translateYtoNone">
 							<li>
-								<a class="sub_nav_item_content" href="">訂單總覽</a>
+								<a class="sub_nav_item_content" href="orders-index.php">訂單總覽</a>
 							</li>
 						</div>
 					</ul>

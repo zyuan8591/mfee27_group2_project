@@ -193,7 +193,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">訂單管理</a>
+								<a class="main_nav_item_content" href="orders-index.php">訂單管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -215,7 +215,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">訂單總覽</a>
+									<a class="sub_nav_item_content" href="orders-index.php">訂單總覽</a>
 								</li>
 							</div>
 						</ul>

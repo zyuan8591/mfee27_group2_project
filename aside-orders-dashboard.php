@@ -34,7 +34,7 @@
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">商品管理</a>
+								<a class="main_nav_item_content" href="product-index.php">商品管理</a>
 							</div>
 							<div class="nav_dropdown ">
 								<svg
@@ -55,7 +55,7 @@
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li class="">
-									<a class="sub_nav_item_content" href="">商品總覽</a>
+									<a class="sub_nav_item_content" href="product-index.php">商品總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">評價總覽</a>
@@ -79,7 +79,7 @@
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">訂單管理</a>
+								<a class="main_nav_item_content" href="orders-index.php">訂單管理</a>
 							</div>
 
 							<div class="nav_dropdown nav_dropdown_active">
@@ -101,7 +101,7 @@
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container">
 								<li class="sub_nav_item_active">
-									<a class="sub_nav_item_content" href="">訂單總覽</a>
+									<a class="sub_nav_item_content" href="orders-index.php">訂單總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -122,7 +122,7 @@
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">食譜管理</a>
+								<a class="main_nav_item_content" href="recipes-index.php">食譜管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -144,10 +144,10 @@
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">食譜總覽</a>
+									<a class="sub_nav_item_content" href="recipes-index.php">食譜總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">評價總覽</a>
+									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -168,7 +168,7 @@
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">會員管理</a>
+								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -190,19 +190,10 @@
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">一般會員總覽</a>
+									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員商品留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員食譜留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員收藏</a>
+									<a class="sub_nav_item_content" href="company-member-all-index.php">廠商會員總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -230,7 +221,7 @@
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href=""> 活動管理 </a>
+								<a class="main_nav_item_content" href="coupon-index.php"> 活動管理 </a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -252,14 +243,8 @@
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">優惠券</a>
+									<a class="sub_nav_item_content" href="coupon-index.php">優惠券</a>
 								</li>
-								<!-- <li>
-									<a class="sub_nav_item_content" href="">銷售通路</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">料理活動</a>
-								</li> -->
 							</div>
 						</ul>
 					</li>
