@@ -148,7 +148,7 @@ foreach($rowsRecipe as $row){
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">商品管理</a>
+								<a class="main_nav_item_content" href="product-index.php">商品管理</a>
 							</div>
 							<div class="nav_dropdown ">
 								<svg
@@ -169,7 +169,7 @@ foreach($rowsRecipe as $row){
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li class="">
-									<a class="sub_nav_item_content" href="">商品總覽</a>
+									<a class="sub_nav_item_content" href="product-index.php">商品總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">評價總覽</a>
@@ -236,7 +236,7 @@ foreach($rowsRecipe as $row){
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">食譜管理</a>
+								<a class="main_nav_item_content" href="recipe-index.php">食譜管理</a>
 							</div>
 
 							<div class="nav_dropdown nav_dropdown_active">
