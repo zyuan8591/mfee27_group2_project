@@ -50,3 +50,16 @@ let commentSearch = document.querySelector(".comment_search");
 perPage.addEventListener("change", function (e) {
 	commentSearch.submit();
 });
+
+let stars=document.querySelectorAll(".star");
+
+for (let i=0;i<stars.length;i++){
+	let star=`<i class="fa-solid fa-star table-evaluation"></i>`;
+	let allStar=stars[i].innerText;
+	result="";
+	for (let m=0;m<allStar;m++){
+		result+=star;
+	}
+	stars[i].innerHTML=result;
+	
+}

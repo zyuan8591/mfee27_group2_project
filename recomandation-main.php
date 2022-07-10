@@ -55,12 +55,12 @@
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
 
-	$sqlAll = "SELECT * FROM costommer_product_comment WHERE content LIKE '%$search%' ";
+	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' ";
 	$resultAll = $conn->query($sqlAll);
 	$commentCountAll = $resultAll->num_rows;
 
 
-	$sqlComment="SELECT * FROM costommer_product_comment WHERE content LIKE '%$search%' ORDER BY $orderType LIMIT $start, $per";
+	$sqlComment="SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' ORDER BY $orderType LIMIT $start, $per";
     $resultComment=$conn->query($sqlComment);
     $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
 
@@ -155,7 +155,7 @@
 					<td><?= $product[$row["product_id"]] ?></td>
 					<td><?=$commentUser[$row["user_id"]]?></td>
                     <td><?=$row["content"]?></td>
-                    <td><?=$row["comment"]?></td>
+                    <td class="star"><?=$row["comment"]?></td>
                     <td><?=$row["create_time"]?></td>
 					<td class="">
 						<a class="delete-btn text-white" href="delete-comment-exe.php?id=<?=$row["id"]?>">刪除</a>
