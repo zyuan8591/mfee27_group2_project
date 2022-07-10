@@ -45,9 +45,6 @@
     $sqlComment="SELECT * FROM costommer_product_comment";
     $resultComment=$conn->query($sqlComment);
     $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
-    foreach($rowsComment as $rowComment){
-
-    }
 
 
 	$search = isset($_GET["product_search"]) ? $_GET["product_search"] : "";
@@ -87,6 +84,9 @@
 
 	$result = $conn->query($sql);
 	$rows = $result->fetch_all(MYSQLI_ASSOC);
+	foreach ($rows as $row){
+		$product[$row["id"]]=$row["name"];
+	}
 	$productCount = $result->num_rows;
 
 	$totalPage = ceil($productCountAll / $per);
@@ -167,16 +167,16 @@
 		</thead>
 
 		<tbody class="">
-			<?php foreach ($rows as $row) : ?>
+			<?php foreach ($rowsComment as $row) : ?>
 
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
-					<td><?= $companyName[$row["company_id"]] ?></td>
-					<td><?= $row["name"] ?></td>
-					<td><?=$commentUser[$rowComment["user_id"]]?></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+					<td></td>
+					<td><?= $product[$row["product_id"]] ?></td>
+					<td><?=$commentUser[$row["user_id"]]?></td>
+                    <td><?=$row["content"]?></td>
+                    <td><?=$row["comment"]?></td>
+                    <td><?=$row["create_time"]?></td>
 					<td class="">
 						<button class="table-btn delete-btn">刪除</button>
 					</td>
