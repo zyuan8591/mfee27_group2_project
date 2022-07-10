@@ -12,16 +12,16 @@
 			$orderType = "id DESC";
 			break;
 		case 3:
-			$orderType = "name ASC";
+			$orderType = "user_id ASC";
 			break;
 		case 4:
-			$orderType = "name DESC";
+			$orderType = "user_id DESC";
 			break;
 		case 5:
-			$orderType = "create_time ASC";
+			$orderType = "comment ASC";
 			break;
 		case 6:
-			$orderType = "create_time DESC";
+			$orderType = "comment DESC";
 			break;
 		default:
 			$orderType = "id ASC";
@@ -42,58 +42,38 @@
         $commentUser[$row["id"]]=$row["name"];
     }
 
-    $sqlComment="SELECT * FROM costommer_product_comment";
-    $resultComment=$conn->query($sqlComment);
-    $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
-
-
-	$search = isset($_GET["product_search"]) ? $_GET["product_search"] : "";
-
-	$filterNum = isset($_GET["filter"]) ? $_GET["filter"] : "";
-	if (empty($_GET["filter"])) {
-		$filter = "";
-	} else {
-		$filter = "AND category_sub=$filterNum";
-	}
-	$validNum = isset($_GET["valid"]) ? $_GET["valid"] : "";
-	if ($validNum == "") {
-		$valid = "";
-	} elseif ($validNum == 0) {
-		$valid = "AND valid=0";
-	} else {
-		$valid = "AND valid=$validNum";
-	}
+	$search = isset($_GET["comment_search"]) ? $_GET["comment_search"] : "";
+	
 
 	if (isset($_GET["page"])) {
 		$page = $_GET["page"];
 	} else {
 		$page = 1;
 	}
-
-	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid";
-	$resultAll = $conn->query($sqlAll);
-	$productCountAll = $resultAll->num_rows;
-
-
 	$per = isset($_GET["per"]) ? $_GET["per"] : 10;
 	
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
 
-	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid ORDER BY $orderType LIMIT $start, $per";
+	$sqlAll = "SELECT * FROM costommer_product_comment WHERE content LIKE '%$search%' ";
+	$resultAll = $conn->query($sqlAll);
+	$commentCountAll = $resultAll->num_rows;
 
-	$result = $conn->query($sql);
-	$rows = $result->fetch_all(MYSQLI_ASSOC);
-	foreach ($rows as $row){
+
+	$sqlComment="SELECT * FROM costommer_product_comment WHERE content LIKE '%$search%' ORDER BY $orderType LIMIT $start, $per";
+    $resultComment=$conn->query($sqlComment);
+    $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
+
+	$totalPage = ceil($commentCountAll / $per);
+	if($commentCountAll<10){
+		$per=$commentCountAll;
+	}
+	$sqlProduct="SELECT * FROM products";
+	$resultProduct=$conn->query($sqlProduct);
+	$rowsProduct=$resultProduct->fetch_all(MYSQLI_ASSOC);
+	foreach ($rowsProduct as $row){
 		$product[$row["id"]]=$row["name"];
 	}
-	$productCount = $result->num_rows;
-
-	$totalPage = ceil($productCountAll / $per);
-	if($productCountAll<10){
-		$per=$productCountAll;
-	}
-
 	?>
 	<div>
 		<h2 class="main-title">商品評價總覽</h2>
@@ -103,34 +83,34 @@
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
 														$order == 1
-													) : ?>product-index.php?order=2&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
+													) : ?>product-recomandation.php?order=2&page=<?=$page?><?php elseif (
 																																	$order == 2
-																																) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依編號排序</a>
+																																) : ?>product-recomandation.php?order=1&page=<?=$page?><?php else : ?>product-recomandation.php?order=1&page=<?=$page?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 3
-													) : ?>product-index.php?order=4&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
+													) : ?>product-recomandation.php?order=4&page=<?=$page?><?php elseif (
 																																	$order == 4
-																																) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依名稱排序</a>
+																																) : ?>product-recomandation.php?order=3&page=<?=$page?><?php else : ?>product-recomandation.php?order=3&page=<?=$page?><?php endif; ?>">依會員排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 5
-													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
-																																	$order == 6	) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依日期排序</a>
+													) : ?>product-recomandation.php?order=6&page=<?=$page?><?php elseif (
+																																	$order == 6	) : ?>product-recomandation.php?order=5&page=<?=$page?><?php else : ?>product-recomandation.php?order=5&page=<?=$page?><?php endif; ?>">依評分排序</a>
 		</div>
 
-			<form class="product_search d-flex align-items-center " action="product-index.php" method="get">
+			<form class="comment_search d-flex align-items-center " action="product-recomandation.php" method="get">
 			<div class="mx-3">
 				<select class="form-select mx-2 per-page" aria-label="Default select example" name="per">
 
 					<option value="10" <?php if($per == 10){echo "selected";}?>>每頁顯示10筆</option>
 					<option value="15" <?php if($per == 15){echo "selected";}?>>每頁顯示15筆</option>
 					<option value="20" <?php if($per == 20){echo "selected";}?>>每頁顯示20筆</option>
-					<option value="<?=$productCountAll?>"<?php if ($per == $productCountAll){echo "selected";}?>>全部顯示</option>
+					<option value="<?=$commentCountAll?>"<?php if ($per == $commentCountAll){echo "selected";}?>>全部顯示</option>
 
 				</select>
 			</div>
 				<div class="d-flex align-items-center ">
 					<div class="d-flex ">
-						<input class="form-control search-box " type="text" name="product_search" placeholder="搜尋商品名稱">
+						<input class="form-control search-box " type="text" name="comment_search" placeholder="搜尋商品名稱">
 					</div>
 					<div class="">
 						<button class="search-btn form-control" type="submit">
@@ -150,8 +130,8 @@
 			
 		</div>
 	</div>
-	<?php if($productCountAll > 0): ?>
-	第<?= $page ?>頁，共<?= $totalPage ?>頁，共<?= $productCountAll ?>筆
+	<?php if($commentCountAll > 0): ?>
+	第<?= $page ?>頁，共<?= $totalPage ?>頁，共<?= $commentCountAll ?>筆
 	<table class="table table-hover">
 		<thead class="table-dark">
 			<tr class="">
@@ -187,7 +167,7 @@
 	<div class="page d-flex justify-content-center">
 		<div class="btn-group me-2" role="group" aria-label="First group">
 			<a href="
-			product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>
+			product-recomandation.php?order=1&order=<?=$order?>
 			&page=<?php $prePage = $page - 1;
 			if ($prePage < 1) {
 				$prePage = 1;
@@ -196,10 +176,10 @@
 			" type="button" class="btn btn-outline-dark text-nowrap ">上一頁</a>
 			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
 				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="
-				product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>"><?= $i ?></a>
+				product-recomandation.php?order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>"><?= $i ?></a>
 			<?php endfor; ?>
 			<a href="
-			product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&order=<?=$order?>
+			product-recomandation.php?order=1&order=<?=$order?>
 			&page=<?php $nextPage = $page + 1;
 			if ($nextPage > $totalPage) {$nextPage = $totalPage;}
 			echo $nextPage; ?>&per=<?=$per?>" 
