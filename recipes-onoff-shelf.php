@@ -46,7 +46,7 @@ if($recipeOnoffShelf != 0){
 $conn->close();
 
 header(
-	"location: recipe-index.php?order=$order&per-page=$perPage&page=$page&search=$search&foodCate=$foodCate&productCate=$productCate&valid=$valid"
+	"location: recipes-index.php?order=$order&per-page=$perPage&page=$page&search=$search&foodCate=$foodCate&productCate=$productCate&valid=$valid"
 );
 
 ?>

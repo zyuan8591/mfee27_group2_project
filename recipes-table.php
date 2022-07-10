@@ -31,11 +31,11 @@
 			<td><?= $row["create_time"] ?></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
 				<a class="btn-main transition me-3 on-shelf <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" 
-				href="recipe-onoff-shelf.php?id=<?= $row["id"] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
+				href="recipes-onoff-shelf.php?id=<?= $row["id"] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
 				<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>">上架</a>
 
 				<a class="btn-main transition me-3 off-shelf <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" 
-				href="recipe-onoff-shelf.php?id=<?= $row["id"] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
+				href="recipes-onoff-shelf.php?id=<?= $row["id"] ?>&order=<?= $order ?>&per-page=<?= $perPage ?>&page=<?= $page ?>&search=
 				<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>">下架</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 				<?php require "recipe-detail.php"; ?>
@@ -47,7 +47,7 @@
 <div class="flex_center w-100 position-rel">
 	<div class="btn-group align-self-center" role="group" >
 		<a href="
-			recipe-index.php?order=1&per-page=<?= $perPage ?>
+			recipes-index.php?order=1&per-page=<?= $perPage ?>
 			&page=<?php $prePage = $page - 1;
 			if ($prePage < 1) {
 				$prePage = 1;
@@ -56,14 +56,14 @@
 			" type="button" class="btn btn-outline-dark text-nowrap ">上一頁</a>
 			<?php for ($i = 1; $i <= $pages; $i++): ?>
 		<a href ="
-			recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+			recipes-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $i ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 			&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 			" type="button" class="btn btn-outline-dark <?php if ($page == $i) {echo "active";} ?> ">
 			<?= $i ?>
 		</a>
 		<?php endfor; ?>
 		<a href="
-		recipe-index.php?order=1&per-page=<?= $perPage ?>
+		recipes-index.php?order=1&per-page=<?= $perPage ?>
 		&page=<?php $nextPage = $page + 1;
 		if ($nextPage > $pages) {$nextPage = $pages;}
 		echo $nextPage; ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>

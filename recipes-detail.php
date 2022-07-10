@@ -2,7 +2,7 @@
 	<div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
-		action="recipe-detail-modify.php"
+		action="recipes-detail-modify.php"
 		method="POST"
 	>
 		<input type="hidden" value="<?= $row["id"] ?>" name="id">

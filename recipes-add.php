@@ -1,6 +1,6 @@
 <div class="new-recipe-page position_abs flex_center invisible">
     <div class="cover position_abs"></div>
-    <form class="new-recipe-form position-rel" action="recipe-add-exe.php
+    <form class="new-recipe-form position-rel" action="recipes-add-exe.php
     " method="GET" id="new-recipe-form">
         <i class="fa-solid fa-xmark addXMark position_abs"></i>
         <h2 class="recipe-title text-center">新增食譜</h2>
