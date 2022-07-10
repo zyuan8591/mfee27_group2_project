@@ -53,22 +53,35 @@ newMaterialBtn.addEventListener("click", (e) => {
 });
 
 // call add page
-let newRecipePage = document.querySelector(".new-recipe-page");
-let addRecipeBtn = document.querySelector(".add-recipe-btn");
-let backToRecipe = document.querySelector(".back-recipe");
-let xMark = document.querySelector(".fa-xmark");
+// let newRecipePage = document.querySelector(".new-recipe-page");
+// let addRecipeBtn = document.querySelector(".add-recipe-btn");
+// let backToRecipe = document.querySelector(".back-recipe");
+// let xMark = document.querySelector(".addXMark");
+// console.log(xMark);
 
-addRecipeBtn.addEventListener("click", function (e) {
-	e.preventDefault();
-	newRecipePage.classList.remove("invisible");
-});
-backToRecipe.addEventListener("click", function (e) {
-	e.preventDefault();
-	newRecipePage.classList.add("invisible");
-});
-xMark.addEventListener("click", function (e) {
-	newRecipePage.classList.add("invisible");
-});
+// addRecipeBtn.addEventListener("click", function (e) {
+// 	e.preventDefault();
+// 	newRecipePage.classList.remove("invisible");
+// });
+// backToRecipe.addEventListener("click", function (e) {
+// 	e.preventDefault();
+// 	newRecipePage.classList.add("invisible");
+// });
+// xMark.addEventListener("click", function (e) {
+// 	newRecipePage.classList.add("invisible");
+// });
+// add page image
+// let addImg = document.querySelector("#add-recipe-image");
+// let preImg = document.querySelector("#recipeImgPre");
+// let preSvg = document.querySelector("#recipeSvgPre");
+// addImg.addEventListener("change", (e) => {
+// 	let file = addImg.files[0].name;
+// 	if (file) {
+// 		preImg.classList.remove("d-none");
+// 		preImg.src = `img/recipe_img/${file}`;
+// 		preSvg.classList.add("d-none");
+// 	}
+// });
 
 // call detail page
 let detailPage = document.querySelector(".recipe-datail");
@@ -84,9 +97,21 @@ for (let i = 0; i < detailBtn.length; i++) {
 	});
 }
 
-// detailCover.addEventListener("click", (e) => {
-// 	detailPage.classList.add("invisible");
-// });
+//detail page img
+// let modifyImg = document.querySelectorAll(".detail-file");
+// let detailImg = document.querySelectorAll(".detailImgPre");
+// console.log(detailImg);
+// console.log(modifyImg);
+// for (let i = 0; i < modifyImg.length; i++) {
+// 	modifyImg[i].addEventListener("change", (e) => {
+// 		console.log("change");
+// 		let file = modifyImg[i].files[0].name;
+// 		console.log(file);
+// 		if (file) {
+// 			detailImg[i].src = `img/recipe_img/${file}`;
+// 		}
+// 	});
+// }
 
 // modify detail ---------------------------------------
 // modify & save btn
