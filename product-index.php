@@ -135,7 +135,7 @@
 							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M12 0.375C5.57812 0.375 0.375 5.57812 0.375 12C0.375 18.4219 5.57812 23.625 12 23.625C18.4219 23.625 23.625 18.4219 23.625 12C23.625 5.57812 18.4219 0.375 12 0.375ZM12 4.875C14.2781 4.875 16.125 6.72188 16.125 9C16.125 11.2781 14.2781 13.125 12 13.125C9.72188 13.125 7.875 11.2781 7.875 9C7.875 6.72188 9.72188 4.875 12 4.875ZM12 21C9.24844 21 6.78281 19.7531 5.13281 17.8031C6.01406 16.1437 7.73906 15 9.75 15C9.8625 15 9.975 15.0188 10.0828 15.0516C10.6922 15.2484 11.3297 15.375 12 15.375C12.6703 15.375 13.3125 15.2484 13.9172 15.0516C14.025 15.0188 14.1375 15 14.25 15C16.2609 15 17.9859 16.1437 18.8672 17.8031C17.2172 19.7531 14.7516 21 12 21Z" fill="black" />
 							</svg>
-							<a class="main_nav_item_content" href="">會員管理</a>
+							<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 						</div>
 
 						<div class="nav_dropdown">
@@ -148,7 +148,7 @@
 					<ul class="unstyled_list sub_nav_item">
 						<div class="sub_nav_item_container translateYtoNone">
 							<li>
-								<a class="sub_nav_item_content" href="">一般會員總覽</a>
+								<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 							</li>
 							<li>
 								<a class="sub_nav_item_content" href="">廠商會員總覽</a>

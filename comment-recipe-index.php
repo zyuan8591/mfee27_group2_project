@@ -282,7 +282,7 @@ foreach($rowsRecipe as $row){
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">會員管理</a>
+								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -304,7 +304,7 @@ foreach($rowsRecipe as $row){
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">一般會員總覽</a>
+									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>

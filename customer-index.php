@@ -99,7 +99,7 @@ if(isset($_GET["user_id"])){
 		<meta name="keywords" content="" />
 		<title>廚聚</title>
 		<!-- CSS only -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -113,7 +113,7 @@ if(isset($_GET["user_id"])){
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/recipe-style.css"; ?>
+			<?php require "./style/recipes-style.css"; ?>
 			<?php require "style/customer.css"; ?>
 			
 		</style>
@@ -268,7 +268,7 @@ if(isset($_GET["user_id"])){
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li class="">
-									<a class="sub_nav_item_content" href="">食譜總覽</a>
+									<a class="sub_nav_item_content" href="recipes-index.php">食譜總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
@@ -292,7 +292,7 @@ if(isset($_GET["user_id"])){
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">會員管理</a>
+								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
 							<div class="nav_dropdown nav_dropdown_active">
@@ -314,7 +314,7 @@ if(isset($_GET["user_id"])){
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container">
 								<li class="sub_nav_item_active">
-									<a class="sub_nav_item_content" href="">一般會員總覽</a>
+									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
@@ -369,6 +369,12 @@ if(isset($_GET["user_id"])){
 								<li>
 									<a class="sub_nav_item_content" href="coupon-index.php">優惠券</a>
 								</li>
+								<!-- <li>
+									<a class="sub_nav_item_content" href="">銷售通路</a>
+								</li>
+								<li>
+									<a class="sub_nav_item_content" href="">料理活動</a>
+								</li> -->
 							</div>
 						</ul>
 					</li>
@@ -426,7 +432,6 @@ if(isset($_GET["user_id"])){
 				</form>
 			</div>
 			<div class="d-flex justify-content-between align-items-center my-3">
-<!-- 食譜類別******************************************************************************************************** -->
 				<div class="filter d-flex align-items-center">					
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
@@ -447,15 +452,7 @@ if(isset($_GET["user_id"])){
 							<li><a href="customer-index.php?page=1&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=0 ">停用</a></li>
 							<li><a href="customer-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid= ">全部會員</a></li>
 						</ul>
-					</div>
-					<div class="filter-item position-rel">
-						<button  class="filter-btn transition">
-							<a href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=&foodCate=&productCate=&valid=
-							" >全部顯示</a>
-						</button>
-					</div>				
+					</div>					
 				</div>
 				<div>
 					<a class="transition" style="cursor:pointer;" id="customer-add-openBtn" >新增會員</a>
@@ -472,6 +469,5 @@ if(isset($_GET["user_id"])){
 		
 
 		</script>
-		<?php require "recipes-toast.php" ?>
 	</body>
 </html>

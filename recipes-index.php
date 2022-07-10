@@ -59,43 +59,41 @@ if (isset($_GET["valid"])) {
 }
 if ($valid == "") {
 	$valid = "";
-	$validType = "";
+	$sqlWhereValid = "";
 }
 
 $sqlAll = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid ";
 $resultAll = $conn->query($sqlAll);
-// $Allrows=$resultAll->fetch_all(MYSQLI_ASSOC);
-$customerCount=$resultAll-> num_rows;
+$recipeCountAll = $resultAll->num_rows;
 
-$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+//pages
+$pages = ceil($recipeCountAll / $perPage);
+$start = ($page - 1) * $perPage;
 
-
-// order&page
-$perpage=$selectPages;
-$start=($page-1)*$perpage;
-
-switch($order){
-  case 1:
-    $orderType="id ASC";
-    break;
-  case 2:
-    $orderType="id DESC";
-    break;
-  case 3:
-    $orderType="name ASC";
-    break;
-  case 4:
-    $orderType="name DESC";
-    break;
-  default:
-    $orderType="id ASC"; 
+//sort data
+switch ($order) {
+	case 1:
+		$orderType = "id ASC";
+		break;
+	case 2:
+		$orderType = "name ASC";
+		break;
+	case 3:
+		$orderType = "id DESC";
+		break;
+	case 4:
+		$orderType = "name DESC";
+		break;
+	default:
+		$orderType = "id ASC";
+		break;
 }
 
 $sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid 
 ORDER BY $orderType LIMIT $start, $perPage ";
 $result = $conn->query($sql);
-$rows=$result->fetch_all(MYSQLI_ASSOC);
-$pageCustomerCount=$result-> num_rows;
+$recipeCount = $result->num_rows;
+$rows = $result->fetch_all(MYSQLI_ASSOC);
 
 //get category_food
 $sqlCatFood = "SELECT * FROM recipe_category";
@@ -105,10 +103,14 @@ foreach ($rowsCatFood as $row) {
 	$category_food[$row["id"]] = $row["name"];
 }
 
-
-
+//get category_product
+$sqlCatProduct = "SELECT * FROM products_category_sub";
+$resultCatProduct = $conn->query($sqlCatProduct);
+$rowsCatProduct = $resultCatProduct->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsCatProduct as $row) {
+	$category_product[$row["id"]] = $row["name"];
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -133,8 +135,6 @@ foreach ($rowsCatFood as $row) {
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/recipes-style.css"; ?>
 		</style>
-		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
-		
 	</head>
 	<body>
 		<?php require "header.php"; ?>
@@ -265,7 +265,7 @@ foreach ($rowsCatFood as $row) {
 								<a class="main_nav_item_content" href="recipes-index.php">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -308,10 +308,10 @@ foreach ($rowsCatFood as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">會員管理</a>
+								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown">
 								<svg
 									width="24"
 									height="13"
@@ -328,9 +328,9 @@ foreach ($rowsCatFood as $row) {
 						</div>
 						<!-- 會員管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container">
-								<li class="sub_nav_item_active">
-									<a class="sub_nav_item_content" href="">一般會員總覽</a>
+							<div class="sub_nav_item_container translateYtoNone">
+								<li>
+									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
@@ -393,7 +393,7 @@ foreach ($rowsCatFood as $row) {
 		</aside>
 		<main class="main position-rel">
 			<div>
-				<h2 class="main-title">會員總覽</h2>
+				<h2 class="main-title">食譜總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
@@ -434,17 +434,8 @@ foreach ($rowsCatFood as $row) {
 						<?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
-						<select class="me-3 form-control rounded-1 select-border select-pages-btn" name="selectPages" id="">
-							<option value="10" 
-							<?php if($selectPages == 10) echo "selected" ?>>每頁顯示10筆</option>
-							<option value="15" <?php if($selectPages == 15) echo 'selected' ?>
-							>每頁顯示15筆</option>
-							<option value="20" 
-							<?php if($selectPages == 20) echo 'selected' ?>
-							>每頁顯示20筆</option>
-						</select>
 						<div class="d-flex ">
-							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋">
+							<input value="<?= $search ?>" class="form-control search-box " type="text" name="search" placeholder="搜尋食譜名稱">
 						</div>
 						<div class="">
 							<button class="search-btn form-control" type="submit">
@@ -555,7 +546,7 @@ foreach ($rowsCatFood as $row) {
 					</div>				
 				</div>
 				<div>
-					<a class="transition" style="cursor:pointer;" id="customer-add-openBtn" >新增會員</a>
+					<a class="add-recipe-btn transition" href="">新增食譜</a>
 				</div>
 			</div>
 		<?php require "recipes-table.php"; ?>
