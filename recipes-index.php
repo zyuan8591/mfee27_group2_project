@@ -17,12 +17,6 @@ if (empty($page)) {
 } elseif ($page < 1) {
 	$page = 1;
 }
-
-$perpage= isset($_GET["per-page"])? $_GET["per-page"] : 10;
-// if (empty($perpage)){
-// 	$perpage = 10;
-// }
-
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 if (empty($search)) {
 	$search = "";
@@ -70,37 +64,35 @@ if ($valid == "") {
 
 $sqlAll = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid ";
 $resultAll = $conn->query($sqlAll);
-$CompanyUsersCountAll = $resultAll->num_rows;
-$rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
+$recipeCountAll = $resultAll->num_rows;
 
-//分頁
-// $perpage = 10;
-$start = ($page - 1) * $perpage;
-$totalPage = ceil($CompanyUsersCountAll / $perpage);
+//pages
+$pages = ceil($recipeCountAll / $perPage);
+$start = ($page - 1) * $perPage;
 
-//sort data 排序
-switch($order){
+//sort data
+switch ($order) {
 	case 1:
 		$orderType = "id ASC";
 		break;
 	case 2:
-		$orderType = "id DESC";
+		$orderType = "name ASC";
 		break;
 	case 3:
-		$orderType = "create_time ASC";
+		$orderType = "id DESC";
 		break;
 	case 4:
-		$orderType = "create_time DESC";
+		$orderType = "name DESC";
 		break;
 	default:
-		$orderType = "id DESC";
+		$orderType = "id ASC";
 		break;
 }
 
 $sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid 
 ORDER BY $orderType LIMIT $start, $perPage ";
 $result = $conn->query($sql);
-$pagesCount = $result->num_rows;
+$recipeCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 //get category_food
@@ -111,8 +103,14 @@ foreach ($rowsCatFood as $row) {
 	$category_food[$row["id"]] = $row["name"];
 }
 
+//get category_product
+$sqlCatProduct = "SELECT * FROM products_category_sub";
+$resultCatProduct = $conn->query($sqlCatProduct);
+$rowsCatProduct = $resultCatProduct->fetch_all(MYSQLI_ASSOC);
+foreach ($rowsCatProduct as $row) {
+	$category_product[$row["id"]] = $row["name"];
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -137,11 +135,8 @@ foreach ($rowsCatFood as $row) {
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/recipes-style.css"; ?>
 		</style>
-		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
-		<script type="text/javascript" src="./js/jquery.min.js"></script>
 	</head>
 	<body>
-		<!-------------- header -------------->
 		<?php require "header.php"; ?>
 		<aside class="aside position_abs">
 			<!-- <div class="smaller_sidebar">
@@ -160,7 +155,7 @@ foreach ($rowsCatFood as $row) {
 				</svg>
 			</div> -->
 
-		<!-------------- NAVBAR -------------->
+			<!-- NAVBAR -->
 			<nav class="">
 				<!-- 商品管理 -->
 				<ul class="nav unstyled_list">
@@ -270,7 +265,7 @@ foreach ($rowsCatFood as $row) {
 								<a class="main_nav_item_content" href="recipes-index.php">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -316,7 +311,7 @@ foreach ($rowsCatFood as $row) {
 								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown">
 								<svg
 									width="24"
 									height="13"
@@ -333,12 +328,12 @@ foreach ($rowsCatFood as $row) {
 						</div>
 						<!-- 會員管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container">
+							<div class="sub_nav_item_container translateYtoNone">
 								<li>
 									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
-								<li class="sub_nav_item_active">
-									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
+								<li>
+									<a class="sub_nav_item_content" href="company-member-all-index.php">廠商會員總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -396,10 +391,9 @@ foreach ($rowsCatFood as $row) {
 				</ul>
 			</nav>
 		</aside>
-		<!-------------- main -------------->
 		<main class="main position-rel">
 			<div>
-				<h2 class="main-title">廠商會員總覽</h2>
+				<h2 class="main-title">食譜總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
@@ -441,10 +435,10 @@ foreach ($rowsCatFood as $row) {
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
-							<input class="form-control search-box " type="text" name="search" value="<?= $search ?>" placeholder="搜尋廠商名稱">
+							<input value="<?= $search ?>" class="form-control search-box " type="text" name="search" placeholder="搜尋食譜名稱">
 						</div>
-						<div>
-							<button class="search-btn form-control">
+						<div class="">
+							<button class="search-btn form-control" type="submit">
 								<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M17.7292 18.8489L10.8802 11.9999C10.3594 12.4513 9.75174 12.8029 9.05729 13.0546C8.36285 13.3063 7.625 13.4322 6.84375 13.4322C4.96875 13.4322 3.38021 12.7812 2.07812 11.4791C0.776042 10.177 0.125 8.60582 0.125 6.76554C0.125 4.92527 0.776042 3.35409 2.07812 2.052C3.38021 0.749919 4.96007 0.098877 6.81771 0.098877C8.65799 0.098877 10.2248 0.749919 11.5182 2.052C12.8116 3.35409 13.4583 4.92527 13.4583 6.76554C13.4583 7.51207 13.3368 8.23256 13.0937 8.927C12.8507 9.62145 12.4861 10.2725 12 10.8801L18.875 17.703L17.7292 18.8489ZM6.81771 11.8697C8.22396 11.8697 9.42188 11.3706 10.4115 10.3723C11.401 9.37405 11.8958 8.17179 11.8958 6.76554C11.8958 5.35929 11.401 4.15704 10.4115 3.15877C9.42188 2.16051 8.22396 1.66138 6.81771 1.66138C5.3941 1.66138 4.18316 2.16051 3.1849 3.15877C2.18663 4.15704 1.6875 5.35929 1.6875 6.76554C1.6875 8.17179 2.18663 9.37405 3.1849 10.3723C4.18316 11.3706 5.3941 11.8697 6.81771 11.8697Z" fill="#222222"/>
 								</svg>
@@ -552,7 +546,7 @@ foreach ($rowsCatFood as $row) {
 					</div>				
 				</div>
 				<div>
-					<a class="add-company-btn transition" href="">新增廠商</a>
+					<a class="add-recipe-btn transition" href="">新增食譜</a>
 				</div>
 			</div>
 		<?php require "recipes-table.php"; ?>

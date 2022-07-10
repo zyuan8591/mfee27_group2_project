@@ -317,7 +317,7 @@ if(isset($_GET["user_id"])){
 									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
+									<a class="sub_nav_item_content" href="company-member-all-index.php">廠商會員總覽</a>
 								</li>
 							</div>
 						</ul>

@@ -2,25 +2,27 @@
 .sort-search {
 	margin: 0.5rem 0 0 0;
 }
-/* .sort {
+.sort {
 	flex: 0 0 auto;
-} */
-/* .sort-btn {
+}
+.sort-btn {
 	padding: 0.2rem 0.5rem;
 	background: var(--header-bg);
 	margin: 0.25rem;
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
-} */
+}
 .sort-btn:hover {
 	background: var(--btn-hover);
-	/* box-shadow: var(--hover-shadow); */
+	box-shadow: var(--hover-shadow);
 }
-/* .sort-btn:active {
+.sort-btn:active {
 	outline: var(--button-active) solid 4px;
-} */
-.sort {
-	z-index: 5;
+}
+/* per page */
+
+.per-page {
+	width: auto;
 }
 /* search -- */
 .search-box {
@@ -29,7 +31,7 @@
 	border: 2px solid var(--button-active);
 	height: 36px;
 	position: relative;
-	width: 365px;
+	max-width: 365px;
 	flex-shrink: 1;
 }
 .search-box:focus {
@@ -100,28 +102,22 @@
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
 }
-.add-company-btn:hover {
+.add-recipe-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
-.add-company-btn:active {
+.add-recipe-btn:active {
 	outline: var(--outline);
 }
 
-/* on & off btn 啟用 停用 */
-.point-event-none {
-	pointer-events: none;
-	opacity: 0.5;
-}
-/* add-new-company-page--廠商詳細資料頁--------------------------------------------------- */
-.new-company-page {
+/* add-new-recipe-page--------------------------------------------------------- */
+.new-recipe-page {
 	height: 100vh;
 	width: 100vw;
 	top: 0;
 	left: 0;
 	z-index: 50;
 	transition: 0.5s;
-	position: fixed;
 }
 .cover {
 	height: 100vh;
@@ -129,7 +125,7 @@
 	background: #666;
 	opacity: 0.8;
 }
-.new-company-form {
+.new-recipe-form {
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
 	width: 35vw;
@@ -146,12 +142,13 @@
 	font-size: 1.5rem;
 	cursor: pointer;
 }
-.company-title {
+.recipe-title {
 	border-bottom: 2px solid var(--input-border);
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 }
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
@@ -175,14 +172,8 @@
 	width: 130px;
 	height: 130px;
 }
-.add-image-container {
-	height: 134px;
-	width: 134px;
-}
-.object-cover {
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
+.add-recipe-image {
+	cursor: pointer;
 }
 .preview-add-img-container {
 	height: 134px;
@@ -193,8 +184,8 @@
 }
 
 /* ****************************************************************************** */
-/* company-detail 詳細資料*/
-.company-datail {
+/* recipe-detail */
+.recipe-datail {
 	height: 100vh;
 	width: 100vw;
 	top: 0;
@@ -214,7 +205,8 @@
 	padding: 1.5rem 2.5rem 1rem 2.5rem;
 	overflow: auto;
 }
-.add-detail-btn {
+.add-detail-btn,
+.save-detail-btn {
 	white-space: nowrap;
 	padding: 0.4rem 0.75rem;
 	background: var(--header-bg);
