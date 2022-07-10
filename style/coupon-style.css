@@ -1,3 +1,19 @@
+/* --------------------------------------------- */
+/* main */
+.main {
+	position: absolute;
+	top: var(--header-height);
+	left: var(--aside-width);
+	background: var(--main-bg);
+	padding: 2.2rem 2.5rem;
+	width: calc(100vw - var(--aside-width));
+	overflow: auto;
+	height: calc(100vh - var(--header-height));
+}
+.main-title {
+	font-size: 2rem;
+	font-weight: normal;
+}
 /* sort by -- */
 .sort-search {
 	margin: 0.5rem 0 0 0;
@@ -87,12 +103,8 @@
 .filter-dropdown li:hover {
 	background: var(--button-hover);
 }
-/* table---------------------------- */
-.page-hint {
-	right: 0;
-}
-/* add new recipe -- */
-.add-recipe-btn {
+/* add new coupon -- */
+.add-coupon-btn {
 	width: 100%;
 	white-space: nowrap;
 	padding: 0.3rem 0.75rem;
@@ -102,16 +114,16 @@
 	border-radius: 3px;
 	box-shadow: var(--box-shadow);
 }
-.add-recipe-btn:hover {
+.add-coupon-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
-.add-recipe-btn:active {
+.add-coupon-btn:active {
 	outline: var(--outline);
 }
 
-/* add-new-recipe-page--------------------------------------------------------- */
-.new-recipe-page {
+/* add-new-coupon-page--------------------------------------------------------- */
+.new-coupon-page {
 	height: 100vh;
 	width: 100vw;
 	top: 0;
@@ -125,7 +137,7 @@
 	background: #666;
 	opacity: 0.8;
 }
-.new-recipe-form {
+.new-coupon-form {
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
 	width: 35vw;
@@ -142,7 +154,7 @@
 	font-size: 1.5rem;
 	cursor: pointer;
 }
-.recipe-title {
+.coupon-title {
 	border-bottom: 2px solid var(--input-border);
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
@@ -172,7 +184,7 @@
 	width: 130px;
 	height: 130px;
 }
-.add-recipe-image {
+.add-coupon-image {
 	cursor: pointer;
 }
 .preview-add-img-container {
@@ -184,8 +196,8 @@
 }
 
 /* ****************************************************************************** */
-/* recipe-detail */
-.recipe-datail {
+/* coupon-detail */
+.detail-coupon-page {
 	height: 100vh;
 	width: 100vw;
 	top: 0;
@@ -220,10 +232,11 @@
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
-.save-detail-btn-hover:hover {
-	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
-}
-.detailImgPre {
-	border-radius: 5px;
+
+/* coupon add X */
+.coupon-xmark {
+	top: 0.5rem;
+	right: 1rem;
+	font-size: 1.5rem;
+	cursor: pointer;
 }
