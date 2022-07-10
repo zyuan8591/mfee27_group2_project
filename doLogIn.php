@@ -26,11 +26,12 @@ if($userCount > 0){
     $user=[
         "id"=>$row["id"],
         "name"=>$row["name"],
-        "email"=>$row["email"]
+        "email"=>$row["email"],
+        "image"=>$row["logo_img"]
     ];
     unset($_SESSION["error"]);
     $_SESSION["user"]=$user;
-    header("location: company-member-all-index.php");
+    header("location: company-user-index.php");
 
 } else {
     echo "帳號或密碼錯誤";
@@ -41,6 +42,6 @@ if($userCount > 0){
     } else {
         $_SESSION["error"]["times"]++ ;
     }
-    header("location: login.php");
+    header("location: login.php");    
 }
 ?>

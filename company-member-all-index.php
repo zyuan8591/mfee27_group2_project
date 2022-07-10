@@ -90,7 +90,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 		<meta name="keywords" content="" />
 		<title>廚聚</title>
 		<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -237,7 +237,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 								<a class="main_nav_item_content" href="">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown">
 								<svg
 									width="24"
 									height="13"
@@ -254,8 +254,8 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 						</div>
 						<!-- 食譜管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container ">
-								<li class="sub_nav_item_active">
+							<div class="sub_nav_item_container translateYtoNone">
+								<li class="">
 									<a class="sub_nav_item_content" href="">食譜總覽</a>
 								</li>
 								<li>
@@ -283,7 +283,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 								<a class="main_nav_item_content" href="">會員管理</a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -300,21 +300,12 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 						</div>
 						<!-- 會員管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container translateYtoNone">
+							<div class="sub_nav_item_container">
 								<li>
 									<a class="sub_nav_item_content" href="">一般會員總覽</a>
 								</li>
-								<li>
+								<li class="sub_nav_item_active">
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員商品留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員食譜留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員收藏</a>
 								</li>
 							</div>
 						</ul>
@@ -385,7 +376,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center position-rel">
-					<div >
+					<div class="me-2">
 						<a 
 							class=" filter-btn transition" 
 							href="<?php if ($order == 2):?>
@@ -410,16 +401,16 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 							">依日期排序</a>
 					</div>		
 				</div>
-				<form class="company_search d-flex flex-wrap align-items-center gap-2" action="company-member-all-index.php" method="get">
-					<select class="per-page" name="per-page" id="per-page">
-						<option value="5"
-						<?php if ($perpage == 5) {echo "selected";} ?>>每頁顯示5筆</option>
+				<form class="company_search d-flex align-items-center gap-2" action="company-member-all-index.php" method="get">
+					<select class="form-select per-page" name="per-page" id="per-page">
 						<option value="10"
 						<?php if ($perpage == 10) {echo "selected";} ?>>每頁顯示10筆</option>
 						<option value="15"
 						<?php if ($perpage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
+						<option value="20"
+						<?php if ($perpage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
-					<div class="d-flex align-items-center " >
+					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
 							<input class="form-control search-box " type="text" name="search" value="<?= $search ?>" placeholder="搜尋廠商名稱">
 						</div>
@@ -450,7 +441,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 							echo "全部";
 						}
 						?></button>
-						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+						<ul class="filter-dropdown unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="company-member-all-index.php?valid=">全部</a></li>
 							<li><a href="company-member-all-index.php?page=<?=$page?>&order=<?=$order?>&valid=1">啟用</a></li>
 							<li><a href="company-member-all-index.php?valid=0">停用</a></li>

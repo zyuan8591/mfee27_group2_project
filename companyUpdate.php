@@ -17,7 +17,7 @@ $intro = $_POST["intro"];
 
 if($_FILES["myfile-image"]["error"]==0){
 
-    if(move_uploaded_file($_FILES["myfile-image"]["tmp_name"],"./company_img/".$_FILES["myfile-image"]["name"])){
+    if(move_uploaded_file($_FILES["myfile-image"]["tmp_name"],"./img/company_img/".$_FILES["myfile-image"]["name"])){
         
         $fileName=$_FILES["myfile-image"]["name"];
 

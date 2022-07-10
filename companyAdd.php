@@ -55,7 +55,7 @@ if($userCount>0){
 
 if($_FILES["add-company-file"]["error"]==0){
 
-    if(move_uploaded_file($_FILES["add-company-file"]["tmp_name"],"./company_img/".$_FILES["add-company-file"]["name"])){
+    if(move_uploaded_file($_FILES["add-company-file"]["tmp_name"],"./img/company_img/".$_FILES["add-company-file"]["name"])){
         
         $fileName=$_FILES["add-company-file"]["name"];
 

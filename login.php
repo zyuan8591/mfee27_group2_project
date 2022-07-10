@@ -1,17 +1,30 @@
 <?php
 session_start();
+if(isset($_SESSION["user"])){
+	header("location:company-user-index.php");
+}
 ?>
 
 <!doctype html>
 <html lang="en">
   <head>
-    <title>screen</title>
+    <title>廚聚後台登入系統</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS v5.2.0-beta1 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap"
+		rel="stylesheet"
+	/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="./style/normalize.css" />
+
     <style>
 
         * {
@@ -138,12 +151,13 @@ session_start();
             padding: 20px 0px;
         }
     </style>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <!---------------------- header ---------------------->
-<header class="header d-flex align-items-center">
-	<div class="d-flex align-items-center ">
-		<div class="logo ">
+<header class="header position-rel">
+	<div class="flex_center">
+		<div class="logo">
 			<svg
 				width="50"
 				height="50"
@@ -157,10 +171,10 @@ session_start();
 				/>
 			</svg>
 		</div>
-		<h1 class="m-0 logo-name">廚聚</h1>
+		<h1 class="title">廚聚後台登入系統</h1>
 	</div>
-</header>    
-    <!---------------------- main ---------------------->
+</header>
+<!---------------------- main ---------------------->
 <div class="main-contain d-flex justify-content-center align-items-center vh-100">
 <?php if(isset($_SESSION["error"]) && $_SESSION["error"]["times"]>=3): ?>
     <div class="error-times text-center">
@@ -198,7 +212,6 @@ session_start();
                     <button class="btn-style rounded-0 border-0" type="submit">登入</button>    
                 </div>
             </form>
-            <?php endif; ?>
             </div>
 <!--- 廠商登入 --->
             <div class="p1 ">
@@ -235,6 +248,7 @@ session_start();
         </div>
         </div>
     </div>
+<?php endif; ?>
 </div>
 <script>
 

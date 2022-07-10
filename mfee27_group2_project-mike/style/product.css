@@ -1,0 +1,159 @@
+/* add new product */
+
+.add-product-btn {
+	white-space: nowrap;
+	padding: 0.3rem 0.75rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+}
+.add-product-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.add-product-btn:active {
+	outline: var(--outline);
+}
+
+/* add-new-recipe-page */
+
+.new-product-page {
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	transition: 0.5s;
+}
+.new-product-form {
+	background: var(--header-bg);
+	box-shadow: var(--box-shadow);
+	width: 500px;
+	height: 600px;
+	border-radius: 3px;
+	opacity: 1;
+	z-index: 5;
+	padding: 1rem 2.5rem;
+	overflow: auto;
+}
+.fa-xmark {
+	top: 0.75rem;
+	right: 1rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+.product-title {
+	border-bottom: 2px solid var(--input-border);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+.new-product-btn {
+	white-space: nowrap;
+	background: var(--header-bg);
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	padding: 0.25rem;
+	font-family: "Noto Sans TC", sans-serif;
+}
+.new-product-btn:active {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.product-image {
+	cursor: pointer;
+}
+.product-btn {
+	white-space: nowrap;
+	padding: 0.4rem 0.5rem;
+	background: var(--header-bg);
+	margin: 0.3rem;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.product-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.table-btn {
+	white-space: nowrap;
+	padding: 0.45rem 0.7rem;
+	background: var(--header-bg);
+	margin: 0.2rem 0.3rem;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.table-btn:hover {
+	background: #ccc;
+	box-shadow: var(--hover-shadow);
+}
+
+/* detail */
+
+.detail-page {
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	transition: 0.5s;
+	position: fixed;
+}
+.detail-form {
+	background: var(--header-bg);
+	box-shadow: var(--box-shadow);
+	width: 600px;
+	height: 600px;
+	border-radius: 3px;
+	opacity: 1;
+	z-index: 5;
+	padding: 1.5rem 2.5rem;
+	overflow: auto;
+}
+.detail-cover {
+	height: 100vh;
+	width: 100vw;
+	background: #666;
+	opacity: 0.8;
+}
+.revise-btn,
+.save-btn {
+	white-space: nowrap;
+	padding: 0.4rem 0.5rem;
+	background: var(--header-bg);
+	margin: 0.3rem;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.revise-hover:hover,
+.save-hover:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+
+.point-none {
+	pointer-events: none;
+	opacity: .5;
+}
+
+.spec {
+width: 100%;
+height: 100%;
+}
+
+.product-img {
+	width: 134px;
+	height: 134px;
+}
+
+textarea {
+	font-family: "Noto Sans TC", sans-serif;
+}

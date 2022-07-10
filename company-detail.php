@@ -90,7 +90,7 @@
 			<label for="" class="form-label">公司圖像</label>
 			<label for="detail-image-<?= $row["id"] ?>" class="detail-image">
 				<div class="add-image-container cursor-pointer me-2">
-					<img src="./company_img/<?= $row["logo_img"]?>" alt="" class="object-cover detailImgPre">
+					<img src="./img/company_img/<?= $row["logo_img"]?>" alt="" class="object-cover detailImgPre">
 				</div>
 			</label>
 			<input
