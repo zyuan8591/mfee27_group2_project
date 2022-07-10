@@ -236,7 +236,7 @@ foreach($rowsRecipe as $row){
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="recipe-index.php">食譜管理</a>
+								<a class="main_nav_item_content" href="recipes-index.php">食譜管理</a>
 							</div>
 
 							<div class="nav_dropdown nav_dropdown_active">
@@ -258,7 +258,7 @@ foreach($rowsRecipe as $row){
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container ">
 								<li >
-									<a class="sub_nav_item_content" href="recipe-index.php">食譜總覽</a>
+									<a class="sub_nav_item_content" href="recipes-index.php">食譜總覽</a>
 								</li>
 								<li class="sub_nav_item_active">
 									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
@@ -309,15 +309,6 @@ foreach($rowsRecipe as $row){
 								<li>
 									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
 								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員商品留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員食譜留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員收藏</a>
-								</li>
 							</div>
 						</ul>
 					</li>
@@ -344,7 +335,7 @@ foreach($rowsRecipe as $row){
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href=""> 活動管理 </a>
+								<a class="main_nav_item_content" href="coupon-index.php"> 活動管理 </a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -366,7 +357,7 @@ foreach($rowsRecipe as $row){
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">優惠券</a>
+									<a class="sub_nav_item_content" href="coupon-index.php">優惠券</a>
 								</li>
 							</div>
 						</ul>
