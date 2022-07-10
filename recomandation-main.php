@@ -35,19 +35,20 @@
 		$companyName[$row["id"]] = $row["name"];
 	}
 
-	$sqlCate = "SELECT id, name FROM products_category";
-	$resultCate = $conn->query($sqlCate);
-	$rowsCate = $resultCate->fetch_all(MYSQLI_ASSOC);
-	foreach ($rowsCate as $row) {
-		$cate[$row["id"]] = $row["name"];
-	}
+    $sqlUser="SELECT id, name FROM customer_users";
+    $resultUser=$conn->query($sqlUser);
+    $rowsUser=$resultUser->fetch_all(MYSQLI_ASSOC);
+    foreach ($rowsUser as $row){
+        $commentUser[$row["id"]]=$row["name"];
+    }
 
-	$sqlCateSub = "SELECT id, name FROM products_category_sub";
-	$resultCateSub = $conn->query($sqlCateSub);
-	$rowsCateSub = $resultCateSub->fetch_all(MYSQLI_ASSOC);
-	foreach ($rowsCateSub as $row) {
-		$cateSub[$row["id"]] = $row["name"];
-	}
+    $sqlComment="SELECT * FROM costommer_product_comment";
+    $resultComment=$conn->query($sqlComment);
+    $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
+    foreach($rowsComment as $rowComment){
+
+    }
+
 
 	$search = isset($_GET["product_search"]) ? $_GET["product_search"] : "";
 
@@ -95,7 +96,7 @@
 
 	?>
 	<div>
-		<h2 class="main-title">商品總覽</h2>
+		<h2 class="main-title">商品評價總覽</h2>
 	</div>
 
 	<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
@@ -154,12 +155,14 @@
 	<table class="table table-hover">
 		<thead class="table-dark">
 			<tr class="">
-				<th class="text-center" scope="col">商品編號</th>
+				<th class="text-center" scope="col">評價編號</th>
 				<th scope="col">店家</th>
 				<th scope="col">商品名稱</th>
                 <th scope="col">會員</th>
-				<th scope="col">商品評論</th>
-				<th scope="col">編輯評論</th>
+				<th scope="col">商品留言</th>
+                <th scope="col">評價分數</th>
+                <th scope="col">留言日期</th>
+				<th scope="col">編輯</th>
 			</tr>
 		</thead>
 
@@ -170,7 +173,9 @@
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
 					<td><?= $companyName[$row["company_id"]] ?></td>
 					<td><?= $row["name"] ?></td>
-					<td></td>
+					<td><?=$commentUser[$rowComment["user_id"]]?></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
 					<td class="">
 						<button class="table-btn delete-btn">刪除</button>
