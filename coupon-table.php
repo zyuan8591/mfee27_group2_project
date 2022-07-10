@@ -25,8 +25,8 @@
 			<td><?=$row["end_date"]?></td>
 			<td class="text-center"><?php echo $row["discount"]*100 . "%" ?></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">								
-				<a class="btn-main transition me-3 on-shelf  <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">上架</a>
-				<a class="btn-main transition me-3 off-shelf  <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">下架</a>
+				<a class="btn-main transition me-3 on-shelf  <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>&page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">上架</a>
+				<a class="btn-main transition me-3 off-shelf  <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>&page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">下架</a>
 				<a class="btn-main transition me-3 coupon-detail" href="">詳細資料</a>			
 				<?php require "coupon-detail.php"; ?>					
 			</td>

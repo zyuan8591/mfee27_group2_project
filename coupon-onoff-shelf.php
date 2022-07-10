@@ -4,6 +4,10 @@ require("./db-connect.php");
 // echo $_SERVER['QUERY_STRING'];
 // echo $_GET['id'];
 $id=$_GET['id'];
+$page=$_GET['page'];
+$order=$_GET['order'];
+$search=$_GET['search'];
+$valid=$_GET['valid'];
 
 $sqlOnoffshelf = "SELECT id, valid FROM coupon WHERE id='$id'";
 $resultOnoffshelf = $conn->query($sqlOnoffshelf);
@@ -24,5 +28,5 @@ if($conn->query($sqlUpadate)){
 }
 $conn->close();
 
-header("location: coupon-index.php");
+header("location: coupon-index.php?page=$page&order=$order&search=$search&valid=$valid");
 ?>

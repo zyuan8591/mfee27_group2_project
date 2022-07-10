@@ -6,11 +6,30 @@ if(isset($_GET["page"])){
 };
 
 require("./db-connect.php");
+//上下架篩選
+$valid= isset($_GET["valid"]) ? $_GET["valid"] : 1;
+if (empty($valid)) {
+	$valid= 1;
+}
+switch($valid){
+	case 1:
+		$validType="";
+		break;
+	case 2:
+		$validType="valid=1 AND";
+		break;
+	case 3:
+		$validType="valid=0 AND";
+		break;	
+	default:
+		$validType="";
+		break;};
+
 $search = isset($_GET["search"]) ? $_GET["search"] : "";
 if (empty($search)) {
 	$search = "";
 }
-$sqlAll="SELECT * FROM coupon WHERE valid=1";
+$sqlAll="SELECT * FROM coupon WHERE $validType name LIKE '%$search%'";
 $resultAll = $conn->query($sqlAll);
 $couponCount=$resultAll->num_rows;
 
@@ -53,8 +72,6 @@ if($order == 1 or $order == 3 or $order == 5 or $order == 7){
 		$startDateOrder=5;
 		$endDateOrder=7;	
 	};
-//上下架篩選
-$valid = isset($_GET["valid"]) ? $_GET["valid"] : 1;
 
 //page
 $perPage=10;
@@ -75,7 +92,7 @@ if($page != 1){
 	$downPage=$totalPage;
 };
 // $sql="SELECT * FROM coupon WHERE  name LIKE '%$search%' LIMIT 4" ;
-$sql="SELECT * FROM coupon WHERE valid=$valid AND name LIKE '%$search%' ORDER BY $orderType LIMIT $start,10";
+$sql="SELECT * FROM coupon WHERE $validType name LIKE '%$search%' ORDER BY $orderType LIMIT $start,10";
 $result = $conn->query($sql);
 $pageCouponCount=$result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -388,7 +405,15 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$startDateOrder?>&search=<?=$search?>&valid=<?=$valid?>">依起始日期排序</a>
 					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=<?=$valid?>">依結束日期排序</a>
 				</div>
-				<form class="recipe_search " action="coupon-index.php" method="get">
+				<form class="coupon_search d-flex flex-wrap align-items-center gap-2 " action="coupon-index.php" method="get">
+				<select class="form-select per-page" name="per-page" >
+						<option value="10" 
+						<?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
+						<option value="15" 
+						<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
+						<option value="20" 
+						<?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
+					</select>
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">  
 							<input class="form-control search-box " type="text" name="search" placeholder="搜尋優惠券名稱">
@@ -418,11 +443,19 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						</ul>							
 					</div> -->
 					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition">優惠券狀態</button>
+						<button class=" filter-btn transition"><?php if ($valid == 1) {
+								echo "優惠券狀態";
+							} elseif ($valid == 3) {
+								echo "下架中";
+							} elseif ($valid == 2) {
+								echo "上架中";
+							} else {
+								echo "優惠券狀態";
+							} ?></button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-						<li><a href="coupon-index.php?page=<?=$page?>&order=1&search=<?=$search?>&valid=1">全部</a></li>
-							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=1">上架中</a></li>
-							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=0">下架中</a></li>
+						<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=1">全部</a></li>
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=2">上架中</a></li>
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=3">下架中</a></li>
 						</ul>
 					</div>					
 				</div>
