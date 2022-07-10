@@ -164,7 +164,7 @@
 								<path d="M22.0954 1.06516C21.2998 0.378255 20.2422 0 19.1171 0C17.9921 0 16.9344 0.378255 16.1391 1.06502L13.2637 3.54742V10.1809H24.0002V6.18087C24.0002 5.6472 23.5561 5.20378 22.9697 5.10931C23.2047 4.65156 23.3294 4.15258 23.3294 3.6368C23.3293 2.66516 22.891 1.75171 22.0954 1.06516ZM20.3085 4.66567C19.9927 4.9384 19.572 5.0888 19.1237 5.08996H19.079H15.0509L17.9259 2.60785C18.244 2.33316 18.6671 2.18182 19.1171 2.18182C19.5672 2.18182 19.9902 2.33316 20.3087 2.60807C20.627 2.88276 20.8023 3.24815 20.8023 3.6368C20.8024 4.02545 20.6271 4.39076 20.3085 4.66567Z" fill="black" />
 								<path d="M13.2632 23.9994H10.7363V12.3628H1.375V22.9092C1.375 23.5117 1.94069 24.0001 2.63846 24.0001H21.361C22.0588 24.0001 22.6244 23.5117 22.6244 22.9092V12.3628H13.2632V23.9994Z" fill="black" />
 							</svg>
-							<a class="main_nav_item_content" href=""> 活動管理 </a>
+							<a class="main_nav_item_content" href="coupon-index.php"> 活動管理 </a>
 						</div>
 						<div class="nav_dropdown">
 							<svg width="24" height="13" viewBox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,7 +176,7 @@
 					<ul class="unstyled_list sub_nav_item">
 						<div class="sub_nav_item_container translateYtoNone">
 							<li>
-								<a class="sub_nav_item_content" href="">優惠券</a>
+								<a class="sub_nav_item_content" href="coupon-index.php">優惠券</a>
 							</li>
 							<!-- <li>
 									<a class="sub_nav_item_content" href="">銷售通路</a>
