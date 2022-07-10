@@ -62,5 +62,5 @@ if($condition == 1){
 	];
 }
 
-header("location: recipe-index.php");
+header("location: recipes-index.php");
 ?>

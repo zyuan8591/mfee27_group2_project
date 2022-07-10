@@ -2,7 +2,7 @@
 	<div class="cover-detail cover position_abs"></div>
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form"
-		action="recipe-detail-modify.php"
+		action="recipes-detail-modify.php"
 		method="POST"
 	>
 		<input type="hidden" value="<?= $row["id"] ?>" name="id">
@@ -127,7 +127,7 @@
 		</div>
 
 		<div class="mb-3 flex_center">
-			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
+			<button class="add-detail-btn modify-detail-btn me-3 transition" type="submit ">
 				修改食譜
 			</button>
 			<button

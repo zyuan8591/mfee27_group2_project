@@ -1,90 +1,85 @@
 <?php
-require "db-connect.php";
-session_start();
-//order
+//$_GET data
+$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+if (empty($page)) {
+	$page = 1;
+}elseif ($page < 1) {
+	$page = 1;
+}
+
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;
-if(empty($order)){ $order = 1; };
+if (empty($order)) {
+	$order = 1;
+}
+
+$perpage= isset($_GET["per-page"])? $_GET["per-page"] : 10;
+// if (empty($perpage)){
+// 	$perpage = 10;
+// }
+
+$search = isset($_GET["search"]) ? $_GET["search"] : "";
+if (empty($search)) {
+	$search = "";
+}
+
+if (isset($_GET["valid"])) {
+	$valid = $_GET["valid"];
+	$sqlWhereValid = "AND valid = $valid ";
+} else {
+	$valid = "";
+	$sqlWhereValid = "";
+}
+if ($valid == "") {
+	$valid = "";
+	$sqlWhereValid = "";
+}
+
+
+require ("db-connect.php");
+
+//全部廠商會員
+$sqlAll = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid";
+$resultAll = $conn->query($sqlAll);
+$CompanyUsersCountAll = $resultAll->num_rows;
+$rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
+
+//分頁
+// $perpage = 10;
+$start = ($page - 1) * $perpage;
+$totalPage = ceil($CompanyUsersCountAll / $perpage);
+
+//sort data 排序
 switch($order){
 	case 1:
-		$orderType = "customer_recipe_message.id ASC";
+		$orderType = "id ASC";
 		break;
 	case 2:
-		$orderType = "customer_recipe_message.id DESC";
+		$orderType = "id DESC";
 		break;
 	case 3:
-		$orderType = "customer_recipe_message.user_id ASC";
+		$orderType = "create_time ASC";
 		break;
 	case 4:
-		$orderType = "customer_recipe_message.user_id DESC";
-		break;
-	case 5:
-		$orderType = "customer_recipe_message.evaluation ASC";
-		break;
-	case 6:
-		$orderType = "customer_recipe_message.evaluation DESC";
+		$orderType = "create_time DESC";
 		break;
 	default:
-		$orderType = "customer_recipe_message.id ASC";
+		$orderType = "id DESC";
 		break;
 }
-//search
-$search = isset($_GET["search"]) ? $_GET["search"] : "";
-//prePage
-$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 10 ;
-if(empty($perPage)){$perPage=10;}
-//page
-$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-//stars
-$sqlWhereStars = "";
-if(isset($_GET["stars"])){
-	$stars = $_GET["stars"];
-	$sqlWhereStars = "AND customer_recipe_message.evaluation = $stars";
-	if(empty($stars)){
-		$sqlWhereStars="";
-	}
-} else {
-	$stars ="";
-	$sqlWhereStars = "";
-}
 
-// sql All
-$sql="SELECT customer_recipe_message.*, recipe.name AS recipeName FROM customer_recipe_message
-JOIN recipe ON customer_recipe_message.recipe_id = recipe.id 
-WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars";
+
+//每頁會員數量
+$sql = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid ORDER BY $orderType LIMIT $start, $perpage ";
 $result = $conn->query($sql);
-$countAll=$result->num_rows;
+$pagesCount = $result->num_rows;
+$rows = $result->fetch_all(MYSQLI_ASSOC);
 
-//totalPage
-$pages = ceil($countAll / $perPage);
-// echo "$countAll perpage $perPage pages $pages  ";
-$start = ($page - 1) * $perPage;
+$startItem=($page-1)*$perpage+1;
+$endItem=$page*$perpage;
+if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 
-//((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars
-//sql 
-$sqlMsg ="SELECT customer_recipe_message.*, recipe.name AS recipeName FROM customer_recipe_message
-JOIN recipe ON customer_recipe_message.recipe_id = recipe.id 
-WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars
-ORDER BY $orderType
-LIMIT $start, $perPage";
-$resultMsg = $conn->query($sqlMsg);
-$rowsMsg = $resultMsg->fetch_all(MYSQLI_ASSOC);
-$count=$resultMsg->num_rows;
-
-//user assoc
-$sqlUser = "SELECT id, name FROM customer_users";
-$resultUser = $conn->query($sqlUser);
-$rowsUser = $resultUser->fetch_all(MYSQLI_ASSOC);
-foreach($rowsUser as $row){
-	$user[$row["id"]]=$row["name"];
-}
-//recipe assoc
-$sqlRecipe = "SELECT id, name FROM recipe";
-$resultRecipe = $conn->query($sqlRecipe);
-$rowsRecipe = $resultRecipe->fetch_all(MYSQLI_ASSOC);
-foreach($rowsRecipe as $row){
-	$recipe[$row["id"]]=$row["name"];
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -93,7 +88,7 @@ foreach($rowsRecipe as $row){
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<title>廚聚 - 食譜評價</title>
+		<title>廚聚</title>
 		<!-- CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -107,10 +102,14 @@ foreach($rowsRecipe as $row){
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/comment-recipe-style.css"; ?>
+			<?php require "./style/company-style.css"; ?>
+
 		</style>
+		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
 	</head>
 	<body>
+		<!-------------- header -------------->
 		<?php require "header.php"; ?>
 		<aside class="aside position_abs">
 			<!-- <div class="smaller_sidebar">
@@ -129,7 +128,7 @@ foreach($rowsRecipe as $row){
 				</svg>
 			</div> -->
 
-			<!-- NAVBAR -->
+		<!-------------- NAVBAR -------------->
 			<nav class="">
 				<!-- 商品管理 -->
 				<ul class="nav unstyled_list">
@@ -239,7 +238,7 @@ foreach($rowsRecipe as $row){
 								<a class="main_nav_item_content" href="recipes-index.php">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown">
 								<svg
 									width="24"
 									height="13"
@@ -256,11 +255,11 @@ foreach($rowsRecipe as $row){
 						</div>
 						<!-- 食譜管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container ">
-								<li >
-									<a class="sub_nav_item_content" href="recipes-index.php">食譜總覽</a>
+							<div class="sub_nav_item_container translateYtoNone">
+								<li class="">
+									<a class="sub_nav_item_content" href="">食譜總覽</a>
 								</li>
-								<li class="sub_nav_item_active">
+								<li>
 									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
 								</li>
 							</div>
@@ -285,7 +284,7 @@ foreach($rowsRecipe as $row){
 								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -302,12 +301,12 @@ foreach($rowsRecipe as $row){
 						</div>
 						<!-- 會員管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container translateYtoNone">
+							<div class="sub_nav_item_container">
 								<li>
 									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
-								<li>
-									<a class="sub_nav_item_content" href="company-member-all-index.php">廠商會員總覽</a>
+								<li class="sub_nav_item_active">
+									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -365,53 +364,53 @@ foreach($rowsRecipe as $row){
 				</ul>
 			</nav>
 		</aside>
+		<!-------------- main -------------->
 		<main class="main position-rel">
 			<div>
-				<h2 class="main-title">食譜評價總覽</h2>
+				<h2 class="main-title">廠商會員總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
-				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" id="idSort" href="
-					<?php if($order == 2): ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php elseif ($order == 1): ?>
-					comment-recipe-index.php?order=2&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php else: ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php endif; ?>
-					">依編號排序</a>
-					<a class="sort-btn transition" id="dateSort" href="
-					<?php if($order == 4): ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php elseif ($order == 3): ?>
-					comment-recipe-index.php?order=4&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php else: ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php endif; ?>
-					">依會員排序</a>
-					<a class="sort-btn transition" id="dateSort" href="
-					<?php if($order == 6): ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php elseif ($order == 5): ?>
-					comment-recipe-index.php?order=6&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php else: ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php endif; ?>
-					">依分數排序</a>
-
+				<div class="sort d-flex align-items-center position-rel">
+					<div class="me-2">
+						<a 
+							class=" filter-btn transition" 
+							href="<?php if ($order == 2):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=1&valid=<?=$valid?>
+							<?php elseif ($order == 1):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=2&valid=<?=$valid?>
+							<?php else: ?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=1&valid=<?=$valid?>
+							<?php endif; ?>
+							">依編號排序</a>
+					</div>
+					<div >
+						<a 
+							class=" filter-btn transition" 
+							href="<?php if ($order == 3):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=4&valid=<?=$valid?>
+							<?php elseif ($order == 4):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=3&valid=<?=$valid?>
+							<?php else: ?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=4&valid=<?=$valid?>
+							<?php endif; ?>
+							">依日期排序</a>
+					</div>		
 				</div>
-				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="comment-recipe-index.php" method="get">
-					<select class="form-select per-page" name="per-page" >
-						<option value="10" <?php if($perPage == 10){echo "selected";} ?> >每頁顯示10筆</option>
-						<option value="15" <?php if($perPage == 15){echo "selected";} ?> >每頁顯示15筆</option>
-						<option value="20" <?php if($perPage == 20){echo "selected";} ?> >每頁顯示20筆</option>
+				<form class="company_search d-flex align-items-center gap-2" action="company-member-all-index.php" method="get">
+					<select class="form-select per-page" name="per-page" id="per-page">
+						<option value="10"
+						<?php if ($perpage == 10) {echo "selected";} ?>>每頁顯示10筆</option>
+						<option value="15"
+						<?php if ($perpage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
+						<option value="20"
+						<?php if ($perpage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
-							<input value="" class="form-control search-box" type="text" name="search" placeholder="搜尋">
+							<input class="form-control search-box " type="text" name="search" value="<?= $search ?>" placeholder="搜尋廠商名稱">
 						</div>
-						<div class="">
-							<button class="search-btn form-control" type="submit">
+						<div>
+							<button class="search-btn form-control">
 								<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M17.7292 18.8489L10.8802 11.9999C10.3594 12.4513 9.75174 12.8029 9.05729 13.0546C8.36285 13.3063 7.625 13.4322 6.84375 13.4322C4.96875 13.4322 3.38021 12.7812 2.07812 11.4791C0.776042 10.177 0.125 8.60582 0.125 6.76554C0.125 4.92527 0.776042 3.35409 2.07812 2.052C3.38021 0.749919 4.96007 0.098877 6.81771 0.098877C8.65799 0.098877 10.2248 0.749919 11.5182 2.052C12.8116 3.35409 13.4583 4.92527 13.4583 6.76554C13.4583 7.51207 13.3368 8.23256 13.0937 8.927C12.8507 9.62145 12.4861 10.2725 12 10.8801L18.875 17.703L17.7292 18.8489ZM6.81771 11.8697C8.22396 11.8697 9.42188 11.3706 10.4115 10.3723C11.401 9.37405 11.8958 8.17179 11.8958 6.76554C11.8958 5.35929 11.401 4.15704 10.4115 3.15877C9.42188 2.16051 8.22396 1.66138 6.81771 1.66138C5.3941 1.66138 4.18316 2.16051 3.1849 3.15877C2.18663 4.15704 1.6875 5.35929 1.6875 6.76554C1.6875 8.17179 2.18663 9.37405 3.1849 10.3723C4.18316 11.3706 5.3941 11.8697 6.81771 11.8697Z" fill="#222222"/>
 								</svg>
@@ -421,51 +420,49 @@ foreach($rowsRecipe as $row){
 				</form>
 			</div>
 			<div class="d-flex justify-content-between align-items-center my-3">
-<!-- 篩選評價分數******************************************************************************************************** -->
+<!-- 食譜類別******************************************************************************************************** -->
 				<div class="filter d-flex align-items-center">					
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
-					<?php for($i = 1; $i <=5 ; $i++): ?>
-					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=<?= $i ?>
-					"><i class="fa-solid fa-star evaluation
-					<?php if($stars >= $i){ echo "evaluation-active";} ?>
-					"></i></a>
-					<?php endfor; ?>
 
-					
-					<a href="
-					comment-recipe-index.php?order=1&search=&page=1&per-page=&stars=
-					" class="ms-3 sort-btn transition text-center" >清空篩選條件</a>
+					<div class=" filter-item position-rel">
+						<button class=" filter-btn transition"><?php if($valid == ""){
+							echo "廠商狀態";
+						}elseif($valid == 0){
+							echo "停用";
+						}elseif($valid == 1){
+							echo "啟用";
+						}else{
+							echo "全部";
+						}
+						?></button>
+						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+							<li><a class="text-nowrap " href="company-member-all-index.php?valid=">全部</a></li>
+							<li><a href="company-member-all-index.php?page=<?=$page?>&order=<?=$order?>&valid=1">啟用</a></li>
+							<li><a href="company-member-all-index.php?valid=0">停用</a></li>
+						</ul>
+					</div>
+					<div class="filter-item position-rel">
+						<button  class="filter-btn transition">
+							<a href="
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							&search=&foodCate=&productCate=&valid=
+							" >全部顯示</a>
+						</button>
+					</div>				
+				</div>
+				<div>
+					<a class="add-company-btn transition" href="">新增廠商</a>
 				</div>
 			</div>
-		<?php require "comment-recipe-table.php"; ?>
+		<?php require "company-table.php"; ?>
 		</main>
-		<!-- tostify -->
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-		<script type="text/javascript" >
-			<?php require "./js/app.js"; ?>
-			<?php require "./js/comment-recipe-app.js"; ?>
-		</script>
+		<?php require "company-add.php"; ?>
 
-		<?php if($_SESSION["deleteRecipeComment"]["condition"]==1): ?>
 		<script type="text/javascript" >
-		Toastify({
-		text: "成功刪除留言",
-		duration: 3000,
-		newWindow: true,
-		close: true,
-		gravity: "bottom", // `top` or `bottom`
-		position: "left", // `left`, `center` or `right`
-		stopOnFocus: true, // Prevents dismissing of toast on hover
-		style: {
-			background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
-		},
-		onClick: function(){} // Callback after click
-		}).showToast();
+			<?php require "./js/company-app.js"; ?>
 		</script>
-		<?php unset($_SESSION["deleteRecipeComment"]) ?>
-		<?php endif; ?>
+		<?php require "recipes-toast.php" ?>
 	</body>
 </html>

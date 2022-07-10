@@ -1,0 +1,221 @@
+/* --------------------------------------------- */
+/* main */
+.main {
+	position: absolute;
+	top: var(--header-height);
+	left: var(--aside-width);
+	background: var(--main-bg);
+	padding: 2.2rem 2.5rem;
+	width: calc(100vw - var(--aside-width));
+	height: calc(100vh - var(--header-height));
+	/* overflow-y: auto; */
+}
+.main-title {
+	font-size: 2rem;
+	font-weight: normal;
+}
+.cursor-pointer {
+	cursor: pointer;
+}
+/* sort by -- */
+.sort-search {
+	margin: 0.5rem 0 0 0;
+}
+/* .sort {
+	flex: 0 0 auto;
+} */
+/* .sort-btn {
+	padding: 0.2rem 0.5rem;
+	background: var(--header-bg);
+	margin: 0.25rem;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+} */
+.sort-btn:hover {
+	background: var(--btn-hover);
+	/* box-shadow: var(--hover-shadow); */
+}
+/* .sort-btn:active {
+	outline: var(--button-active) solid 4px;
+} */
+.sort {
+	z-index: 5;
+}
+/* search -- */
+.search-box {
+	padding: 0.25rem;
+	border-radius: 0;
+	border: 2px solid var(--button-active);
+	height: 36px;
+	position: relative;
+	width: 365px;
+	flex-shrink: 1;
+}
+.search-box:focus {
+	z-index: 5;
+}
+.search-box::placeholder {
+	font-family: "Noto Sans TC", sans-serif;
+	color: var(--button-active);
+}
+.search-btn {
+	border: 2px solid var(--button-active);
+	padding: 0 1rem;
+	border-left: none;
+	height: 36px;
+	border-radius: 0;
+	position: relative;
+}
+/* filter -- */
+.filter {
+	padding: 0.5rem;
+}
+.filter-item {
+	min-width: 100px;
+	margin-left: 0.5rem;
+}
+.filter-btn {
+	width: 100%;
+	white-space: nowrap;
+	padding: 0.3rem 0.5rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.filter-btn:hover {
+	background: var(--btn-hover);
+}
+.filter-dropdown {
+	background: var(--header-bg);
+	padding: 0.5rem;
+	width: 100%;
+	box-shadow: var(--box-shadow);
+	border-radius: 3px;
+	margin-top: 1px;
+	transition: 0.5s;
+}
+.filter-dropdown li {
+	border-radius: 4px;
+	transition: 0.5s;
+}
+.filter-dropdown li:hover {
+	background: var(--button-hover);
+}
+/* add new company --新增廠商Btn */
+.add-company-btn {
+	width: 100%;
+	white-space: nowrap;
+	padding: 0.3rem 0.75rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+}
+.add-company-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}
+.add-company-btn:active {
+	outline: var(--outline);
+}
+
+/* on & off btn 啟用 停用 */
+.point-event-none {
+	pointer-events: none;
+	opacity: 0.5;
+}
+/* add-new-company-page--廠商詳細資料頁--------------------------------------------------- */
+.new-company-page {
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	transition: 0.5s;
+	position: fixed;
+}
+.cover {
+	height: 100vh;
+	width: 100vw;
+	background: #666;
+	opacity: 0.8;
+}
+.new-company-form {
+	background: #fff;
+	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
+	width: 35vw;
+	height: 80vh;
+	border-radius: 3px;
+	opacity: 1;
+	z-index: 5;
+	padding: 1.5rem 2.5rem 1rem 2.5rem;
+	overflow: auto;
+}
+.fa-xmark {
+	top: 0.5rem;
+	right: 1rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+.company-title {
+	border-bottom: 2px solid var(--input-border);
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+.form-control:focus {
+	box-shadow: var(--box-shadow);
+	border-color: var(--input-border);
+}
+.food-img {
+	width: 130px;
+	height: 130px;
+}
+.add-image-container {
+	height: 134px;
+	width: 134px;
+}
+.object-cover {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+/* ****************************************************************************** */
+/* company-detail 詳細資料*/
+.company-datail {
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	transition: 0.5s;
+	position: fixed;
+}
+.container-detail {
+	width: 650px;
+	height: 80vh;
+	z-index: 5;
+	background: #fff;
+	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
+	border-radius: 3px;
+	z-index: 5;
+	padding: 1.5rem 2.5rem 1rem 2.5rem;
+	overflow: auto;
+}
+.add-detail-btn {
+	white-space: nowrap;
+	padding: 0.4rem 0.75rem;
+	background: var(--header-bg);
+	margin: 0;
+	border: 0;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}
+.add-detail-btn:hover {
+	background: var(--btn-hover);
+	box-shadow: var(--hover-shadow);
+}

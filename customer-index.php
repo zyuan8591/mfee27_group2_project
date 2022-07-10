@@ -1,90 +1,94 @@
 <?php
+$order=isset($_GET["order"]) ? $_GET["order"] : 1;
+$page=isset($_GET["page"]) ? $_GET["page"] : 1;
+$search=isset($_GET["search"]) ? $_GET["search"] : "";
+$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 10;
+$id=isset($_GET["id"]) ? $_GET["id"] : "";
+
+if(isset($_GET["valid"])){
+	$valid=$_GET["valid"];
+	$validType="AND valid=$valid";
+}else{
+	$valid="";
+	$validType="";
+}
+if ($valid == "") {
+	$valid = "";
+	$validType = "";
+}
+
 require "db-connect.php";
-session_start();
-//order
+
+$sqlAll="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ";
+$resultAll = $conn->query($sqlAll);
+// $Allrows=$resultAll->fetch_all(MYSQLI_ASSOC);
+$customerCount=$resultAll-> num_rows;
+
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;
-if(empty($order)){ $order = 1; };
+
+
+// order&page
+$perpage=$selectPages;
+$start=($page-1)*$perpage;
+
 switch($order){
-	case 1:
-		$orderType = "customer_recipe_message.id ASC";
-		break;
-	case 2:
-		$orderType = "customer_recipe_message.id DESC";
-		break;
-	case 3:
-		$orderType = "customer_recipe_message.user_id ASC";
-		break;
-	case 4:
-		$orderType = "customer_recipe_message.user_id DESC";
-		break;
-	case 5:
-		$orderType = "customer_recipe_message.evaluation ASC";
-		break;
-	case 6:
-		$orderType = "customer_recipe_message.evaluation DESC";
-		break;
-	default:
-		$orderType = "customer_recipe_message.id ASC";
-		break;
-}
-//search
-$search = isset($_GET["search"]) ? $_GET["search"] : "";
-//prePage
-$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 10 ;
-if(empty($perPage)){$perPage=10;}
-//page
-$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-//stars
-$sqlWhereStars = "";
-if(isset($_GET["stars"])){
-	$stars = $_GET["stars"];
-	$sqlWhereStars = "AND customer_recipe_message.evaluation = $stars";
-	if(empty($stars)){
-		$sqlWhereStars="";
-	}
-} else {
-	$stars ="";
-	$sqlWhereStars = "";
+  case 1:
+    $orderType="id ASC";
+    break;
+  case 2:
+    $orderType="id DESC";
+    break;
+  case 3:
+    $orderType="name ASC";
+    break;
+  case 4:
+    $orderType="name DESC";
+    break;
+  default:
+    $orderType="id ASC"; 
 }
 
-// sql All
-$sql="SELECT customer_recipe_message.*, recipe.name AS recipeName FROM customer_recipe_message
-JOIN recipe ON customer_recipe_message.recipe_id = recipe.id 
-WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars";
+
+
+$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%' $validType ORDER BY $orderType LIMIT $start,$perpage";
 $result = $conn->query($sql);
-$countAll=$result->num_rows;
+$rows=$result->fetch_all(MYSQLI_ASSOC);
+$pageCustomerCount=$result-> num_rows;
 
-//totalPage
-$pages = ceil($countAll / $perPage);
-// echo "$countAll perpage $perPage pages $pages  ";
-$start = ($page - 1) * $perPage;
+$stertItem=($page-1)*$perpage+1;
+$endItem=$page*$perpage;
+if($endItem>$customerCount)$endItem=$customerCount;
 
-//((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars
-//sql 
-$sqlMsg ="SELECT customer_recipe_message.*, recipe.name AS recipeName FROM customer_recipe_message
-JOIN recipe ON customer_recipe_message.recipe_id = recipe.id 
-WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars
-ORDER BY $orderType
-LIMIT $start, $perPage";
-$resultMsg = $conn->query($sqlMsg);
-$rowsMsg = $resultMsg->fetch_all(MYSQLI_ASSOC);
-$count=$resultMsg->num_rows;
 
-//user assoc
-$sqlUser = "SELECT id, name FROM customer_users";
-$resultUser = $conn->query($sqlUser);
-$rowsUser = $resultUser->fetch_all(MYSQLI_ASSOC);
-foreach($rowsUser as $row){
-	$user[$row["id"]]=$row["name"];
+
+$totalPage=ceil($customerCount / $perpage);
+
+// search
+
+$sql="SELECT * FROM customer_users WHERE name LIKE '%$search%'";
+
+$searchrResult = $conn->query($sql);
+$searchCount=$searchrResult-> num_rows;
+
+
+//product-collect
+if(isset($_GET["user_id"])){
+    $user_id=$_GET["user_id"];
+    $sqlUser="SELECT * FROM users WHERE id=$user_id";
+    $resultUser=$conn->query($sqlUser);
+    $rowUser=$resultUser->fetch_assoc();
+
+    $sql="SELECT user_like_product.*, product.name FROM user_like_product
+    JOIN product ON user_like_product.product_id = product.id
+    WHERE user_like_product.user_id=$user_id
+    ";
+    $result = $conn->query($sql);
+    $productRows = $result->fetch_all(MYSQLI_ASSOC);
+
 }
-//recipe assoc
-$sqlRecipe = "SELECT id, name FROM recipe";
-$resultRecipe = $conn->query($sqlRecipe);
-$rowsRecipe = $resultRecipe->fetch_all(MYSQLI_ASSOC);
-foreach($rowsRecipe as $row){
-	$recipe[$row["id"]]=$row["name"];
-}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -93,22 +97,28 @@ foreach($rowsRecipe as $row){
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<title>廚聚 - 食譜評價</title>
+		<title>廚聚</title>
 		<!-- CSS only -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner:wght@600&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/comment-recipe-style.css"; ?>
+			<?php require "./style/recipes-style.css"; ?>
+			<?php require "style/customer.css"; ?>
+			
 		</style>
+		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
+		
 	</head>
 	<body>
 		<?php require "header.php"; ?>
@@ -239,7 +249,7 @@ foreach($rowsRecipe as $row){
 								<a class="main_nav_item_content" href="recipes-index.php">食譜管理</a>
 							</div>
 
-							<div class="nav_dropdown nav_dropdown_active">
+							<div class="nav_dropdown">
 								<svg
 									width="24"
 									height="13"
@@ -256,11 +266,11 @@ foreach($rowsRecipe as $row){
 						</div>
 						<!-- 食譜管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container ">
-								<li >
+							<div class="sub_nav_item_container translateYtoNone">
+								<li class="">
 									<a class="sub_nav_item_content" href="recipes-index.php">食譜總覽</a>
 								</li>
-								<li class="sub_nav_item_active">
+								<li>
 									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
 								</li>
 							</div>
@@ -285,7 +295,7 @@ foreach($rowsRecipe as $row){
 								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
-							<div class="nav_dropdown">
+							<div class="nav_dropdown nav_dropdown_active">
 								<svg
 									width="24"
 									height="13"
@@ -302,8 +312,8 @@ foreach($rowsRecipe as $row){
 						</div>
 						<!-- 會員管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container translateYtoNone">
-								<li>
+							<div class="sub_nav_item_container">
+								<li class="sub_nav_item_active">
 									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
@@ -359,6 +369,12 @@ foreach($rowsRecipe as $row){
 								<li>
 									<a class="sub_nav_item_content" href="coupon-index.php">優惠券</a>
 								</li>
+								<!-- <li>
+									<a class="sub_nav_item_content" href="">銷售通路</a>
+								</li>
+								<li>
+									<a class="sub_nav_item_content" href="">料理活動</a>
+								</li> -->
 							</div>
 						</ul>
 					</li>
@@ -367,48 +383,43 @@ foreach($rowsRecipe as $row){
 		</aside>
 		<main class="main position-rel">
 			<div>
-				<h2 class="main-title">食譜評價總覽</h2>
+				<h2 class="main-title">會員總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" id="idSort" href="
-					<?php if($order == 2): ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php elseif ($order == 1): ?>
-					comment-recipe-index.php?order=2&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					<a class="sort-btn transition" href="
+					<?php if($order==2): ?>
+					customer-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php elseif($order==1): ?>
+					customer-index.php?page=<?=$page?>&order=2&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
 					<?php else: ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					customer-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>	
 					<?php endif; ?>
 					">依編號排序</a>
-					<a class="sort-btn transition" id="dateSort" href="
-					<?php if($order == 4): ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php elseif ($order == 3): ?>
-					comment-recipe-index.php?order=4&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					<a class="sort-btn transition" href="
+					<?php if($order==4): ?>
+					customer-index.php?page=<?=$page?>&order=3&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
+					<?php elseif($order==3): ?>
+					customer-index.php?page=<?=$page?>&order=4&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>
 					<?php else: ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					customer-index.php?page=<?=$page?>&order=3&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>	
 					<?php endif; ?>
-					">依會員排序</a>
-					<a class="sort-btn transition" id="dateSort" href="
-					<?php if($order == 6): ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php elseif ($order == 5): ?>
-					comment-recipe-index.php?order=6&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php else: ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
-					<?php endif; ?>
-					">依分數排序</a>
-
+					">依名稱排序</a>
 				</div>
-				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="comment-recipe-index.php" method="get">
-					<select class="form-select per-page" name="per-page" >
-						<option value="10" <?php if($perPage == 10){echo "selected";} ?> >每頁顯示10筆</option>
-						<option value="15" <?php if($perPage == 15){echo "selected";} ?> >每頁顯示15筆</option>
-						<option value="20" <?php if($perPage == 20){echo "selected";} ?> >每頁顯示20筆</option>
-					</select>
+				
+				<form class="recipe_search " action="customer-index.php" method="get">
 					<div class="d-flex align-items-center" >
+						<select class="me-3 form-control rounded-1 select-border select-pages-btn" name="selectPages" id="">
+							<option value="10" 
+							<?php if($selectPages == 10) echo "selected" ?>>每頁顯示10筆</option>
+							<option value="15" <?php if($selectPages == 15) echo 'selected' ?>
+							>每頁顯示15筆</option>
+							<option value="20" 
+							<?php if($selectPages == 20) echo 'selected' ?>
+							>每頁顯示20筆</option>
+						</select>
 						<div class="d-flex ">
-							<input value="" class="form-control search-box" type="text" name="search" placeholder="搜尋">
+							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋">
 						</div>
 						<div class="">
 							<button class="search-btn form-control" type="submit">
@@ -421,51 +432,42 @@ foreach($rowsRecipe as $row){
 				</form>
 			</div>
 			<div class="d-flex justify-content-between align-items-center my-3">
-<!-- 篩選評價分數******************************************************************************************************** -->
 				<div class="filter d-flex align-items-center">					
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
-					<?php for($i = 1; $i <=5 ; $i++): ?>
-					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=<?= $i ?>
-					"><i class="fa-solid fa-star evaluation
-					<?php if($stars >= $i){ echo "evaluation-active";} ?>
-					"></i></a>
-					<?php endfor; ?>
 
-					
-					<a href="
-					comment-recipe-index.php?order=1&search=&page=1&per-page=&stars=
-					" class="ms-3 sort-btn transition text-center" >清空篩選條件</a>
+					<!-- <div class="filter-item  position-rel">
+						<button class="filter-btn transition">全部會員</button>
+						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
+							<li><a href="">Coffee</a></li>
+							<li><a href="">Cake</a></li>
+							<li><a href=""></a></li>
+						</ul>							
+					</div> -->
+					<div class=" filter-item position-rel">
+						<button class=" filter-btn transition">會員狀態</button>
+						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+							<li><a class="text-nowrap" href="customer-index.php?page=1&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=1 ">啟用</a></li>
+							<li><a href="customer-index.php?page=1&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=0 ">停用</a></li>
+							<li><a href="customer-index.php?page=<?=$page?>&order=1&selectPages=<?=$selectPages?>&search=<?=$search?>&valid= ">全部會員</a></li>
+						</ul>
+					</div>					
+				</div>
+				<div>
+					<a class="transition" style="cursor:pointer;" id="customer-add-openBtn" >新增會員</a>
 				</div>
 			</div>
-		<?php require "comment-recipe-table.php"; ?>
+		<?php require "customer-table.php"; ?>
 		</main>
-		<!-- tostify -->
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-		<script type="text/javascript" >
-			<?php require "./js/app.js"; ?>
-			<?php require "./js/comment-recipe-app.js"; ?>
-		</script>
+		<?php require "customer-add.php"; ?>
+		
 
-		<?php if($_SESSION["deleteRecipeComment"]["condition"]==1): ?>
-		<script type="text/javascript" >
-		Toastify({
-		text: "成功刪除留言",
-		duration: 3000,
-		newWindow: true,
-		close: true,
-		gravity: "bottom", // `top` or `bottom`
-		position: "left", // `left`, `center` or `right`
-		stopOnFocus: true, // Prevents dismissing of toast on hover
-		style: {
-			background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
-		},
-		onClick: function(){} // Callback after click
-		}).showToast();
+		<script type="text/javascript">
+			<?php require "js/app.js" ?>
+			<?php require "js/customer.js"; ?>
+		
+
 		</script>
-		<?php unset($_SESSION["deleteRecipeComment"]) ?>
-		<?php endif; ?>
 	</body>
 </html>
