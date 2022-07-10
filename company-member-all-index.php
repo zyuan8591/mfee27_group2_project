@@ -1,21 +1,15 @@
 <?php
-require "db-connect.php";
-session_start();
-
 //$_GET data
-$order = isset($_GET["order"]) ? $_GET["order"] : 1;
-if (empty($order)) {
-	$order = 1;
-}
-$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 10;
-if (empty($order)) {
-	$order = 5;
-}
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 if (empty($page)) {
 	$page = 1;
-} elseif ($page < 1) {
+}elseif ($page < 1) {
 	$page = 1;
+}
+
+$order = isset($_GET["order"]) ? $_GET["order"] : 1;
+if (empty($order)) {
+	$order = 1;
 }
 
 $perpage= isset($_GET["per-page"])? $_GET["per-page"] : 10;
@@ -28,34 +22,6 @@ if (empty($search)) {
 	$search = "";
 }
 
-// filter_category_food
-if (isset($_GET["foodCate"])) {
-	$foodCate = $_GET["foodCate"];
-	$sqlWhereFoodCate = "AND category_food = $foodCate ";
-} else {
-	$foodCate = "";
-	$sqlWhereFoodCate = "";
-}
-
-if (empty($foodCate)) {
-	$foodCate = "";
-	$sqlWhereFoodCate = "";
-}
-
-// filter_category_product
-if (isset($_GET["productCate"])) {
-	$productCate = $_GET["productCate"];
-	$sqlWhereProductCate = "AND category_product = $productCate ";
-} else {
-	$productCate = "";
-	$sqlWhereProductCate = "";
-}
-if (empty($productCate)) {
-	$productCate = "";
-	$sqlWhereProductCate = "";
-}
-
-//filter_valid
 if (isset($_GET["valid"])) {
 	$valid = $_GET["valid"];
 	$sqlWhereValid = "AND valid = $valid ";
@@ -68,7 +34,11 @@ if ($valid == "") {
 	$sqlWhereValid = "";
 }
 
-$sqlAll = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid ";
+
+require ("db-connect.php");
+
+//全部廠商會員
+$sqlAll = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid";
 $resultAll = $conn->query($sqlAll);
 $CompanyUsersCountAll = $resultAll->num_rows;
 $rowsAll = $resultAll->fetch_all(MYSQLI_ASSOC);
@@ -97,19 +67,16 @@ switch($order){
 		break;
 }
 
-$sql = "SELECT * FROM recipe WHERE name LIKE '%$search%' $sqlWhereFoodCate $sqlWhereProductCate $sqlWhereValid 
-ORDER BY $orderType LIMIT $start, $perPage ";
+
+//每頁會員數量
+$sql = "SELECT * FROM company_users WHERE name LIKE '%$search%' $sqlWhereValid ORDER BY $orderType LIMIT $start, $perpage ";
 $result = $conn->query($sql);
 $pagesCount = $result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-//get category_food
-$sqlCatFood = "SELECT * FROM recipe_category";
-$resultCatFood = $conn->	query($sqlCatFood);
-$rowsCatFood = $resultCatFood->fetch_all(MYSQLI_ASSOC);
-foreach ($rowsCatFood as $row) {
-	$category_food[$row["id"]] = $row["name"];
-}
+$startItem=($page-1)*$perpage+1;
+$endItem=$page*$perpage;
+if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 
 ?>
 
@@ -135,7 +102,8 @@ foreach ($rowsCatFood as $row) {
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/recipes-style.css"; ?>
+			<?php require "./style/company-style.css"; ?>
+
 		</style>
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
 		<script type="text/javascript" src="./js/jquery.min.js"></script>
@@ -287,9 +255,9 @@ foreach ($rowsCatFood as $row) {
 						</div>
 						<!-- 食譜管理細項 -->
 						<ul class="unstyled_list sub_nav_item">
-							<div class="sub_nav_item_container ">
-								<li class="sub_nav_item_active">
-									<a class="sub_nav_item_content" href="recipes-index.php">食譜總覽</a>
+							<div class="sub_nav_item_container translateYtoNone">
+								<li class="">
+									<a class="sub_nav_item_content" href="">食譜總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
@@ -402,42 +370,40 @@ foreach ($rowsCatFood as $row) {
 				<h2 class="main-title">廠商會員總覽</h2>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
-				<div class="sort d-flex align-items-center">
-					<a class="sort-btn transition" id="idSort" href="
-					<?php if ($order == 3): ?>
-					recipes-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-					<?php elseif ($order == 1): ?>
-					recipes-index.php?order=3&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-					<?php else: ?>
-					recipes-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-					<?php endif; ?>
-					">依編號排序</a>
-
-					<a class="sort-btn transition" id="dateSort" href="
-					<?php if ($order == 4): ?>
-					recipes-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-					<?php elseif ($order == 2): ?>
-					recipes-index.php?order=4&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-					<?php else: ?>
-					recipes-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-					<?php endif; ?>					
-					">依名稱排序</a>
-
+				<div class="sort d-flex align-items-center position-rel">
+					<div class="me-2">
+						<a 
+							class=" filter-btn transition" 
+							href="<?php if ($order == 2):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=1&valid=<?=$valid?>
+							<?php elseif ($order == 1):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=2&valid=<?=$valid?>
+							<?php else: ?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=1&valid=<?=$valid?>
+							<?php endif; ?>
+							">依編號排序</a>
+					</div>
+					<div >
+						<a 
+							class=" filter-btn transition" 
+							href="<?php if ($order == 3):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=4&valid=<?=$valid?>
+							<?php elseif ($order == 4):?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=3&valid=<?=$valid?>
+							<?php else: ?>
+							company-member-all-index.php?per-page=<?=$perpage?>&page=<?=$page?>&search=<?=$search?>&order=4&valid=<?=$valid?>
+							<?php endif; ?>
+							">依日期排序</a>
+					</div>		
 				</div>
-				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipes-index.php" method="get">
-					<select class="form-select per-page" name="per-page" >
-						<option value="10" 
-						<?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
-						<option value="15" 
-						<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
-						<option value="20" 
-						<?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
+				<form class="company_search d-flex align-items-center gap-2" action="company-member-all-index.php" method="get">
+					<select class="form-select per-page" name="per-page" id="per-page">
+						<option value="10"
+						<?php if ($perpage == 10) {echo "selected";} ?>>每頁顯示10筆</option>
+						<option value="15"
+						<?php if ($perpage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
+						<option value="20"
+						<?php if ($perpage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
 					<div class="d-flex align-items-center" >
 						<div class="d-flex ">
@@ -460,86 +426,21 @@ foreach ($rowsCatFood as $row) {
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
 
-					<div class="filter-item  position-rel">
-						<button class="filter-btn transition">
-						<?php if ($recipeCount == 0) {
-							echo "食譜類別";
-						} elseif ($foodCate == "") {
-							echo "食譜類別";
-						} else {
-							echo $category_food[$foodCate];
-						} ?>
-						</button>
-						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=&productCate=<?= $productCate ?>
-							&valid=<?= $valid ?>">全部</a></li>
-							<?php foreach ($rowsCatFood as $row): ?>
-							<li><a href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
-							&page=1&search=<?= $search ?>&foodCate=
-							<?= $row["id"] ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-							">
-								<?= $row["name"] ?>
-							</a></li>
-							
-							<?php endforeach; ?>
-						</ul>							
-					</div>
-<!-- 商品類別******************************************************************************************************** -->
-					<div class="filter-item  position-rel">
-						<button class="filter-btn transition">
-							<?php if ($recipeCount == 0) {
-								echo "商品類別";
-							} elseif ($productCate == "") {
-								echo "商品類別";
-							} else {
-								echo $category_product[$productCate];
-							} ?>
-						</button>
-						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=
-							&valid=<?= $valid ?>
-							">全部</a></li>
-							<?php foreach ($rowsCatProduct as $row): ?>
-							<li><a href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
-							&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>
-							&productCate=<?= $row["id"] ?>&valid=<?= $valid ?>">
-								<?= $row["name"] ?>
-							</a></li>
-							
-							<?php endforeach; ?>
-						</ul>							
-					</div>	
-<!-- 食譜狀態******************************************************************************************************** -->
-					
 					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition">
-							<?php if ($valid == "") {
-								echo "食譜狀態";
-							} elseif ($valid == 0) {
-								echo "下架中";
-							} elseif ($valid == 1) {
-								echo "上架中";
-							} else {
-								echo "食譜狀態";
-							} ?>
-						</button>
+						<button class=" filter-btn transition"><?php if($valid == ""){
+							echo "廠商狀態";
+						}elseif($valid == 0){
+							echo "停用";
+						}elseif($valid == 1){
+							echo "啟用";
+						}else{
+							echo "全部";
+						}
+						?></button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
-							<li><a class="text-nowrap " href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=
-							">全部</a></li>
-							<li><a class="text-nowrap " href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=1
-							">上架中</a></li>
-							<li><a href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=0
-							">下架中</a></li>
+							<li><a class="text-nowrap " href="company-member-all-index.php?valid=">全部</a></li>
+							<li><a href="company-member-all-index.php?page=<?=$page?>&order=<?=$order?>&valid=1">啟用</a></li>
+							<li><a href="company-member-all-index.php?valid=0">停用</a></li>
 						</ul>
 					</div>
 					<div class="filter-item position-rel">
@@ -555,16 +456,12 @@ foreach ($rowsCatFood as $row) {
 					<a class="add-company-btn transition" href="">新增廠商</a>
 				</div>
 			</div>
-		<?php require "recipes-table.php"; ?>
+		<?php require "company-table.php"; ?>
 		</main>
-		<?php require "recipes-add.php"; ?>
-		<!-- tostify -->
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-		<!-- jquery -->
-		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+		<?php require "company-add.php"; ?>
+
 		<script type="text/javascript" >
-			<?php require "./js/app.js"; ?>
-			<?php require "./js/recipes-app.js"; ?>
+			<?php require "./js/company-app.js"; ?>
 		</script>
 		<?php require "recipes-toast.php" ?>
 	</body>

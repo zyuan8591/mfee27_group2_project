@@ -1,3 +1,22 @@
+/* --------------------------------------------- */
+/* main */
+.main {
+	position: absolute;
+	top: var(--header-height);
+	left: var(--aside-width);
+	background: var(--main-bg);
+	padding: 2.2rem 2.5rem;
+	width: calc(100vw - var(--aside-width));
+	height: calc(100vh - var(--header-height));
+	/* overflow-y: auto; */
+}
+.main-title {
+	font-size: 2rem;
+	font-weight: normal;
+}
+.cursor-pointer {
+	cursor: pointer;
+}
 /* sort by -- */
 .sort-search {
 	margin: 0.5rem 0 0 0;
@@ -85,12 +104,8 @@
 .filter-dropdown li:hover {
 	background: var(--button-hover);
 }
-/* table---------------------------- */
-.page-hint {
-	right: 0;
-}
-/* add new recipe -- */
-.add-recipe-btn {
+/* add new company --新增廠商Btn */
+.add-company-btn {
 	width: 100%;
 	white-space: nowrap;
 	padding: 0.3rem 0.75rem;
@@ -155,22 +170,6 @@
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
-.new-material-btn,
-.detail-material-btn {
-	white-space: nowrap;
-	padding: 0.3rem 0.5rem;
-	background: var(--header-bg);
-	margin: 0;
-	border: 0;
-	border-radius: 3px;
-	box-shadow: var(--box-shadow);
-	font-family: "Noto Sans TC", sans-serif;
-}
-.new-material-btn:hover,
-.detail-material-btn:hover {
-	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
-}
 .food-img {
 	width: 130px;
 	height: 130px;
@@ -184,14 +183,6 @@
 	height: 100%;
 	object-fit: contain;
 }
-.preview-add-img-container {
-	height: 134px;
-	width: 134px;
-}
-#recipeImgPre {
-	border-radius: 5px;
-}
-
 /* ****************************************************************************** */
 /* company-detail 詳細資料*/
 .company-datail {
@@ -227,11 +218,4 @@
 .add-detail-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
-}
-.save-detail-btn-hover:hover {
-	background: var(--btn-hover);
-	box-shadow: var(--hover-shadow);
-}
-.detailImgPre {
-	border-radius: 5px;
 }

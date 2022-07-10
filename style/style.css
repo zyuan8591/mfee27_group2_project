@@ -106,25 +106,12 @@ a:active {
 .transition {
 	transition: background 0.3s, box-shadow 0.3s;
 }
-.object-cover {
+.object-
+ {
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
 }
-.btn-group a:focus {
-	box-shadow: var(--box-shadow);
-	border-color: var(--input-border);
-}
-.point-event-none {
-	pointer-events: none;
-	opacity: 0.5;
-}
-/* .btn-outline-dark:focus {
-	box-shadow: var(--box-shadow) !important;
-	border-color: var(--input-border);
-	outline: 1 !important;
-} */
-
 /* --------------------------------------------- */
 /* header */
 .header {
@@ -180,6 +167,8 @@ a:active {
 	padding: 1rem;
 	font-size: 1rem;
 	top: calc(var(--header-height));
+	position: fixed;
+	z-index: 50;
 	overflow: auto;
 }
 .nav {
@@ -219,7 +208,6 @@ a:active {
 /* XX管理-XXXX */
 .sub_nav_item {
 	padding: 0.5rem 0 0 0;
-
 	overflow: hidden;
 }
 .sub_nav_item_container {
