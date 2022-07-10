@@ -174,7 +174,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">商品管理</a>
+								<a class="main_nav_item_content" href="product-index.php">商品管理</a>
 							</div>
 							<div class="nav_dropdown ">
 								<svg
@@ -195,7 +195,7 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li class="">
-									<a class="sub_nav_item_content" href="">商品總覽</a>
+									<a class="sub_nav_item_content" href="product-index.php">商品總覽</a>
 								</li>
 								<li>
 									<a class="sub_nav_item_content" href="">評價總覽</a>
@@ -219,7 +219,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">訂單管理</a>
+								<a class="main_nav_item_content" href="orders-index.php">訂單管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -241,7 +241,7 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">訂單總覽</a>
+									<a class="sub_nav_item_content" href="orders-index.php">訂單總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -308,7 +308,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">會員管理</a>
+								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -330,10 +330,10 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">一般會員總覽</a>
+									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
+									<a class="sub_nav_item_content" href="company-member-all-index.php">廠商會員總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -361,7 +361,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href=""> 活動管理 </a>
+								<a class="main_nav_item_content" href="coupon-index.php"> 活動管理 </a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -383,7 +383,7 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">優惠券</a>
+									<a class="sub_nav_item_content" href="coupon-index.php">優惠券</a>
 								</li>
 							</div>
 						</ul>
