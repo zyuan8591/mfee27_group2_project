@@ -1,11 +1,14 @@
 <?php
+
+require("./db-connect.php");
 if(isset($_GET["page"])){
 	$page=$_GET["page"];
 }else{
 	$page=1;
 };
+$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 10;
 
-require("./db-connect.php");
+
 //上下架篩選
 $valid= isset($_GET["valid"]) ? $_GET["valid"] : 1;
 if (empty($valid)) {
@@ -74,7 +77,7 @@ if($order == 1 or $order == 3 or $order == 5 or $order == 7){
 	};
 
 //page
-$perPage=10;
+// $perPage=10;
 $start=($page-1)*$perPage;
 $startItem=($page-1)*$perPage+1;
 $endItem=$page*$perPage;
@@ -92,7 +95,7 @@ if($page != 1){
 	$downPage=$totalPage;
 };
 // $sql="SELECT * FROM coupon WHERE  name LIKE '%$search%' LIMIT 4" ;
-$sql="SELECT * FROM coupon WHERE $validType name LIKE '%$search%' ORDER BY $orderType LIMIT $start,10";
+$sql="SELECT * FROM coupon WHERE $validType name LIKE '%$search%' ORDER BY $orderType LIMIT $start,$perPage";
 $result = $conn->query($sql);
 $pageCouponCount=$result->num_rows;
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -400,20 +403,22 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 			<div class="d-flex justify-content-between align-items-center flex-wrap sort-search">
 				<div class="sort d-flex align-items-center">	
 										
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$idOrder?>&search=<?=$search?>&valid=<?=$valid?>">依編號排序</a>					
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$nameOrder?>&search=<?=$search?>&valid=<?=$valid?>">依名稱排序</a>
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$startDateOrder?>&search=<?=$search?>&valid=<?=$valid?>">依起始日期排序</a>
-					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=<?=$valid?>">依結束日期排序</a>
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$idOrder?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">依編號排序</a>					
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$nameOrder?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">依名稱排序</a>
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$startDateOrder?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">依起始日期排序</a>
+					<a class="sort-btn transition" href="coupon-index.php?page=<?=$page?>&order=<?=$endDateOrder?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">依結束日期排序</a>
 				</div>
 				<form class="coupon_search d-flex flex-wrap align-items-center gap-2 " action="coupon-index.php" method="get">
-				<select class="form-select per-page" name="per-page" >
-						<option value="10" 
-						<?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
-						<option value="15" 
-						<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
-						<option value="20" 
-						<?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
+				<div>
+					<select class="form-select per-page" name="per-page" >
+							<option value="10" 
+							<?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
+							<option value="15" 
+							<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
+							<option value="20" 
+							<?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
+					</div>
 					<div class="d-flex align-items-center " >
 						<div class="d-flex ">  
 							<input class="form-control search-box " type="text" name="search" placeholder="搜尋優惠券名稱">

@@ -8,6 +8,7 @@ $page=$_GET['page'];
 $order=$_GET['order'];
 $search=$_GET['search'];
 $valid=$_GET['valid'];
+$perPage=$_GET["per-page"];
 
 $sqlOnoffshelf = "SELECT id, valid FROM coupon WHERE id='$id'";
 $resultOnoffshelf = $conn->query($sqlOnoffshelf);
@@ -28,5 +29,5 @@ if($conn->query($sqlUpadate)){
 }
 $conn->close();
 
-header("location: coupon-index.php?page=$page&order=$order&search=$search&valid=$valid");
+header("location: coupon-index.php?page=$page&order=$order&search=$search&valid=$valid&per-page=$perPage");
 ?>
