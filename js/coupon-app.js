@@ -76,8 +76,7 @@ for (let i = 0; i < couponDetailBtn.length; i++) {
 	});
 }
 
-// // modify detail ---------------------------------------
-// // modify & save btn
+
 let modifyBtn = document.querySelectorAll(".modify-detail-btn");
 let saveBtn = document.querySelectorAll(".save-detail-btn");
 // form
@@ -119,7 +118,7 @@ for (let j = 0; j < saveBtn.length; j++) {
 		
 	});
 }
-// !! back to recipe index btn
+// !! back to coupon index btn
 for (let j = 0; j < backCoupon.length; j++) {
 	backCoupon[j].addEventListener("click", function (e) {
 		e.preventDefault();
@@ -155,3 +154,10 @@ for (let j = 0; j < detailXMark.length; j++) {
 		
 	});
 }
+
+//perPage onchange
+let perPage = document.querySelector(".per-page");
+let searchForm = document.querySelector(".coupon_search");
+perPage.addEventListener("change", function () {
+	searchForm.submit();
+});
