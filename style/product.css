@@ -157,3 +157,14 @@ height: 100%;
 textarea {
 	font-family: "Noto Sans TC", sans-serif;
 }
+
+.delete-btn {
+	white-space: nowrap;
+	padding: 0.4rem 0.6rem;
+	background: var(--delete-bg);
+	color: var(--header-bg);
+	margin: 0.3rem 0.3rem;
+	border-radius: 3px;
+	box-shadow: var(--box-shadow);
+	font-family: "Noto Sans TC", sans-serif;
+}

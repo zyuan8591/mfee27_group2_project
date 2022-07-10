@@ -151,14 +151,14 @@
 
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
-					<td></td>
+					<td><?=$companyName[$row["company"]]?></td>
 					<td><?= $product[$row["product_id"]] ?></td>
 					<td><?=$commentUser[$row["user_id"]]?></td>
                     <td><?=$row["content"]?></td>
                     <td><?=$row["comment"]?></td>
                     <td><?=$row["create_time"]?></td>
 					<td class="">
-						<button class="table-btn delete-btn">刪除</button>
+						<a class="delete-btn text-white" href="delete-comment-exe.php?id=<?=$row["id"]?>">刪除</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

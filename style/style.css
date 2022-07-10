@@ -32,6 +32,7 @@ a:active {
 	--main-bg: #f7f7f8;
 	--header-bg: #fff;
 	--sub-bg: #efeff1;
+	--delete-bg:#d90429;
 	/* color */
 	--button-color: #aaa;
 	--button-active: #ccc;
