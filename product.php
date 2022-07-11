@@ -1,7 +1,9 @@
 <main class="main position-rel">
 
 	<?php
+
 	require "./db-connect.php";
+	
 
 	$order = isset($_GET["order"]) ? $_GET["order"] : 1;
 	switch ($order) {
@@ -72,7 +74,23 @@
 		$page = 1;
 	}
 
-	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid";
+	$company=[
+		"id"=>1
+	];
+		$_SESSION["company"]=$company;
+
+	// echo json_encode($_SESSION["company"]["id"]);
+	if (!isset($_SESSION["company"]["id"])){
+		header("location: product-recomandation.php");
+	}elseif($_SESSION["company"]["id"]==0){
+		$companyId="";
+	}else{
+		$company_id=$_SESSION["company"]["id"];
+		$companyId="AND company_id=$company_id";
+		// var_dump($_SESSION["company"]["id"]) ;
+	}
+
+	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId";
 	$resultAll = $conn->query($sqlAll);
 	$productCountAll = $resultAll->num_rows;
 
@@ -82,7 +100,7 @@
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
 
-	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid ORDER BY $orderType LIMIT $start, $per";
+	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId ORDER BY $orderType LIMIT $start, $per";
 
 	$result = $conn->query($sql);
 	$rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -182,6 +200,8 @@
 				<th scope="col">商品名稱</th>
 				<th scope="col">商品主類別</th>
 				<th scope="col">商品次類別</th>
+				<th scope="col" class="text-center">價格</th>
+				<th scope="col" class="text-center">數量</th>
 				<th scope="col">商品狀態</th>
 				<th scope="col">編輯商品</th>
 			</tr>
@@ -196,6 +216,8 @@
 					<td><?= $row["name"] ?></td>
 					<td><?= $cate[$row["category_main"]] ?></td>
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
+					<td class="text-end"><?=number_format($row["price"])?></td>
+					<td class="text-center"><?=$row["inventory"]?></td>
 					<td><?php if ($row["valid"] == 1) : ?><?= "上架中" ?><?php else : ?><?= "下架中" ?><?php endif; ?></td>
 					<td class="">
 						<a href="list-unlist.php?order=<?=$order?>&filter=<?= $filterNum ?>&page=<?=$page?>&id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn <?php if ($row["valid"]==1){echo "point-none";} ?>">上架</a>
