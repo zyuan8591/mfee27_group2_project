@@ -2,7 +2,7 @@
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
-$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 5;
+$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 10;
 $exist=isset($_GET["exist"]) ? $_GET["exist"] : 0;
 $product=isset($_GET["product"]) ? $_GET["product"] : "";
 

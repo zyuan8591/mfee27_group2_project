@@ -33,8 +33,7 @@
 				<?php require "customer-detail.php"; ?>
 			</td>
 			<td>
-				<a class="btn-main transition me-3 " href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>&exist=0">商品收藏</a>
-				<?php require "customer-detail.php"; ?>
+				<a class="btn-main me-3" href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>&exist=0">商品收藏</a>
 			</td>
 		</tr>
 

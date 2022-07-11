@@ -1,4 +1,5 @@
 <?php
+session_start();
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
@@ -111,6 +112,7 @@ if(isset($_GET["user_id"])){
 		<link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner:wght@600&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<style>
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/recipe-style.css"; ?>
@@ -462,12 +464,28 @@ if(isset($_GET["user_id"])){
 		</main>
 		<?php require "customer-add.php"; ?>
 		
-
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 		<script type="text/javascript">
 			<?php require "js/app.js" ?>
 			<?php require "js/customer.js"; ?>
-		
-
 		</script>
+		<?php if($_SESSION["usersModify"]["condition"]==1): ?>
+		<script type="text/javascript">
+			Toastify({
+			text: "修改成功",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1)0%, rgba(0,0,0,1)100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+		</script>
+		<?php unset($_SESSION["usersModify"]); ?>
+		<?php endif; ?>
 	</body>
 </html>

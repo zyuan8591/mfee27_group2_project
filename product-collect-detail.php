@@ -2,8 +2,9 @@
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
-$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 5;
+$selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 10;
 $exist=isset($_GET["exist"]) ? $_GET["exist"] : 0;
+$user_id=$_GET["id"];
 
 if(isset($_GET["valid"])){
 	$valid=$_GET["valid"];
@@ -56,6 +57,41 @@ if(isset($_GET["id"])){
 }else{
 	echo "請從正常管道進入頁面";
 }
+
+
+// product-collect
+if(isset($_GET["id"])){
+    $user_id=$_GET["id"];
+    $sqlUser="SELECT * FROM customer_users WHERE id=$user_id";
+    $resultUser=$conn->query($sqlUser);
+    $rowUser=$resultUser->fetch_assoc();
+
+	$sqlAddProduct="SELECT * FROM products WHERE id";
+    
+	$resultAddProduct = $conn->query($sqlAddProduct);
+    $rowsAddProduct= $resultAddProduct->fetch_all(MYSQLI_ASSOC);
+	$countAddProduct=$resultAddProduct-> num_rows;
+
+}else{
+	echo "請從正常管道進入頁面";
+}
+
+//add-recipe-collect
+if(isset($_GET["id"])){
+    $user_id=$_GET["id"];
+    $sqlUser="SELECT * FROM customer_users WHERE id=$user_id";
+    $resultUser=$conn->query($sqlUser);
+    $rowUser=$resultUser->fetch_assoc();
+
+    $sqlAddRecipe="SELECT * FROM recipe WHERE id";
+
+    $resultAddRecipe = $conn->query($sqlAddRecipe);
+    $rowsAddRecipe = $resultAddRecipe->fetch_all(MYSQLI_ASSOC);
+	$countAddRecipe =$resultAddRecipe-> num_rows;
+
+}else{
+	echo "請從正常管道進入頁面";
+}
 ?>
 
 <!DOCTYPE html>
@@ -89,17 +125,23 @@ if(isset($_GET["id"])){
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
 	</head>
 	<body>
-	<div class="recipe-datail flex_center ">
+	<div class="recipe-datail flex_center">
 	<div class="cover-detail collect-main position_abs"></div>
 	
 	<div
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 	>
 		<a href="customer-index.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>"><i class="fa-solid fa-xmark position_abs"></i></a> 
-		<h2 class="recipe-title text-center collect-header"><?=$rowUser["name"]?>'s collect</h2>
-		<div class="collect-select-button mb-3">
+		<h2 class="recipe-title text-center collect-header"><?=$rowUser["name"]?>'s  Favorites</h2>
+		<div class="d-flex align-items-center justify-content-between mb-3">
+		<div class="collect-select-button">
             <a id="c1" class="collect-type button-pattern">食譜收藏</a>
-            <a id="c2" class="collect-type ms-4">商品收藏</a>
+            <a id="c2" class="collect-type mx-4">商品收藏</a>
+		</div>
+		<div>
+			<i class="fa-solid fa-circle-plus fa-lg add-plus add-plus-background"></i>
+			<a href="search-user-collect.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$user_id?>&exist=0"><i class="fa-solid fa-magnifying-glass fa-lg ms-2 add-plus-background"></i></a>
+		</div>
 		</div>
 	<!-- recipe-collect -->
 	<div class="row collect-page">
@@ -107,9 +149,8 @@ if(isset($_GET["id"])){
 		<?php foreach($recipeRows as $recipeItem): ?>
 		<div class="col-6 ">
 			<div class="collect-card m-2 text-center shadow">
-				
 				<div>
-					<img class="object-fit" src="recipe_main_img/<?=$recipeItem["image"]?>" alt="">
+					<img class="object-fit" src="img/recipe_main_img/<?=$recipeItem["image"]?>" alt="">
 				</div>
 				<div class="collect-text text-center d-flex align-items-center justify-content-center">
 					<p class="p-2"><?=$recipeItem["name"]?></p>
@@ -121,9 +162,9 @@ if(isset($_GET["id"])){
 		</div>
 		<?php endforeach; ?>
 		<?php else: ?>
-			該會員目前沒有收藏的食譜
+			<p class="noCollectText text-center mt-5">該會員目前沒有收藏的食譜</p> 
 		<?php endif ?>
-	<div class="mb-3 mt-4 flex_center d-flex justify-content-center">
+		<div class="mb-3 mt-4 flex_center d-flex justify-content-center">
 			<a class="add-detail-btn back-recipe-de transition " href="customer-index.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>">返回會員列表</a>
 		</div>
 	</div>
@@ -135,9 +176,8 @@ if(isset($_GET["id"])){
 		<?php foreach($productRows as $productItem): ?>
 		<div class="col-6 ">
 			<div class="collect-card m-2 text-center shadow">
-				
 				<div>
-					<img class="object-fit" src="products_main_img/<?=$productItem["product_main_img"]?>" alt="">
+					<img class="object-fit" src="img/products_main_img/<?=$productItem["product_main_img"]?>" alt="">
 				</div>
 				<div class="collect-text text-center d-flex align-items-center justify-content-center">
 					<p class="p-2"><?=$productItem["name"]?></p>
@@ -149,19 +189,19 @@ if(isset($_GET["id"])){
 		</div>
 		<?php endforeach; ?>
 		<?php else: ?>
-			該會員目前沒有收藏的食譜
+			<p class="noCollectText text-center mt-5">該會員目前沒有收藏的商品</p> 
 		<?php endif ?>		
-	<div class="mb-3 mt-4 flex_center d-flex justify-content-center">
+		<div class="mb-3 mt-4 flex_center d-flex justify-content-center">
 			<a class="add-detail-btn back-recipe-de transition " href="customer-index.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>">返回會員列表</a>
 		</div>
 	</div>
 <!-- ------ -->
 
-
-
-
 	</div>		
 </div>
+
+<?php require "add-collect.php"; ?>
+
 		<script type="text/javascript">
 			<?php require "js/collect.js"; ?>
 		</script>

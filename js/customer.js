@@ -169,9 +169,9 @@ for(let s=0; s<inputImg.length; s++){
 		let fileName=this.files[0].name;
 		console.log(fileName);
 		if(fileName){
-			avatarImg[s].src=`customer_img/${fileName}`	;
+			avatarImg[s].src=`img/user_img/${fileName}`	;
 		}
-		console.log(avatarImg[s].src=`customer_img/${fileName}`);
+		console.log(avatarImg[s].src=`img/user_img/${fileName}`);
 			
 })
 }
