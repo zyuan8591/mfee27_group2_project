@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 //$_GET data
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 if (empty($page)) {
