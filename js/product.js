@@ -159,3 +159,4 @@ addImgInput.addEventListener("change", (e)=>{
     addPreview.classList.remove("d-none");
     addPreview.src=`img/products_main_img/${file}`;
 })
+toastr.info('Are you the 6 fingered man?');
