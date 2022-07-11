@@ -35,15 +35,8 @@
 		</tbody>
 </table>
 
-<div class="row w-100">
-	<div class="col-4 d-flex justify-content-start">
-		<!-- <select class="form-select per-page" name="per-page" >
-			<option value="1">每頁顯示5筆</option>
-			<option value="2">每頁顯示15筆</option>
-			<option value="3">每頁顯示20筆</option>
-		</select> -->
-	</div>
-	<div class="col-4">
+<div class=" flex_center w-100">	
+	<div class="">
 		<div class="btn-group me-2" role="group" aria-label="First group">			
 			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$upPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">上一頁</a>			
 			<?php for($i=1;$i<=$totalPage;$i++):?>
@@ -52,10 +45,6 @@
 			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$downPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">下一頁</a>
 		</div>
 	</div>
-	<div class="col-4"></div>
-
-</div>
-
 <?php else:?>
 	目前沒有資料
 <?php endif;?>
