@@ -101,6 +101,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 		/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<style>
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/company-style.css"; ?>
@@ -480,11 +481,11 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 		  onClick: function(){} // Callback after click
 		}).showToast();
 		</script>
-		<?php //unset($_SESSION["addCondition"]); ?>
+		<?php unset($_SESSION["userModify"]); ?>
 		<?php endif; ?>		
 	<!-- 新增廠商成功 -->
-		<?php //if($_SESSION["userModify"]["condition"] == 4): ?>
-		<!-- <script type="text/javascript" >
+		<?php if($_SESSION["userModify"]["condition"] == 4): ?>
+		<script type="text/javascript" >
 		    Toastify({
 		  text: "新增成功",
 		  duration: 3000,
@@ -498,8 +499,8 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 		  },
 		  onClick: function(){} // Callback after click
 		}).showToast();
-		</script> -->
-		<?php //unset($_SESSION["addCondition"]); ?>
-		<?php// endif; ?>
+		</script>
+		<?php unset($_SESSION["userModify"]); ?>
+		<?php endif; ?>
 	</body>
 </html>
