@@ -192,7 +192,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 									<a class="sub_nav_item_content" href="product-index.php">商品總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">評價總覽</a>
+									<a class="sub_nav_item_content" href="product-recomandation.php">評價總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -463,15 +463,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=2">上架中</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=3">下架中</a></li>
 						</ul>
-					</div>
-					<div class="filter-item position-rel">
-						<button  class="filter-btn transition">
-							<a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=&foodCate=&productCate=&valid=
-							" >全部顯示</a>
-						</button>
-					</div>				
+					</div>		
 				</div>
 				<div>
 					<a class="add-coupon-btn transition" href="">新增優惠券</a>

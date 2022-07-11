@@ -182,7 +182,7 @@ if(isset($_GET["user_id"])){
 									<a class="sub_nav_item_content" href="product-index.php">商品總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">評價總覽</a>
+									<a class="sub_nav_item_content" href="product-recomandation.php">評價總覽</a>
 								</li>
 							</div>
 						</ul>
