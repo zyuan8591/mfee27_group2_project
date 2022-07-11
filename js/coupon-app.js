@@ -161,3 +161,16 @@ let searchForm = document.querySelector(".coupon_search");
 perPage.addEventListener("change", function () {
 	searchForm.submit();
 });
+
+//verify Date
+function dateTest(){
+	var sDate=document.getElementById("sDate").value;
+	var eDate=document.getElementById("eDate").value;
+	if(eDate<sDate){
+		alert("日期錯誤");
+		return false;
+	}
+	else{
+		return true;
+	}            
+}
