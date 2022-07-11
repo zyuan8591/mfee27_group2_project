@@ -1,6 +1,3 @@
-<?php
-//session_start();
-?>
 <div class="company-datail  flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
 	<form
@@ -93,9 +90,10 @@
 			<label for="" class="form-label">公司圖像</label>
 			<label for="detail-image-<?= $row["id"] ?>" class="detail-image">
 				<div class="add-image-container cursor-pointer me-2">
-					<img src="./img/company_img/<?= $row["logo_img"]?>" alt="" class="object-cover detailImgPre">
+					<img src="./img/company_img/<?= $row["logo_img"]?>" alt="" class="object-cover detailImgPre" name="image">
 				</div>
 			</label>
+			<input type="hidden" value="<?= $row["image"] ?>" name="image-original">
 			<input
 				id="detail-image-<?= $row["id"] ?>"
 				class=" detail-item-img detail-file invisible"

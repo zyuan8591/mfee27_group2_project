@@ -19,6 +19,7 @@ session_start();
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<style>
 		<?php
 		require "./style/style.css";
@@ -135,7 +136,7 @@ session_start();
 					<ul class="unstyled_list sub_nav_item">
 						<div class="sub_nav_item_container translateYtoNone">
 							<li>
-								<a class="sub_nav_item_content" href="">會員總覽</a>
+								<a class="sub_nav_item_content" href="">一般會員總覽</a>
 							</li>
 							<li class="sub_nav_item_active">
 								<a class="sub_nav_item_content" href="">廠商會員總覽</a>
@@ -207,7 +208,8 @@ session_start();
         		    </div>
         		    <div class="main-content ">
 					  	<ul class="unstyled_list p-0">
-        		       		<li><a href="company-member-all-index.php">會員總覽</a></li>
+        		       		<li><a href="company-member-all-index.php">一般會員總覽</a></li>
+							<li><a href="company-member-all-index.php">廠商會員總覽</a></li>
         		      	</ul>
         		    </div>
         		</div>

@@ -75,7 +75,7 @@ addImg.addEventListener("change",(e) => {
 	let file = addImg.files[0].name;
 	if(file){
 		newImg.classList.remove("d-none");
-		newImg.src = `./company_img/${file}`;
+		newImg.src = `img/company_img/${file}`;
 		svgImg.classList.add("d-none");
 	}
 });
@@ -106,7 +106,7 @@ for (let i = 0; i < modifyImg.length; i++) {
 	modifyImg[i].addEventListener("change", (e) => {
 		let file = modifyImg[i].files[0].name;
 		if (file) {
-			detailImg[i].src = `./company_img/${file}`;
+			detailImg[i].src = `img/company_img/${file}`;
 		}
 	});
 }
