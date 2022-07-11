@@ -75,7 +75,7 @@
 	}
 
 	$company=[
-		"id"=>1
+		"id"=>0
 	];
 		$_SESSION["company"]=$company;
 

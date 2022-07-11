@@ -7,9 +7,15 @@
         <div class="mb-3">
             <label for="" class="form-label">選擇廠商</label>
             <select name="company_id" class="form-select product-input">
+                <?php if($_SESSION["company"]["id"]==0): ?>
                 <?php foreach ($rowsCompany as $item):?>
 					<option value="<?=$item["id"]?>"><?=$item["name"]?></option>
                 <?php endforeach;?>
+                <?php else: ?>
+                    
+                    <option value="<?=$row["company_id"]?>"><?=$companyName[$row["company_id"]]?></option>
+                    
+                <?php endif; ?>
 			</select>
         </div>
         <div class="mb-3">
