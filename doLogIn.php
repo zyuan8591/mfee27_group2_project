@@ -27,12 +27,13 @@ if($userCount > 0){
         "id"=>$row["id"],
         "name"=>$row["name"],
         "email"=>$row["email"],
-        "image"=>$row["logo_img"]
+        "image"=>$row["logo_img"],
+        "admin"=>$row["is_admin"]
     ];
     unset($_SESSION["error"]["errorCondition"]);
     $_SESSION["user"]=$user;
     $condition=2;
-    if($_SESSION["user"]["id"] == 0 ){
+    if($_SESSION["user"]["admin"] == 1 ){
         header("location: admin-user-index.php");
     } else {
         header("location: company-user-index.php");

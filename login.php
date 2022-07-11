@@ -1,8 +1,13 @@
 <?php
 session_start();
 if(isset($_SESSION["user"])){
-	header("location:admin-user-index.php");
+	if($_SESSION["user"]["admin"] == 1 ){
+        header("location: admin-user-index.php");
+    } else {
+        header("location: company-user-index.php");
+    }
 }
+
 ?>
 
 <!doctype html>
@@ -59,7 +64,9 @@ if(isset($_SESSION["user"])){
         	--header-bg: #fff;
         	/* color */
         	--main-font-color: rgb(60, 60, 60);
-            --btn-color: rgb(180, 206, 236);
+            --font-color: rgb(250, 250, 250);
+            --btn-color: #535353;
+            --header-bg: #535353;
         	/* other */
         	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1);
         	--hover-shadow: 3px 2px #bbb;
@@ -70,6 +77,7 @@ if(isset($_SESSION["user"])){
         .header {
     	    background: var(--header-bg);
     	    padding: 0.5rem 1rem;
+            color: var(--font-color);
     	    height: var(--header-height);
     	    box-shadow: var(--box-shadow);
     	    width: 100%;
@@ -91,7 +99,7 @@ if(isset($_SESSION["user"])){
         .main{
             width: 100%;
             height: calc(100vh - var(--header-height));
-            background: #666;
+            background: var(--main-bg);
 	        opacity: 0.8;
             /* background: url(login_img/background.jpeg) no-repeat center center; */
             /* background-size:100% 100% ; */
@@ -105,6 +113,7 @@ if(isset($_SESSION["user"])){
         .contain{
             background: #ffffff;
             width: 400px;
+            /* max-height: 400px; */
             margin: auto 30px;
             padding:30px;
             border-radius: 5px;
@@ -130,7 +139,7 @@ if(isset($_SESSION["user"])){
         .btn-style{
             padding: 0.5rem;
             background: var(--btn-color);
-            /* color: white; */
+            color: var(--font-color);
             width: 340px;
             border-radius: 5px;
         }
@@ -156,11 +165,12 @@ if(isset($_SESSION["user"])){
             padding: 0.5rem 30px;
 
         }
-        .title{
+        .title,.titles{
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0;
+            color: var(--font-color);
         }
         
         .error-times{
