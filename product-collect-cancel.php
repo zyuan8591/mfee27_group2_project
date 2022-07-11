@@ -3,7 +3,8 @@ $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
 $selectPages=isset($_GET["selectPages"]) ? $_GET["selectPages"] : 10;
-$id=isset($_GET["id"]) ? $_GET["id"] : "";
+$exist=isset($_GET["exist"]) ? $_GET["exist"] : 0;
+$product=isset($_GET["product"]) ? $_GET["product"] : "";
 
 if(isset($_GET["valid"])){
 	$valid=$_GET["valid"];
@@ -21,18 +22,18 @@ require("db-connect.php");
 
 $id=$_GET["id"];
 // echo $id;
-
-$sql="UPDATE customer_users SET valid=1 WHERE id='$id'";
+// exit;
+$sql="UPDATE product_like SET valid=0 WHERE user_id='$id' AND product_id='$product'";
 
 
 if ($conn->query($sql) === TRUE) {
-    echo "刪除成功";
+    echo "新增成功";
 } else {
-    echo "刪除資料錯誤: " . $conn->error;
+    echo "新增資料錯誤: " . $conn->error;
 }
 
 
-header("location: customer-index.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid);
-// header("location: customer-index.php");
+header("location: product-collect-detail.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$id."&exist=0"."&product=".$product);
+
 
 ?>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+$condition=0;
 if(!isset($_POST["name"])){
     echo"沒有帶資料";
     exit;
@@ -32,8 +34,15 @@ if($image == ""){
 
 if ($conn->query($sql) === TRUE) {
     echo "資料表users修改完成";
+    $condition=1;
 } else {
     echo "資料表修改錯誤: " . $conn->error;
+}
+
+if($condition == 1){
+    $_SESSION["usersModify"] =[
+        "condition" => $condition
+    ];
 }
 
 $conn->close();

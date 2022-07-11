@@ -84,9 +84,9 @@
 			<label for="" class="form-label">新增圖像</label>
 			
 			<label for="customer-image-<?=$row["id"]?>" class="recipe-image" >
-			<?php if($row["img"] == ""): ?>	
+			<?php if($row["img"] == " "): ?>	
 				<div class="customer-img">
-					<img class="object-fit avatar-img d-none" src="customer_img/<?=$row["img"]?>" alt="">
+					<img class="object-fit avatar-img d-none" src="img/user_img/<?=$row["img"]?>" alt="">
 					<svg
 						class="file-svg"
 						width="134"
@@ -112,7 +112,7 @@
 				</div>
 			<?php else: ?>
 				<div class="customer-img">
-					<img class="object-fit avatar-img" src="customer_img/<?=$row["img"]?>" alt="">
+					<img class="object-fit avatar-img" src="img/user_img/<?=$row["img"]?>" alt="">
 					<svg
 						class="file-svg d-none"
 						width="134"
@@ -142,7 +142,7 @@
 			<input type="hidden" value="<?= $row["img"] ?>" name="image_original">
 			<input
 				id="customer-image-<?=$row["id"]?>"
-				class=" detail-item-img detail-input-img"
+				class="d-none detail-item-img detail-input-img"
 				type="file"
 				accept="image/*"
 				disabled="true"

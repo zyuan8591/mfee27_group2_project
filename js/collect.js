@@ -21,7 +21,6 @@ function collectClick(){
 }
 
 
-
 //collect-icon
 let collectIcon = document.querySelectorAll(".collect-icon");
 let heartIcon = document.querySelectorAll(".fa-heart");
@@ -35,5 +34,24 @@ for(let s=0; s<collectIcon.length; s++){
 	collectIcon[s].addEventListener("mouseout",function(){
 		// console.log("out");
 		heartIcon[s].style.color="red";
+	})
+}
+
+
+//add-collect-button
+let addPlus = document.querySelectorAll(".add-plus");
+let addCollectPage = document.querySelectorAll(".add-collect-page");
+let addCloseBtn = document.querySelectorAll(".add-close-btn");
+
+for(let s=0; s<addPlus.length; s++){
+	addPlus[s].addEventListener("click",function(){
+		// console.log("click");
+		addCollectPage[s].classList.remove("invisible");
+	})
+}
+for(let s=0; s<addCloseBtn.length; s++){
+	addCloseBtn[s].addEventListener("click",function(){
+		// console.log("click");
+		addCollectPage[s].classList.add("invisible");
 	})
 }
