@@ -96,7 +96,7 @@
 .evaluation {
 	font-size: 1.25rem;
 	color: #393939;
-	transition: 0.3s;
+	/* transition: 0.3s; */
 }
 .evaluation-hover {
 	color: #ffbe0b;
