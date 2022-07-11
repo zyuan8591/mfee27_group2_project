@@ -1,3 +1,9 @@
+<?php
+require "./db-connect.php";
+$sql = "SELECT * FROM company_users WHERE id=1";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,13 +22,14 @@
 	<link rel="stylesheet" href="./style/normalize.css" />
 	<style>
 		<?php
-		require "./style/style.css";
-		require "./style/product.css";
-		?>
+  require "./style/style.css";
+  require "./style/product.css";
+  require "./style/company-info.css";
+  ?>
 	</style>
   </head>
   <body>
-    <?php require("product-header.php") ?>
+    <?php require "product-header.php"; ?>
     <aside class="aside position_abs">
 		<!-- <div class="smaller_sidebar">
 				<svg
@@ -185,11 +192,97 @@
 			</ul>
 		</nav>
 	</aside>
+	
 	<main class="main position-rel">
-		
+	<?php foreach ($rows as $row): ?>
+	<form action="" class="info">
+		<div>
+			<figure class="avatar"><img class="object-cover" src="./img/company_img/<?= $row["logo"] ?>" alt=""></figure>
+		</div>
+		<div>
+			<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">廠商名稱</label>
+			<div class="col">
+				<input
+					type="text"
+					readonly
+					class="form-control-plaintext "
+					name="brand"
+					value="<?= $row["name"] ?>"
+				/>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">信箱　　</label>
+			<div class="col">
+				<input
+					type="text"
+					readonly
+					class="form-control-plaintext product-input"
+					name="email"
+					value="<?= $row["email"] ?>"
+					required
+				/>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">電話　　</label>
+			<div class="col">
+				<input
+					type="text"
+					readonly
+					class="form-control-plaintext product-input"
+					name="phone"
+					value="<?= $row["phone"] ?>"
+					required
+				/>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">地址　　</label>
+			<div class="col">
+				<input
+					type="text"
+					readonly
+					class="form-control-plaintext product-input"
+					name="address"
+					value="<?= $row["address"] ?>"
+					required
+				/>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">介紹　　</label>
+			<div class="col">
+				<input
+					type="text"
+					readonly
+					class="form-control-plaintext product-input"
+					name="intro"
+					value="<?= $row["intro"] ?>"
+					required
+				/>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">註冊日期</label>
+			<div class="col">
+				<input
+					type="text"
+					readonly
+					class="form-control-plaintext product-input"
+					name="create_time"
+					value="<?= $row["create_time"] ?>"
+					required
+				/>
+			</div>
+		</div>
+		</div>
+		</form>
+		<?php endforeach; ?>
 	</main>
 	<script type="text/javascript">
-		<?php require "./js/product.js";?>
+		<?php require "./js/product.js"; ?>
 	</script>
   </body>
 </html>
