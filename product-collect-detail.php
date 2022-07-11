@@ -120,7 +120,7 @@ if(isset($_GET["id"])){
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/recipe-style.css"; ?>
+			<?php require "./style/recipes-style.css"; ?>
 			<?php require "style/customer.css"; ?>
 			
 		</style>
