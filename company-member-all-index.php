@@ -109,7 +109,6 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 
 		</style>
 		<!-- <link rel="stylesheet" href="./style/style.css" /> -->
-		<script type="text/javascript" src="./js/jquery.min.js"></script>
 	</head>
 	<body>
 		<!-------------- header -------------->
@@ -445,15 +444,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 							<li><a href="company-member-all-index.php?page=<?=$page?>&order=<?=$order?>&valid=1">啟用</a></li>
 							<li><a href="company-member-all-index.php?valid=0">停用</a></li>
 						</ul>
-					</div>
-					<div class="filter-item position-rel">
-						<button  class="filter-btn transition">
-							<a href="
-							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
-							&search=&foodCate=&productCate=&valid=
-							" >全部顯示</a>
-						</button>
-					</div>				
+					</div>			
 				</div>
 				<div>
 					<a class="add-company-btn transition" href="">新增廠商</a>
