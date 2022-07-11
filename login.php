@@ -24,7 +24,7 @@ if(isset($_SESSION["user"])){
 	/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
-
+    <link rel="stylesheet" href="style/style.css">
     <style>
 
         * {
@@ -56,7 +56,7 @@ if(isset($_SESSION["user"])){
         	/* height &width */
         	--header-height: 80px;
         	/* bg-color */
-        	--header-bg: rgb(180, 206, 236);
+        	--header-bg: #fff;
         	/* color */
         	--main-font-color: rgb(60, 60, 60);
             --btn-color: rgb(180, 206, 236);
@@ -85,20 +85,25 @@ if(isset($_SESSION["user"])){
             color: var(--main-font-color);
         }
     /* ------------- */
-        .main-contain {
+        /* .main-contain {
             height: 110vh;
-        }
+        } */
         .main{
             width: 100%;
+            height: calc(100vh - var(--header-height));
+            background: #666;
+	        opacity: 0.8;
             /* background: url(login_img/background.jpeg) no-repeat center center; */
             /* background-size:100% 100% ; */
             display: flex;
             align-items: center;
             justify-content: center;  
-                  
+            position: relative;
+            top: var(--header-height);
         }
+        
         .contain{
-            background: #ffffffcc;
+            background: #ffffff;
             width: 400px;
             margin: auto 30px;
             padding:30px;
@@ -123,10 +128,11 @@ if(isset($_SESSION["user"])){
         }
     /* -------------- */
         .btn-style{
-            padding: 6px;
+            padding: 0.5rem;
             background: var(--btn-color);
-            color: white;
+            /* color: white; */
             width: 340px;
+            border-radius: 5px;
         }
         .form-control{
             margin-top: 10px;
@@ -136,14 +142,27 @@ if(isset($_SESSION["user"])){
             color: #cfa48c;
         }
         .log-in-contain{
-            height: 27rem;
+            /* height: 27rem; */
             overflow: auto;
         }
-        .log-in-contain h2{
+        .log-in-title{
             background: var(--btn-color);
-            margin: -30px -30px 0px;
-            padding: 16px 0px 0px;
-        } 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -30px;
+            margin-right: -30px;
+            margin-top: -30px;
+            padding: 0.5rem 30px;
+
+        }
+        .title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        
         .error-times{
             width: 40%;
             background: #ffffffcc;
@@ -152,7 +171,7 @@ if(isset($_SESSION["user"])){
             padding: 20px 0px;
         }
     </style>
-    <link rel="stylesheet" href="style/style.css">
+    
 </head>
 <body>
     <!---------------------- header ---------------------->
@@ -176,103 +195,117 @@ if(isset($_SESSION["user"])){
 	</div>
 </header>
 <!---------------------- main ---------------------->
-<div class="main-contain d-flex justify-content-center align-items-center">
-<?php if(isset($_SESSION["error"]) && $_SESSION["error"]["times"]>=3): ?>
-    <div class="error-times text-center">
-    <h3 class="text-danger">帳號密碼輸入錯誤已超過3次<br>請稍候再登入</h3>
-    </div>
-<?php else: ?>
-    <div class="main" id="openMsg">
-        <div class="contain log-in-contain m-0">
-            <div class="log-in-title">
-                <h2 class="text-center pb-3">LOG IN</h2>
-            </div>
-            <!-- <div>
-                <button type="button" class="btn-close" aria-label="Close"></button>
-            </div> -->
-            <div class="tabs mt-4">
-                <a id="d1" class="a1 b-bottom" href="#">登入</a>
-                <a id="d2" class="a1 ms-3 " href="#">廠商</a>
-            </div>
-<!--- 登入 ---->
-            <div class="p1">
-            <form action="doLogIn.php" method="post">
-                <div class="my-3">
-                    <label for="">電子信箱</label>
-                    <input type="email" class="form-control" name="login-email">
+<main class="main">
+    <div class="main-contain d-flex justify-content-center align-items-center">
+    <?php if(isset($_SESSION["error"]) && $_SESSION["error"]["times"]>=3): ?>
+        <div class="error-times text-center">
+        <h3 class="text-danger">帳號密碼輸入錯誤已超過3次<br>請稍候再登入</h3>
+        </div>
+    <?php else: ?>
+        <div id="openMsg">
+            <div class="contain log-in-contain m-0">
+                <div class="log-in-title">
+                    <h2 class="text-center titles">Sign in</h2>
+                    <h2 class="text-center d-none titles">Join now</h2>
                 </div>
-                <div class="mb-2">
-                    <label for="">密碼</label>
-                    <input type="password" class="form-control" name="login-password">
+                <!-- <div>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div> -->
+                <div class="tabs mt-4">
+                    <a id="d1" class="a1 b-bottom" href="#">登入</a>
+                    <a id="d2" class="a1 ms-3 " href="#">註冊</a>
                 </div>
-                <?php if(isset($_SESSION["error"])): ?>
-                <div class="mb-2">
-                    <?php if($_SESSION["errorCondition"]["condition"] == 1): ?><div class="text-danger"><?=$_SESSION["error"]["message"]?></div>
+    <!--- 登入 ---->
+                <div class="p1">
+                <form action="doLogIn.php" method="post">
+                    <div class="my-3">
+                        <label for="">電子信箱</label>
+                        <input type="email" class="form-control" name="login-email">
+                    </div>
+                    <div class="mb-2">
+                        <label for="">密碼</label>
+                        <input type="password" class="form-control" name="login-password">
+                    </div>
+                    <?php if(isset($_SESSION["error"])): ?>
+                    <div class="mb-2">
+                        <?php if($_SESSION["errorCondition"]["condition"] == 1): ?><div class="text-danger"><?=$_SESSION["error"]["message"]?></div>
+                        <?php endif; ?>
+                    </div> 
                     <?php endif; ?>
-                </div> 
-                <?php endif; ?>
-                <div class="d-flex mt-4 justify-content-center">
-                    <button class="btn-style rounded-0 border-0" type="submit">登入</button>    
+                    <div class="d-flex mt-4 justify-content-center">
+                        <button class="btn-style border-0" type="submit">登入</button>    
+                    </div>
+                </form>
                 </div>
-            </form>
-            </div>
-<!--- 廠商登入 --->
-            <div class="p1 ">
-            <form action="company-doSignUp.php" method="post" >
-            <div class="my-3">
-                    <label for="">公司名稱</label>
-                    <input type="text" class="form-control" name="signup-name">
-                </div>
+    <!--- 廠商登入 --->
+                <div class="p1 ">
+                <form action="company-doSignUp.php" method="post" >
                 <div class="my-3">
-                    <label for="">帳號(信箱)</label>
-                    <input type="email" class="form-control" name="signup-email">
-                </div>
-                <div class="mb-2">
-                    <label for="">密碼</label>
-                    <input type="password" class="form-control" name="signup-password">
-                </div>
-                <div class="mb-3">
-                    <label for="">再輸入一次密碼</label>
-                    <input type="password" class="form-control" name="signup-repassword">
-                </div>
-                <div class="mb-3">
-                    <label for="">電話</label>
-                    <input type="tel" class="form-control" name="signup-phone">
-                </div>
-                <div class="mb-3">
-                    <label for="">地址</label>
-                    <input type="text" class="form-control" name="signup-address">
-                </div>
-                <div class="d-flex mt-4 justify-content-center">
-                    <button class="btn-style rounded-0 border-0" type="submit">Sign Up</button>    
-                </div>
-                </div>
-            </form>
+                        <label for="">公司名稱</label>
+                        <input type="text" class="form-control" name="signup-name">
+                    </div>
+                    <div class="my-3">
+                        <label for="">帳號(信箱)</label>
+                        <input type="email" class="form-control" name="signup-email">
+                    </div>
+                    <div class="mb-2">
+                        <label for="">密碼</label>
+                        <input type="password" class="form-control" name="signup-password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">再輸入一次密碼</label>
+                        <input type="password" class="form-control" name="signup-repassword">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">電話</label>
+                        <input type="tel" class="form-control" name="signup-phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">地址</label>
+                        <input type="text" class="form-control" name="signup-address">
+                    </div>
+                    <div class="d-flex mt-4 justify-content-center">
+                        <button class="btn-style rounded-0 border-0" type="submit">註冊</button>    
+                    </div>
+                    </div>
+                </form>
+            </div>
+            </div>
         </div>
-        </div>
+    <?php endif; ?>
     </div>
-<?php endif; ?>
-</div>
+</main>
 <script>
 
     let p1=document.getElementsByClassName("p1");
     let a1=document.getElementsByClassName("a1");
+    let titles = document.querySelectorAll('.titles');
+    console.log(titles);
     p1Idx=0;
     p1[p1Idx].style.display="flex";
 
     for(let i=0; i<a1.length; i++){        
-        a1[i].addEventListener("click",menuClick);
+        a1[i].addEventListener("click",function(){
+            for(let s=0; s<a1.length; s++){ 
+                a1[s].classList.remove("b-bottom");
+                p1[s].style.display="none";
+                titles[s].classList.add('d-none');
+            }
+            a1[i].classList.add("b-bottom");
+            p1[i].style.display="flex";
+            titles[i].classList.remove('d-none');
+        });
     }
 
-    function menuClick(){
-       for(let s=0; s<a1.length; s++){ 
-          a1[s].classList.remove("b-bottom");
-          p1[s].style.display="none";
-    }
-          this.classList.add("b-bottom");
-          p1Idx=Number(this.id.substr(1));
-          p1[p1Idx-1].style.display="flex";
-    }
+    // function menuClick(){
+    //    for(let s=0; s<a1.length; s++){ 
+    //       a1[s].classList.remove("b-bottom");
+    //       p1[s].style.display="none";
+    // }
+    //       this.classList.add("b-bottom");
+    //       p1Idx=Number(this.id.substr(1));
+    //       p1[p1Idx-1].style.display="flex";
+    // }
 
 </script>
   </body>
