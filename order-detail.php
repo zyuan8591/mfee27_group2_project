@@ -15,11 +15,12 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 <div class="recipe-datail position_abs flex_center invisible ">
 	<div class="cover-detail cover position_abs"></div>
 	<form
-		class="container-detail position-rel modify-ricepe-detail-form"
-		action="recipe-detail-modify.php
-    "
+		class="container-detail position-rel modify-ricepe-detail-form "
+		action="order-update.php
+    "	
 		method="GET"
 	>
+	<input type="hidden" name="userId" value="<?=$row["user_id"]?>">
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="recipe-title text-center">訂單資料</h2>
 		<div class="mb-3 row">
@@ -29,7 +30,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					type="number"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["id"]?>"
+					value="<?=$row["id"]?>" name="order_id"
 				/>
 			</div>
 		</div>
@@ -40,7 +41,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["name"]?>"
+					value="<?=$row["name"]?>" name="name"
 				/>
 			</div>
 		</div>
@@ -51,7 +52,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["phone"]?>"
+					value="<?=$row["phone"]?>" name="phone"
 				/>
 			</div>
 		</div>
@@ -62,19 +63,27 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["address"]?>"
+					value="<?=$row["address"]?>" name="address"
 				/>
 			</div>
 		</div>
         <div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">訂單狀態</label>
 			<div class="col">
-				<input
+				<select
 					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="<?=$orderStatusJJ[$row["status_id"]]?>"
-				/>
+					disabled="true"
+					class="form-select detail-item-select"
+					name="status"
+				>
+				<?php foreach($rowStatus as $rowSta):?>
+				<option
+				 value="<?= $rowSta["id"] ?>"
+				 <?php if($rowSta["id"]==$row["status_id"]) echo "selected";?> >
+				 <?= $rowSta["status"] ?>
+				</option>
+				<?php endforeach; ?>
+				</select>
 			</div>
 		</div>
         <div class="mb-3 row">
@@ -89,6 +98,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					<?php else: ?>
 					value="無"
 					<?php endif; ?>
+					name="memo"
 				/>
 			</div>
 		</div>
@@ -100,6 +110,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
 					value="<?=$row["coupon_id"]?>"
+					name="coupon"
 				/>
 			</div>
 		</div>
@@ -128,14 +139,25 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					
 				</thead>
 				<tbody>
+					<?php $producti = 1;?>
 					<?php foreach($rowsOrderProduct as $rowProduct ): ?>
+					<input type="hidden" name="id<?=$producti?>" value="<?= $rowProduct["id"] ?>">
+					
+
+	
+	
+					
 					<tr>
 						<td><?= $rowProduct["product_id"] ?></td>
 						<td><?= $rowProduct["product_name"] ?></td>
 						<td class="text-end"><?= number_format($rowProduct["product_price"]) ?></td>
-						<td class="text-end"><?= $rowProduct["product_quantity"] ?></td>
+						<td><input type="number" 
+						name="amount<?=$producti?>"
+						value="<?= $rowProduct["product_quantity"] ?>" readonly="readonly"
+					class="form-control-plaintext detail-item-input text-end"></td>
 						<td class="text-end"><?= number_format($rowProduct["product_price"]*$rowProduct["product_quantity"]) ?></td>
 					</tr>    
+					<?php $producti+=1;?>
 					<?php endforeach; ?>
 				</tbody>
 			</table>

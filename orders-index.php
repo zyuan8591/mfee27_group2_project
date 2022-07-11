@@ -72,7 +72,7 @@ switch($orderStat){
   }
 
   $sqlAll = "SELECT orders.*, customer_users.name FROM orders, customer_users 
-  WHERE orders.user_id = customer_users.id $orderStatusAll $sqlDate";
+  WHERE orders.user_id = customer_users.id $orderStatusAll $sqlDate AND orders.valid = 1";
 // $sqlAll = "SELECT * FROM orders $orderStatusAll $sqlDate";
 // var_dump($sqlAll);
 $resultAll = $conn->query($sqlAll);
@@ -141,7 +141,7 @@ switch($order){
 $sql="SELECT orders.*, customer_users.name,customer_users.phone,customer_users.address FROM orders, customer_users 
 -- JOIN order_product ON orders.id = order_product.order_id
 -- JOIN products ON orders.product_id = products.id
-WHERE orders.user_id = customer_users.id $orderStatus $sqlDate
+WHERE orders.user_id = customer_users.id $orderStatus $sqlDate AND orders.valid = 1
 ORDER BY $orderType LIMIT $start, $perPage
 ";
 // var_dump($sql);
@@ -159,14 +159,6 @@ foreach ($rowStatus as $row){
 	$orderStatusJJ[$row["id"]]=$row["status"];
 }
 // var_dump($orderStatusJJ);
-
-if(isset($_GET["id"])){
-	$orderId = $_GET["id"];
-	$sqlOrderInfo = "WHERE order_product.order_id = $orderId";
-	$sqlOrderList = "SELECT id FROM orders WHERE id = $orderId";
-	$resultOrderList = $conn -> query($sqlOrderList);
-	$rowOrderList = $resultOrderList->fetch_assoc();
-}
 
 // $sqlDetail=" SELECT orders.id, order_product.*, products.id, products.price,products.name FROM order_product, products, orders WHERE order_product.order_id = orders.id ";
 // $resultDetail = $conn->query($sqlDetail);
@@ -281,7 +273,7 @@ $totalPage=ceil($ordersCountAll / $perPage);
 				</div>
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="orders-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5" <?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
+						<option value="10" <?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
 						<option value="15" <?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
 						<option value="20" <?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
@@ -306,7 +298,6 @@ $totalPage=ceil($ordersCountAll / $perPage);
 			
             <?php require "orders-table.php";?>
 		</main>
-		<?php require "recipe-add.php"; ?>
 				
 		
 		
