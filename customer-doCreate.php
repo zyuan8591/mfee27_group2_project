@@ -1,4 +1,6 @@
 <?php
+session_start();
+$condition=0;
 require("db-connect.php");
 
 if(!isset($_POST["name"])){
@@ -67,8 +69,14 @@ $customerCreateSql="INSERT INTO customer_users (name,email,password,phone,addres
 
 if ($conn->query($customerCreateSql) === TRUE) {
     echo "新資料輸入成功";
+    $condition=2;
 } else {
     echo "修改資料表錯誤: " . $conn->error;
+}
+if($condition == 2){
+    $_SESSION["usersModify"] =[
+        "condition" => $condition
+    ];
 }
 
 $conn->close();

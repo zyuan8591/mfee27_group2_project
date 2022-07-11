@@ -460,10 +460,31 @@ if(isset($_GET["user_id"])){
 			<?php require "js/app.js" ?>
 			<?php require "js/customer.js"; ?>
 		</script>
+		<!-- updateUser -->
 		<?php if($_SESSION["usersModify"]["condition"]==1): ?>
 		<script type="text/javascript">
 			Toastify({
 			text: "修改成功",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1)0%, rgba(0,0,0,1)100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+		</script>
+		<?php unset($_SESSION["usersModify"]); ?>
+		<?php endif; ?>
+		<!-- ------ -->
+		<!-- createUser -->
+		<?php if($_SESSION["usersModify"]["condition"]==2): ?>
+		<script type="text/javascript">
+			Toastify({
+			text: "新增成功",
 			duration: 3000,
 			newWindow: true,
 			close: true,
