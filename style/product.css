@@ -185,3 +185,7 @@ textarea {
 .star {
 	color: #ffbe0b;
 }
+.last-page {
+	border: 1px solid #000;
+	border-radius: 50%;
+}

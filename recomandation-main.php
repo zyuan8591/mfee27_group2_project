@@ -139,6 +139,7 @@
 			</svg>
 
 				<div class="filter-star mx-2">
+				
 				<a href="product-recomandation.php?per=10&comment=1&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
 				<a href="product-recomandation.php?per=10&comment=2&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
 				<a href="product-recomandation.php?per=10&comment=3&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
@@ -188,7 +189,7 @@
 	<div class="page d-flex justify-content-center">
 		<div class="btn-group me-2" role="group" aria-label="First group">
 			<a href="product-recomandation.php?order=1&order=<?=$order?>&page=<?php $prePage = $page - 1;if ($prePage < 1) {$prePage = 1;}
-			echo $prePage;?>&per=<?=$per?>&comment=<?=$comment?>" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
+			echo $prePage;?>&per=<?=$per?>&comment=<?=$comment?>" type="button" class="btn btn-outline-dark text-nowrap last-page">上一頁</a>
 			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
 				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="
 				product-recomandation.php?order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>&comment=<?=$comment?>"><?= $i ?></a>
