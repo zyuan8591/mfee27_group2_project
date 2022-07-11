@@ -1,6 +1,3 @@
-<?php
-//session_start();
-?>
 <header class="header position-rel">
 	<div class="flex_center">
 		<div class="logo">
@@ -20,12 +17,12 @@
 		<h1 class="title">廚聚後台管理系統</h1>
 	</div>
 	<div class="user flex_center">
-	<div class="me-2"> Hi!&ensp;<?=$_SESSION["user"]["name"]?></div>
+		<?php if(isset($_SESSION["user"])): ?>
+		<div class="me-2"> Hi!&ensp;<?=$_SESSION["user"]["name"]?></div>
 		<div class="user_photo d-flex">
-			<?php if(isset($_SESSION["user"])): ?>
-				<img class="user-object-cover" src="./company_img/<?=$_SESSION["user"]["image"]?>" alt="">
-			<?php endif; ?>
+				<img class="user-object-cover" src="img/company_img/<?=$_SESSION["user"]["image"]?>" alt="">
 		</div>
+		<?php endif; ?>
 		<div class="">
 			<a class="sign_out trnasition" href="doSignOut.php">登出</a>
 		</div>
