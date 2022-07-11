@@ -182,10 +182,10 @@ textarea {
 	color: #ffbe0b;
 }
 
-.star {
+.star-active {
 	color: #ffbe0b;
 }
 .last-page {
 	border: 1px solid #000;
-	border-radius: 50%;
+	border-radius: 0.375rem 0 0 0.375rem!important ;
 }

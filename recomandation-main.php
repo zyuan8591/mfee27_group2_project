@@ -3,6 +3,8 @@
 	<?php
 	require "./db-connect.php";
 
+	
+
 	$order = isset($_GET["order"]) ? $_GET["order"] : 1;
 	switch ($order) {
 		case 1:
@@ -63,18 +65,36 @@
 		$filter="AND comment=$comment";
 	}
 
+	$user=isset($_GET["user"])?$_GET["user"]:"";
+	if(empty($_GET["user"])){
+		$userFil="";
+	}else{
+		$userFil="AND user_id=$user";
+	}
+	$company=isset($_GET["company"])?$_GET["company"]:"";
+	if(empty($_GET["company"])){
+		$companyFil="";
+	}else{
+		$companyFil="AND company=$company";
+	}
+	$product_id=isset($_GET["product"])?$_GET["product"]:"";
+	if(empty($_GET["product"])){
+		$productFil="";
+	}else{
+		$productFil="AND product_id=$product_id";
+	}
 
-
-	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter";
+	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%'  $filter $userFil $companyFil $productFil";
 	$resultAll = $conn->query($sqlAll);
 	$commentCountAll = $resultAll->num_rows;
+	// echo $sqlAll;
 
-
-	$sqlComment="SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter ORDER BY $orderType LIMIT $start, $per";
+	$sqlComment="SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter $userFil $companyFil $productFil ORDER BY $orderType LIMIT $start, $per";
     $resultComment=$conn->query($sqlComment);
     $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
 
 	$totalPage = ceil($commentCountAll / $per);
+
 	if($commentCountAll<10){
 		$per=$commentCountAll;
 	}
@@ -93,18 +113,18 @@
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
 														$order == 1
-													) : ?>product-recomandation.php?order=2&page=<?=$page?>&comment=<?=$comment?><?php elseif (
+													) : ?>product-recomandation.php?order=2&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php elseif (
 																																	$order == 2
-																																) : ?>product-recomandation.php?order=1&page=<?=$page?>&comment=<?=$comment?><?php else : ?>product-recomandation.php?order=1&page=<?=$page?>&comment=<?=$comment?><?php endif; ?>">依編號排序</a>
+																																) : ?>product-recomandation.php?order=1&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php else : ?>product-recomandation.php?order=1&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 3
-													) : ?>product-recomandation.php?order=4&page=<?=$page?>&comment=<?=$comment?><?php elseif (
+													) : ?>product-recomandation.php?order=4&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php elseif (
 																																	$order == 4
-																																) : ?>product-recomandation.php?order=3&page=<?=$page?>&comment=<?=$comment?><?php else : ?>product-recomandation.php?order=3&page=<?=$page?>&comment=<?=$comment?><?php endif; ?>">依會員排序</a>
+																																) : ?>product-recomandation.php?order=3&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php else : ?>product-recomandation.php?order=3&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php endif; ?>">依會員排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 5
-													) : ?>product-recomandation.php?order=6&page=<?=$page?>&comment=<?=$comment?><?php elseif (
-																																	$order == 6	) : ?>product-recomandation.php?order=5&page=<?=$page?>&comment=<?=$comment?><?php else : ?>product-recomandation.php?order=5&page=<?=$page?>&comment=<?=$comment?><?php endif; ?>">依評分排序</a>
+													) : ?>product-recomandation.php?order=6&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php elseif (
+																																	$order == 6	) : ?>product-recomandation.php?order=5&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php else : ?>product-recomandation.php?order=5&page=<?=$page?>&comment=<?=$comment?>&user=<?=$user?><?php endif; ?>">依評分排序</a>
 		</div>
 
 			<form class="comment_search d-flex align-items-center " action="product-recomandation.php" method="get">
@@ -139,12 +159,9 @@
 			</svg>
 
 				<div class="filter-star mx-2">
-				
-				<a href="product-recomandation.php?per=10&comment=1&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
-				<a href="product-recomandation.php?per=10&comment=2&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
-				<a href="product-recomandation.php?per=10&comment=3&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
-				<a href="product-recomandation.php?per=10&comment=4&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
-				<a href="product-recomandation.php?per=10&comment=5&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
+				<?php for($i=1;$i<6;$i++): ?>
+					<a href="product-recomandation.php?per=10&comment=<?=$i?>&page=<?=$page?>&user=<?=$user?>"><i class="fa-solid fa-star table-evaluation five-star <?php if($comment>=$i) echo "star-active"?>"></i></a>
+				<?php endfor;?>
 				</div>
 				<div>
 				<a href="product-recomandation.php?per=10" class="filter-btn transition">清除篩選<a>
@@ -173,9 +190,9 @@
 
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
-					<td><?=$companyName[$row["company"]]?></td>
-					<td><?= $product[$row["product_id"]] ?></td>
-					<td><?=$commentUser[$row["user_id"]]?></td>
+					<td><a href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&company=<?=$row["company"]?>"><?=$companyName[$row["company"]]?></a></td>
+					<td><a href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&product=<?=$row["product_id"]?>"><?= $product[$row["product_id"]] ?></a></td>
+					<td><a class="" href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&user=<?=$row["user_id"]?>"><?=$commentUser[$row["user_id"]]?></a></td>
                     <td><?=$row["content"]?></td>
                     <td class="star"><?=$row["comment"]?></td>
                     <td><?=$row["create_time"]?></td>
@@ -189,16 +206,16 @@
 	<div class="page d-flex justify-content-center">
 		<div class="btn-group me-2" role="group" aria-label="First group">
 			<a href="product-recomandation.php?order=1&order=<?=$order?>&page=<?php $prePage = $page - 1;if ($prePage < 1) {$prePage = 1;}
-			echo $prePage;?>&per=<?=$per?>&comment=<?=$comment?>" type="button" class="btn btn-outline-dark text-nowrap last-page">上一頁</a>
+			echo $prePage;?>&per=<?=$per?>&comment=<?=$comment?>&user=<?=$user?>" type="button" class="btn btn-outline-dark text-nowrap last-page">上一頁</a>
 			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
 				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="
-				product-recomandation.php?order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>&comment=<?=$comment?>"><?= $i ?></a>
+				product-recomandation.php?order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>&comment=<?=$comment?>&user=<?=$user?>"><?= $i ?></a>
 			<?php endfor; ?>
 			<a href="
 			product-recomandation.php?order=1&order=<?=$order?>
 			&page=<?php $nextPage = $page + 1;
 			if ($nextPage > $totalPage) {$nextPage = $totalPage;}
-			echo $nextPage; ?>&per=<?=$per?>&comment=<?=$comment?>" 
+			echo $nextPage; ?>&per=<?=$per?>&comment=<?=$comment?>&user=<?=$user?>" 
 			type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 		</div>
 	</div>
