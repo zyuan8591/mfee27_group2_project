@@ -24,7 +24,7 @@
 		</div>
 		<?php endif; ?>
 		<div class="">
-			<a class="sign_out trnasition" href="doSignOut.php">登出</a>
+			<a class="sign_out transition" href="doSignOut.php">登出</a>
 		</div>
 	</div>
 </header>

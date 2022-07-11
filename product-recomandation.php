@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<?php require "product-header.php"; ?>
+	<?php require "header.php"; ?>
 	<aside class="aside position_abs">
 		<!-- <div class="smaller_sidebar">
 				<svg
