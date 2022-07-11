@@ -1,11 +1,26 @@
+<?php
+require "db-connect.php" ;
+$order_id= $row["id"];
+$sqlOrderProduct = "SELECT order_product.*, products.name AS product_name, products.price AS product_price 
+FROM order_product 
+JOIN products ON order_product.product_id = products.id
+WHERE order_id= $order_id";
+
+
+$resultOrderProduct = $conn->query($sqlOrderProduct);
+$rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
+
+
+?>
 <div class="recipe-datail position_abs flex_center invisible ">
 	<div class="cover-detail cover position_abs"></div>
 	<form
-		class="container-detail position-rel modify-ricepe-detail-form"
-		action="recipe-detail-modify.php
-    "
+		class="container-detail position-rel modify-ricepe-detail-form "
+		action="order-update.php
+    "	
 		method="GET"
 	>
+	<input type="hidden" name="userId" value="<?=$row["user_id"]?>">
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="recipe-title text-center">訂單資料</h2>
 		<div class="mb-3 row">
@@ -15,7 +30,7 @@
 					type="number"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["id"]?>"
+					value="<?=$row["id"]?>" name="order_id"
 				/>
 			</div>
 		</div>
@@ -26,7 +41,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value="<?=$row["name"]?>"
+					value="<?=$row["name"]?>" name="name"
 				/>
 			</div>
 		</div>
@@ -37,7 +52,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["phone"]?>" name="phone"
 				/>
 			</div>
 		</div>
@@ -48,19 +63,27 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["address"]?>" name="address"
 				/>
 			</div>
 		</div>
         <div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">訂單狀態</label>
 			<div class="col">
-				<input
+				<select
 					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value=""
-				/>
+					disabled="true"
+					class="form-select detail-item-select"
+					name="status"
+				>
+				<?php foreach($rowStatus as $rowSta):?>
+				<option
+				 value="<?= $rowSta["id"] ?>"
+				 <?php if($rowSta["id"]==$row["status_id"]) echo "selected";?> >
+				 <?= $rowSta["status"] ?>
+				</option>
+				<?php endforeach; ?>
+				</select>
 			</div>
 		</div>
         <div class="mb-3 row">
@@ -70,7 +93,12 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					<?php if(!empty($row["memo"])): ?>
+					value="<?= $row["memo"] ?>"
+					<?php else: ?>
+					value="無"
+					<?php endif; ?>
+					name="memo"
 				/>
 			</div>
 		</div>
@@ -81,7 +109,8 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["coupon_id"]?>"
+					name="coupon"
 				/>
 			</div>
 		</div>
@@ -93,7 +122,7 @@
 					type="text"
 					readonly="readonly"
 					class="form-control-plaintext detail-item-input"
-					value=""
+					value="<?=$row["order_time"]?>"
 				/>
 			</div>
 		</div>
@@ -107,15 +136,29 @@
 						<th>數量</th>
 						<th>總價</th> 
 					</tr>
+					
 				</thead>
 				<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>    
+					<?php $producti = 1;?>
+					<?php foreach($rowsOrderProduct as $rowProduct ): ?>
+					<input type="hidden" name="id<?=$producti?>" value="<?= $rowProduct["id"] ?>">
+					
+
+	
+	
+					
+					<tr>
+						<td><?= $rowProduct["product_id"] ?></td>
+						<td><?= $rowProduct["product_name"] ?></td>
+						<td class="text-end"><?= number_format($rowProduct["product_price"]) ?></td>
+						<td><input type="number" 
+						name="amount<?=$producti?>"
+						value="<?= $rowProduct["product_quantity"] ?>" readonly="readonly"
+					class="form-control-plaintext detail-item-input text-end"></td>
+						<td class="text-end"><?= number_format($rowProduct["product_price"]*$rowProduct["product_quantity"]) ?></td>
+					</tr>    
+					<?php $producti+=1;?>
+					<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>
@@ -156,16 +199,16 @@
 		</div> -->
 		<div class="d-flex justify-content-center">
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
-				修改食譜
+				編輯訂單
 			</button>
 			<button
 				class="save-detail-btn me-3"
 				type="submit transition"
 				disabled="true"
 			>
-				儲存食譜
+				儲存修改
 			</button>
-			<button class="add-detail-btn back-recipe-de transition">返回食譜列表</button>
+			<button class="add-detail-btn back-recipe-de transition">返回訂單列表</button>
 		</div>
 	</form>
 </div>

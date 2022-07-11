@@ -72,7 +72,7 @@ switch($orderStat){
   }
 
   $sqlAll = "SELECT orders.*, customer_users.name FROM orders, customer_users 
-  WHERE orders.user_id = customer_users.id $orderStatusAll $sqlDate";
+  WHERE orders.user_id = customer_users.id $orderStatusAll $sqlDate AND orders.valid = 1";
 // $sqlAll = "SELECT * FROM orders $orderStatusAll $sqlDate";
 // var_dump($sqlAll);
 $resultAll = $conn->query($sqlAll);
@@ -80,9 +80,10 @@ $resultAll = $conn->query($sqlAll);
 $ordersCountAll = $resultAll->num_rows;
 // echo $ordersCountAll;
 
-$sqlPrice = "SELECT id, price FROM products";
+$sqlPrice = "SELECT * FROM products";
 $resultPrice = $conn->query($sqlPrice);
 $rowPrice = $resultPrice->fetch_all(MYSQLI_ASSOC);
+// var_dump($rowPrice);
 foreach ($rowPrice as $row) {
  $productPrice[$row["id"]] = $row["price"];
 }
@@ -121,7 +122,7 @@ switch($order){
 		break;
 
 	// case 5:
-	// 	$orderType = "  ASC";
+	// 	$orderType = "SUM(products.price * order_product.product_quantity) GROUP BY order_id  ASC";
 	// 	break;
 				
 	// case 6:
@@ -137,12 +138,17 @@ switch($order){
 // $ordersDate = $resultDate->fetch_all(MYSQLI_ASSOC);
 // var_dump($ordersDate);
 
-$sql="SELECT orders.*, customer_users.name FROM orders, customer_users 
-WHERE orders.user_id = customer_users.id $orderStatus $sqlDate
+$sql="SELECT orders.*, customer_users.name,customer_users.phone,customer_users.address FROM orders, customer_users 
+-- JOIN order_product ON orders.id = order_product.order_id
+-- JOIN products ON orders.product_id = products.id
+WHERE orders.user_id = customer_users.id $orderStatus $sqlDate AND orders.valid = 1
 ORDER BY $orderType LIMIT $start, $perPage
 ";
+// var_dump($sql);
 $result = $conn->query($sql);
+// var_dump($result);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+// var_dump($rows);
 
 
 $sqlStatus="SELECT * FROM order_status";
@@ -154,12 +160,16 @@ foreach ($rowStatus as $row){
 }
 // var_dump($orderStatusJJ);
 
-// $sqlDetail="SELECT order_product.*, orders.*, customer_users.name,customer_users.phone,customer_users.address FROM orders,order_product, customer_users WHERE orders.user_id = customer_users.id AND orders.id = order_product.order_id
-// ";
-
+// $sqlDetail=" SELECT orders.id, order_product.*, products.id, products.price,products.name FROM order_product, products, orders WHERE order_product.order_id = orders.id ";
 // $resultDetail = $conn->query($sqlDetail);
-// $rowDetail = $resultDetail->fetch_assoc();
-// // var_dump($orderTotal);
+// $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
+// // var_dump($rowDetail);
+// foreach ($rowDetail as $row){
+// 	$orderDetail[$row["order_id"]] = $row["product_id"];
+// }
+// // var_dump($orderDetail);
+
+
 
 $totalPage=ceil($ordersCountAll / $perPage);
 ?>
@@ -263,7 +273,7 @@ $totalPage=ceil($ordersCountAll / $perPage);
 				</div>
 				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="orders-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5" <?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
+						<option value="10" <?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
 						<option value="15" <?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
 						<option value="20" <?php if ($perPage == 20) {echo "selected";} ?>>每頁顯示20筆</option>
 					</select>
@@ -288,13 +298,12 @@ $totalPage=ceil($ordersCountAll / $perPage);
 			
             <?php require "orders-table.php";?>
 		</main>
-		<?php require "recipe-add.php"; ?>
 				
 		
 		
       <script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
-			<?php require "./js/recipe-app.js"; ?>
+			<?php require "./js/order-app.js"; ?>
 	  </script>
 
   </body>

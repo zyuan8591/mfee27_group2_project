@@ -34,7 +34,7 @@
 			<td><?=$orderStatusJJ[$row["status_id"]]?></td>
 			<td class="text-end"><?= number_format($orderTotal[$row["id"]])?> </td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
-                <a class="btn-main transition me-3 " href="">刪除</a>
+                <a class="btn-main transition me-3 " href="orders-dele.php?orderId=<?=$row["id"]?>">刪除</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 			<?php require "order-detail.php"; ?>
 			</td>
