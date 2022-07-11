@@ -1,4 +1,5 @@
 <?php
+session_start();
 $order=isset($_GET["order"]) ? $_GET["order"] : 1;
 $page=isset($_GET["page"]) ? $_GET["page"] : 1;
 $search=isset($_GET["search"]) ? $_GET["search"] : "";
@@ -116,6 +117,7 @@ if(isset($_GET["id"])){
 		<link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner:wght@600&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<style>
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/recipe-style.css"; ?>
@@ -207,9 +209,87 @@ if(isset($_GET["id"])){
 		</script>
 	</body>
 </html>
-
-
-
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+		<!-- session -->
+		<?php if($_SESSION["addCollect"]["condition"]=="1"): ?>
+		<script type="text/javascript">
+			Toastify({
+			text: "請選擇食譜",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1)0%, rgba(0,0,0,1)100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+		</script>
+		<?php unset($_SESSION["addCollect"]); ?>
+		<?php endif; ?>
+		<!-- ------ -->
+		<!-- session -->
+		<?php if($_SESSION["addCollect"]["condition"]=="2"): ?>
+		<script type="text/javascript">
+			Toastify({
+			text: "請選擇商品",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1)0%, rgba(0,0,0,1)100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+		</script>
+		<?php unset($_SESSION["addCollect"]); ?>
+		<?php endif; ?>
+		<!-- ------ -->
+<!-- session -->
+<?php if($_SESSION["addCollect"]["condition"]=="3"): ?>
+		<script type="text/javascript">
+			Toastify({
+			text: "該食譜已收藏",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1)0%, rgba(0,0,0,1)100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+		</script>
+		<?php unset($_SESSION["addCollect"]); ?>
+		<?php endif; ?>
+		<!-- ------ -->
+<!-- session -->
+<?php if($_SESSION["addCollect"]["condition"]=="4"): ?>
+		<script type="text/javascript">
+			Toastify({
+			text: "該商品已收藏",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1)0%, rgba(0,0,0,1)100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+		</script>
+		<?php unset($_SESSION["addCollect"]); ?>
+		<?php endif; ?>
+		<!-- ------ -->
 
 <!-- 	<div class="col-6">
 			<div class="border  m-1 text-center">

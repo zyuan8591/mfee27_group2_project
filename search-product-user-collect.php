@@ -31,28 +31,37 @@ if(!isset($_POST["search-product"])){
 $productType=$_POST["search-product"];
 // echo $productType;
 // exit;
-if(empty($productType)){
-    echo"請選擇食譜";
-    exit;
-}
+// if(empty($productType)){
+//     echo"請選擇食譜";
+//     exit;
+// }
 
 //search recipe
-if(isset($_POST["search-product"])){
-    $productType=$_POST["search-product"];
-    $sqlProduct="SELECT * FROM products WHERE id=$productType";
-    $resultProduct=$conn->query($sqlProduct);
-    $rowProduct=$resultProduct->fetch_assoc();
+if($productType > 0 ){
+    $productType;
+    if(isset($_POST["search-product"])){
+        $productType=$_POST["search-product"];
+        $sqlProduct="SELECT * FROM products WHERE id=$productType";
+        $resultProduct=$conn->query($sqlProduct);
+        $rowProduct=$resultProduct->fetch_assoc();
 
-    $sqlProductSearch="SELECT product_like.*, customer_users.* FROM product_like
-    JOIN customer_users ON product_like.user_id = customer_users.id AND product_like.valid=1
-    WHERE product_like.product_id=$productType
-    ";
-    $productSearch = $conn->query($sqlProductSearch);
-    $rowsProductSearch = $productSearch->fetch_all(MYSQLI_ASSOC);
-	$countProductSearch=$productSearch-> num_rows;
+        $sqlProductSearch="SELECT product_like.*, customer_users.* FROM product_like
+        JOIN customer_users ON product_like.user_id = customer_users.id AND product_like.valid=1
+        WHERE product_like.product_id=$productType
+        ";
+        $productSearch = $conn->query($sqlProductSearch);
+        $rowsProductSearch = $productSearch->fetch_all(MYSQLI_ASSOC);
+        $countProductSearch=$productSearch-> num_rows;
 
+    }
 }else{
-
+    header("location: search-user-collect.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$user_id."&exist=0");
+    $condition=2;
+}
+if($condition == 2){
+    $_SESSION["searchCollect"] =[
+        "condition" => $condition
+    ];
 }
 ?>
 <!DOCTYPE html>
@@ -93,14 +102,14 @@ if(isset($_POST["search-product"])){
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 	>
 		
-		<h2 class="recipe-title text-center collect-header">Recipe Search Favorites</h2>
+		<h2 class="recipe-title text-center collect-header">Product Favorites</h2>
 	<a href="search-user-collect.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$user_id?>&exist=0"><i class="fa-solid fa-xmark position_abs add-close-btn"></i></a> 
 		
 <!--  -->
+<?php if($productType > 0):?>
 <div class="row collect-page">
     <div class="my-3 search-title">商品： <?=$rowProduct["name"]?></div>
-	<p class="search-text mb-2">-已被 <?=$countProductSearch?> 個會員收藏-</p>
-
+	<p class="search-text mb-2">-已被 <?=$countProductSearch?> 位會員收藏-</p>
 		<?php if($countProductSearch>0): ?>
 		<?php foreach($rowsProductSearch as $productSearchRow): ?>
 		<div class="col-6 ">
@@ -123,7 +132,8 @@ if(isset($_POST["search-product"])){
 		</div>
 
 <!--  -->
-	</div>		
+	</div>
+	<?php endif; ?>		
 </div>
 
 		<script type="text/javascript">

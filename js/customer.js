@@ -176,5 +176,13 @@ for(let s=0; s<inputImg.length; s++){
 })
 }
 
+//perpage
+let selectBtn = document.querySelector(".select-pages-btn");
+let selectForm = document.querySelector(".form-search");
+selectBtn.addEventListener("change",function(){
+	selectForm.submit();
+})
+
+
 
 

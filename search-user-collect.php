@@ -74,7 +74,7 @@ $countAddProduct=$resultAddProduct-> num_rows;
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 	>
 		
-		<h2 class="recipe-title text-center collect-header">Search Favorites</h2>
+		<h2 class="recipe-title text-center collect-header">Favorites Search</h2>
 	<a href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$user_id?>&exist=0"><i class="fa-solid fa-xmark position_abs"></i></a> 
 		
 	<!-- add-recipe-collect -->
@@ -129,6 +129,26 @@ $countAddProduct=$resultAddProduct-> num_rows;
 		<script type="text/javascript">
 			Toastify({
 			text: "請選擇食譜",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1)0%, rgba(0,0,0,1)100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+		</script>
+		<?php unset($_SESSION["searchCollect"]); ?>
+		<?php endif; ?>
+		<!-- ------ -->
+		<!-- session -->
+		<?php if($_SESSION["searchCollect"]["condition"]=="2"): ?>
+		<script type="text/javascript">
+			Toastify({
+			text: "請選擇商品",
 			duration: 3000,
 			newWindow: true,
 			close: true,

@@ -53,11 +53,10 @@ if($recipeType > 0 ){
 		$rowsRecipeSearch = $recipeSearch->fetch_all(MYSQLI_ASSOC);
 		$countRecipeSearch=$recipeSearch-> num_rows;
 
-	}else{
-
 	}
+	
 }else {
-   header("location: search-user-collect.php?page=1&order=1&selectPages=10&search=&valid=&id=2&exist=0");
+   header("location: search-user-collect.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$user_id."&exist=0");
    $condition=1;
 }
 if($condition == 1){
@@ -110,14 +109,13 @@ if($condition == 1){
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 	>
 		
-		<h2 class="recipe-title text-center collect-header">Recipe Favorites Search</h2>
+		<h2 class="recipe-title text-center collect-header">Recipe Favorites</h2>
 	<a href="search-user-collect.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$user_id?>&exist=0"><i class="fa-solid fa-xmark position_abs"></i></a>
 		
 <!--  -->
 	
 	<?php if($recipeType > 0):?>
 	<div class="row collect-page">
-		
 		<p class="search-title my-2">食譜： <?=$rowRecipe["name"]?></p>
 		<p class="search-text mb-2">-已被 <?=$countRecipeSearch?> 個會員收藏-</p>
 		<?php if($countRecipeSearch>0): ?>

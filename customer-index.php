@@ -409,9 +409,9 @@ if(isset($_GET["user_id"])){
 					">依名稱排序</a>
 				</div>
 				
-				<form class="recipe_search " action="customer-index.php" method="get">
+				<form class="recipe_search form-search" action="customer-index.php" method="get">
 					<div class="d-flex align-items-center" >
-						<select class="me-3 form-control rounded-1 select-border select-pages-btn" name="selectPages" id="">
+						<select class="me-3 form-control rounded-1 select-border select-pages-btn " name="selectPages" id="">
 							<option value="10" 
 							<?php if($selectPages == 10) echo "selected" ?>>每頁顯示10筆</option>
 							<option value="15" <?php if($selectPages == 15) echo 'selected' ?>
@@ -438,15 +438,6 @@ if(isset($_GET["user_id"])){
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
-
-					<!-- <div class="filter-item  position-rel">
-						<button class="filter-btn transition">全部會員</button>
-						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="">Coffee</a></li>
-							<li><a href="">Cake</a></li>
-							<li><a href=""></a></li>
-						</ul>							
-					</div> -->
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition">會員狀態</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
@@ -457,7 +448,7 @@ if(isset($_GET["user_id"])){
 					</div>					
 				</div>
 				<div>
-					<a class="transition" style="cursor:pointer;" id="customer-add-openBtn" >新增會員</a>
+					<a class="transition sort-btn" style="cursor:pointer;" id="customer-add-openBtn" >新增會員</a>
 				</div>
 			</div>
 		<?php require "customer-table.php"; ?>

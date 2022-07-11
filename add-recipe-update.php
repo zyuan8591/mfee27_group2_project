@@ -34,37 +34,48 @@ $recipeType=$_POST["add-recipe"];
 // echo "$id,$recipeType";
 // exit;
 
-if(empty($recipeType)){
-    echo"請選擇食譜";
-    exit;
-}
-if($recipeType !== 0 ) {
-    $recipeType;
+// if(empty($recipeType)){
+//     echo"請選擇食譜";
+//     exit;
+// }
+if($recipeType > 0 ) { 
+    $sql="SELECT * FROM recipe_like WHERE user_id='$id' AND recipe_id='$recipeType'";
+    $result=$conn->query($sql);
+    $recipeExist=$result->num_rows;
+    // echo $recipeExist;
+    // exit;
+    if($recipeExist>0){
+        // echo"該食譜已收藏";
+        header("location: product-collect-detail.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$id."&exist=0");
+        $condition=3;
+        
+    }
+    if($condition == 3){
+        $_SESSION["addCollect"] =[
+            "condition" => $condition
+        ];
+        exit;
+    }
+
+    $recipeCreateSql="INSERT INTO recipe_like (user_id,recipe_id,valid) VALUES ('$id','$recipeType',1)";
+
+    if ($conn->query($recipeCreateSql) === TRUE) {
+        echo "新資料輸入成功";
+    } else {
+        echo "修改資料表錯誤: " . $conn->error;
+    }
+
+    $conn->close();
+
+    header("location: product-collect-detail.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$id."&exist=0");
 }else{
-    echo "請選擇食譜";
+    // echo "請選擇食譜";
+    header("location: product-collect-detail.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$id."&exist=0");
+    $condition=1;
 }
-
-
-$sql="SELECT * FROM recipe_like WHERE user_id='$id' AND recipe_id='$recipeType' AND valia!==1";
-$result=$conn->query($sql);
-$recipeExist=$result->num_rows;
-// echo $recipeExist;
-// exit;
-if($recipeExist>0){
-    echo"該食譜已收藏";
-    exit;
+if($condition == 1){
+    $_SESSION["addCollect"] =[
+        "condition" => $condition
+    ];
 }
-
-$recipeCreateSql="INSERT INTO recipe_like (user_id,recipe_id,valid) VALUES ('$id','$recipeType',1)";
-
-if ($conn->query($recipeCreateSql) === TRUE) {
-    echo "新資料輸入成功";
-} else {
-    echo "修改資料表錯誤: " . $conn->error;
-}
-
-$conn->close();
-
-header("location: product-collect-detail.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$id."&exist=0");
-
 ?>
