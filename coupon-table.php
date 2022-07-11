@@ -25,8 +25,8 @@
 			<td><?=$row["end_date"]?></td>
 			<td class="text-center"><?php echo $row["discount"]*100 . "%" ?></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">								
-				<a class="btn-main transition me-3 on-shelf  <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">上架</a>
-				<a class="btn-main transition me-3 off-shelf  <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>">下架</a>
+				<a class="btn-main transition me-3 on-shelf  <?php if ($row["valid"] == 1) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>&page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">上架</a>
+				<a class="btn-main transition me-3 off-shelf  <?php if ($row["valid"] == 0) {echo "point-event-none";} ?>" href="coupon-onoff-shelf.php?id=<?= $row["id"] ?>&page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">下架</a>
 				<a class="btn-main transition me-3 coupon-detail" href="">詳細資料</a>			
 				<?php require "coupon-detail.php"; ?>					
 			</td>
@@ -35,27 +35,16 @@
 		</tbody>
 </table>
 
-<div class="row w-100">
-	<div class="col-4 d-flex justify-content-start">
-		<!-- <select class="form-select per-page" name="per-page" >
-			<option value="1">每頁顯示5筆</option>
-			<option value="2">每頁顯示15筆</option>
-			<option value="3">每頁顯示20筆</option>
-		</select> -->
-	</div>
-	<div class="col-4">
+<div class=" flex_center w-100">	
+	<div class="">
 		<div class="btn-group me-2" role="group" aria-label="First group">			
-			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$upPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">上一頁</a>			
+			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$upPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">上一頁</a>			
 			<?php for($i=1;$i<=$totalPage;$i++):?>
-			<a type="button" class="btn btn-outline-dark <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>"><?=$i?></a>			
+			<a type="button" class="btn btn-outline-dark <?php if($page==$i)echo "active";?>" href="coupon-index.php?page=<?=$i?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>"><?=$i?></a>			
 			<?php endfor;?>						
-			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$downPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>">下一頁</a>
+			<a type="button" class="btn btn-outline-dark" href="coupon-index.php?page=<?=$downPage?>&order=<?=$order?>&search=<?=$search?>&valid=<?=$valid?>&per-page=<?=$perPage?>">下一頁</a>
 		</div>
 	</div>
-	<div class="col-4"></div>
-
-</div>
-
 <?php else:?>
 	目前沒有資料
 <?php endif;?>
