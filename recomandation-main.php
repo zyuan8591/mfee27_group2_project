@@ -83,13 +83,26 @@
 	}else{
 		$productFil="AND product_id=$product_id";
 	}
+	$company=[
+		"id"=>0,
+	];
 
-	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%'  $filter $userFil $companyFil $productFil";
+	$_SESSION["company"]=$company;
+	if(!isset($_SESSION["company"]["id"])){
+		header("location: login.php");
+	}elseif($_SESSION["company"]["id"]==0){
+		$companyId="";
+	}else{
+		$company_id=$_SESSION["company"]["id"];
+		$companyId="AND company=$company_id";
+	}
+
+	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%'  $filter $userFil $companyFil $productFil $companyId";
 	$resultAll = $conn->query($sqlAll);
 	$commentCountAll = $resultAll->num_rows;
 	// echo $sqlAll;
 
-	$sqlComment="SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter $userFil $companyFil $productFil ORDER BY $orderType LIMIT $start, $per";
+	$sqlComment="SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter $userFil $companyFil $productFil $companyId ORDER BY $orderType LIMIT $start, $per";
     $resultComment=$conn->query($sqlComment);
     $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
 
@@ -181,7 +194,9 @@
 				<th scope="col">商品留言</th>
                 <th scope="col">評價分數</th>
                 <th scope="col">留言日期</th>
+				<?php if($_SESSION["company"]["id"]==0): ?>
 				<th scope="col">編輯</th>
+				<?php endif; ?>
 			</tr>
 		</thead>
 
@@ -196,9 +211,11 @@
                     <td><?=$row["content"]?></td>
                     <td class="star"><?=$row["comment"]?></td>
                     <td><?=$row["create_time"]?></td>
+					<?php if($_SESSION["company"]["id"]==0): ?>
 					<td class="">
 						<a class="delete-btn text-white" href="delete-comment-exe.php?id=<?=$row["id"]?>">刪除</a>
 					</td>
+					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
