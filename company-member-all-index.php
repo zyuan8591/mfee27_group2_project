@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 //$_GET data
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 if (empty($page)) {
@@ -100,6 +102,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<style>
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/company-style.css"; ?>
@@ -437,7 +440,7 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 							echo "全部";
 						}
 						?></button>
-						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+						<ul class="filter-dropdown unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="company-member-all-index.php?valid=">全部</a></li>
 							<li><a href="company-member-all-index.php?page=<?=$page?>&order=<?=$order?>&valid=1">啟用</a></li>
 							<li><a href="company-member-all-index.php?valid=0">停用</a></li>
@@ -463,6 +466,45 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 		<script type="text/javascript" >
 			<?php require "./js/company-app.js"; ?>
 		</script>
-		<?php require "recipes-toast.php" ?>
+	<!-------- toastify --------->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+	<!-- 詳細資料修改成功 -->
+		<?php if($_SESSION["userModify"]["condition"] == 3): ?>
+		<script type="text/javascript" >
+		    Toastify({
+		  text: "修改成功",
+		  duration: 3000,
+		  newWindow: true,
+		  close: true,
+		  gravity: "bottom", // `top` or `bottom`
+		  position: "left", // `left`, `center` or `right`
+		  stopOnFocus: true, // Prevents dismissing of toast on hover
+		  style: {
+		    background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+		  },
+		  onClick: function(){} // Callback after click
+		}).showToast();
+		</script>
+		<?php unset($_SESSION["userModify"]); ?>
+		<?php endif; ?>		
+	<!-- 新增廠商成功 -->
+		<?php if($_SESSION["userModify"]["condition"] == 4): ?>
+		<script type="text/javascript" >
+		    Toastify({
+		  text: "新增成功",
+		  duration: 3000,
+		  newWindow: true,
+		  close: true,
+		  gravity: "bottom", // `top` or `bottom`
+		  position: "left", // `left`, `center` or `right`
+		  stopOnFocus: true, // Prevents dismissing of toast on hover
+		  style: {
+		    background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+		  },
+		  onClick: function(){} // Callback after click
+		}).showToast();
+		</script>
+		<?php unset($_SESSION["userModify"]); ?>
+		<?php endif; ?>
 	</body>
 </html>

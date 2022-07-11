@@ -7,7 +7,7 @@
 	background: var(--main-bg);
 	padding: 2.2rem 2.5rem;
 	width: calc(100vw - var(--aside-width));
-	height: calc(100vh - var(--header-height));
+	/* height: calc(100vh - var(--header-height)); */
 	/* overflow-y: auto; */
 }
 .main-title {
@@ -21,23 +21,10 @@
 .sort-search {
 	margin: 0.5rem 0 0 0;
 }
-/* .sort {
-	flex: 0 0 auto;
-} */
-/* .sort-btn {
-	padding: 0.2rem 0.5rem;
-	background: var(--header-bg);
-	margin: 0.25rem;
-	border-radius: 3px;
-	box-shadow: var(--box-shadow);
-} */
 .sort-btn:hover {
 	background: var(--btn-hover);
 	/* box-shadow: var(--hover-shadow); */
 }
-/* .sort-btn:active {
-	outline: var(--button-active) solid 4px;
-} */
 .sort {
 	z-index: 5;
 }

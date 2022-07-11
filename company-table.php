@@ -12,6 +12,7 @@
 	</thead>
 	<tbody>
 		<?php foreach($rows as $row): ?>
+	<?php if($row["is_admin"] == 0): ?>
 		<tr>
 			<th class="text-center" scope="row"><?=$row["id"]?></th>
 			<td><?=$row["name"]?></td>
@@ -32,6 +33,7 @@
 				<?php require "company-detail.php"; ?>
 			</td>
 		</tr>
+	<?php endif; ?>		
 		<?php endforeach; ?>
 	</tbody>
 </table>

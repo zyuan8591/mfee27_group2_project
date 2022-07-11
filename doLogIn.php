@@ -3,7 +3,6 @@ session_start();
 
 require("db-connect.php");
 
-
 if(!isset($_POST["login-email"])){
     echo "請循正常管道登入";
     exit;
@@ -20,20 +19,29 @@ $sql = "SELECT * FROM company_users WHERE email='$loginEmail' AND password='$log
 $result = $conn->query($sql);
 $userCount = $result->num_rows;
 // echo $userCount;
+$condition=0;
 
 if($userCount > 0){
     $row = $result->fetch_assoc();
     $user=[
         "id"=>$row["id"],
         "name"=>$row["name"],
-        "email"=>$row["email"]
+        "email"=>$row["email"],
+        "image"=>$row["logo_img"],
+        "admin"=>$row["is_admin"]
     ];
-    unset($_SESSION["error"]);
+    unset($_SESSION["error"]["errorCondition"]);
     $_SESSION["user"]=$user;
-    header("location: company-member-all-index.php");
-
+    $condition=2;
+    if($_SESSION["user"]["admin"] == 1 ){
+        header("location: admin-user-index.php");
+    } else {
+        header("location: company-user-index.php");
+    }
+    
 } else {
     echo "帳號或密碼錯誤";
+    $condition=1;
     $_SESSION["error"]["message"]="帳號或密碼錯誤";
 
     if(!isset($_SESSION["error"]["times"])){
@@ -41,6 +49,23 @@ if($userCount > 0){
     } else {
         $_SESSION["error"]["times"]++ ;
     }
-    header("location: login.php");
+    header("location: login.php");    
 }
+
+//帳號密碼錯誤
+if($condition == 1){ 
+    $_SESSION["errorCondition"] =[
+        "condition" => $condition
+    ];
+} 
+
+//登入成功
+if($condition == 2){
+    $_SESSION["loginCondition"] =[
+        "condition" => $condition
+    ];
+} 
+
+
+$conn->close();
 ?>
