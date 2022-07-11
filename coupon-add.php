@@ -1,7 +1,7 @@
 <div class="new-coupon-page position_abs flex_center invisible">
     <div class="cover position_abs"></div>
     <form class="new-coupon-form position-rel" action="new-coupon-exe.php
-    " method="POST">        
+    " method="POST" onsubmit="return dateTest()">        
         <i class="fa-solid fa-xmark position_abs coupon-xmark"></i>
         <h2 class="coupon-title text-center">新增優惠券</h2>
 		<div class="mb-3">
@@ -14,11 +14,11 @@
         </div>
 		<div class="mb-3">
             <label for="" class="form-label">起始日期</label>
-            <input type="date" class="form-control" name="start-date" required>
+            <input id="sDate" type="date" class="form-control" name="start-date" required>
         </div>
 		<div class="mb-3">
             <label for="" class="form-label">結束日期</label>
-            <input type="date" class="form-control" name="end-date" required>
+            <input id="eDate" type="date" class="form-control" name="end-date" required>
         </div>
 		<div class="mb-3">
             <label for="" class="form-label">優惠折扣</label>
