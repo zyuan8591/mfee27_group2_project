@@ -54,13 +54,22 @@
 	
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
+	
+	
+	$comment=isset($_GET["comment"])?$_GET["comment"]:5;
+	if(isset($_GET["comment"])){
+		$filter="AND comment=$comment";
+	}else{
+		$filter="";
+	}
 
-	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' ";
+
+	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter";
 	$resultAll = $conn->query($sqlAll);
 	$commentCountAll = $resultAll->num_rows;
 
 
-	$sqlComment="SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' ORDER BY $orderType LIMIT $start, $per";
+	$sqlComment="SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter ORDER BY $orderType LIMIT $start, $per";
     $resultComment=$conn->query($sqlComment);
     $rowsComment=$resultComment->fetch_all(MYSQLI_ASSOC);
 
@@ -83,18 +92,18 @@
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
 														$order == 1
-													) : ?>product-recomandation.php?order=2&page=<?=$page?><?php elseif (
+													) : ?>product-recomandation.php?order=2&page=<?=$page?>&comment=<?=$comment?><?php elseif (
 																																	$order == 2
-																																) : ?>product-recomandation.php?order=1&page=<?=$page?><?php else : ?>product-recomandation.php?order=1&page=<?=$page?><?php endif; ?>">依編號排序</a>
+																																) : ?>product-recomandation.php?order=1&page=<?=$page?>&comment=<?=$comment?><?php else : ?>product-recomandation.php?order=1&page=<?=$page?>&comment=<?=$comment?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 3
-													) : ?>product-recomandation.php?order=4&page=<?=$page?><?php elseif (
+													) : ?>product-recomandation.php?order=4&page=<?=$page?>&comment=<?=$comment?><?php elseif (
 																																	$order == 4
-																																) : ?>product-recomandation.php?order=3&page=<?=$page?><?php else : ?>product-recomandation.php?order=3&page=<?=$page?><?php endif; ?>">依會員排序</a>
+																																) : ?>product-recomandation.php?order=3&page=<?=$page?>&comment=<?=$comment?><?php else : ?>product-recomandation.php?order=3&page=<?=$page?>&comment=<?=$comment?><?php endif; ?>">依會員排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 5
-													) : ?>product-recomandation.php?order=6&page=<?=$page?><?php elseif (
-																																	$order == 6	) : ?>product-recomandation.php?order=5&page=<?=$page?><?php else : ?>product-recomandation.php?order=5&page=<?=$page?><?php endif; ?>">依評分排序</a>
+													) : ?>product-recomandation.php?order=6&page=<?=$page?>&comment=<?=$comment?><?php elseif (
+																																	$order == 6	) : ?>product-recomandation.php?order=5&page=<?=$page?>&comment=<?=$comment?><?php else : ?>product-recomandation.php?order=5&page=<?=$page?>&comment=<?=$comment?><?php endif; ?>">依評分排序</a>
 		</div>
 
 			<form class="comment_search d-flex align-items-center " action="product-recomandation.php" method="get">
@@ -127,6 +136,17 @@
 			<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.5701 1.9264L1.5739 1.9185C1.69657 1.67108 1.96042 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3" />
 			</svg>
+
+				<div class="filter-star ">
+				<a href="product-recomandation.php?per=10&comment=1&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
+				<a href="product-recomandation.php?per=10&comment=2&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
+				<a href="product-recomandation.php?per=10&comment=3&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
+				<a href="product-recomandation.php?per=10&comment=4&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
+				<a href="product-recomandation.php?per=10&comment=5&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
+				</div>
+				<div>
+				<a href="product-recomandation.php?per=10" class="filter-btn transition">清除篩選<a>
+				</div>
 			
 		</div>
 	</div>
@@ -172,17 +192,17 @@
 			if ($prePage < 1) {
 				$prePage = 1;
 			}
-			echo $prePage;?>&per=<?=$per?>
+			echo $prePage;?>&per=<?=$per?>&comment=<?=$comment?>
 			" type="button" class="btn btn-outline-dark text-nowrap ">上一頁</a>
 			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
 				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="
-				product-recomandation.php?order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>"><?= $i ?></a>
+				product-recomandation.php?order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>&comment=<?=$comment?>"><?= $i ?></a>
 			<?php endfor; ?>
 			<a href="
 			product-recomandation.php?order=1&order=<?=$order?>
 			&page=<?php $nextPage = $page + 1;
 			if ($nextPage > $totalPage) {$nextPage = $totalPage;}
-			echo $nextPage; ?>&per=<?=$per?>" 
+			echo $nextPage; ?>&per=<?=$per?>&comment=<?=$comment?>" 
 			type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 		</div>
 	</div>

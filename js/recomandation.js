@@ -61,5 +61,25 @@ for (let i=0;i<stars.length;i++){
 		result+=star;
 	}
 	stars[i].innerHTML=result;
-	
+}
+
+let filterStar=document.querySelector(".filter-star");
+let fiveStar=document.querySelectorAll(".five-star");
+result="";
+for (let i=0;i<fiveStar.length;i++){
+
+	fiveStar[i].addEventListener("mouseover", function(e){
+		// console.log("c");
+		for (let m=0;m<i;m++){
+			fiveStar[m].classList.add("star-hover")
+		}
+		fiveStar[i].classList.add("star-hover")
+	})
+	fiveStar[i].addEventListener("mouseout", function(e){
+		// console.log("c");
+		for(let m=0;m<i;m++){
+			fiveStar[m].classList.remove("star-hover")
+		}
+		fiveStar[i].classList.remove("star-hover")
+	})
 }

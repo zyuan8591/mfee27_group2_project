@@ -1,7 +1,9 @@
 <main class="main position-rel">
 
 	<?php
+
 	require "./db-connect.php";
+	
 
 	$order = isset($_GET["order"]) ? $_GET["order"] : 1;
 	switch ($order) {
@@ -72,7 +74,23 @@
 		$page = 1;
 	}
 
-	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid";
+	$company=[
+		"id"=>0
+	];
+		$_SESSION["company"]=$company;
+
+	// echo json_encode($_SESSION["company"]["id"]);
+	if (!isset($_SESSION["company"]["id"])){
+		// header("location: product-recomandation.php");
+	}elseif($_SESSION["company"]["id"]==0){
+		$companyId="";
+	}else{
+		$company_id=$_SESSION["company"]["id"];
+		$companyId="AND company_id=$company_id";
+		var_dump($_SESSION["company"]["id"]) ;
+	}
+
+	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId";
 	$resultAll = $conn->query($sqlAll);
 	$productCountAll = $resultAll->num_rows;
 
@@ -82,7 +100,7 @@
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
 
-	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid ORDER BY $orderType LIMIT $start, $per";
+	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId ORDER BY $orderType LIMIT $start, $per";
 
 	$result = $conn->query($sql);
 	$rows = $result->fetch_all(MYSQLI_ASSOC);

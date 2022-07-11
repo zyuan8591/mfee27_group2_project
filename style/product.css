@@ -169,6 +169,14 @@ textarea {
 	font-family: "Noto Sans TC", sans-serif;
 }
 
+.star-hover{
+	color: yellow;
+	/* border: #666; */
+}
+
 .star {
-	background: ;
+	color: yellow;
+}
+.star:hover {
+	color: yellow;
 }
