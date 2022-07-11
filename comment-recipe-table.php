@@ -16,8 +16,12 @@
 		<?php foreach($rowsMsg as $row): ?>
 		<tr>
 			<th class="text-center" scope="row"><?= $row["id"] ?></th>
-			<td><?= $row["recipeName"] ?></td>
-			<td><?= $user[$row["user_id"]] ?></td>
+			<td><a href="
+			comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&recipe=<?= $row["recipe_id"] ?>
+			" class="link-success"><?= $row["recipeName"] ?></a></td>
+			<td><a class="link-success" href="
+			comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $row["user_id"] ?>
+			"><?= $user[$row["user_id"]] ?></a></td>
 			<td><?= $row["content"] ?></td>
 			<td class="table-stars"><?= $row["evaluation"] ?></td>
 			<td><?= $row["create_time"] ?></td>
@@ -40,11 +44,11 @@
 			echo $prePage;
 		}
 		?>
-		&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>
+		&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 		" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
 		<?php for($i = 1; $i <= $pages; $i++): ?>
 		<a href="
-		comment-recipe-index.php?page=<?= $i ?>&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>
+		comment-recipe-index.php?page=<?= $i ?>&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 		" type="button" class="btn btn-outline-dark <?php if($page==$i){echo "active";} ?> "><?= $i ?></a>
 		<?php endfor; ?>
 		<a href="
@@ -57,7 +61,7 @@
 			echo $nextPage;
 		}
 		?>
-		&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>
+		&search=<?= $search ?>&per-page=<?= $perPage ?>&order=<?= $order ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 		" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 	</div>
 </div>

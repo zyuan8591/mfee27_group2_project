@@ -46,11 +46,26 @@ if(isset($_GET["stars"])){
 	$stars ="";
 	$sqlWhereStars = "";
 }
+//user_comment
+$user_id=isset($_GET["user"]) ? $_GET["user"] : "";
+if(empty($user_id)){
+	$sqlWhereUser = "";
+} else {
+	$sqlWhereUser = "AND customer_recipe_message.user_id = $user_id";
+}
+//recipe comment
+$recipe_id = isset($_GET["recipe"]) ? $_GET["recipe"] : "";
+if(empty($recipe_id)){
+	$sqlWhereRecipe = "";
+} else {
+	$sqlWhereRecipe = "AND customer_recipe_message.recipe_id = $recipe_id";
+}
+
 
 // sql All
 $sql="SELECT customer_recipe_message.*, recipe.name AS recipeName FROM customer_recipe_message
 JOIN recipe ON customer_recipe_message.recipe_id = recipe.id 
-WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars";
+WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars $sqlWhereUser $sqlWhereRecipe";
 $result = $conn->query($sql);
 $countAll=$result->num_rows;
 
@@ -63,9 +78,10 @@ $start = ($page - 1) * $perPage;
 //sql 
 $sqlMsg ="SELECT customer_recipe_message.*, recipe.name AS recipeName FROM customer_recipe_message
 JOIN recipe ON customer_recipe_message.recipe_id = recipe.id 
-WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars
+WHERE ((customer_recipe_message.content LIKE '%$search%') OR (recipe.name LIKE '%$search%')) $sqlWhereStars $sqlWhereUser $sqlWhereRecipe
 ORDER BY $orderType
 LIMIT $start, $perPage";
+// echo $sqlMsg;
 $resultMsg = $conn->query($sqlMsg);
 $rowsMsg = $resultMsg->fetch_all(MYSQLI_ASSOC);
 $count=$resultMsg->num_rows;
@@ -373,29 +389,29 @@ foreach($rowsRecipe as $row){
 				<div class="sort d-flex align-items-center">
 					<a class="sort-btn transition" id="idSort" href="
 					<?php if($order == 2): ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php elseif ($order == 1): ?>
-					comment-recipe-index.php?order=2&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=2&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php else: ?>
-					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=1&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php endif; ?>
 					">依編號排序</a>
 					<a class="sort-btn transition" id="dateSort" href="
 					<?php if($order == 4): ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php elseif ($order == 3): ?>
-					comment-recipe-index.php?order=4&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=4&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php else: ?>
-					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=3&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php endif; ?>
 					">依會員排序</a>
 					<a class="sort-btn transition" id="dateSort" href="
 					<?php if($order == 6): ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php elseif ($order == 5): ?>
-					comment-recipe-index.php?order=6&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=6&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php else: ?>
-					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>
+					comment-recipe-index.php?order=5&search=<?= $search ?>&page=<?= $page ?>&per-page=<?= $perPage ?>&stars=<?= $stars ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					<?php endif; ?>
 					">依分數排序</a>
 
@@ -428,7 +444,7 @@ foreach($rowsRecipe as $row){
 					</svg>
 					<?php for($i = 1; $i <=5 ; $i++): ?>
 					<a class="ms-2" href="
-					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=<?= $i ?>
+					comment-recipe-index.php?order=<?= $order ?>&search=<?= $search ?>&page=1&per-page=<?= $perPage ?>&stars=<?= $i ?>&user=<?= $user_id ?>&recipe=<?= $recipe_id ?>
 					"><i class="fa-solid fa-star evaluation
 					<?php if($stars >= $i){ echo "evaluation-active";} ?>
 					"></i></a>
