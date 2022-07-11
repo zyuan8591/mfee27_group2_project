@@ -1,18 +1,18 @@
 /* --------------------------------------------- */
 /* main title color */
-.bg-color1{
+.bg-color1 {
 	background: #467dd1;
 }
-.bg-color2{
+.bg-color2 {
 	background: rgb(243, 210, 91);
 }
-.bg-color3{
+.bg-color3 {
 	background: #dc5d5d;
 }
-.bg-color4{
+.bg-color4 {
 	background: #4a4a4a;
 }
-.bg-color5{
+.bg-color5 {
 	background: #5eca67;
 }
 /* main */
@@ -41,18 +41,18 @@
 	padding: 0;
 	margin: 10px;
 }
-.title-bar{
+.title-bar {
 	height: 3rem;
 	color: #ffffff;
 	margin: auto;
 	border-radius: 5px 5px 0 0;
 }
-.title-bar h4{
-	margin: 0 0 0 10px;
+.title-bar h4 {
+	margin: 0 0 0 1rem;
 }
 .main-content {
 	font-size: 1.1rem;
-	margin: 5px 0;
+	padding: 5px 1rem;
 }
 .main-content li {
 	display: flex;
@@ -65,7 +65,6 @@
 }
 .sort-btn:hover {
 	background: var(--btn-hover);
-	
 }
 .sort {
 	z-index: 5;
