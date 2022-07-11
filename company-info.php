@@ -1,43 +1,29 @@
-<?php
-	session_start();
-	// $_SESSION["succes"]=$succes;
-	// if($_SESSION["success"]["id"]==1){
-		
-	// }else{
-		
-	// }
-?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<title>廚聚</title>
-	<!-- CSS only -->
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
-	<link href="toastr.css" rel="stylesheet"/>
 	<style>
 		<?php
 		require "./style/style.css";
 		require "./style/product.css";
 		?>
 	</style>
-	<!-- <link rel="stylesheet" href="./style/style.css" /> -->
-	<script type="text/javascript" src="./js/jquery.min.js"></script>
-</head>
-
-<body>
-	<?php require "product-header.php"; ?>
-	<aside class="aside position_abs">
+  </head>
+  <body>
+    <?php require("product-header.php") ?>
+    <aside class="aside position_abs">
 		<!-- <div class="smaller_sidebar">
 				<svg
 					width="28"
@@ -199,12 +185,11 @@
 			</ul>
 		</nav>
 	</aside>
-	<?php require "product.php";?>
-	<?php require "new-product.php"; ?>
+	<main class="main position-rel">
+		
+	</main>
 	<script type="text/javascript">
 		<?php require "./js/product.js";?>
 	</script>
-	<script src="toastr.js"></script>
-</body>
-
+  </body>
 </html>
