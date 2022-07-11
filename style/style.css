@@ -33,6 +33,7 @@ a:active {
 	--header-bg: #fff;
 	--sub-bg: #efeff1;
 	--delete-bg: #d90429;
+	--main-bg-2: #535353;
 	/* color */
 	--button-color: #aaa;
 	--button-active: #ccc;
@@ -118,7 +119,8 @@ a:active {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background: var(--header-bg);
+	background: var(--main-bg-2);
+	color: rgb(250, 250, 250);
 	padding: 0.5rem 1rem;
 	height: var(--header-height);
 	box-shadow: var(--box-shadow);
@@ -155,7 +157,7 @@ a:active {
 .sign_out {
 	display: inline-block;
 	padding: 0.15rem 0.7rem;
-	background: var(--header-color);
+	background: var(--header-bg);
 	box-shadow: var(--box-shadow);
 	border-radius: 5px;
 }
@@ -433,3 +435,6 @@ a:active {
 }
 
 /* ****************************************************************************** */
+table thead {
+	--bs-table-bg: var(--main-bg-2) !important;
+}
