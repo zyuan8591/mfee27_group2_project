@@ -168,15 +168,20 @@ textarea {
 	box-shadow: var(--box-shadow);
 	font-family: "Noto Sans TC", sans-serif;
 }
+.table-evaluation {
+	font-size: 1.25rem;
+	color: #393939;
+	transition: 0.1	s;
 
+}
 .star-hover{
-	color: yellow;
-	/* border: #666; */
+	color: #ffbe0b;
+}
+
+.star-color {
+	color: #ffbe0b;
 }
 
 .star {
-	color: yellow;
-}
-.star:hover {
-	color: yellow;
+	color: #ffbe0b;
 }

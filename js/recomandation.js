@@ -54,7 +54,7 @@ perPage.addEventListener("change", function (e) {
 let stars=document.querySelectorAll(".star");
 
 for (let i=0;i<stars.length;i++){
-	let star=`<i class="fa-solid fa-star table-evaluation"></i>`;
+	let star=`<i class="fa-solid fa-star star-color"></i>`;
 	let allStar=stars[i].innerText;
 	result="";
 	for (let m=0;m<allStar;m++){
@@ -69,14 +69,13 @@ result="";
 for (let i=0;i<fiveStar.length;i++){
 
 	fiveStar[i].addEventListener("mouseover", function(e){
-		// console.log("c");
 		for (let m=0;m<i;m++){
 			fiveStar[m].classList.add("star-hover")
 		}
 		fiveStar[i].classList.add("star-hover")
 	})
+
 	fiveStar[i].addEventListener("mouseout", function(e){
-		// console.log("c");
 		for(let m=0;m<i;m++){
 			fiveStar[m].classList.remove("star-hover")
 		}

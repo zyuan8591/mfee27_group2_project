@@ -56,12 +56,13 @@
 	$startPage = ($page - 1) * $per + 1;
 	
 	
-	$comment=isset($_GET["comment"])?$_GET["comment"]:5;
-	if(isset($_GET["comment"])){
-		$filter="AND comment=$comment";
-	}else{
+	$comment=isset($_GET["comment"])?$_GET["comment"]:"";
+	if(empty($_GET["comment"])){
 		$filter="";
+	}else{
+		$filter="AND comment=$comment";
 	}
+
 
 
 	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter";
@@ -137,7 +138,7 @@
 				<path d="M1.5701 1.9264L1.5739 1.9185C1.69657 1.67108 1.96042 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3" />
 			</svg>
 
-				<div class="filter-star ">
+				<div class="filter-star mx-2">
 				<a href="product-recomandation.php?per=10&comment=1&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
 				<a href="product-recomandation.php?per=10&comment=2&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
 				<a href="product-recomandation.php?per=10&comment=3&page=<?=$page?>"><i class="fa-solid fa-star table-evaluation five-star "></i></a>
@@ -186,14 +187,8 @@
 	</table>
 	<div class="page d-flex justify-content-center">
 		<div class="btn-group me-2" role="group" aria-label="First group">
-			<a href="
-			product-recomandation.php?order=1&order=<?=$order?>
-			&page=<?php $prePage = $page - 1;
-			if ($prePage < 1) {
-				$prePage = 1;
-			}
-			echo $prePage;?>&per=<?=$per?>&comment=<?=$comment?>
-			" type="button" class="btn btn-outline-dark text-nowrap ">上一頁</a>
+			<a href="product-recomandation.php?order=1&order=<?=$order?>&page=<?php $prePage = $page - 1;if ($prePage < 1) {$prePage = 1;}
+			echo $prePage;?>&per=<?=$per?>&comment=<?=$comment?>" type="button" class="btn btn-outline-dark text-nowrap">上一頁</a>
 			<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
 				<a type="button" class="btn btn-outline-dark <?php if($page==$i) : echo "active" ?><?php endif; ?>" href="
 				product-recomandation.php?order=<?=$order?>&page=<?= $i ?>&per=<?=$per?>&comment=<?=$comment?>"><?= $i ?></a>
