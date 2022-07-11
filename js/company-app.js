@@ -1,3 +1,4 @@
+
 let navDropBtns = document.querySelectorAll(".nav_dropdown");
 let subNavContainer = document.querySelectorAll(".sub_nav_item_container");
 let mainNavItems = document.querySelectorAll(".main_nav_item");

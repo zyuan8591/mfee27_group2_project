@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if(!isset($_POST["name"])){
     echo "沒有帶資料"; 
     exit;
@@ -52,10 +54,10 @@ if($userCount>0){
     exit;
 }
 
-
+$condition=0;
 if($_FILES["add-company-file"]["error"]==0){
 
-    if(move_uploaded_file($_FILES["add-company-file"]["tmp_name"],"./img/company_img/".$_FILES["add-company-file"]["name"])){
+    if(move_uploaded_file($_FILES["add-company-file"]["tmp_name"],"img/company_img/".$_FILES["add-company-file"]["name"])){
         
         $fileName=$_FILES["add-company-file"]["name"];
 
@@ -64,6 +66,7 @@ if($_FILES["add-company-file"]["error"]==0){
 
         if ($conn->query($sql) === TRUE) {
             echo "資料新增成功";
+            $condition=4;
         } else {
             echo "資料新增失敗: " . $conn->error;
         }
@@ -73,6 +76,12 @@ if($_FILES["add-company-file"]["error"]==0){
         echo "upload fail!!";
     }
 }
+
+if($condition == 4){ 
+    $_SESSION["userModify"] =[
+        "condition" => $condition
+    ];
+} 
 
 $conn->close();
 

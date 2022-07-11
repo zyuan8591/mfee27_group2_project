@@ -18,7 +18,7 @@ session_start();
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<style>
 		<?php
 		require "./style/style.css";
@@ -87,6 +87,62 @@ session_start();
 						</div>
 					</ul>
 				</li>
+				<!-- 食譜管理 -->
+				<li class="main_nav_item_container">
+					<div class="main_nav_item">
+						<div class="flex_center">
+							<svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M21 20.7558V1.29734C21 0.584056 20.3115 0 19.4718 0H1.52724C0.687553 0 0 0.584056 0 1.29734V2.59469V20.7566V22.7027C0 23.4168 0.687553 24 1.52724 24H19.4718C20.0309 24 20.5199 23.7382 20.7856 23.3513H3.05447C2.21479 23.3513 1.52724 22.7681 1.52724 22.0548H19.4718C20.3124 22.054 21 21.4708 21 20.7558ZM5.21691 17.3572C4.94426 17.5888 4.50169 17.5888 4.22904 17.3572C3.95738 17.1264 3.95738 16.7496 4.23003 16.518L8.58354 12.819L9.57141 13.6582L5.21691 17.3572ZM15.8157 17.4092C15.5421 17.6417 15.0995 17.64 14.8259 17.4092L7.42281 11.1197C7.39021 11.092 7.37341 11.0576 7.34773 11.0266C6.2759 11.4596 4.73977 11.1483 3.59681 10.1773C2.23455 9.0193 1.95893 7.37622 2.98038 6.50769C4.00183 5.64 5.93607 5.87496 7.29833 7.03217C8.44129 8.00308 8.80779 9.30881 8.29805 10.2193C8.33559 10.2403 8.37609 10.2537 8.40968 10.2822L15.8137 16.5709C16.0854 16.8025 16.0874 17.1785 15.8157 17.4092ZM18.5264 8.35804L15.3544 11.0526C15.3297 11.0736 15.3 11.0862 15.2714 11.0996C14.1887 11.9178 13.0773 11.9236 12.1725 11.4294C12.1547 11.4478 12.1478 11.4705 12.126 11.4873L11.399 12.1057L10.4111 11.2674L11.1401 10.6481C11.1599 10.6313 11.1866 10.6246 11.2083 10.6103C10.6255 9.84084 10.6324 8.89594 11.5965 7.9779C11.6123 7.95441 11.6252 7.92839 11.6509 7.90825L14.8229 5.21287C14.9691 5.08783 15.2072 5.08783 15.3534 5.21287C15.4996 5.33706 15.4996 5.53846 15.3514 5.66266L12.2851 8.26741L12.8136 8.7172L15.8809 6.11161C16.0251 5.98741 16.2632 5.98741 16.4094 6.11161C16.5536 6.23496 16.5536 6.43552 16.4094 6.56056L13.3431 9.16615L13.8736 9.61594L16.9399 7.01119C17.0861 6.88699 17.3222 6.88615 17.4684 7.01035C17.6146 7.13455 17.6146 7.33594 17.4684 7.46014L14.4021 10.0649L14.9306 10.5138L17.9969 7.90825C18.1431 7.78406 18.3812 7.78406 18.5254 7.90825C18.6726 8.03161 18.6726 8.23385 18.5264 8.35804Z" fill="black" />
+							</svg>
+							<a class="main_nav_item_content" href="">食譜管理</a>
+						</div>
+
+						<div class="nav_dropdown ">
+							<svg width="24" height="13" viewBox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M11.9991 13C11.4873 13 10.9754 12.8186 10.5854 12.4559L0.585907 3.1702C-0.195302 2.44475 -0.195302 1.26953 0.585907 0.544085C1.36712 -0.181362 2.63268 -0.181362 3.41388 0.544085L11.9991 8.51964L20.5861 0.545535C21.3673 -0.179911 22.6329 -0.179911 23.4141 0.545535C24.1953 1.27098 24.1953 2.4462 23.4141 3.17165L13.4146 12.4574C13.024 12.8201 12.5115 13 11.9991 13Z" fill="black" />
+							</svg>
+						</div>
+					</div>
+					<!-- 食譜管理細項 -->
+					<ul class="unstyled_list sub_nav_item">
+						<div class="sub_nav_item_container translateYtoNone">
+							<li class="">
+								<a class="sub_nav_item_content" href="">食譜總覽</a>
+							</li>
+							<li>
+								<a class="sub_nav_item_content" href="">評價總覽</a>
+							</li>
+						</div>
+					</ul>
+				</li>
+				<!-- 會員管理 -->
+				<li class="main_nav_item_container">
+					<div class="main_nav_item">
+						<div class="flex_center">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12 0.375C5.57812 0.375 0.375 5.57812 0.375 12C0.375 18.4219 5.57812 23.625 12 23.625C18.4219 23.625 23.625 18.4219 23.625 12C23.625 5.57812 18.4219 0.375 12 0.375ZM12 4.875C14.2781 4.875 16.125 6.72188 16.125 9C16.125 11.2781 14.2781 13.125 12 13.125C9.72188 13.125 7.875 11.2781 7.875 9C7.875 6.72188 9.72188 4.875 12 4.875ZM12 21C9.24844 21 6.78281 19.7531 5.13281 17.8031C6.01406 16.1437 7.73906 15 9.75 15C9.8625 15 9.975 15.0188 10.0828 15.0516C10.6922 15.2484 11.3297 15.375 12 15.375C12.6703 15.375 13.3125 15.2484 13.9172 15.0516C14.025 15.0188 14.1375 15 14.25 15C16.2609 15 17.9859 16.1437 18.8672 17.8031C17.2172 19.7531 14.7516 21 12 21Z" fill="black" />
+							</svg>
+							<a class="main_nav_item_content" href="">會員管理</a>
+						</div>
+
+						<div class="nav_dropdown">
+							<svg width="24" height="13" viewBox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M11.9991 13C11.4873 13 10.9754 12.8186 10.5854 12.4559L0.585907 3.1702C-0.195302 2.44475 -0.195302 1.26953 0.585907 0.544085C1.36712 -0.181362 2.63268 -0.181362 3.41388 0.544085L11.9991 8.51964L20.5861 0.545535C21.3673 -0.179911 22.6329 -0.179911 23.4141 0.545535C24.1953 1.27098 24.1953 2.4462 23.4141 3.17165L13.4146 12.4574C13.024 12.8201 12.5115 13 11.9991 13Z" fill="black" />
+							</svg>
+						</div>
+					</div>
+					<!-- 會員管理細項 -->
+					<ul class="unstyled_list sub_nav_item">
+						<div class="sub_nav_item_container translateYtoNone">
+							<li>
+								<a class="sub_nav_item_content" href="">會員總覽</a>
+							</li>
+							<li class="sub_nav_item_active">
+								<a class="sub_nav_item_content" href="">廠商會員總覽</a>
+							</li>
+						</div>
+					</ul>
+				</li>
 				<li class="main_nav_item_container">
 					<div class="main_nav_item">
 						<div class="flex_center">
@@ -122,7 +178,7 @@ session_start();
 		<div>
 			<div class="row center">
 				<!-- 商品管理 -->
-				<div class="main-item col-md-4">
+				<div class="main-item col-md-3">
         		    <div class="title-bar d-flex align-items-center bg-color1">
 						<h4>商品管理</h4>
         		    </div>
@@ -134,13 +190,36 @@ session_start();
         		    </div>
         		</div>
 				<!-- 訂單管理 -->
-				<div class="main-item col-md-4">
+				<div class="main-item col-md-3">
         		    <div class="title-bar d-flex align-items-center bg-color2">
 						<h4> 訂單管理</h4>
         		    </div>
         		    <div class="main-content">
         		    	<ul class="unstyled_list p-0">
         		        	<li><a href="">訂單總覽</a></li>
+        		      	</ul>
+        		    </div>
+        		</div>
+				<!-- 會員管理 -->
+				<div class="main-item col-md-3">
+        		    <div class="title-bar d-flex align-items-center bg-color3">
+						<h4>會員管理</h4> 
+        		    </div>
+        		    <div class="main-content ">
+					  	<ul class="unstyled_list p-0">
+        		       		<li><a href="company-member-all-index.php">會員總覽</a></li>
+        		      	</ul>
+        		    </div>
+        		</div>
+				<!-- 食譜管理 -->
+				<div class="main-item col-md-4">
+        		    <div class="title-bar d-flex align-items-center bg-color4">
+						<h4>食譜管理</h4> 
+        		    </div>
+        		    <div class="main-content  ">
+        		    	<ul class="unstyled_list p-0 ">
+        		        	<li ><a href="">食譜總覽</a></li>
+							<li><a href="">評價總覽</a></li>
         		      	</ul>
         		    </div>
         		</div>
@@ -183,4 +262,7 @@ session_start();
 <?php unset($_SESSION["loginCondition"]); ?>
 <?php endif; ?>
 
+
+
+</body>
 </html>

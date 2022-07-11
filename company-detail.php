@@ -1,3 +1,6 @@
+<?php
+//session_start();
+?>
 <div class="company-datail  flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
 	<form
@@ -118,3 +121,4 @@
 		</div>
 	</form>
 </div>
+
