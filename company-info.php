@@ -228,11 +228,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		</nav>
 	</aside>
 
-	<main class="main position-rel flex_center">
+	<main class="main position-rel flex_center main-text">
 		<?php foreach ($rows as $row) : ?>
 			<form action="" class="info">
 				<div class="card-header"></div>
-				<div class="d-flex py-5 px-3 card-content">
+				<div class="d-flex card-content justify-content-center">
 					
 					<div>
 						<div class="mx-3">
@@ -254,25 +254,25 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 									<input type="text" readonly class="form-control-plaintext product-input" name="phone" value="<?= $row["phone"] ?>" required />
 								</div>
 							</div>
-							<div class="mb-2 row">
-								<label for="" class="col-sm-auto col-form-label address">　　地址：</label>
-								<div class="col">
-									<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
-								</div>
-							</div>
 						</div>
 						
 					</div>
 					<div>
-						<div class="mx-3 d-flex justify-content-center logo">
+						<div class="mx-1 d-flex justify-content-center logo">
 							<figure class="avatar">
 								<img class="object-contain" src="./img/company_img/<?= $row["logo_img"] ?>" alt="">
 							</figure>
 						</div>
 					</div>
 				</div>
-				<div class="mb-2 row intro">
-					<label for="" class="col-sm-auto col-form-label">　　介紹：</label>
+				<div class="row intro d-flex justify-content-center">
+				<div class="mb-2 row">
+								<label for="" class="col-sm-auto col-form-label address">地址：</label>
+								<div class="col">
+									<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
+								</div>
+							</div>
+					<label for="" class="col-sm-auto col-form-label ">介紹：</label>
 					<div class="col">
 						<textarea class="form-control-plaintext product-input w-75" name="intro" id="" cols="30" rows="5" readonly required><?= $row["intro"] ?></textarea>
 					</div>
