@@ -48,7 +48,6 @@ if($recipeType > 0 ) {
         // echo"該食譜已收藏";
         header("location: product-collect-detail.php?page=".$page."&order=".$order."&selectPages=".$selectPages."&search=".$search."&valid=".$valid."&id=".$id."&exist=0");
         $condition=3;
-        
     }
     if($condition == 3){
         $_SESSION["addCollect"] =[

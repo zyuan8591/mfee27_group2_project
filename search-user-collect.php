@@ -125,6 +125,7 @@ $countAddProduct=$resultAddProduct-> num_rows;
 </div>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 		<!-- session -->
+		<?php if(isset($_SESSION["searchCollect"])): ?>
 		<?php if($_SESSION["searchCollect"]["condition"]=="1"): ?>
 		<script type="text/javascript">
 			Toastify({
@@ -143,8 +144,10 @@ $countAddProduct=$resultAddProduct-> num_rows;
 		</script>
 		<?php unset($_SESSION["searchCollect"]); ?>
 		<?php endif; ?>
+		<?php endif; ?>
 		<!-- ------ -->
 		<!-- session -->
+		<?php if(isset($_SESSION["searchCollect"])): ?>
 		<?php if($_SESSION["searchCollect"]["condition"]=="2"): ?>
 		<script type="text/javascript">
 			Toastify({
@@ -162,6 +165,7 @@ $countAddProduct=$resultAddProduct-> num_rows;
 			}).showToast();
 		</script>
 		<?php unset($_SESSION["searchCollect"]); ?>
+		<?php endif; ?>
 		<?php endif; ?>
 		<!-- ------ -->
 	</body>

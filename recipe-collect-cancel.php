@@ -24,7 +24,7 @@ $id=$_GET["id"];
 // echo $id;
 // echo $recipe;
 // exit;
-$sql="UPDATE recipe_like SET valid=0 WHERE user_id='$id' AND recipe_id='$recipe'";
+$sql="DELETE FROM recipe_like WHERE user_id='$id' AND recipe_id='$recipe'";
 
 
 if ($conn->query($sql) === TRUE) {

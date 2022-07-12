@@ -60,17 +60,13 @@ $stertItem=($page-1)*$perpage+1;
 $endItem=$page*$perpage;
 if($endItem>$customerCount)$endItem=$customerCount;
 
-
-
 $totalPage=ceil($customerCount / $perpage);
 
 // search
 
 $sql="SELECT * FROM customer_users WHERE name LIKE '%$search%'";
-
 $searchrResult = $conn->query($sql);
 $searchCount=$searchrResult-> num_rows;
-
 
 //product-collect
 if(isset($_GET["user_id"])){
