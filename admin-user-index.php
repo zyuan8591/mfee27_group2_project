@@ -174,7 +174,7 @@ session_start();
 	</aside>
 	<main class="main">
 		<div>
-			<h2>首頁</h2>
+			<h2 class="fs-5">首頁</h2>
 		</div>
 		<div>
 			<div class="row center">
