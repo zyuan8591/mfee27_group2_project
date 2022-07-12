@@ -167,7 +167,7 @@ function dateTest(){
 	var sDate=document.getElementById("sDate").value;
 	var eDate=document.getElementById("eDate").value;
 	if(eDate<sDate){
-		alert("日期錯誤");
+		alert("結束日期不得小於起始日期");
 		return false;
 	}
 	else{
