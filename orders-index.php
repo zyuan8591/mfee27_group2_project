@@ -72,8 +72,8 @@ switch($orderStat){
 
   }
 
-  $sqlAll = "SELECT orders.*, customer_users.name FROM orders, customer_users 
-  WHERE orders.user_id = customer_users.id $orderStatusAll $sqlDate AND orders.valid = 1";
+$sqlAll = "SELECT orders.*, customer_users.name FROM orders, customer_users 
+WHERE orders.user_id = customer_users.id $orderStatusAll $sqlDate AND orders.valid = 1";
 // $sqlAll = "SELECT * FROM orders $orderStatusAll $sqlDate";
 // var_dump($sqlAll);
 $resultAll = $conn->query($sqlAll);
@@ -90,8 +90,7 @@ $rowPrice = $resultPrice->fetch_all(MYSQLI_ASSOC);
 foreach ($rowPrice as $row) {
  $productPrice[$row["id"]] = $row["price"];
 }
-
-
+// var_dump($productPrice);
 $sqlOrderPrice = "SELECT * FROM order_product";
 $resultOrderPrice = $conn->query($sqlOrderPrice);
 $rowsOrderPrice = $resultOrderPrice->fetch_all(MYSQLI_ASSOC);
@@ -157,6 +156,12 @@ ORDER BY $orderType LIMIT $start, $perPage
 $result = $conn->query($sql);
 // var_dump($result);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+// echo "</br>";
+// var_dump($rows);
+
+for($i=1;$i<count($rows);$i++){
+	// $rows[$i]["totalPrice"] = $orderTotal[$i];
+}
 // var_dump($rows);
 
 
@@ -169,10 +174,25 @@ foreach ($rowStatus as $row){
 }
 // var_dump($orderStatusJJ);
 
+// $sqlCoupon = "SELECT * FROM coupon ";
+$sqlALL="SELECT * FROM orders";
+$resultALL = $conn->query($sqlALL);
+$rowsALL = $resultALL->fetch_all(MYSQLI_ASSOC);
+// var_dump($rowsALL);
+foreach($rowsALL as $rowALL){
+	$coupon_date[$rowALL["id"]] = $rowALL["order_time"]; 
+}
+// var_dump($coupon_date);
+
+// $couponDate = $rowALL["order_time"];
+// var_dump($couponDate);
+// for($i=1; $i<$coupon_date.length;$i++){
+// $sqlCoupon = "SELECT * FROM coupon WHERE $couponDate BETWEEN coupon.start_date and coupon.end_date";
 $sqlCoupon = "SELECT * FROM coupon";
 $resultCoupon = $conn->query($sqlCoupon);
 $rowCoupon = $resultCoupon->fetch_all(MYSQLI_ASSOC);
 // var_dump($rowCoupon);
+
 foreach($rowCoupon as $row){
 	$orderCoupon[$row["id"]]=$row["name"];
 	$couponDiscount[$row["id"]]=$row["discount"];
@@ -191,7 +211,7 @@ foreach($rowCoupon as $row){
 
 // for($i=1; $i<=$rows.length;$i++){
 // 	$orderPrice = $orderTotal[$i];
-// 	$sqlPrice = "INSERT INTO orders (order_price) VALUES '$orderPrice' WHERE id=$i";
+// 	$sqlPrice = "INSERT INTO orders (order_price) VALUES  WHERE id=$i";'$orderPrice'
 
 // 	if ($conn->query($sqlPrice) === TRUE) {
 //         echo "資料表 users 修改完成";

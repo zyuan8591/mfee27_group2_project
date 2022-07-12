@@ -1,9 +1,21 @@
 //perPage onchange
 let perPage = document.querySelector(".per-page");
+let coupon = document.querySelector(".coupon");
+let discount = document.querySelector(".discount");
 let searchForm = document.querySelector(".recipe_search");
+
+console.log(coupon);
+console.log(discount);
 
 perPage.addEventListener("change", function () {
 	searchForm.submit();
+});
+coupon.addEventListener("change", function () {
+	discount.innerText = coupon.value;
+	console.log(coupon.value);
+
+	// console.log(discount.innerText);
+	
 });
 
 // filter hover
