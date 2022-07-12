@@ -7,7 +7,6 @@
                     <label for="">名稱</label>
                     <input type="text" class="form-control" name="name">
                 </div>
-                
                 <div class="mb-2">
                     <label for="">Email</label>
                     <input type="email" class="form-control" name="email">
@@ -44,22 +43,3 @@
         </div>
     </div>
 </div>
-                <!-- <div class="mb-2">
-                    <label for="">帳號</label>
-                    <input type="text" class="form-control" name="account">
-                </div> -->
-                <!-- <div class="mb-2">
-                    <label for="">性別</label>
-                    <div class="d-flex mt-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender"  value="male">
-                            <label class="form-check-label" for="">
-                            男</label>
-                        </div>
-                        <div class="form-check ms-3">
-                            <input class="form-check-input" type="radio" name="gender"  value="female">
-                            <label class="form-check-label" for="">
-                            女</label>
-                        </div>
-                    </div>
-                </div> -->

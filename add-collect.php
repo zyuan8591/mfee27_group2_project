@@ -1,11 +1,8 @@
 <div class="add-collect-page recipe-datail flex_center invisible">
 	<div class="cover-detail collect-main position_abs"></div>
-	<div
-		class="container-detail position-rel modify-ricepe-detail-form submit-from"
-	>
-		
+	<div class="container-detail position-rel modify-ricepe-detail-form submit-from">
 		<h2 class="recipe-title text-center collect-header">Add Favorites</h2>
-	<i class="fa-solid fa-xmark position_abs add-close-btn"></i>
+		<i class="fa-solid fa-xmark position_abs add-close-btn"></i>
 		
 	<!-- add-recipe-collect -->
     <form class="text-center px-4 mb-3" action="add-recipe-update.php" method="post">

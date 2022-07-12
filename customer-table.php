@@ -23,7 +23,7 @@
 					echo "停用";
 				} else{
 					echo "啟用";
-					}?>
+				}?>
 			</td>
 			<td><?=$row["create_time"]?></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
@@ -36,7 +36,6 @@
 				<a class="btn-main me-3 " href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>&exist=0">會員收藏</a>
 			</td>
 		</tr>
-
 		<?php endforeach; ?>
 	</tbody>
 </table>
