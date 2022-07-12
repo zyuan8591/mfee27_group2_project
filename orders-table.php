@@ -1,5 +1,9 @@
 <?php if($ordersCountAll > 0):?>
+<?php if(isset($_SESSION["user"]["admin"])): ?>
+	<?php if($_SESSION["user"]["admin"]==1): ?>
 第 <?=$page?>頁，共<?=$totalPage?>頁，共<?=$ordersCountAll?>筆
+	<?php endif; ?>
+<?php endif; ?>
 <table class="recipe-table table table-hover">
 
 	<thead class="table-dark">
