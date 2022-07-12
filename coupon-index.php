@@ -124,6 +124,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<style>
 			<?php require "./style/style.css"; ?>
 			<?php require "./style/coupon-style.css"; ?>
@@ -433,25 +434,6 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
-
-					<!-- <div class="filter-item  position-rel">
-						<button class="filter-btn transition">食譜類別</button>
-						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=&productCate=<?= $productCate ?>
-							&valid=<?= $valid ?>">全部</a></li>
-							<?php foreach ($rowsCatFood as $row): ?>
-							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
-							&page=1&search=<?= $search ?>&foodCate=
-							<?= $row["id"] ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
-							">
-								<?= $row["name"] ?>
-							</a></li>
-							
-							<?php endforeach; ?>
-						</ul>							
-					</div> -->
 					<div class=" filter-item position-rel">
 						<button class=" filter-btn transition"><?php if ($valid == 1) {
 								echo "優惠券狀態";
@@ -481,6 +463,44 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		<script type="text/javascript" >
 			<?php require "./js/coupon-app.js"; ?>
 		</script>
-		<?php require "recipe-toast.php" ?>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+		<?php if(isset($_SESSION["addCoupon"])): ?>
+			<?php if($_SESSION["addCoupon"]["condition"]==1): ?>
+			<script type="text/javascript" >
+				Toastify({
+				text: "優惠券上架成功",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+					background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+				}).showToast();
+			</script>				
+			<?php elseif($_SESSION["addCoupon"]["condition"]==2): ?>
+			<script type="text/javascript" >
+				Toastify({
+				text: "優惠券下架成功",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+					background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+				}).showToast();
+			</script>
+			<?php endif; ?>
+			<?php unset($_SESSION["addCoupon"]); ?>
+		<?php endif; ?>
 	</body>
 </html>

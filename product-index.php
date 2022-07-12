@@ -168,8 +168,7 @@
 						</div>
 					</ul>
 				</li>
-					<?php endif; ?>
-				<?php endif; ?>
+					
 				<li class="main_nav_item_container">
 					<div class="main_nav_item">
 						<div class="flex_center">
@@ -198,9 +197,11 @@
 								<li>
 									<a class="sub_nav_item_content" href="">料理活動</a>
 								</li> -->
-						</div>
+						</div> m
 					</ul>
 				</li>
+					<?php endif; ?>
+				<?php endif; ?>
 			</ul>
 		</nav>
 	</aside>
