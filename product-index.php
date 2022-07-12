@@ -1,17 +1,5 @@
 <?php
 session_start();
-$success=[
-	"id"=>1,
-];
-$_SESSION["success"]=$success;
-if($_SESSION["success"]["id"]==1){
-// echo "success";
-}elseif($_SESSION["success"]["id"]==2){
-// echo "fail";
-}else{
-echo ($_SESSION);
-}
-// session_unset();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -215,10 +203,8 @@ echo ($_SESSION);
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script type="text/javascript">
 		<?php require "./js/product.js"; ?>
-
 	</script>
-
-
+	<?php require("./product-toast.php") ?>
 </body>
 
 </html>

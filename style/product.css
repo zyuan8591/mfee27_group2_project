@@ -202,3 +202,7 @@ textarea {
 	/* height: 200px;
 	width: 1000px; */
 }
+.out-of-stock {
+	color: red!important;
+}
+

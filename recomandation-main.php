@@ -213,7 +213,7 @@
                     <td><?=$row["create_time"]?></td>
 					<?php if($_SESSION["user"]["admin"]==1): ?>
 					<td class="">
-						<a class="delete-btn text-white" href="delete-comment-exe.php?id=<?=$row["id"]?>">刪除</a>
+						<a class="delete-btn text-white" href="delete-comment-exe.php?id=<?=$row["id"]?>&order=<?=$order?>&page=<?= $page ?>&per=<?=$per?>&comment=<?=$comment?>&user=<?=$user?>">刪除</a>
 					</td>
 					<?php endif; ?>
 				</tr>

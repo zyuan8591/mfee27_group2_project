@@ -31,16 +31,18 @@ echo $sql;
 if ($conn->query($sql) === TRUE) {
     echo "新增完成";
     echo $conn->insert_id;
-    $success=[
+    $add=[
         "id"=>1,
     ];
-    echo ($_SESSION);
+    $_SESSION["add"]=$add;
+    // var_dump ($_SESSION);
 } else {
     echo "新增失敗" . $conn->error;
-    $success=[
-        "id"=>2,
+    $_SESSION["add"]=[
+        "id"=>2
     ];
-    echo ($_SESSION);
+    // var_dump ($_SESSION);
 }
+// session_unset();
 $conn->close();
 header("location: product-index.php?order=1&filter=$filterNum&valid=$validNum&order=$order&page=$page&per=$per");

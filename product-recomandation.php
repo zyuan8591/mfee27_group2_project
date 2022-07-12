@@ -16,6 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<style>
 		<?php
 		require "./style/style.css";
@@ -197,9 +198,59 @@
 	</aside>
 	<?php require "recomandation-main.php";?>
 	<?php require "new-product.php"; ?>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script type="text/javascript">
 		<?php require "./js/recomandation.js";?>
 	</script>
+
+
+
+	<?php 
+	// require ("./product-comment-toast.php") 
+	?>
+	<?php if (isset($_SESSION["delete"]["id"])):?>
+		<?php if($_SESSION["delete"]["id"]==1):?>
+			<script type="text/javascript">
+			Toastify({
+				text: "刪除留言成功",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+				  background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+			  }).showToast();
+			</script>
+			<?php unset($_SESSION["delete"]); ?>
+		<?php endif;?>
+	<?php endif;?>
+
+    <?php if (isset($_SESSION["delete"]["id"])):?>
+		<?php if($_SESSION["delete"]["id"]==2):?>
+			<script type="text/javascript">
+			Toastify({
+				text: "刪除留言失敗",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+				  background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+			  }).showToast();
+			</script>
+			<?php unset($_SESSION["delete"]); ?>
+		<?php endif;?>
+	<?php endif;?>
 </body>
 
 </html>

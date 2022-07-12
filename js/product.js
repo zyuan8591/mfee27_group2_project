@@ -52,44 +52,6 @@ let cover = document.querySelectorAll(".detail-cover");
 let xMark = document.querySelector(".fa-xmark");
 let detailPage = document.querySelectorAll(".detail-page");
 let detailBtn = document.querySelectorAll(".detail-btn");
-let addSucess=document.querySelector(".add-success");
-let addFail=document.querySelector(".add-fail");
-let addBtn=document.querySelector(".add-btn");
-
-addBtn.addEventListener("click", function(e){
-	if(addSucess){
-		Toastify({
-			text: "成功",
-			duration: 3000,
-			destination: "https://github.com/apvarun/toastify-js",
-			newWindow: true,
-			close: true,
-			gravity: "top", // `top` or `bottom`
-			position: "left", // `left`, `center` or `right`
-			stopOnFocus: true, // Prevents dismissing of toast on hover
-			style: {
-			  background: "linear-gradient(to right, #00b09b, #96c93d)",
-			},
-			onClick: function(){} // Callback after click
-		  }).showToast();
-	}
-	if(addFail){
-		Toastify({
-			text: "失敗",
-			duration: 3000,
-			destination: "https://github.com/apvarun/toastify-js",
-			newWindow: true,
-			close: true,
-			gravity: "top", // `top` or `bottom`
-			position: "left", // `left`, `center` or `right`
-			stopOnFocus: true, // Prevents dismissing of toast on hover
-			style: {
-			  background: "linear-gradient(to right, #00b09b, #96c93d)",
-			},
-			onClick: function(){} // Callback after click
-		  }).showToast();
-	}
-} )
 
 addProductBtn.addEventListener("click", function (e) {
 	e.preventDefault();
