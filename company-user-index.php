@@ -117,7 +117,7 @@ session_start();
 	</aside>
 	<main class="main">
 		<div>
-			<h6>首頁</h6>
+			<h2>首頁</h2>
 		</div>
 		<div>
 			<div class="row center">
@@ -163,24 +163,27 @@ session_start();
 <script type="text/javascript" >
 	<?php require "./js/company-app.js"; ?>
 </script>
-        
-<?php if($_SESSION["loginCondition"]["condition"] == 2): ?>
-<script type="text/javascript" >
-    Toastify({
-  text: "登入成功",
-  duration: 3000,
-  newWindow: true,
-  close: true,
-  gravity: "bottom", // `top` or `bottom`
-  position: "left", // `left`, `center` or `right`
-  stopOnFocus: true, // Prevents dismissing of toast on hover
-  style: {
-    background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
-  },
-  onClick: function(){} // Callback after click
-}).showToast();
-</script>
-<?php unset($_SESSION["loginCondition"]); ?>
+
+<?php if(isset($_SESSION["loginCondition"]["condition"])): ?>
+	<?php if($_SESSION["loginCondition"]["condition"] == 2): ?>
+	<script type="text/javascript" >
+		Toastify({
+	text: "登入成功",
+	duration: 3000,
+	newWindow: true,
+	close: true,
+	gravity: "bottom", // `top` or `bottom`
+	position: "left", // `left`, `center` or `right`
+	stopOnFocus: true, // Prevents dismissing of toast on hover
+	style: {
+		background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+	},
+	onClick: function(){} // Callback after click
+	}).showToast();
+	</script>
+	<?php unset($_SESSION["loginCondition"]); ?>
+	<?php endif; ?>
 <?php endif; ?>
+
 
 </html>
