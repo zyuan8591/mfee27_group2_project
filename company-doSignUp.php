@@ -1,5 +1,7 @@
 <?php
 require("db-connect.php");
+session_start();
+$condition=0;
 
 if(!isset($_POST["signup-name"])){
     echo "請循正常管道登入";
@@ -58,8 +60,15 @@ $sqlCreate="INSERT INTO company_users (name, email, password, phone, address, cr
 
 if ($conn->query($sqlCreate) === TRUE) {
     echo "新資料輸入成功";
+    $condition=1;
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+if($condition==1){
+    $_SESSION["signUp"]=[
+        "condition" => $condition
+    ];
 }
 
 $conn->close();

@@ -128,8 +128,8 @@ session_start();
         		    </div>
         		    <div class="main-content">
         		    	<ul class="unstyled_list p-0">
-        		        	<li><a href="">商品總覽</a></li>
-							<li><a href="">評價總覽</a></li>
+        		        	<li><a href="product-index.php">商品總覽</a></li>
+							<li><a href="product-recomandation.php">評價總覽</a></li>
         		      	</ul>
         		    </div>
         		</div>
@@ -140,7 +140,7 @@ session_start();
         		    </div>
         		    <div class="main-content">
         		    	<ul class="unstyled_list p-0">
-        		        	<li><a href="">訂單總覽</a></li>
+        		        	<li><a href="orders-index.php">訂單總覽</a></li>
         		      	</ul>
         		    </div>
         		</div>
@@ -151,7 +151,7 @@ session_start();
         		    </div>
         		    <div class="main-content">
 					  	<ul class="unstyled_list p-0">
-        		       		<li><a href="">優惠卷</a></li>
+        		       		<li><a href="coupon-index.php">優惠卷</a></li>
         		      	</ul>
         		    </div>
         		</div>

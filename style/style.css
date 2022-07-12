@@ -128,6 +128,10 @@ a:active {
 	width: 100%;
 	height: 100%;
 }
+.point-event-none {
+	pointer-events: none;
+	opacity: 0.5;
+}
 /* --------------------------------------------- */
 /* header */
 .header {

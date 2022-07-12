@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require("./db-connect.php");
 if(isset($_GET["page"])){
 	$page=$_GET["page"];
@@ -241,6 +241,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						</ul>
 					</li>
 					<!-- 食譜管理 -->
+					<?php if(isset($_SESSION["user"])): ?>
+						<?php if($_SESSION["user"]["admin"]==1) : ?>
 					<li class="main_nav_item_container">
 						<div class="main_nav_item">
 							<div class="flex_center">
@@ -332,6 +334,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 							</div>
 						</ul>
 					</li>
+						<?php endif; ?>
+					<?php endif; ?>
 					<li class="main_nav_item_container">
 						<div class="main_nav_item">
 							<div class="flex_center">
