@@ -1,14 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION["success"])){
-
-}else{
-	$success=[
-		"id"=>0,
-	];
-}
-// var_dump($_SESSION);
-// session_unset();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -207,31 +198,8 @@ if(isset($_SESSION["success"])){
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script type="text/javascript">
 		<?php require "./js/product.js"; ?>
-
 	</script>
-	<script type="text/javascript">
-		<?php var_dump($_SESSION); ?>
-		console.log($_SESSION);
-		<?php if($_SESSION["success"]["id"]==1):?>
-			Toastify({
-				text: "成功",
-				duration: 3000,
-				destination: "https://github.com/apvarun/toastify-js",
-				newWindow: true,
-				close: true,
-				gravity: "top", // `top` or `bottom`
-				position: "left", // `left`, `center` or `right`
-				stopOnFocus: true, // Prevents dismissing of toast on hover
-				style: {
-				  background: "linear-gradient(to right, #00b09b, #96c93d)",
-				},
-				onClick: function(){} // Callback after click
-			  }).showToast();
-		<?php endif?>
-		
-
-		</script>
-
+	<?php require("./product-toast.php") ?>
 </body>
 
 </html>

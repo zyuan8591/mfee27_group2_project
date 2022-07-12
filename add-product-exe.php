@@ -31,17 +31,16 @@ echo $sql;
 if ($conn->query($sql) === TRUE) {
     echo "新增完成";
     echo $conn->insert_id;
-    $success=[
+    $add=[
         "id"=>1,
     ];
-    $_SESSION["success"]=$success;
+    $_SESSION["add"]=$add;
     // var_dump ($_SESSION);
 } else {
     echo "新增失敗" . $conn->error;
-    $success=[
-        "id"=>2,
+    $_SESSION["add"]=[
+        "id"=>2
     ];
-    $_SESSION["success"]=$success;
     // var_dump ($_SESSION);
 }
 // session_unset();
