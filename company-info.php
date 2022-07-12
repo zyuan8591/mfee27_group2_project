@@ -228,49 +228,58 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		</nav>
 	</aside>
 
-	<main class="main position-rel">
+	<main class="main position-rel flex_center">
 		<?php foreach ($rows as $row) : ?>
 			<form action="" class="info">
 				<div class="card-header"></div>
-				<div class="mx-5 d-flex justify-content-center">
-					<figure class="avatar"><img class="object-contain" src="./img/company_img/<?= $row["logo_img"] ?>" alt=""></figure>
+				<div class="d-flex py-5 px-3 card-content">
+					
+					<div>
+						<div class="mx-3">
+							<div class="mb-2 row">
+								<label for="" class="col-sm-auto col-form-label">廠商名稱：</label>
+								<div class="col">
+									<input type="text" readonly class="form-control-plaintext " name="brand" value="<?= $row["name"] ?>" />
+								</div>
+							</div>
+							<div class="mb-2 row">
+								<label for="" class="col-sm-auto col-form-label">　　信箱：</label>
+								<div class="col">
+									<input type="text" readonly class="form-control-plaintext product-input" name="email" value="<?= $row["email"] ?>" required />
+								</div>
+							</div>
+							<div class="mb-2 row">
+								<label for="" class="col-sm-auto col-form-label">　　電話：</label>
+								<div class="col">
+									<input type="text" readonly class="form-control-plaintext product-input" name="phone" value="<?= $row["phone"] ?>" required />
+								</div>
+							</div>
+							<div class="mb-2 row">
+								<label for="" class="col-sm-auto col-form-label address">　　地址：</label>
+								<div class="col">
+									<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div>
+						<div class="mx-3 d-flex justify-content-center logo">
+							<figure class="avatar">
+								<img class="object-contain" src="./img/company_img/<?= $row["logo_img"] ?>" alt="">
+							</figure>
+						</div>
+					</div>
 				</div>
-				<div class="mx-5">
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">廠商名稱</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext " name="brand" value="<?= $row["name"] ?>" />
-						</div>
+				<div class="mb-2 row intro">
+					<label for="" class="col-sm-auto col-form-label">　　介紹：</label>
+					<div class="col">
+						<textarea class="form-control-plaintext product-input w-75" name="intro" id="" cols="30" rows="5" readonly required><?= $row["intro"] ?></textarea>
 					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">信箱　　</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext product-input" name="email" value="<?= $row["email"] ?>" required />
-						</div>
-					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">電話　　</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext product-input" name="phone" value="<?= $row["phone"] ?>" required />
-						</div>
-					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">地址　　</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
-						</div>
-					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">介紹　　</label>
-						<div class="col">
-							<textarea class="form-control-plaintext product-input" name="intro" id="" cols="34" rows="7" readonly required><?= $row["intro"] ?></textarea>
-						</div>
-					</div>
-
 				</div>
-				<div class="mb-2 me-2 row">
+				<div class="me-2 row time">
 					<div class="col d-flex justify-content-end">
-						<p class="time "><?= $row["create_time"] ?></p>
+						<p class="time"><?= $row["create_time"] ?></p>
 					</div>
 				</div>
 			</form>
