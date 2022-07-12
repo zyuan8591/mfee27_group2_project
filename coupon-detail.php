@@ -4,6 +4,7 @@
 		class="container-detail position-rel modify-coupon-detail-form"
 		action="coupon-detail-modify.php"       
 		method="POST"
+        onsubmit="return detailDateTest()"
 	>
         <input type="hidden" value="<?= $row["id"] ?>" name="id">
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
@@ -24,13 +25,13 @@
         <div class="mb-3 row ">
             <label for="" class=" form-label">起始日期</label>
             <div class="col">
-            <input name="startDate" type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["start_date"]?>" >
+            <input id="startDate" name="startDate" type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["start_date"]?>" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">結束日期</label>
             <div class="col">
-            <input name="endDate" type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["end_date"]?>" >
+            <input id="endDate" name="endDate" type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["end_date"]?>" >
             </div>
         </div>
         <div class="mb-3 row ">
@@ -62,3 +63,17 @@
 
 
 </div>
+
+<script>
+    function detailDateTest(){
+	var startDate=document.getElementById("startDate").value;
+	var endDate=document.getElementById("endDate").value;
+	if( startDate<endDate){
+		alert("結束日期不得小於起始日期");
+		return false;
+	}
+	else{
+		return true;
+	}            
+}
+</script>

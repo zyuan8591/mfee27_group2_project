@@ -14,12 +14,17 @@ $discount=$_POST["discount"];
 // echo "$number,$startDate,$endDate,$discount";
 $sqlUpadate= "UPDATE coupon SET name='$name',number='$number',start_date='$startDate',end_date='$endDate',discount='$discount' WHERE id='$id'";
 
+
+if($endDate<$startDate){
+    echo "結束日期不得小於開始日期";
+    exit;
+}else{
 if($conn->query($sqlUpadate)){
     echo "資料更新成功 <br>";   
 } else {
     echo "error: " . $conn->error;    
 }
-$conn->close();
+$conn->close();}
 
 
 

@@ -174,3 +174,14 @@ function dateTest(){
 		return true;
 	}            
 }
+function detailDateTest(){
+	var startDate=document.getElementById("startDate").value;
+	var endDate=document.getElementById("endDate").value;
+	if( startDate<endDate){
+		alert("結束日期不得小於起始日期");
+		return false;
+	}
+	else{
+		return true;
+	}            
+}
