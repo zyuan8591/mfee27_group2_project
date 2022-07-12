@@ -25,12 +25,18 @@
 		case 6:
 			$orderType = "create_time DESC";
 			break;
+		case 7:
+			$orderType = "price ASC";
+			break;
+		case 8:
+			$orderType = "price DESC";
+			break;
 		default:
 			$orderType = "id ASC";
 			break;
 	}
 
-	$sqlCompany = "SELECT id, name FROM company_users";
+	$sqlCompany = "SELECT id, name FROM company_users WHERE is_admin=0";
 	$resultCompany = $conn->query($sqlCompany);
 	$rowsCompany = $resultCompany->fetch_all(MYSQLI_ASSOC);
 	foreach ($rowsCompany as $row) {
@@ -67,6 +73,12 @@
 	} else {
 		$valid = "AND valid=$validNum";
 	}
+	$companyNum = isset($_GET["company"]) ? $_GET["company"] : "";
+	if (empty($_GET["company"])) {
+		$companyFil = "";
+	} else {
+		$companyFil = "AND company_id=$companyNum";
+	}
 
 	if (isset($_GET["page"])) {
 		$page = $_GET["page"];
@@ -91,7 +103,7 @@
 		// var_dump($_SESSION["company"]["id"]) ;
 	}
 
-	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId";
+	$sqlAll = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId $companyFil";
 	$resultAll = $conn->query($sqlAll);
 	$productCountAll = $resultAll->num_rows;
 
@@ -101,7 +113,7 @@
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
 
-	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId ORDER BY $orderType LIMIT $start, $per";
+	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' $filter $valid $companyId $companyFil ORDER BY $orderType LIMIT $start, $per";
 
 	$result = $conn->query($sql);
 	$rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -133,6 +145,10 @@
 														$order == 5
 													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
 																																	$order == 6	) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依日期排序</a>
+		    <a class="sort-btn transition" href="<?php if (
+														$order == 7
+													) : ?>product-index.php?order=8&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php elseif (
+																																	$order == 8	) : ?>product-index.php?order=7&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php else : ?>product-index.php?order=7&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?=$page?><?php endif; ?>">依價格排序</a>
 		</div>
 
 			<form class="product_search d-flex align-items-center " action="product-index.php" method="get">
@@ -168,12 +184,23 @@
 			<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.5701 1.9264L1.5739 1.9185C1.69657 1.67108 1.96042 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3" />
 			</svg>
+			<?php if($_SESSION["company"]["id"]==0): ?>
+			<div class="filter-item  position-rel ">
+				<button class="filter-btn transition"><?php if ($companyNum == 0) : echo "廠商" ?><?php elseif ($companyNum == "") : echo "廠商" ?><?php else : echo $companyName[$companyNum] ?><?php endif; ?></button>
+				<ul class="filter-dropdown position_abs unstyled_list invisible text-start company d-flex flex-column flex-wrap">
+					<li class="m-2"><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=<?= $validNum ?>&company=">全部</a></li>
+					<?php foreach ($rowsCompany as $row) : ?>
+						<li class="company-li m-2"><a href="product-index.php?filter=<?= $filterNum ?>&valid=<?= $validNum ?>&company=<?=$row["id"]?>"><?= $row["name"]?></a></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+			<?php endif;?>
 			<div class="filter-item  position-rel ">
 				<button class="filter-btn transition"><?php if ($productCount == 0) : echo "商品類別" ?><?php elseif ($filterNum == "") : echo "商品類別" ?><?php else : echo $cateSub[$filterNum] ?><?php endif; ?></button>
 				<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-					<li><a class="text-nowrap " href="product-index.php?filter=&valid=<?= $validNum ?>">全部</a></li>
+					<li><a class="text-nowrap " href="product-index.php?filter=&valid=<?= $validNum ?>&company=<?=$companyNum?>">全部</a></li>
 					<?php foreach ($rowsCateSub as $row) : ?>
-						<li><a href="product-index.php?filter=<?= $row["id"] ?>&valid=<?= $validNum ?>"><?= $row["name"] ?></a></li>
+						<li><a class="company-a" href="product-index.php?filter=<?= $row["id"] ?>&valid=<?= $validNum ?>&company=<?=$companyNum?>"><?= $row["name"] ?></a></li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
@@ -181,9 +208,9 @@
 			<div class=" filter-item position-rel ">
 				<button class=" filter-btn transition"><?php if ($validNum == 1) : echo "上架中" ?><?php elseif ($validNum == ""): echo "商品狀態"?><?php elseif($validNum == 0) : echo "下架中" ?><?php else : echo "商品狀態" ?><?php endif; ?></button>
 				<ul class="filter-dropdown  unstyled_list position_abs invisible text-center ">
-					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=">全部</a></li>
-					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=1">上架中</a></li>
-					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&valid=0">下架中</a></li>
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&company=<?=$companyNum?>&valid=">全部</a></li>
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&company=<?=$companyNum?>&valid=1">上架中</a></li>
+					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&company=<?=$companyNum?>&valid=0">下架中</a></li>
 				</ul>
 			</div>
 		</div>
@@ -197,7 +224,7 @@
 		<thead class="table-dark">
 			<tr class="">
 				<th class="text-center" scope="col">商品編號</th>
-				<th scope="col">店家</th>
+				<th scope="col">廠商</th>
 				<th scope="col">商品名稱</th>
 				<th scope="col">商品主類別</th>
 				<th scope="col">商品次類別</th>

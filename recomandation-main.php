@@ -190,7 +190,7 @@
 				<th class="text-center" scope="col">評價編號</th>
 				<th scope="col">店家</th>
 				<th scope="col">商品名稱</th>
-                <th scope="col">會員</th>
+                <th scope="col"><a href="">會員</a></th>
 				<th scope="col">商品留言</th>
                 <th scope="col">評價分數</th>
                 <th scope="col">留言日期</th>
@@ -205,9 +205,9 @@
 
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
-					<td><a href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&company=<?=$row["company"]?>"><?=$companyName[$row["company"]]?></a></td>
-					<td><a href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&product=<?=$row["product_id"]?>"><?= $product[$row["product_id"]] ?></a></td>
-					<td><a class="" href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&user=<?=$row["user_id"]?>"><?=$commentUser[$row["user_id"]]?></a></td>
+					<td><a class="search-hover" href="product-recomandation.php?order=<?=$order?>&comment=<?=$comment?>&company=<?=$row["company"]?>"><?=$companyName[$row["company"]]?></a></td>
+					<td><a class="search-hover" href="product-recomandation.php?order=<?=$order?>&comment=<?=$comment?>&product=<?=$row["product_id"]?>"><?= $product[$row["product_id"]] ?></a></td>
+					<td><a class="search-hover" class="" href="product-recomandation.php?order=<?=$order?>&comment=<?=$comment?>&user=<?=$row["user_id"]?>"><?=$commentUser[$row["user_id"]]?></a></td>
                     <td><?=$row["content"]?></td>
                     <td class="star"><?=$row["comment"]?></td>
                     <td><?=$row["create_time"]?></td>

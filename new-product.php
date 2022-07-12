@@ -73,7 +73,7 @@
             <input id="add-product-image" class="d-none add-img-input" type="file" name="product_main_img" required>
         </div>
         <div class="mb-3 flex_center">
-            <button class="product-btn " type="submit transition">新增商品</button>
+            <button class="product-btn add-btn <?php if($_SESSION["success"]["id"]==1):?> add-success <?php elseif($_SESSION["success"]["id"]==2):?> add-fail <?php endif; ?> " type="submit transition">新增商品</button>
             <button class="product-btn back-product transition">返回商品列表</button>
         </div>
     </form>
