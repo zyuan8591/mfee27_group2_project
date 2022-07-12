@@ -227,3 +227,7 @@
 .detailImgPre {
 	border-radius: 5px;
 }
+
+.detail-item-input {
+	text-align: left;
+}

@@ -45,5 +45,5 @@ for($j=1; $j<$i;$j++){
 
 $conn->close();
 
-// header("location: orders-index.php");
+header("location: orders-index.php");
 ?>
