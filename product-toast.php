@@ -16,8 +16,9 @@
 				onClick: function(){} // Callback after click
 			  }).showToast();
 			</script>
+		    <?php unset($_SESSION["add"]); ?>
 		<?php endif;?>
-	<?php endif;?>
+<?php endif;?>
 
 	<?php if (isset($_SESSION["add"]["id"])):?>
 		<?php if($_SESSION["add"]["id"]==2):?>
@@ -37,6 +38,7 @@
 				onClick: function(){} // Callback after click
 			  }).showToast();
 			</script>
+		    <?php unset($_SESSION["add"]); ?>
 		<?php endif;?>
 	<?php endif;?>
 
@@ -58,6 +60,8 @@
 				onClick: function(){} // Callback after click
 			  }).showToast();
 			</script>
+		    <?php unset($_SESSION["revise"]); ?>
+
 		<?php endif;?>
 	<?php endif;?>
 
@@ -79,6 +83,7 @@
 				onClick: function(){} // Callback after click
 			  }).showToast();
 			</script>
+		    <?php unset($_SESSION["revise"]); ?>
 		<?php endif;?>
 	<?php endif;?>
     <?php session_unset(); ?>

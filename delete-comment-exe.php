@@ -30,6 +30,8 @@ if ($conn->query($sqlDelete) === TRUE) {
     ];
 }
 $conn->close();
+var_dump($_SESSION);
+
 
 header("location: product-recomandation.php?order=$order&page=$page&per=$per&comment=$comment&user=$user")
 ?>

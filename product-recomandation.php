@@ -19,6 +19,7 @@ var_dump($_SESSION);
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<style>
 		<?php
 		require "./style/style.css";
@@ -195,10 +196,16 @@ var_dump($_SESSION);
 	</aside>
 	<?php require "recomandation-main.php";?>
 	<?php require "new-product.php"; ?>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script type="text/javascript">
 		<?php require "./js/recomandation.js";?>
 	</script>
-	<?php require ("./product-comment-toast.php") ?>
+
+
+
+	<?php 
+	// require ("./product-comment-toast.php") 
+	?>
 	<?php if (isset($_SESSION["delete"]["id"])):?>
 		<?php if($_SESSION["delete"]["id"]==1):?>
 			<script type="text/javascript">
@@ -217,6 +224,7 @@ var_dump($_SESSION);
 				onClick: function(){} // Callback after click
 			  }).showToast();
 			</script>
+			<?php unset($_SESSION["delete"]); ?>
 		<?php endif;?>
 	<?php endif;?>
 
@@ -238,6 +246,7 @@ var_dump($_SESSION);
 				onClick: function(){} // Callback after click
 			  }).showToast();
 			</script>
+			<?php unset($_SESSION["delete"]); ?>
 		<?php endif;?>
 	<?php endif;?>
 </body>
