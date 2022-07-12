@@ -460,42 +460,46 @@ if($endItem>$CompanyUsersCountAll)$endItem=$CompanyUsersCountAll;
 	<!-------- toastify --------->
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<!-- 詳細資料修改成功 -->
-		<?php if($_SESSION["userModify"]["condition"] == 3): ?>
-		<script type="text/javascript" >
-		    Toastify({
-		  text: "修改成功",
-		  duration: 3000,
-		  newWindow: true,
-		  close: true,
-		  gravity: "bottom", // `top` or `bottom`
-		  position: "left", // `left`, `center` or `right`
-		  stopOnFocus: true, // Prevents dismissing of toast on hover
-		  style: {
-		    background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
-		  },
-		  onClick: function(){} // Callback after click
-		}).showToast();
-		</script>
-		<?php unset($_SESSION["userModify"]); ?>
-		<?php endif; ?>		
+		<?php if(isset($_SESSION["userModify"]["condition"])): ?>
+			<?php if($_SESSION["userModify"]["condition"] == 3): ?>
+			<script type="text/javascript" >
+				Toastify({
+			text: "修改成功",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+			</script>
+			<?php unset($_SESSION["userModify"]); ?>
+			<?php endif; ?>	
+		<?php endif; ?>	
 	<!-- 新增廠商成功 -->
-		<?php if($_SESSION["userModify"]["condition"] == 4): ?>
-		<script type="text/javascript" >
-		    Toastify({
-		  text: "新增成功",
-		  duration: 3000,
-		  newWindow: true,
-		  close: true,
-		  gravity: "bottom", // `top` or `bottom`
-		  position: "left", // `left`, `center` or `right`
-		  stopOnFocus: true, // Prevents dismissing of toast on hover
-		  style: {
-		    background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
-		  },
-		  onClick: function(){} // Callback after click
-		}).showToast();
-		</script>
-		<?php unset($_SESSION["userModify"]); ?>
-		<?php endif; ?>
+		<?php if(isset($_SESSION["userModify"]["condition"])): ?>
+			<?php if($_SESSION["userModify"]["condition"] == 4): ?>
+			<script type="text/javascript" >
+				Toastify({
+			text: "新增成功",
+			duration: 3000,
+			newWindow: true,
+			close: true,
+			gravity: "bottom", // `top` or `bottom`
+			position: "left", // `left`, `center` or `right`
+			stopOnFocus: true, // Prevents dismissing of toast on hover
+			style: {
+				background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+			},
+			onClick: function(){} // Callback after click
+			}).showToast();
+			</script>
+			<?php unset($_SESSION["userModify"]); ?>
+			<?php endif; ?>
+		<?php endif; ?>	
 	</body>
 </html>

@@ -197,7 +197,7 @@
 								<li>
 									<a class="sub_nav_item_content" href="">料理活動</a>
 								</li> -->
-						</div> m
+						</div>
 					</ul>
 				</li>
 					<?php endif; ?>

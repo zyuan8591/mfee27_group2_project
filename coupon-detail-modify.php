@@ -22,10 +22,5 @@ if($conn->query($sqlUpadate)){
 $conn->close();
 
 
-
-
-
-
-
 header("location: coupon-index.php");
 ?>

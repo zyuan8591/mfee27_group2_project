@@ -88,7 +88,7 @@ if($condition == 2){
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/recipe-style.css"; ?>
+			<?php require "./style/recipes-style.css"; ?>
 			<?php require "style/customer.css"; ?>
 			
 		</style>
