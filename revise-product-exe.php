@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("./db-connect.php");
 
 $filterNum = isset($_GET["filter"]) ? $_GET["filter"] : "";

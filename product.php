@@ -244,7 +244,7 @@
 					<td><?= $cate[$row["category_main"]] ?></td>
 					<td><?= $cateSub[$row["category_sub"]] ?></td>
 					<td class="text-end"><?=number_format($row["price"])?></td>
-					<td class="text-center"><?=$row["inventory"]?></td>
+					<td class="text-center <?php if($row["inventory"]==0) :echo "out-of-stock" ?><?php endif; ?>"><?=$row["inventory"]?></td>
 					<td><?php if ($row["valid"] == 1) : ?><?= "上架中" ?><?php else : ?><?= "下架中" ?><?php endif; ?></td>
 					<td class="">
 						<a href="list-unlist.php?order=<?=$order?>&filter=<?= $filterNum ?>&page=<?=$page?>&id=<?=$row["id"]?>&valid=<?=$row["valid"]?>" class="table-btn <?php if ($row["valid"]==1){echo "point-none";} ?>">上架</a>

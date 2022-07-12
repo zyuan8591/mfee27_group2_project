@@ -1,3 +1,7 @@
+<?php
+session_start();
+var_dump($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -194,6 +198,48 @@
 	<script type="text/javascript">
 		<?php require "./js/recomandation.js";?>
 	</script>
+	<?php require ("./product-comment-toast.php") ?>
+	<?php if (isset($_SESSION["delete"]["id"])):?>
+		<?php if($_SESSION["delete"]["id"]==1):?>
+			<script type="text/javascript">
+			Toastify({
+				text: "刪除留言成功",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+				  background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+			  }).showToast();
+			</script>
+		<?php endif;?>
+	<?php endif;?>
+
+    <?php if (isset($_SESSION["delete"]["id"])):?>
+		<?php if($_SESSION["delete"]["id"]==2):?>
+			<script type="text/javascript">
+			Toastify({
+				text: "刪除留言失敗",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+				  background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+			  }).showToast();
+			</script>
+		<?php endif;?>
+	<?php endif;?>
 </body>
 
 </html>
