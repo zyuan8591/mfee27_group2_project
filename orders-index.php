@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("db-connect.php");
 
 if(isset($_GET["page"])){
@@ -80,6 +81,8 @@ $resultAll = $conn->query($sqlAll);
 $ordersCountAll = $resultAll->num_rows;
 // echo $ordersCountAll;
 
+
+//product_id => price---------------------------------
 $sqlPrice = "SELECT * FROM products";
 $resultPrice = $conn->query($sqlPrice);
 $rowPrice = $resultPrice->fetch_all(MYSQLI_ASSOC);
@@ -88,10 +91,10 @@ foreach ($rowPrice as $row) {
  $productPrice[$row["id"]] = $row["price"];
 }
 
+
 $sqlOrderPrice = "SELECT * FROM order_product";
 $resultOrderPrice = $conn->query($sqlOrderPrice);
 $rowsOrderPrice = $resultOrderPrice->fetch_all(MYSQLI_ASSOC);
-
 foreach ($rowsOrderPrice as $row) {
 	$alimamado = $row["product_quantity"] * $productPrice[$row["product_id"]];
 	if(!isset($orderTotal[$row["order_id"]]) ){
@@ -137,6 +140,12 @@ switch($order){
 // $resultDate = $conn->query($sqlDate);
 // $ordersDate = $resultDate->fetch_all(MYSQLI_ASSOC);
 // var_dump($ordersDate);
+
+if($_SESSION["user"]["admin"]==0){
+
+}
+
+
 
 $sql="SELECT orders.*, customer_users.name,customer_users.phone,customer_users.address FROM orders, customer_users 
 -- JOIN order_product ON orders.id = order_product.order_id
@@ -196,6 +205,11 @@ foreach($rowCoupon as $row){
 
 
 $totalPage=ceil($ordersCountAll / $perPage);
+
+// detail php
+
+
+
 ?>
 <!doctype html>
 <html lang="en">

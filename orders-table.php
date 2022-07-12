@@ -9,7 +9,7 @@
 			<th scope="col">會員名稱</th>
 			<th scope="col">訂單狀態</th>
 			<th class="text-end" scope="col">訂單金額</th>
-			<th scope="col">訂單詳情</th>
+			<th class="text-center" scope="col">訂單詳情</th>
 			<!-- <th scope="col"></th> -->
 		</tr>
 	</thead>
@@ -27,20 +27,58 @@
 				</td>
 			</tr> -->
 		<?php foreach($rows as $row): ?>
+		<?php
+		$order_id= $row["id"];
+		//company user login-//
+		$sqlUserWhere = "";
+		if(isset($_SESSION["user"])){
+			if($_SESSION["user"]["admin"]==0){
+				$company_id = $_SESSION["user"]["id"]; //1
+				$sqlUserWhere = "AND company_id = $company_id";
+			}
+		} else {
+			$sqlUserWhere = "";
+		}
+		$sqlOrderProductAll = "SELECT order_product.*, products.name AS product_name, products.price AS product_price,
+		orders.coupon_id AS couponId, products.company_id
+		-- , coupon.discount AS coupon_discount , coupon.start_date AS coupon_startDate, coupon.end_date AS coupon_endDate 
+		FROM order_product 
+		JOIN products ON order_product.product_id = products.id 
+		JOIN orders ON order_product.order_id = orders.id
+		-- JOIN coupon ON order_product.couponId = coupon.id 
+		WHERE order_id= $order_id $sqlUserWhere";
+		// var_dump($sqlOrderProduct);
+
+		$resultOrderProductAll = $conn->query($sqlOrderProductAll);
+		$rowsOrderProductAll = $resultOrderProductAll->fetch_all(MYSQLI_ASSOC);
+		$rowsOrderProductAllCount = $resultOrderProductAll->num_rows;
+		
+		?>
+		<?php if($rowsOrderProductAllCount>0): ?>
 		<tr>
 			<th class="text-center" scope="row"><?=$row["id"]?></th>
-			<td><?=$row["order_time"]?></td>
+			<td>
+				<?php require "order-detail.php"; ?>
+				<?=$row["order_time"]?>
+			</td>
 			<td><?=$row["name"]?></td>
 			<td><?=$orderStatusJJ[$row["status_id"]]?></td>
-			<td class="text-end"><?= number_format($orderTotal[$row["id"]])?> </td>
-			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
-                <a class="btn-main transition me-3 " href="orders-dele.php?orderId=<?=$row["id"]?>">刪除</a>
-				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
-			<?php require "order-detail.php"; ?>
+			<td class="text-end order_price">
+				<?php 
+					//echo number_format($orderTotal[$row["id"]])
+				?>
+				<?= number_format($totalPrice) ?> 
 			</td>
-
+			<td class="d-flex flex-wrap flex-shrink-1 gap-2 flex_center">
+				<?php if(isset($_SESSION["user"])): ?>
+					<?php if($_SESSION["user"]["admin"]==1): ?>
+                	<a class="btn-main transition me-3 " href="orders-dele.php?orderId=<?=$row["id"]?>">刪除</a>
+					<?php endif; ?>
+				<?php endif; ?>
+				<a class="btn-main transition detail" href="">詳細資料</a>
+			</td>
 		</tr>
-		
+		<?php endif; ?>
 		<?php endforeach; ?>
 		<!-- <tr>
 			<th class="text-center" scope="row">2</th>
@@ -56,7 +94,8 @@
 	</tbody>
 </table>
 
-
+<?php if(isset($_SESSION["user"])): ?>
+	<?php if($_SESSION["user"]["admin"]==1): ?>
 <div class="w-100 flex_center">
 	<div class="btn-group me-2" role="group" aria-label="First group">
 		<a href="orders-index.php?page=<?php $prePage = $page - 1; if($prePage < 1){$prePage = 1;} echo $prePage;?>&order=<?=$order?>&per-page=<?= $perPage ?>&startDate=<?=$startDate?>&endDate=<?=$endDate?>&orderStat=<?=$orderStat?>" type="button" class="btn btn-outline-dark">上一頁</a>
@@ -69,6 +108,8 @@
 		<a href="orders-index.php?page=<?php $nextPage = $page + 1; if($nextPage > $totalPage){$nextPage = $totalPage;} echo $nextPage;?>&order=<?=$order?>&per-page=<?= $perPage ?>&startDate=<?=$startDate?>&endDate=<?=$endDate?>&orderStat=<?=$orderStat?>" type="button" class="btn btn-outline-dark">下一頁</a>
 	</div>
 </div>
+	<?php endif?>
+<?php endif?>
 <?php else:?>
 	目前沒有資料
 <?php endif?>

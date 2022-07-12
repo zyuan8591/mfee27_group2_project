@@ -1,14 +1,16 @@
 <?php
 require "db-connect.php" ;
-$order_id= $row["id"];
+// echo $order_id;
+
 $sqlOrderProduct = "SELECT order_product.*, products.name AS product_name, products.price AS product_price,
-orders.coupon_id AS couponId
+orders.coupon_id AS couponId, products.company_id
 -- , coupon.discount AS coupon_discount , coupon.start_date AS coupon_startDate, coupon.end_date AS coupon_endDate 
 FROM order_product 
 JOIN products ON order_product.product_id = products.id 
 JOIN orders ON order_product.order_id = orders.id
 -- JOIN coupon ON order_product.couponId = coupon.id 
-WHERE order_id= $order_id ORDER BY product_id ASC";
+WHERE order_id= $order_id $sqlUserWhere
+ORDER BY product_id ASC";
 // var_dump($sqlOrderProduct);
 
 $resultOrderProduct = $conn->query($sqlOrderProduct);
@@ -39,15 +41,15 @@ foreach($rowsOrderProduct as $rowOrderProduct){
 $order_time = $row["order_time"];
 $ts = strtotime($order_time);
 $order_time_ts = date('Y-m-d', $ts);
-echo $order_time_ts;
+// echo $order_time_ts;
 
 $sqlCouponLimit = "SELECT * FROM coupon WHERE start_date <= '$order_time_ts' AND end_date >= '$order_time_ts' ";
-echo $sqlCouponLimit . "<br>" ;
+// echo $sqlCouponLimit . "<br>" ;
 $resultCouponLimit = $conn->query($sqlCouponLimit);
 $rowsCouponLimit = $resultCouponLimit->fetch_all(MYSQLI_ASSOC);
 
 
-var_dump($rowsCouponLimit);
+// var_dump($rowsCouponLimit);
 
 
 ?>
