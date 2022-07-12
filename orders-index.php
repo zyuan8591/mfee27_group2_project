@@ -160,6 +160,16 @@ foreach ($rowStatus as $row){
 }
 // var_dump($orderStatusJJ);
 
+$sqlCoupon = "SELECT * FROM coupon";
+$resultCoupon = $conn->query($sqlCoupon);
+$rowCoupon = $resultCoupon->fetch_all(MYSQLI_ASSOC);
+// var_dump($rowCoupon);
+foreach($rowCoupon as $row){
+	$orderCoupon[$row["id"]]=$row["name"];
+}
+// $orderCoupon = json_encode($orderCoupon);
+// var_dump($orderCoupon);
+
 // $sqlDetail=" SELECT orders.id, order_product.*, products.id, products.price,products.name FROM order_product, products, orders WHERE order_product.order_id = orders.id ";
 // $resultDetail = $conn->query($sqlDetail);
 // $rowDetail = $resultDetail->fetch_all(MYSQLI_ASSOC);
@@ -168,6 +178,19 @@ foreach ($rowStatus as $row){
 // 	$orderDetail[$row["order_id"]] = $row["product_id"];
 // }
 // // var_dump($orderDetail);
+
+// for($i=1; $i<=$rows.length;$i++){
+// 	$orderPrice = $orderTotal[$i];
+// 	$sqlPrice = "INSERT INTO orders (order_price) VALUES '$orderPrice' WHERE id=$i";
+
+// 	if ($conn->query($sqlPrice) === TRUE) {
+//         echo "資料表 users 修改完成";
+//         echo "<br>";
+//     } else {
+//         echo "修改資料表錯誤: " . $conn->error;
+//     }
+
+// }
 
 
 
