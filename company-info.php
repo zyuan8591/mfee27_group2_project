@@ -1,25 +1,41 @@
 <?php
+// session_start();
+// require "./db-connect.php";
+
+// $company=[
+// 	"id"=>0,
+// ];
+
+// $_SESSION["company"]=$company;
+// if(!isset($_SESSION["company"]["id"])){
+// 	header("location: login.php");
+// }elseif($_SESSION["company"]["id"]==0){
+// 	header("location: product-index.php");
+// }else{
+// 	$company_id=$_SESSION["company"]["id"];
+// 	$companyId="id=$company_id";
+// }
+
+// $sql = "SELECT * FROM company_users WHERE $companyId";
+// $result = $conn->query($sql);
+// $rows = $result->fetch_all(MYSQLI_ASSOC);
+// echo $sql;
 session_start();
 require "./db-connect.php";
 
-$company=[
-	"id"=>0,
-];
-
-$_SESSION["company"]=$company;
-if(!isset($_SESSION["company"]["id"])){
+if(!isset($_SESSION["user"]["id"])){
 	header("location: login.php");
-}elseif($_SESSION["company"]["id"]==0){
+}elseif($_SESSION["user"]["admin"]==1){
 	header("location: product-index.php");
 }else{
-	$company_id=$_SESSION["company"]["id"];
-	$companyId="id=$company_id";
+	$company_id=$_SESSION["user"]["id"];
+	$companyId=$company_id;
 }
 
-$sql = "SELECT * FROM company_users WHERE $companyId";
+$sql = "SELECT * FROM company_users WHERE id = $companyId";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
-echo $sql;
+// echo $sql;
 ?>
 <!doctype html>
 <html lang="en">
