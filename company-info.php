@@ -1,19 +1,53 @@
 <?php
+// session_start();
+// require "./db-connect.php";
+
+// $company=[
+// 	"id"=>0,
+// ];
+
+// $_SESSION["company"]=$company;
+// if(!isset($_SESSION["company"]["id"])){
+// 	header("location: login.php");
+// }elseif($_SESSION["company"]["id"]==0){
+// 	header("location: product-index.php");
+// }else{
+// 	$company_id=$_SESSION["company"]["id"];
+// 	$companyId="id=$company_id";
+// }
+
+// $sql = "SELECT * FROM company_users WHERE $companyId";
+// $result = $conn->query($sql);
+// $rows = $result->fetch_all(MYSQLI_ASSOC);
+// echo $sql;
+session_start();
 require "./db-connect.php";
-$sql = "SELECT * FROM company_users WHERE id=1";
+
+if(!isset($_SESSION["user"]["id"])){
+	header("location: login.php");
+}elseif($_SESSION["user"]["admin"]==1){
+	header("location: product-index.php");
+}else{
+	$company_id=$_SESSION["user"]["id"];
+	$companyId=$company_id;
+}
+
+$sql = "SELECT * FROM company_users WHERE id = $companyId";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+// echo $sql;
 ?>
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS v5.2.0-beta1 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<head>
+	<title>Title</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS v5.2.0-beta1 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,15 +56,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 	<link rel="stylesheet" href="./style/normalize.css" />
 	<style>
 		<?php
-  require "./style/style.css";
-  require "./style/product.css";
-  require "./style/company-info.css";
-  ?>
+		require "./style/style.css";
+		require "./style/product.css";
+		require "./style/company-info.css";
+		?>
 	</style>
-  </head>
-  <body>
-    <?php require "product-header.php"; ?>
-    <aside class="aside position_abs">
+</head>
+
+<body>
+	<?php require "product-header.php"; ?>
+	<aside class="aside position_abs">
 		<!-- <div class="smaller_sidebar">
 				<svg
 					width="28"
@@ -192,97 +227,58 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 			</ul>
 		</nav>
 	</aside>
-	
+
 	<main class="main position-rel">
-	<?php foreach ($rows as $row): ?>
-	<form action="" class="info">
-		<div>
-			<figure class="avatar"><img class="object-cover" src="./img/company_img/<?= $row["logo"] ?>" alt=""></figure>
-		</div>
-		<div>
-			<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">廠商名稱</label>
-			<div class="col">
-				<input
-					type="text"
-					readonly
-					class="form-control-plaintext "
-					name="brand"
-					value="<?= $row["name"] ?>"
-				/>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">信箱　　</label>
-			<div class="col">
-				<input
-					type="text"
-					readonly
-					class="form-control-plaintext product-input"
-					name="email"
-					value="<?= $row["email"] ?>"
-					required
-				/>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">電話　　</label>
-			<div class="col">
-				<input
-					type="text"
-					readonly
-					class="form-control-plaintext product-input"
-					name="phone"
-					value="<?= $row["phone"] ?>"
-					required
-				/>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">地址　　</label>
-			<div class="col">
-				<input
-					type="text"
-					readonly
-					class="form-control-plaintext product-input"
-					name="address"
-					value="<?= $row["address"] ?>"
-					required
-				/>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">介紹　　</label>
-			<div class="col">
-				<input
-					type="text"
-					readonly
-					class="form-control-plaintext product-input"
-					name="intro"
-					value="<?= $row["intro"] ?>"
-					required
-				/>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">註冊日期</label>
-			<div class="col">
-				<input
-					type="text"
-					readonly
-					class="form-control-plaintext product-input"
-					name="create_time"
-					value="<?= $row["create_time"] ?>"
-					required
-				/>
-			</div>
-		</div>
-		</div>
-		</form>
+		<?php foreach ($rows as $row) : ?>
+			<form action="" class="info">
+				<div class="card-header"></div>
+				<div class="mx-5 d-flex justify-content-center">
+					<figure class="avatar"><img class="object-contain" src="./img/company_img/<?= $row["logo_img"] ?>" alt=""></figure>
+				</div>
+				<div class="mx-5">
+					<div class="mb-2 row">
+						<label for="" class="col-sm-auto col-form-label">廠商名稱</label>
+						<div class="col">
+							<input type="text" readonly class="form-control-plaintext " name="brand" value="<?= $row["name"] ?>" />
+						</div>
+					</div>
+					<div class="mb-2 row">
+						<label for="" class="col-sm-auto col-form-label">信箱　　</label>
+						<div class="col">
+							<input type="text" readonly class="form-control-plaintext product-input" name="email" value="<?= $row["email"] ?>" required />
+						</div>
+					</div>
+					<div class="mb-2 row">
+						<label for="" class="col-sm-auto col-form-label">電話　　</label>
+						<div class="col">
+							<input type="text" readonly class="form-control-plaintext product-input" name="phone" value="<?= $row["phone"] ?>" required />
+						</div>
+					</div>
+					<div class="mb-2 row">
+						<label for="" class="col-sm-auto col-form-label">地址　　</label>
+						<div class="col">
+							<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
+						</div>
+					</div>
+					<div class="mb-2 row">
+						<label for="" class="col-sm-auto col-form-label">介紹　　</label>
+						<div class="col">
+							<textarea class="form-control-plaintext product-input" name="intro" id="" cols="34" rows="7" readonly required><?= $row["intro"] ?></textarea>
+						</div>
+					</div>
+
+				</div>
+				<div class="mb-2 me-2 row">
+					<div class="col d-flex justify-content-end">
+						<p class="time "><?= $row["create_time"] ?></p>
+					</div>
+				</div>
+			</form>
 		<?php endforeach; ?>
 	</main>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		<?php require "./js/product.js"; ?>
-	</script>
-  </body>
+	</script> -->
+</body>
+
 </html>

@@ -1,5 +1,19 @@
 <?php
 session_start();
+require "./db-connect.php";
+
+if(!isset($_SESSION["user"]["id"])){
+	header("location: login.php");
+}elseif($_SESSION["user"]["admin"]==1){
+	header("location: product-index.php");
+}else{
+	$company_id=$_SESSION["user"]["id"];
+	$companyId=$company_id;
+}
+
+$sql = "SELECT * FROM company_users WHERE id = $companyId";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +38,8 @@ session_start();
 		<?php
 		require "./style/style.css";
 		require "./style/front-page-style.css"; 
+		require "./style/product.css";
+		require "./style/company-info.css";
 		?>
 	</style>
 	<!-- <link rel="stylesheet" href="./style/style.css" /> -->
@@ -118,7 +134,7 @@ session_start();
 	<main class="main">
 		<div class="mb-3 container">
 			<div class="h3 ps-2">首頁</div>
-		</div>
+		</div>		
 		<div>
 			<div class="container">
 				<!-- 商品管理 -->

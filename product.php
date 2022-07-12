@@ -74,18 +74,19 @@
 		$page = 1;
 	}
 
-	$company=[
-		"id"=>0
-	];
-		$_SESSION["company"]=$company;
+	// $company=[
+	// 	"id"=>0
+	// ];
+	
+	// $_SESSION["company"]=$company;
 
 	// echo json_encode($_SESSION["company"]["id"]);
-	if (!isset($_SESSION["company"]["id"])){
-		header("location: product-recomandation.php");
-	}elseif($_SESSION["company"]["id"]==0){
+	if (!isset($_SESSION["user"]["id"])){
+		header("location: login.php");
+	}elseif($_SESSION["user"]["admin"]==1){
 		$companyId="";
 	}else{
-		$company_id=$_SESSION["company"]["id"];
+		$company_id=$_SESSION["user"]["id"];
 		$companyId="AND company_id=$company_id";
 		// var_dump($_SESSION["company"]["id"]) ;
 	}

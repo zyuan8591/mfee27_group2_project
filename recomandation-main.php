@@ -83,17 +83,17 @@
 	}else{
 		$productFil="AND product_id=$product_id";
 	}
-	$company=[
-		"id"=>0,
-	];
+	// $company=[
+	// 	"id"=>0,
+	// ];
 
-	$_SESSION["company"]=$company;
-	if(!isset($_SESSION["company"]["id"])){
+	// $_SESSION["company"]=$company;
+	if(!isset($_SESSION["user"]["id"])){
 		header("location: login.php");
-	}elseif($_SESSION["company"]["id"]==0){
+	}elseif($_SESSION["user"]["admin"]==1){
 		$companyId="";
 	}else{
-		$company_id=$_SESSION["company"]["id"];
+		$company_id=$_SESSION["user"]["id"];
 		$companyId="AND company=$company_id";
 	}
 
@@ -194,7 +194,7 @@
 				<th scope="col">商品留言</th>
                 <th scope="col">評價分數</th>
                 <th scope="col">留言日期</th>
-				<?php if($_SESSION["company"]["id"]==0): ?>
+				<?php if($_SESSION["user"]["admin"]==1): ?>
 				<th scope="col">編輯</th>
 				<?php endif; ?>
 			</tr>
@@ -211,7 +211,7 @@
                     <td><?=$row["content"]?></td>
                     <td class="star"><?=$row["comment"]?></td>
                     <td><?=$row["create_time"]?></td>
-					<?php if($_SESSION["company"]["id"]==0): ?>
+					<?php if($_SESSION["user"]["admin"]==1): ?>
 					<td class="">
 						<a class="delete-btn text-white" href="delete-comment-exe.php?id=<?=$row["id"]?>">刪除</a>
 					</td>
