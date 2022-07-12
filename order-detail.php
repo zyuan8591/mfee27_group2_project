@@ -135,7 +135,7 @@ foreach($rowsOrderProduct as $rowOrderProduct){
 			<select
 					type="text"
 					disabled="true"
-					class="form-select detail-item-select"
+					class="form-select detail-item-select coupon-select"
 					name="coupon"
 				>
 				<option value="0">無</option>
@@ -204,7 +204,15 @@ foreach($rowsOrderProduct as $rowOrderProduct){
 					<?php endforeach; ?>
 					<tr>
 						<td colspan="5" class="text-end">總計：<span><?=number_format($totalPrice)?></span> <br>
-						<span class="text-danger discount">折扣：<?php if($rowOrderProduct["couponDiscount"]==1) echo "無"?></span><br>
+						<span class="text-danger">折扣：</span>
+						<span class="text-danger discount">
+							<?php if($rowOrderProduct["couponDiscount"]==1): ?>
+							無
+							<?php else: ?>
+							<?php echo $rowOrderProduct["couponDiscount"]*100 . "%" ?>
+							<?php endif; ?>
+						</span>
+						<br>
 						<span >折扣後：<?=number_format($totalPrice*$rowOrderProduct["couponDiscount"])?></span> 
 						</td>
 					</tr>

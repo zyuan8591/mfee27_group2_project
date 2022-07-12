@@ -166,6 +166,7 @@ $rowCoupon = $resultCoupon->fetch_all(MYSQLI_ASSOC);
 // var_dump($rowCoupon);
 foreach($rowCoupon as $row){
 	$orderCoupon[$row["id"]]=$row["name"];
+	$couponDiscount[$row["id"]]=$row["discount"];
 }
 // $orderCoupon = json_encode($orderCoupon);
 // var_dump($orderCoupon);
