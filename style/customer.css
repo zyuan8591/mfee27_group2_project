@@ -27,21 +27,15 @@
 	border-bottom: 1px solid #ccc;
 	padding: 10px 0;
 }
-.btn {
+/* .btn {
 	border: 1px solid lightblue;
 	padding: 8px;
 	font-size: 1.3rem;
-}
+} */
 .form-control {
 	margin-top: 10px;
 }
 /* ------------ */
-
-/* table-->valid */
-
-.valid-btn {
-	background: #ccc;
-}
 
 /* ------------ */
 

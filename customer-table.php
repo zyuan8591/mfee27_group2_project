@@ -27,13 +27,13 @@
 			</td>
 			<td><?=$row["create_time"]?></td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
-				<a class="btn-main transition me-3 on-shelf <?php if($row["valid"]==1)echo "valid-btn"?>" href="customer-doValid1.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>" >啟用</a>
-				<a class="btn-main transition me-3 off-shelf <?php if($row["valid"]==0)echo "valid-btn"?>" id="onShelf" href="customer-doValid0.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>">停用</a>
+				<a class="btn-main transition me-3 on-shelf <?php if($row["valid"]==1)echo "point-event-none"?>" href="customer-doValid1.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>" >啟用</a>
+				<a class="btn-main transition me-3 off-shelf <?php if($row["valid"]==0)echo "point-event-none"?>" id="onShelf" href="customer-doValid0.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>">停用</a>
 				<a class="btn-main transition detail" href="">詳細資料</a>
 				<?php require "customer-detail.php"; ?>
 			</td>
 			<td>
-				<a class="btn-main me-3" href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>&exist=0">商品收藏</a>
+				<a class="btn-main me-3 " href="product-collect-detail.php?page=<?=$page?>&order=<?=$order?>&selectPages=<?=$selectPages?>&search=<?=$search?>&valid=<?=$valid?>&id=<?=$row["id"]?>&exist=0">會員收藏</a>
 			</td>
 		</tr>
 

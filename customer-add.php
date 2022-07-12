@@ -37,8 +37,8 @@
                 </div> 
                 
                 <div class="d-flex mt-5 justify-content-center">
-                    <button class="btn" type="submit" >新增會員</button>
-                    <button id="customer-close-btn" class="btn ms-5 transition">返回會員列表</button>     
+                    <button class="btn-main" type="submit" >新增會員</button>
+                    <button id="customer-close-btn" class="btn-main ms-5 transition">返回會員列表</button>     
                 </div>
             </form>
         </div>

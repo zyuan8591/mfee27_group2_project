@@ -117,7 +117,7 @@ if($condition == 1){
 	<?php if($recipeType > 0):?>
 	<div class="row collect-page">
 		<p class="search-title my-2">食譜： <?=$rowRecipe["name"]?></p>
-		<p class="search-text mb-2">-已被 <?=$countRecipeSearch?> 個會員收藏-</p>
+		<p class="search-text mb-2">-已被 <?=$countRecipeSearch?> 位會員收藏-</p>
 		<?php if($countRecipeSearch>0): ?>
 		<?php foreach($rowsRecipeSearch as $recipeSearchRow): ?>
 		<div class="col-6">

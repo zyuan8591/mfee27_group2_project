@@ -23,13 +23,13 @@ require("db-connect.php");
 $id=$_GET["id"];
 // echo $id;
 // exit;
-$sql="UPDATE product_like SET valid=0 WHERE user_id='$id' AND product_id='$product'";
 
+$sql="DELETE FROM product_like WHERE user_id='$id' AND product_id='$product'";
 
 if ($conn->query($sql) === TRUE) {
-    echo "新增成功";
+    echo "刪除成功";
 } else {
-    echo "新增資料錯誤: " . $conn->error;
+    echo "刪除資料錯誤 " . $conn->error;
 }
 
 

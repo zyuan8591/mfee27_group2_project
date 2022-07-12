@@ -251,6 +251,7 @@ if(isset($_GET["id"])){
 		<?php endif; ?>
 		<!-- ------ -->
 <!-- session -->
+<?php if(isset($_SESSION["addCollect"])): ?>
 <?php if($_SESSION["addCollect"]["condition"]=="3"): ?>
 		<script type="text/javascript">
 			Toastify({
@@ -269,8 +270,10 @@ if(isset($_GET["id"])){
 		</script>
 		<?php unset($_SESSION["addCollect"]); ?>
 		<?php endif; ?>
+		<?php endif; ?>
 		<!-- ------ -->
 <!-- session -->
+<?php if(isset($_SESSION["addCollect"])): ?>
 <?php if($_SESSION["addCollect"]["condition"]=="4"): ?>
 		<script type="text/javascript">
 			Toastify({
@@ -288,6 +291,7 @@ if(isset($_GET["id"])){
 			}).showToast();
 		</script>
 		<?php unset($_SESSION["addCollect"]); ?>
+		<?php endif; ?>
 		<?php endif; ?>
 		<!-- ------ -->
 

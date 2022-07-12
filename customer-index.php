@@ -461,6 +461,7 @@ if(isset($_GET["user_id"])){
 			<?php require "js/customer.js"; ?>
 		</script>
 		<!-- updateUser -->
+		<?php if(isset($_SESSION["usersModify"])): ?>
 		<?php if($_SESSION["usersModify"]["condition"]==1): ?>
 		<script type="text/javascript">
 			Toastify({
@@ -479,8 +480,10 @@ if(isset($_GET["user_id"])){
 		</script>
 		<?php unset($_SESSION["usersModify"]); ?>
 		<?php endif; ?>
+		<?php endif; ?>
 		<!-- ------ -->
 		<!-- createUser -->
+		<?php if(isset($_SESSION["usersModify"])): ?>
 		<?php if($_SESSION["usersModify"]["condition"]==2): ?>
 		<script type="text/javascript">
 			Toastify({
@@ -498,6 +501,7 @@ if(isset($_GET["user_id"])){
 			}).showToast();
 		</script>
 		<?php unset($_SESSION["usersModify"]); ?>
+		<?php endif; ?>
 		<?php endif; ?>
 	</body>
 </html>
