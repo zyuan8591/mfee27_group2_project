@@ -9,7 +9,6 @@ JOIN products ON order_product.product_id = products.id
 JOIN orders ON order_product.order_id = orders.id
 -- JOIN coupon ON order_product.couponId = coupon.id 
 WHERE order_id= $order_id ORDER BY product_id ASC";
-
 // var_dump($sqlOrderProduct);
 
 $resultOrderProduct = $conn->query($sqlOrderProduct);
@@ -36,6 +35,20 @@ foreach($rowsOrderProduct as $rowOrderProduct){
 }
 
 // var_dump($rowOrderProduct);
+
+$order_time = $row["order_time"];
+$ts = strtotime($order_time);
+$order_time_ts = date('Y-m-d', $ts);
+echo $order_time_ts;
+
+$sqlCouponLimit = "SELECT * FROM coupon WHERE start_date <= '$order_time_ts' AND end_date >= '$order_time_ts' ";
+echo $sqlCouponLimit . "<br>" ;
+$resultCouponLimit = $conn->query($sqlCouponLimit);
+$rowsCouponLimit = $resultCouponLimit->fetch_all(MYSQLI_ASSOC);
+
+
+var_dump($rowsCouponLimit);
+
 
 ?>
 
