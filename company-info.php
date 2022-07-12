@@ -3,7 +3,7 @@ session_start();
 require "./db-connect.php";
 
 $company=[
-	"id"=>0,
+	"id"=>1,
 ];
 
 $_SESSION["company"]=$company;
