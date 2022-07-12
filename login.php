@@ -28,7 +28,8 @@ if(isset($_SESSION["user"])){
 		rel="stylesheet"
 	/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="./style/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./style/normalize.css" />
     <link rel="stylesheet" href="style/style.css">
     <style>
 
@@ -285,38 +286,60 @@ if(isset($_SESSION["user"])){
     <?php endif; ?>
     </div>
 </main>
-<script>
+    <script>
 
-    let p1=document.getElementsByClassName("p1");
-    let a1=document.getElementsByClassName("a1");
-    let titles = document.querySelectorAll('.titles');
-    console.log(titles);
-    p1Idx=0;
-    p1[p1Idx].style.display="flex";
+        let p1=document.getElementsByClassName("p1");
+        let a1=document.getElementsByClassName("a1");
+        let titles = document.querySelectorAll('.titles');
+        console.log(titles);
+        p1Idx=0;
+        p1[p1Idx].style.display="flex";
 
-    for(let i=0; i<a1.length; i++){        
-        a1[i].addEventListener("click",function(){
-            for(let s=0; s<a1.length; s++){ 
-                a1[s].classList.remove("b-bottom");
-                p1[s].style.display="none";
-                titles[s].classList.add('d-none');
-            }
-            a1[i].classList.add("b-bottom");
-            p1[i].style.display="flex";
-            titles[i].classList.remove('d-none');
-        });
-    }
+        for(let i=0; i<a1.length; i++){        
+            a1[i].addEventListener("click",function(){
+                for(let s=0; s<a1.length; s++){ 
+                    a1[s].classList.remove("b-bottom");
+                    p1[s].style.display="none";
+                    titles[s].classList.add('d-none');
+                }
+                a1[i].classList.add("b-bottom");
+                p1[i].style.display="flex";
+                titles[i].classList.remove('d-none');
+            });
+        }
 
-    // function menuClick(){
-    //    for(let s=0; s<a1.length; s++){ 
-    //       a1[s].classList.remove("b-bottom");
-    //       p1[s].style.display="none";
-    // }
-    //       this.classList.add("b-bottom");
-    //       p1Idx=Number(this.id.substr(1));
-    //       p1[p1Idx-1].style.display="flex";
-    // }
+        // function menuClick(){
+        //    for(let s=0; s<a1.length; s++){ 
+        //       a1[s].classList.remove("b-bottom");
+        //       p1[s].style.display="none";
+        // }
+        //       this.classList.add("b-bottom");
+        //       p1Idx=Number(this.id.substr(1));
+        //       p1[p1Idx-1].style.display="flex";
+        // }
 
-</script>
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <?php if(isset($_SESSION["signUp"])): ?>
+        <?php if($_SESSION["signUp"]["condition"]==1): ?>
+            <script>
+                Toastify({
+                text: "註冊成功",
+                duration: 3000,
+                destination: "https://github.com/apvarun/toastify-js",
+                newWindow: true,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "left", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+                },
+                onClick: function(){} // Callback after click
+                }).showToast();
+            </script>
+        <?php unset($_SESSION["signUp"]); ?>
+        <?php endif; ?>
+    <?php endif; ?>
   </body>
 </html>

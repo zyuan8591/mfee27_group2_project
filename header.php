@@ -15,6 +15,17 @@
 
 		</div>
 		<h1 class="title">廚聚後台管理系統</h1>
+		<a href="
+		<?php if(isset($_SESSION["user"])):?>
+			<?php if($_SESSION["user"]["admin"]==1): ?>
+			admin-user-index.php
+			<?php elseif($_SESSION["user"]["admin"]==0): ?>
+			company-user-index.php
+			<?php endif; ?>
+		<?php endif; ?>
+		" class="link-light" >
+			<i class="fa-solid fa-house ms-3 mt-2" style="font-size: 1.25rem;"></i>
+		</a>
 	</div>
 	<div class="user flex_center">
 		<?php if(isset($_SESSION["user"])): ?>

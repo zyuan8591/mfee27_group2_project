@@ -25,7 +25,7 @@ a:active {
 
 :root {
 	/* height &width */
-	--header-height: 50px;
+	--header-height: 80px;
 	--aside-width: 240px;
 	/* bg-color */
 	--main-color: #fefbdd;
@@ -33,7 +33,7 @@ a:active {
 	--header-bg: #fff;
 	--sub-bg: #efeff1;
 	--delete-bg: #d90429;
-	--main-bg-2: #535353;
+	--main-bg-2: #ff9500;
 	/* color */
 	--button-color: #aaa;
 	--button-active: #ccc;
@@ -112,6 +112,10 @@ a:active {
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
+}
+.point-event-none {
+	pointer-events: none;
+	opacity: 0.5;
 }
 /* --------------------------------------------- */
 /* header */

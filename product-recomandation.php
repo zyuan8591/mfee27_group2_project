@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,6 +101,8 @@
 					</ul>
 				</li>
 				<!-- 食譜管理 -->
+				<?php if(isset($_SESSION["user"])): ?>
+					<?php if($_SESSION["user"]["admin"]==1) : ?>
 				<li class="main_nav_item_container">
 					<div class="main_nav_item">
 						<div class="flex_center">
@@ -155,6 +158,8 @@
 						</div>
 					</ul>
 				</li>
+					<?php endif; ?>
+				<?php endif; ?>
 				<li class="main_nav_item_container">
 					<div class="main_nav_item">
 						<div class="flex_center">
