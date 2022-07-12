@@ -34,10 +34,10 @@
 			<button class="btn btn-dark addBtn-recipe" type="submit">送出</button>
 		</div>
 	</form>
-<!-- ------ -->
+	<!-- ------ -->
 
-<!-- add-product-collect -->
-<form class="text-center px-4" action="add-product-update.php" method="post">
+	<!-- add-product-collect -->
+	<form class="text-center px-4" action="add-product-update.php" method="post">
 		<div class="border p-3">
 			<input type="hidden" value="<?=$user_id?>" name="product-user-id">
 			<div class="add-main-title">新增商品收藏</div>
@@ -63,7 +63,7 @@
 			<button class="btn btn-dark addBtn-recipe" type="submit">送出</button>
 		</div>
 	</form>
-<!-- ------ -->	
+	<!-- ------ -->	
 	</div>		
 </div>
 
