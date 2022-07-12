@@ -66,12 +66,9 @@ if(isset($_SESSION["user"])){
         	/* color */
         	/* --main-font-color: rgb(60, 60, 60); */
             --font-color: rgb(250, 250, 250);
-<<<<<<< HEAD
             --btn-color: #3b5e74;
-=======
             --btn-color: #1e6091;
             --header-bg: #1e6091;
->>>>>>> 75b51dd5995d7231267a1a743eda2a35e40de0b8
         	/* other */
         	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1);
         	--hover-shadow: 3px 2px #bbb;
