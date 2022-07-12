@@ -34,6 +34,8 @@
 	cursor: pointer;
 }
 .main-item {
+	width: 100%;
+	min-width: 200px;
 	height: 8rem;
 	background: #ffffff;
 	border-radius: 5px;
@@ -55,11 +57,9 @@
 	font-size: 1.1rem;
 	padding: 5px 1rem;
 }
-.main-content li {
-	display: flex;
-	align-items: center;
+.main-item-bottom{
+	max-width: 67%;
 }
-
 /* sort by -- */
 .sort-search {
 	margin: 0.5rem 0 0 0;

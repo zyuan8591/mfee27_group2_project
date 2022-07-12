@@ -126,7 +126,7 @@ session_start();
         		    <div class="title-bar d-flex align-items-center bg-color1">
 						<h4>商品管理</h4>
         		    </div>
-        		    <div class="main-content">
+        		    <div class="main-content d-flex ">
         		    	<ul class="unstyled_list p-0">
         		        	<li><a href="product-index.php">商品總覽</a></li>
 							<li><a href="product-recomandation.php">評價總覽</a></li>
