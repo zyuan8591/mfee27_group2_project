@@ -60,14 +60,13 @@ if(isset($_SESSION["user"])){
 
         :root {
         	/* height &width */
-        	--header-height: 50px;
+        	--header-height: 65px;
         	/* bg-color */
-        	--header-bg: #fff;
+        	--header-bg: #3b5e74;
         	/* color */
-        	--main-font-color: rgb(60, 60, 60);
+        	/* --main-font-color: rgb(60, 60, 60); */
             --font-color: rgb(250, 250, 250);
-            --btn-color: #4c6791;
-            --header-bg: #4c6791;
+            --btn-color: #3b5e74;
         	/* other */
         	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1);
         	--hover-shadow: 3px 2px #bbb;
@@ -108,8 +107,8 @@ if(isset($_SESSION["user"])){
             display: flex;
             align-items: center;
             justify-content: center;  
-            position: relative;
-            top: var(--header-height);
+            /* position: relative; */
+            /* top: var(--header-height); */
         }
         
         .contain{

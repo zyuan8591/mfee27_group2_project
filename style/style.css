@@ -31,9 +31,9 @@ a:active {
 	--main-color: #fefbdd;
 	--main-bg: #f7f7f8;
 	--header-bg: #fff;
-	--sub-bg: #99b5cacc;
+	--sub-bg: #afbec7;
 	--delete-bg: #d90429;
-	--main-bg-2: #1e6091;
+	--main-bg-2: #3b5e74;
 	/* color */
 	--button-color: #7b94a8;
 	--button-active: #7b94a8;
@@ -50,11 +50,11 @@ a:active {
 	--bs-btn-color: #212529;
 	--bs-btn-border-color: #305c95;
 	--bs-btn-hover-color: #fff;
-	--bs-btn-hover-bg: #4c6791;
+	--bs-btn-hover-bg: #3b5e74;
 	--bs-btn-hover-border-color: #212529;
 	--bs-btn-focus-shadow-rgb: 33, 37, 41;
 	--bs-btn-active-color: #fff;
-	--bs-btn-active-bg: #4c6791;
+	--bs-btn-active-bg: #3b5e74;
 	--bs-btn-active-border-color: #003c78;
 	/* --bs-btn-active-shadow: inset 0 1px 1pxrgba(0, 0, 0, 0.125); */
 	--bs-btn-disabled-color: #ff0000;
