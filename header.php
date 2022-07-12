@@ -31,7 +31,15 @@
 		<?php if(isset($_SESSION["user"])): ?>
 		<div class="me-2"> Hi!&ensp;<?=$_SESSION["user"]["name"]?></div>
 		<div class="user_photo d-flex">
+			<a href="
+			<?php if(isset($_SESSION["user"])): ?>
+				<?php if($_SESSION["user"]["admin"]==0): ?>
+					company-info.php
+				<?php endif; ?>
+			<?php endif; ?>
+			">
 				<img class="user-object-cover" src="img/company_img/<?=$_SESSION["user"]["image"]?>" alt="">
+			</a>
 		</div>
 		<?php endif; ?>
 		<div class="">
