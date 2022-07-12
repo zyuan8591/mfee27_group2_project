@@ -173,8 +173,8 @@ session_start();
 		</nav>
 	</aside>
 	<main class="main">
-		<div class="mb-3">
-			<h6>首頁</h6>
+		<div class="mb-3 container">
+			<div class="h3 ps-2">首頁</div>
 		</div>
 		<div>
 			<div class="container">

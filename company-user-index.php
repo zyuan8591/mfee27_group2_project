@@ -132,58 +132,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		</nav>
 	</aside>
 	<main class="main">
-		<div class="mb-3">
-				<h6>首頁</h6>
-		</div>
-		<div>			
-			<?php foreach ($rows as $row) : ?>
-			<form action="" class="info">
-				<div class="card-header"></div>
-				<div class="mx-5 d-flex justify-content-center">
-					<figure class="avatar"><img class="object-contain" src="./img/company_img/<?= $row["logo_img"] ?>" alt=""></figure>
-				</div>
-				<div class="mx-5">
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">廠商名稱</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext " name="brand" value="<?= $row["name"] ?>" />
-						</div>
-					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">信箱　　</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext product-input" name="email" value="<?= $row["email"] ?>" required />
-						</div>
-					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">電話　　</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext product-input" name="phone" value="<?= $row["phone"] ?>" required />
-						</div>
-					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">地址　　</label>
-						<div class="col">
-							<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
-						</div>
-					</div>
-					<div class="mb-2 row">
-						<label for="" class="col-sm-auto col-form-label">介紹　　</label>
-						<div class="col">
-							<textarea class="form-control-plaintext product-input" name="intro" id="" cols="34" rows="7" readonly required><?= $row["intro"] ?></textarea>
-						</div>
-					</div>
-
-				</div>
-				<div class="mb-2 me-2 row">
-					<div class="col d-flex justify-content-end">
-						<p class="time "><?= $row["create_time"] ?></p>
-					</div>
-				</div>
-			</form>
-		<?php endforeach; ?>
-		</div>
-		
+		<div class="mb-3 container">
+			<div class="h3 ps-2">首頁</div>
+		</div>		
 		<div>
 			<div class="container">
 				<!-- 商品管理 -->
