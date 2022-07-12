@@ -86,5 +86,4 @@
 		    <?php unset($_SESSION["revise"]); ?>
 		<?php endif;?>
 	<?php endif;?>
-    <?php session_unset(); ?>
 

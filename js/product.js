@@ -60,7 +60,6 @@ addProductBtn.addEventListener("click", function (e) {
 	for (let i = 0; i < input.length; i++) {
 		input[i].disabled = false;
 	}
-	
 });
 backProduct.addEventListener("click", function (e) {
 	e.preventDefault();
@@ -114,7 +113,7 @@ for (let j = 0; j < saveBtn.length; j++) {
 			input[i].setAttribute("readonly", "readonly");
 			input[i].classList.add("form-control-plaintext");
 			input[i].classList.remove("form-control");
-			input[i].disabled = true;
+			// input[i].disabled = true;
 		}
 	});
 }
@@ -142,24 +141,23 @@ perPage.addEventListener("change", function (e) {
 });
 
 // add & revise img
-let detailPreview=document.querySelectorAll(".detail-preview");
-let imgInput=document.querySelectorAll(".detail-img-input");
+let detailPreview = document.querySelectorAll(".detail-preview");
+let imgInput = document.querySelectorAll(".detail-img-input");
 
-
-for(let m=0;m<imgInput.length;m++){
-imgInput[m].addEventListener("change", function(e){
-    let file=imgInput[m].files[0].name;
-    detailPreview[m].src=`img/products_main_img/${file}`;
-});
+for (let m = 0; m < imgInput.length; m++) {
+	imgInput[m].addEventListener("change", function (e) {
+		let file = imgInput[m].files[0].name;
+		detailPreview[m].src = `img/products_main_img/${file}`;
+	});
 }
 
-let svg=document.querySelector(".svg");
-let addPreview=document.querySelector(".add-preview");
-let addImgInput=document.querySelector(".add-img-input");
+let svg = document.querySelector(".svg");
+let addPreview = document.querySelector(".add-preview");
+let addImgInput = document.querySelector(".add-img-input");
 
-addImgInput.addEventListener("change", (e)=>{
-    let file=addImgInput.files[0].name;
-    svg.classList.add("d-none");
-    addPreview.classList.remove("d-none");
-    addPreview.src=`img/products_main_img/${file}`;
-})
+addImgInput.addEventListener("change", (e) => {
+	let file = addImgInput.files[0].name;
+	svg.classList.add("d-none");
+	addPreview.classList.remove("d-none");
+	addPreview.src = `img/products_main_img/${file}`;
+});
