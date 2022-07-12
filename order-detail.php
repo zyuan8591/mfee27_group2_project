@@ -139,6 +139,7 @@ foreach($rowsOrderProduct as $rowOrderProduct){
 					name="coupon"
 				>
 				<option value="0">無</option>
+				
 				<?php foreach($rowCoupon as $rowCoup):?>
 				<option class="coupon"
 				 	value="<?= $rowCoup["id"] ?>"
@@ -149,7 +150,16 @@ foreach($rowsOrderProduct as $rowOrderProduct){
 				</select>
 			</div>
 		</div>
-        
+		<?php
+		$orderTimesss = $row["order_time"];
+		// $sqlCoupon87ss = "SELECT * FROM coupon WHERE start_date <= $orderTimesss AND end_date >= $orderTimesss";
+		// $resultCoupon87ss = $conn->query($sqlCoupon87ss);
+		// $rowsCoupon87ss = $resultCoupon87ss->fetch_all(MYSQLI_ASSOC);  
+		foreach ($rowsCoupon87ss as $row87){
+			$coupon87[$row87["id"]] = $row["name"];
+		}
+		var_dump($coupon87);
+		?>
         <div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">下單時間</label>
 			<div class="col">
@@ -204,7 +214,7 @@ foreach($rowsOrderProduct as $rowOrderProduct){
 					<?php endforeach; ?>
 					<tr>
 						<td colspan="5" class="text-end">總計：<span><?=number_format($totalPrice)?></span> <br>
-						<span class="text-danger discount">折扣：<?php if($rowOrderProduct["couponDiscount"]==1) echo "無"?></span><br>
+						<span class="text-danger discount">折扣：<?php if($rowOrderProduct["couponDiscount"]==1) {echo "無";}{echo $rowOrderProduct["couponDiscount"];}?></span><br>
 						<span >折扣後：<?=number_format($totalPrice*$rowOrderProduct["couponDiscount"])?></span> 
 						</td>
 					</tr>
