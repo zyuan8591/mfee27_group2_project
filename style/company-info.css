@@ -1,8 +1,19 @@
+
 .avatar {
-    width: 180px;
-    height: 100px;
+    width: 200px;
+    height: 120px;
 }
-.info {
-    width: 25rem;
-    
+.info:first-child {
+    white-space: nowrap;
+    width: 30rem;
+    border-radius: 5px;
+    background: white;
+}
+.card-header:first-child {
+    height: 40px;
+    background: rgb(255, 50, 50);
+    border-radius: 5px 5px 0 0 ;
+}
+.time {
+	color:var(--button-color);
 }
