@@ -116,45 +116,47 @@ session_start();
 		</nav>
 	</aside>
 	<main class="main">
-		<div>
+		<div class="mb-3">
 			<h6>首頁</h6>
 		</div>
 		<div>
-			<div class="row center">
+			<div class="container">
 				<!-- 商品管理 -->
-				<div class="main-item col-md-4">
-        		    <div class="title-bar d-flex align-items-center bg-color1">
-						<h4>商品管理</h4>
-        		    </div>
-        		    <div class="main-content d-flex ">
-        		    	<ul class="unstyled_list p-0">
-        		        	<li><a href="product-index.php">商品總覽</a></li>
-							<li><a href="product-recomandation.php">評價總覽</a></li>
-        		      	</ul>
-        		    </div>
-        		</div>
-				<!-- 訂單管理 -->
-				<div class="main-item col-md-4">
-        		    <div class="title-bar d-flex align-items-center bg-color2">
-						<h4> 訂單管理</h4>
-        		    </div>
-        		    <div class="main-content">
-        		    	<ul class="unstyled_list p-0">
-        		        	<li><a href="orders-index.php">訂單總覽</a></li>
-        		      	</ul>
-        		    </div>
-        		</div>
-				<!-- 活動管理 -->
-				<div class="main-item col-md-4">
-        		    <div class="title-bar d-flex align-items-center bg-color5">
-						<h4> 活動管理</h4>
-        		    </div>
-        		    <div class="main-content">
-					  	<ul class="unstyled_list p-0">
-        		       		<li><a href="coupon-index.php">優惠卷</a></li>
-        		      	</ul>
-        		    </div>
-        		</div>
+				<div class="main-item-top d-flex justify-content-center mb-3">
+					<div class="main-item">
+        			    <div class="title-bar d-flex align-items-center bg-color1">
+							<h4>商品管理</h4>
+        			    </div>
+        			    <div class="main-content">
+        			    	<ul class="unstyled_list p-0">
+        			        	<li><a href="product-index.php">商品總覽</a></li>
+								<li><a href="product-recomandation.php">評價總覽</a></li>
+        			      	</ul>
+        			    </div>
+        			</div>
+					<!-- 訂單管理 -->
+					<div class="main-item">
+        			    <div class="title-bar d-flex align-items-center bg-color2">
+							<h4> 訂單管理</h4>
+        			    </div>
+        			    <div class="main-content">
+        			    	<ul class="unstyled_list p-0">
+        			        	<li><a href="orders-index.php">訂單總覽</a></li>
+        			      	</ul>
+        			    </div>
+        			</div>
+					<!-- 活動管理 -->
+					<div class="main-item">
+        			    <div class="title-bar d-flex align-items-center bg-color5">
+							<h4> 活動管理</h4>
+        			    </div>
+        			    <div class="main-content">
+						  	<ul class="unstyled_list p-0">
+        			       		<li><a href="coupon-index.php">優惠卷</a></li>
+        			      	</ul>
+        			    </div>
+        			</div>
+				</div>
 			</div>
 		</div>
 	</main>
