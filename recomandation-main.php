@@ -205,9 +205,9 @@
 
 				<tr class="">
 					<th class="text-center" scope="row"><?= $row["id"] ?></th>
-					<td><a href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&company=<?=$row["company"]?>"><?=$companyName[$row["company"]]?></a></td>
-					<td><a href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&product=<?=$row["product_id"]?>"><?= $product[$row["product_id"]] ?></a></td>
-					<td><a class="" href="product-recomandation.php?order=<?=$order?>&page=<?=$page?>&comment=<?=$comment?>&user=<?=$row["user_id"]?>"><?=$commentUser[$row["user_id"]]?></a></td>
+					<td><a class="search-hover" href="product-recomandation.php?order=<?=$order?>&comment=<?=$comment?>&company=<?=$row["company"]?>"><?=$companyName[$row["company"]]?></a></td>
+					<td><a class="search-hover" href="product-recomandation.php?order=<?=$order?>&comment=<?=$comment?>&product=<?=$row["product_id"]?>"><?= $product[$row["product_id"]] ?></a></td>
+					<td><a class="search-hover" class="" href="product-recomandation.php?order=<?=$order?>&comment=<?=$comment?>&user=<?=$row["user_id"]?>"><?=$commentUser[$row["user_id"]]?></a></td>
                     <td><?=$row["content"]?></td>
                     <td class="star"><?=$row["comment"]?></td>
                     <td><?=$row["create_time"]?></td>
