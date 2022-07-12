@@ -19,7 +19,7 @@ if(!isset($_SESSION["company"]["id"])){
 $sql = "SELECT * FROM company_users WHERE $companyId";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
-echo $sql;
+// echo $sql;
 ?>
 <!doctype html>
 <html lang="en">

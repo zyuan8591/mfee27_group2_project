@@ -1,16 +1,13 @@
 <?php
 session_start();
-$success=[
-	"id"=>1,
-];
-$_SESSION["success"]=$success;
-if($_SESSION["success"]["id"]==1){
-// echo "success";
-}elseif($_SESSION["success"]["id"]==2){
-// echo "fail";
+if(isset($_SESSION["success"])){
+
 }else{
-echo ($_SESSION);
+	$success=[
+		"id"=>0,
+	];
 }
+// var_dump($_SESSION);
 // session_unset();
 ?>
 <!DOCTYPE html>
@@ -212,7 +209,28 @@ echo ($_SESSION);
 		<?php require "./js/product.js"; ?>
 
 	</script>
+	<script type="text/javascript">
+		<?php var_dump($_SESSION); ?>
+		console.log($_SESSION);
+		<?php if($_SESSION["success"]["id"]==1):?>
+			Toastify({
+				text: "成功",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "top", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+				  background: "linear-gradient(to right, #00b09b, #96c93d)",
+				},
+				onClick: function(){} // Callback after click
+			  }).showToast();
+		<?php endif?>
+		
 
+		</script>
 
 </body>
 

@@ -34,13 +34,16 @@ if ($conn->query($sql) === TRUE) {
     $success=[
         "id"=>1,
     ];
-    echo ($_SESSION);
+    $_SESSION["success"]=$success;
+    // var_dump ($_SESSION);
 } else {
     echo "新增失敗" . $conn->error;
     $success=[
         "id"=>2,
     ];
-    echo ($_SESSION);
+    $_SESSION["success"]=$success;
+    // var_dump ($_SESSION);
 }
+// session_unset();
 $conn->close();
 header("location: product-index.php?order=1&filter=$filterNum&valid=$validNum&order=$order&page=$page&per=$per");
