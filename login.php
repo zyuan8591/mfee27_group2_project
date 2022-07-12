@@ -66,8 +66,8 @@ if(isset($_SESSION["user"])){
         	/* color */
         	--main-font-color: rgb(60, 60, 60);
             --font-color: rgb(250, 250, 250);
-            --btn-color: #535353;
-            --header-bg: #535353;
+            --btn-color: #4c6791;
+            --header-bg: #4c6791;
         	/* other */
         	--box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1);
         	--hover-shadow: 3px 2px #bbb;
@@ -276,7 +276,7 @@ if(isset($_SESSION["user"])){
                         <input type="text" class="form-control" name="signup-address">
                     </div>
                     <div class="d-flex mt-4 justify-content-center">
-                        <button class="btn-style rounded-0 border-0" type="submit">註冊</button>    
+                        <button class="btn-style border-0" type="submit">註冊</button>    
                     </div>
                     </div>
                 </form>

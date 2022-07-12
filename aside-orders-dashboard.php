@@ -200,8 +200,7 @@
 							</div>
 						</ul>
 					</li>
-						<?php endif; ?>
-					<?php endif; ?>
+
 					<li class="main_nav_item_container">
 						<div class="main_nav_item">
 							<div class="flex_center">
@@ -252,6 +251,8 @@
 							</div>
 						</ul>
 					</li>
+						<?php endif; ?>
+					<?php endif; ?>
 				</ul>
 			</nav>
 		</aside>
