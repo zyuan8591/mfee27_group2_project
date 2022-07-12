@@ -148,8 +148,13 @@ ORDER BY $orderType LIMIT $start, $perPage
 $result = $conn->query($sql);
 // var_dump($result);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+// echo "</br>";
 // var_dump($rows);
 
+for($i=1;$i<count($rows);$i++){
+	// $rows[$i]["totalPrice"] = $orderTotal[$i];
+}
+// var_dump($rows);
 
 
 $sqlStatus="SELECT * FROM order_status";
@@ -182,6 +187,7 @@ $rowCoupon = $resultCoupon->fetch_all(MYSQLI_ASSOC);
 
 foreach($rowCoupon as $row){
 	$orderCoupon[$row["id"]]=$row["name"];
+	$couponDiscount[$row["id"]]=$row["discount"];
 }
 // $orderCoupon = json_encode($orderCoupon);
 // var_dump($orderCoupon);

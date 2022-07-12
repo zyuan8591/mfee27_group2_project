@@ -12,7 +12,7 @@ perPage.addEventListener("change", function () {
 });
 coupon.addEventListener("change", function () {
 	discount.innerText = coupon.value;
-console.log(coupon.value);
+	console.log(coupon.value);
 
 	// console.log(discount.innerText);
 	
@@ -176,7 +176,6 @@ for (let j = 0; j < saveBtn.length; j++) {
 		}
 
 		modifyForm[j].submit();
-		
 	});
 }
 // !! back to recipe index btn
