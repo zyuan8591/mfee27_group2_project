@@ -25,13 +25,13 @@
         <div class="mb-3 row ">
             <label for="" class=" form-label">起始日期</label>
             <div class="col">
-            <input id="startDate" name="startDate" type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["start_date"]?>" >
+            <input id="" name="startDate" type="date" class="form-control-plaintext detail-item-input startDate" readonly="readonly" value="<?=$row["start_date"]?>" >
             </div>
         </div>
         <div class="mb-3 row ">
             <label for="" class=" form-label">結束日期</label>
             <div class="col">
-            <input id="endDate" name="endDate" type="date" class="form-control-plaintext detail-item-input " readonly="readonly" value="<?=$row["end_date"]?>" >
+            <input id="" name="endDate" type="date" class="form-control-plaintext detail-item-input endDate" readonly="readonly" value="<?=$row["end_date"]?>" >
             </div>
         </div>
         <!-- 選單 -->

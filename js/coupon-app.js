@@ -71,13 +71,14 @@ let detailCover = document.querySelector(".cover-detail");
 let backCoupon = document.querySelectorAll(".backCoupon");
 let detailXMark = document.querySelectorAll(".detail-xMark");
 
-console.log(detailCouponPage[1]);
+// console.log(detailCouponPage[1]);
 for (let i = 0; i < couponDetailBtn.length; i++) {
 	couponDetailBtn[i].addEventListener("click", (e) => {
 		e.preventDefault();
 		detailCouponPage[i].classList.remove("invisible");
 	});
 }
+
 
 let modifyBtn = document.querySelectorAll(".modify-detail-btn");
 let saveBtn = document.querySelectorAll(".save-detail-btn");
@@ -102,10 +103,10 @@ for (let j = 0; j < modifyBtn.length; j++) {
 			detailInputs[i].classList.add("form-control");
 		}
 		for (let i = 0; i < originalDiscount.length; i++) {
-			originalDiscount[i].style.display = "none"; //1
+			originalDiscount[i].style.display = "none"; 
 		}
 		for (let i = 0; i < detailSelect.length; i++) {
-			detailSelect[i].style.display = "block"; //1
+			detailSelect[i].style.display = "block"; 
 		}
 	});
 }
@@ -171,10 +172,10 @@ for (let j = 0; j < backCoupon.length; j++) {
 			detailInputs[i].classList.add("form-control-plaintext");
 		}
 		for (let i = 0; i < originalDiscount.length; i++) {
-			originalDiscount[i].style.display = "flex"; //1
+			originalDiscount[i].style.display = "flex"; 
 		}
 		for (let i = 0; i < detailSelect.length; i++) {
-			detailSelect[i].style.display = "none"; //1
+			detailSelect[i].style.display = "none"; 
 		}
 	});
 }
@@ -188,7 +189,13 @@ for (let j = 0; j < detailXMark.length; j++) {
 		for (let i = 0; i < detailInputs.length; i++) {
 			detailInputs[i].setAttribute("readonly", "readonly");
 			detailInputs[i].classList.remove("form-control");
-			detailInputs[i].classList.add("form-control-plaintext");
+			detailInputs[i].classList.add("form-control-plaintext");			
+		}
+		for (let i = 0; i < originalDiscount.length; i++) {
+			originalDiscount[i].style.display = "flex"; //1
+		}
+		for (let i = 0; i < detailSelect.length; i++) {
+			detailSelect[i].style.display = "none"; //1
 		}
 	});
 }
@@ -211,16 +218,8 @@ function dateTest() {
 		return true;
 	}
 }
-function detailDateTest() {
-	var startDate = document.getElementById("startDate").value;
-	var endDate = document.getElementById("endDate").value;
-	if (startDate > endDate) {
-		alert("結束日期不得小於起始日期");
-		return false;
-	} else {
-		return true;
-	}
-}
+
+
 //折扣選單
 const discountSelect = document.getElementById("discountSelect");
 const percentDiscountInput = document.getElementById("percentDiscountInput");
@@ -248,3 +247,20 @@ discountSelect.addEventListener("change", (e) => {
 		}
 	}
 });
+
+
+//抓到值了 明天解決
+var startDate = document.querySelectorAll(".startDate");
+var endDate = document.querySelectorAll(".endDate");
+console.log(startDate[3].value)
+
+function detailDateTest() {	
+	for (let j = 0; j <startDate.length; j++) {
+
+	if (startDate[j].value > endDate[j].value) {
+		alert("結束日期不得小於起始日期");
+		return false;
+	} else {		
+		return true;
+	}}
+};
