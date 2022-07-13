@@ -190,7 +190,7 @@
 				<th class="text-center" scope="col">評價編號</th>
 				<th scope="col">店家</th>
 				<th scope="col">商品名稱</th>
-                <th scope="col"><a href="">會員</a></th>
+                <th scope="col">會員</th>
 				<th scope="col">商品留言</th>
                 <th scope="col">評價分數</th>
                 <th scope="col">留言日期</th>

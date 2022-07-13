@@ -293,6 +293,8 @@ $rowsCouponLimit = $resultCouponLimit->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div> -->
 		<div class="d-flex justify-content-center">
+			<?php if(isset($_SESSION["user"])): ?>
+				<?php if($_SESSION["user"]["admin"]==1): ?>
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
 				編輯訂單
 			</button>
@@ -303,6 +305,8 @@ $rowsCouponLimit = $resultCouponLimit->fetch_all(MYSQLI_ASSOC);
 			>
 				儲存修改
 			</button>
+				<?php endif; ?>
+			<?php endif; ?>
 			<button class="add-detail-btn back-recipe-de transition">返回訂單列表</button>
 		</div>
 	</form>
