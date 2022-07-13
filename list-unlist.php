@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "./db-connect.php";
 
 $filterNum = isset($_GET["filter"]) ? $_GET["filter"] : "";
@@ -16,13 +17,20 @@ $valid = $_GET["valid"];
 
 if ($valid == 1) {
     $sqlUpdate = "UPDATE products SET valid=0 WHERE id=$id";
+    $_SESSION["list"]=[
+        "id"=>1
+    ];
 } else {
     $sqlUpdate = "UPDATE products SET valid=1 WHERE id=$id";
+    $_SESSION["list"]=[
+        "id"=>2
+    ];
 }
 
 echo $sql;
 if ($conn->query($sqlUpdate) === true) {
     echo "已上架";
+    
 } else {
     echo "已下架 " . $conn->error;
 }

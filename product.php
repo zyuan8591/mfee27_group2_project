@@ -136,24 +136,24 @@
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
 														$order == 1
-													) : ?>product-index.php?order=2&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
+													) : ?>product-index.php?order=2&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
 																																												$order == 2
-																																											) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依編號排序</a>
+																																											) : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=1&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 3
-													) : ?>product-index.php?order=4&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
+													) : ?>product-index.php?order=4&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
 																																												$order == 4
-																																											) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依名稱排序</a>
+																																											) : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=3&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依名稱排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 5
-													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
+													) : ?>product-index.php?order=6&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
 																																												$order == 6
-																																											) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依日期排序</a>
+																																											) : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=5&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依日期排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 7
-													) : ?>product-index.php?order=8&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
+													) : ?>product-index.php?order=8&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php elseif (
 																																												$order == 8
-																																											) : ?>product-index.php?order=7&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=7&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依價格排序</a>
+																																											) : ?>product-index.php?order=7&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php else : ?>product-index.php?order=7&filter=<?= $filterNum ?>&valid=<?= $validNum ?>&per=<?=$per?>&page=<?= $page ?>&company=<?= $companyNum ?><?php endif; ?>">依價格排序</a>
 		</div>
 
 		<form class="product_search d-flex align-items-center " action="product-index.php" method="get">
@@ -169,9 +169,6 @@
 					<option value="20" <?php if ($per == 20) {
 											echo "selected";
 										} ?>>每頁顯示20筆</option>
-					<option value="" <?php if ($per == "") {
-											echo "selected";}?>>全部顯示</option>
-
 				</select>
 			</div>
 			<div class="d-flex align-items-center ">
