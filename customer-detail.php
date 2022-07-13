@@ -34,7 +34,7 @@
 				<input
 					type="text"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext"
 					value="<?=$row["birthday"]?>"
 					name="birthday"
 				/>
@@ -60,7 +60,7 @@
 				<input
 					type="email"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext"
 					value="<?=$row["email"]?>"
 					name="email"
 				/>
