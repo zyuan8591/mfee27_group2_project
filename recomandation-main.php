@@ -238,10 +238,10 @@
 																					if ($prePage < 1) {
 																						$prePage = 1;
 																					}
-																					echo $prePage; ?>&per=<?= $per ?>&comment=<?= $comment ?>&user=<?= $user ?>&product=<?= $product_id ?>" type="button" class="btn btn-outline-dark text-nowrap last-page">上一頁</a>
+																					echo $prePage; ?>&per=<?= $per ?>&comment=<?= $comment ?>&user=<?= $user ?>&product=<?= $product_id ?>&company=<?= $company ?>" type="button" class="btn btn-outline-dark text-nowrap last-page">上一頁</a>
 				<?php for ($i = 1; $i <= $totalPage; $i++) : ?>
 					<a type="button" class="btn btn-outline-dark <?php if ($page == $i) : echo "active" ?><?php endif; ?>" href="
-				product-recomandation.php?order=<?= $order ?>&page=<?= $i ?>&per=<?= $per ?>&comment=<?= $comment ?>&user=<?= $user ?>&product=<?= $product_id ?>"><?= $i ?></a>
+				product-recomandation.php?order=<?= $order ?>&page=<?= $i ?>&per=<?= $per ?>&comment=<?= $comment ?>&user=<?= $user ?>&product=<?= $product_id ?>&company=<?= $company ?>"><?= $i ?></a>
 				<?php endfor; ?>
 				<a href="
 			product-recomandation.php?order=1&order=<?= $order ?>
@@ -249,7 +249,7 @@
 					if ($nextPage > $totalPage) {
 						$nextPage = $totalPage;
 					}
-					echo $nextPage; ?>&per=<?= $per ?>&comment=<?= $comment ?>&user=<?= $user ?>&product=<?= $product_id ?>" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
+					echo $nextPage; ?>&per=<?= $per ?>&comment=<?= $comment ?>&user=<?= $user ?>&product=<?= $product_id ?>&company=<?= $company ?>" type="button" class="btn btn-outline-dark text-nowrap">下一頁</a>
 			</div>
 		</div>
 </main>
