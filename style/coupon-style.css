@@ -240,5 +240,10 @@
 	font-size: 1.5rem;
 	cursor: pointer;
 }
-
+/* 折扣選擇 */
+#underchargedInput,
+#percentDiscountInput,
+#detailSelect,
+#detailpercentDiscountInput,
+#detailunderchargedInput{display:none;}
 

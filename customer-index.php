@@ -417,7 +417,7 @@ if(isset($_GET["user_id"])){
 							>每頁顯示20筆</option>
 						</select>
 						<div class="d-flex ">
-							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋">
+							<input value="<?=$search?>" class="form-control search-box " type="text" name="search" placeholder="搜尋會員名稱">
 						</div>
 						<div class="">
 							<button class="search-btn form-control" type="submit">

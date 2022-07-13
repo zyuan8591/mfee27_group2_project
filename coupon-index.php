@@ -14,6 +14,7 @@ $valid= isset($_GET["valid"]) ? $_GET["valid"] : 1;
 if (empty($valid)) {
 	$valid= 1;
 }
+
 switch($valid){
 	case 1:
 		$validType="";
@@ -24,6 +25,12 @@ switch($valid){
 	case 3:
 		$validType="valid=0 AND";
 		break;	
+	case 4:
+		$validType="abs(discount)<1 AND";
+		break;	
+	case 5:
+		$validType="abs(discount)>1 AND";
+		break;					
 	default:
 		$validType="";
 		break;};
@@ -448,9 +455,26 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=1">全部</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=2">上架中</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=3">下架中</a></li>
-						</ul>
-					</div>		
-				</div>
+						</ul>						
+					</div> 
+					<div class=" filter-item position-rel">
+					<button class=" filter-btn transition"><?php if ($valid == 1) {
+									echo "優惠種類";
+								} elseif ($valid == 4) {
+									echo "(%)優惠";
+								} elseif ($valid == 5) {
+									echo "折價";
+								} else {
+									echo "優惠種類";
+								} ?></button>
+							<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=1">全部</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=4">(%)優惠</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=5">折價</a></li>
+							</ul>
+					</div>					
+									
+					</div>
 				<div>
 					<a class="add-coupon-btn transition" href="">新增優惠券</a>
 				</div>
@@ -504,3 +528,22 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		<?php endif; ?>
 	</body>
 </html>
+
+
+</div>
+						<div class=" filter-item position-rel">
+							<button class=" filter-btn transition"><?php if ($valid == 1) {
+									echo "優惠種類";
+								} elseif ($valid == 4) {
+									echo "(%)優惠";
+								} elseif ($valid == 5) {
+									echo "折價";
+								} else {
+									echo "優惠種類";
+								} ?></button>
+							<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=1">全部</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=4">(%)優惠</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=5">折價</a></li>
+							</ul>
+						</div>	
