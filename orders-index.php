@@ -122,11 +122,11 @@ switch($order){
 		break;
 
 	// case 5:
-	// 	$orderType = "SUM(products.price * order_product.product_quantity) GROUP BY order_id  ASC";
+	// 	$orderType = " $priceASC ASC";
 	// 	break;
 				
 	// case 6:
-	// 	$orderType = "  DESC";
+	// 	$orderType = " $priceASC DESC";
 	// 	break;
 
 	default:
@@ -151,15 +151,57 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 // echo "</br>";
 // var_dump($rows);
 
-for($i=1;$i<count($rows);$i++){
+// foreach ($rows as $row){
+// 	$id= (int)$row["id"];
+// 	$total = $orderTotal[$id];
+// 	// var_dump ($total);
+// 	$row["total"] = $total;	
+// 	var_dump ($row);
+
+// }
+// var_dump($rows);
+for($i=0;$i<count($rows);$i++){
 
 	// var_dump($rowsTotal);
 	// $row["totalPrice"] = $orderTotal[$i];
 	// var_dump($row);
+	$id= (int)$rows[$i]["id"];
+	$total = $orderTotal[$id];
+	// var_dump ($total);
+	$rows[$i]["total"] = $total;
+	// var_dump($rows);
+	// $priceASC = asort($rows);
+	// var_dump($rows[$i]["total"]);
+	// $priceDESC = arsort($rows[$i]);
+	// var_dump($priceDESC);	
+}
+// var_dump($rows);
 
+if($order==5){
+	$totals = array();
+	foreach ($rows as $key => $row)
+	{
+		$totals[$key] = $row['total'];
+		
+	}
+	array_multisort($totals,SORT_DESC,$rows);
+} elseif($order==6){
+	$totals = array();
+	foreach ($rows as $key => $row)
+	{
+		$totals[$key] = $row['total'];
+		
+	}
+	array_multisort($totals,SORT_ASC,$rows);
 }
 
+// print_r($rows);
+// var_dump ($rows);
+
+
+
 // var_dump($row);
+
 
 
 $sqlStatus="SELECT * FROM order_status";

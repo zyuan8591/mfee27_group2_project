@@ -26,13 +26,19 @@
 					<a class="btn-main transition me-3 detail" href="">詳細資料</a>
 				</td>
 			</tr> -->
-		<?php foreach($rows as $row): ?>
+
+			<?php foreach($rows as $row): ?>
+
+			<?php
+				// sort($row["total"]); 
+				// var_dump($rows); 
+			?>
 		<tr>
 			<th class="text-center" scope="row"><?=$row["id"]?></th>
 			<td><?=$row["order_time"]?></td>
 			<td><?=$row["name"]?></td>
 			<td><?=$orderStatusJJ[$row["status_id"]]?></td>
-			<td class="text-end"><?= number_format($orderTotal[$row["id"]])?> </td>
+			<td class="text-end"><?= number_format($row["total"])?> </td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2">
                 <a class="btn-main transition me-3 " href="orders-dele.php?orderId=<?=$row["id"]?>">刪除</a>
 				<a class="btn-main transition me-3 detail" href="">詳細資料</a>
