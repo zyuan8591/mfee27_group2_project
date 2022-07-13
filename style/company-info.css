@@ -29,14 +29,29 @@
 .intro {
 	margin-left: 10.7rem;
 }
-.card-content{
+.card-content {
 	/* max-width: 80%; */
 	margin: 0;
 	padding-top: 5rem;
 }
-.main-text{
+.main-text {
 	color: rgb(52, 46, 46);
 }
-.address{
+.address {
 	margin-left: -13px;
+}
+.product-intro {
+	padding: 0.5rem;
+}
+
+.modify-btn,
+.save-btn {
+	padding: 0.5rem 1rem;
+	margin: 0;
+}
+.form-modify {
+	border: 1px solid rgba(0, 0, 0, 0.616);
+	padding-left: 0.5rem;
+	border-radius: 5px;
+	border-style: inset solid;
 }

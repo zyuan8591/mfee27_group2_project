@@ -206,3 +206,7 @@
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
+.container-detail .col-form-label{
+	width: 20%;
+	text-align: end;
+}
