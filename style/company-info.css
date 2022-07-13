@@ -1,0 +1,57 @@
+.info {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 0px 2px rgba(0, 0, 0, 0.1) !important ;
+	position: relative;
+}
+.avatar {
+	width: 200px;
+	height: 120px;
+}
+.info:first-child {
+	white-space: nowrap;
+	/* width: 30rem; */
+	width: 50vw;
+	height: 70vh;
+	border-radius: 5px;
+	background: white;
+	font-size: 1.5rem;
+}
+.card-header:first-child {
+	height: 50px;
+	background: rgb(255, 50, 50);
+	border-radius: 5px 5px 0 0;
+}
+.time {
+	color: var(--button-color);
+	position: absolute;
+	bottom: 3px;
+	right: 5px;
+}
+.intro {
+	margin-left: 10.7rem;
+}
+.card-content {
+	/* max-width: 80%; */
+	margin: 0;
+	padding-top: 5rem;
+}
+.main-text {
+	color: rgb(52, 46, 46);
+}
+.address {
+	margin-left: -13px;
+}
+.product-intro {
+	padding: 0.5rem;
+}
+
+.modify-btn,
+.save-btn {
+	padding: 0.5rem 1rem;
+	margin: 0;
+}
+.form-modify {
+	border: 1px solid rgba(0, 0, 0, 0.616);
+	padding-left: 0.5rem;
+	border-radius: 5px;
+	border-style: inset solid;
+}

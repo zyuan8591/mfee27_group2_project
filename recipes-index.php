@@ -1,12 +1,13 @@
 <?php
 require "db-connect.php";
+session_start();
 
 //$_GET data
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;
 if (empty($order)) {
 	$order = 1;
 }
-$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 5;
+$perPage = isset($_GET["per-page"]) ? $_GET["per-page"] : 10;
 if (empty($order)) {
 	$order = 5;
 }
@@ -118,20 +119,21 @@ foreach ($rowsCatProduct as $row) {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<title>廚聚</title>
+		<title>廚聚 - 食譜總覽</title>
 		<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap"
 			rel="stylesheet"
 		/>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="./style/normalize.css" />
 		<style>
 			<?php require "./style/style.css"; ?>
-			<?php require "./style/recipe-style.css"; ?>
+			<?php require "./style/recipes-style.css"; ?>
 		</style>
 	</head>
 	<body>
@@ -172,7 +174,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">商品管理</a>
+								<a class="main_nav_item_content" href="product-index.php">商品管理</a>
 							</div>
 							<div class="nav_dropdown ">
 								<svg
@@ -193,10 +195,10 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li class="">
-									<a class="sub_nav_item_content" href="">商品總覽</a>
+									<a class="sub_nav_item_content" href="product-index.php">商品總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">評價總覽</a>
+									<a class="sub_nav_item_content" href="product-recomandation.php">評價總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -217,7 +219,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">訂單管理</a>
+								<a class="main_nav_item_content" href="orders-index.php">訂單管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -239,7 +241,7 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">訂單總覽</a>
+									<a class="sub_nav_item_content" href="orders-index.php">訂單總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -260,7 +262,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">食譜管理</a>
+								<a class="main_nav_item_content" href="recipes-index.php">食譜管理</a>
 							</div>
 
 							<div class="nav_dropdown nav_dropdown_active">
@@ -282,10 +284,10 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container ">
 								<li class="sub_nav_item_active">
-									<a class="sub_nav_item_content" href="">食譜總覽</a>
+									<a class="sub_nav_item_content" href="recipes-index.php">食譜總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">評價總覽</a>
+									<a class="sub_nav_item_content" href="comment-recipe-index.php">評價總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -306,7 +308,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href="">會員管理</a>
+								<a class="main_nav_item_content" href="customer-index.php">會員管理</a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -328,19 +330,10 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">一般會員總覽</a>
+									<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 								</li>
 								<li>
-									<a class="sub_nav_item_content" href="">廠商會員總覽</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員商品留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員食譜留言</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">會員收藏</a>
+									<a class="sub_nav_item_content" href="company-member-all-index.php">廠商會員總覽</a>
 								</li>
 							</div>
 						</ul>
@@ -368,7 +361,7 @@ foreach ($rowsCatProduct as $row) {
 										fill="black"
 									/>
 								</svg>
-								<a class="main_nav_item_content" href=""> 活動管理 </a>
+								<a class="main_nav_item_content" href="coupon-index.php"> 活動管理 </a>
 							</div>
 
 							<div class="nav_dropdown">
@@ -390,14 +383,8 @@ foreach ($rowsCatProduct as $row) {
 						<ul class="unstyled_list sub_nav_item">
 							<div class="sub_nav_item_container translateYtoNone">
 								<li>
-									<a class="sub_nav_item_content" href="">優惠券</a>
+									<a class="sub_nav_item_content" href="coupon-index.php">優惠券</a>
 								</li>
-								<!-- <li>
-									<a class="sub_nav_item_content" href="">銷售通路</a>
-								</li>
-								<li>
-									<a class="sub_nav_item_content" href="">料理活動</a>
-								</li> -->
 							</div>
 						</ul>
 					</li>
@@ -412,35 +399,35 @@ foreach ($rowsCatProduct as $row) {
 				<div class="sort d-flex align-items-center">
 					<a class="sort-btn transition" id="idSort" href="
 					<?php if ($order == 3): ?>
-					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					recipes-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php elseif ($order == 1): ?>
-					recipe-index.php?order=3&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					recipes-index.php?order=3&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php else: ?>
-					recipe-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					recipes-index.php?order=1&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php endif; ?>
 					">依編號排序</a>
 
 					<a class="sort-btn transition" id="dateSort" href="
 					<?php if ($order == 4): ?>
-					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					recipes-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php elseif ($order == 2): ?>
-					recipe-index.php?order=4&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					recipes-index.php?order=4&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php else: ?>
-					recipe-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
+					recipes-index.php?order=2&per-page=<?= $perPage ?>&page=<?= $page ?>&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 					&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 					<?php endif; ?>					
 					">依名稱排序</a>
 
 				</div>
-				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipe-index.php" method="get">
+				<form class="recipe_search d-flex flex-wrap align-items-center gap-2" action="recipes-index.php" method="get">
 					<select class="form-select per-page" name="per-page" >
-						<option value="5" 
-						<?php if ($perPage == 5) {echo "selected";} ?> >每頁顯示5筆</option>
+						<option value="10" 
+						<?php if ($perPage == 10) {echo "selected";} ?> >每頁顯示10筆</option>
 						<option value="15" 
 						<?php if ($perPage == 15) {echo "selected";} ?>>每頁顯示15筆</option>
 						<option value="20" 
@@ -479,11 +466,11 @@ foreach ($rowsCatProduct as $row) {
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=&productCate=<?= $productCate ?>
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=&productCate=<?= $productCate ?>
 							&valid=<?= $valid ?>">全部</a></li>
 							<?php foreach ($rowsCatFood as $row): ?>
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
 							&page=1&search=<?= $search ?>&foodCate=
 							<?= $row["id"] ?>&productCate=<?= $productCate ?>&valid=<?= $valid ?>
 							">
@@ -506,12 +493,12 @@ foreach ($rowsCatProduct as $row) {
 						</button>
 						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=
 							&valid=<?= $valid ?>
 							">全部</a></li>
 							<?php foreach ($rowsCatProduct as $row): ?>
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>
 							&page=1&search=<?= $search ?>&foodCate=<?= $foodCate ?>
 							&productCate=<?= $row["id"] ?>&valid=<?= $valid ?>">
 								<?= $row["name"] ?>
@@ -536,31 +523,43 @@ foreach ($rowsCatProduct as $row) {
 						</button>
 						<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
 							<li><a class="text-nowrap " href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
 							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=
 							">全部</a></li>
 							<li><a class="text-nowrap " href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
 							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=1
 							">上架中</a></li>
 							<li><a href="
-							recipe-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
 							&search=<?= $search ?>&foodCate=<?= $foodCate ?>&productCate=<?= $productCate ?>&valid=0
 							">下架中</a></li>
 						</ul>
-					</div>					
+					</div>
+					<div class="filter-item position-rel">
+						<button  class="filter-btn transition">
+							<a href="
+							recipes-index.php?order=<?= $order ?>&per-page=<?= $perPage ?>&page=1
+							&search=&foodCate=&productCate=&valid=
+							" >全部顯示</a>
+						</button>
+					</div>				
 				</div>
 				<div>
 					<a class="add-recipe-btn transition" href="">新增食譜</a>
 				</div>
 			</div>
-		<?php require "recipe-table.php"; ?>
+		<?php require "recipes-table.php"; ?>
 		</main>
-		<?php require "recipe-add.php"; ?>
-
+		<?php require "recipes-add.php"; ?>
+		<!-- tostify -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+		<!-- jquery -->
+		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 		<script type="text/javascript" >
 			<?php require "./js/app.js"; ?>
-			<?php require "./js/recipe-app.js"; ?>
+			<?php require "./js/recipes-app.js"; ?>
 		</script>
+		<?php require "recipes-toast.php" ?>
 	</body>
 </html>

@@ -1,19 +1,3 @@
-/* --------------------------------------------- */
-/* main */
-.main {
-	position: absolute;
-	top: var(--header-height);
-	left: var(--aside-width);
-	background: var(--main-bg);
-	padding: 2.2rem 2.5rem;
-	width: calc(100vw - var(--aside-width));
-	overflow: auto;
-	height: calc(100vh - var(--header-height));
-}
-.main-title {
-	font-size: 2rem;
-	font-weight: normal;
-}
 /* sort by -- */
 .sort-search {
 	margin: 0.5rem 0 0 0;
@@ -70,7 +54,7 @@
 	padding: 0.5rem;
 }
 .filter-item {
-	width: 100px;
+	min-width: 100px;
 	margin-left: 0.5rem;
 }
 .filter-btn {
@@ -102,6 +86,10 @@
 }
 .filter-dropdown li:hover {
 	background: var(--button-hover);
+}
+/* table---------------------------- */
+.page-hint {
+	right: 0;
 }
 /* add new recipe -- */
 .add-recipe-btn {
@@ -140,8 +128,8 @@
 .new-recipe-form {
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
-	width: 450px;
-	height: 600px;
+	width: 35vw;
+	height: 80vh;
 	border-radius: 3px;
 	opacity: 1;
 	z-index: 5;
@@ -164,7 +152,8 @@
 	box-shadow: var(--box-shadow);
 	border-color: var(--input-border);
 }
-.new-material-btn {
+.new-material-btn,
+.detail-material-btn {
 	white-space: nowrap;
 	padding: 0.3rem 0.5rem;
 	background: var(--header-bg);
@@ -174,7 +163,8 @@
 	box-shadow: var(--box-shadow);
 	font-family: "Noto Sans TC", sans-serif;
 }
-.new-material-btn:hover {
+.new-material-btn:hover,
+.detail-material-btn:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
 }
@@ -205,8 +195,8 @@
 	position: fixed;
 }
 .container-detail {
-	width: 600px;
-	height: 700px;
+	width: 650px;
+	height: 80vh;
 	z-index: 5;
 	background: #fff;
 	box-shadow: 1px 1px 3px #999, 1px 1px 6px #666, 0px 0px 9px #333;
@@ -233,4 +223,11 @@
 .save-detail-btn-hover:hover {
 	background: var(--btn-hover);
 	box-shadow: var(--hover-shadow);
+}
+.detailImgPre {
+	border-radius: 5px;
+}
+
+.detail-item-input {
+	text-align: left;
 }

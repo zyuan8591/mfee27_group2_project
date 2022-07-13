@@ -1,6 +1,6 @@
 <?php
 require "db-connect.php";
-
+session_start();
 //add recipe
 $name = isset($_GET["name"]) ? $_GET["name"] : "";
 $cateFood = isset($_GET["category_food"]) ? $_GET["category_food"] : 1;
@@ -11,7 +11,7 @@ $now = date("Y-m-d H:i:s");
 // echo "name: $addRecipeName <br> catfood: $addCateFood
 // <br> catProduct: $addCateProduct <br> content: $addRecipeContent <br>";
 
-//text exist or not
+$condition=0;
 
 //add image
 $addRecipeFile = $_GET["addRecipeFile"];
@@ -22,8 +22,10 @@ VALUES ('$name','$addRecipeFile', '$content', '$cateFood', '$cateProduct', '$id'
 if ($conn->query($sqlAddRecipe)) {
 	echo "資料新增成功 <br>";
 	$recipe_id = $conn->insert_id;
+	$condition=1;
 } else {
 	echo "error: " . $conn->error;
+	$condition=0;
 }
 
 //add material
@@ -47,8 +49,18 @@ foreach ($material as $row) {
 	VALUES('$materialName', $recipe_id, '$materialQ' )";
 	if ($conn->query($sqlAddMaterial)) {
 		echo "食材新增成功 <br>";
+		$condition=1;
 	} else {
 		echo "error: " . $conn->error;
+		$condition=0;
 	}
 }
+if($condition == 1){
+	$_SESSION["addRecipe"]=[
+		"condition" => $condition,
+		"msg" => "新增食譜成功" 
+	];
+}
+
+header("location: recipes-index.php");
 ?>

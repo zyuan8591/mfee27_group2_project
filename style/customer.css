@@ -1,0 +1,143 @@
+/*  customer-add */
+.customer-add-main {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(129, 127, 127, 0.49);
+	display: flex;
+	position: absolute;
+	z-index: 50;
+	align-items: center;
+	justify-content: center;
+}
+.contain {
+	background: white;
+	height: 550px;
+	width: 400px;
+	margin: auto 30px;
+	padding: 30px;
+	border-radius: 5px;
+	overflow: auto;
+	position: relative;
+	z-index: 50;
+}
+
+.underLine {
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
+}
+/* .btn {
+	border: 1px solid lightblue;
+	padding: 8px;
+	font-size: 1.3rem;
+} */
+.form-control {
+	margin-top: 10px;
+}
+/* ------------ */
+
+/* ------------ */
+
+/* avatar */
+.customer-img {
+	width: 134px;
+	height: 134px;
+}
+.object-fit {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* page */
+.page {
+	margin: auto 0;
+}
+
+.select-border {
+	width: 8rem;
+}
+.page-item {
+	padding: 0.5rem 0.75rem;
+	border: 1px solid black;
+	font-size: 1rem;
+}
+
+/* collect-detail */
+.collect-main{
+	height: 100vh;
+	width: 100vw;
+	background: #7388a0;
+}
+.collect-header{
+	font-family: 'Edu QLD Beginner', cursive;
+	font-size: 3rem;
+}
+.collect-text, .collect-type, .collect-type:hover{
+	color:#545050;
+	height: 64px;
+}
+.collect-text > p {
+	margin: auto 0;
+	font-size: 1.1rem;
+}
+.add-plus-background{
+	color: rgb(27, 19, 183);
+	cursor: pointer;
+}
+.fa-heart {
+	color: red;
+}
+.collect-select-button > a {
+	cursor: pointer;
+	font-size: 1.2rem;
+}
+.button-pattern, .button-pattern:hover{
+	border-left: 5px #37377c solid;
+	color: #254661;
+	/* border-radius: 3px; */
+	padding: 0 3px;
+}
+.noCollectText{
+	color: brown;
+	font-size: 1.2rem;
+}
+
+/* add-collect */
+.add-recipe-table{
+	margin-left: 40px;
+	font-size: 1.15rem;
+	color: #3b3939;
+}
+.addBtn-recipe {
+	padding: 0.4rem 0.7rem;
+	border: 1px solid black;
+	font-size: 1rem;
+}
+.add-main-title{
+	font-size: 1.3rem;
+	color: #203f58;
+	border-bottom: solid 1px #ddd ;
+	text-shadow: 1px 1px 1.5px #7388a0;
+	margin-bottom: 10px;padding-bottom: 10px;
+}
+
+/* search-user-collect */
+.search-img{
+	height: 150px;
+}
+
+/* search */
+.search-title{
+	font-size: 1.2rem;
+	color: brown;
+}
+.object-contain {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+}
+.search-text{
+	color:#545050;
+}

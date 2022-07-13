@@ -1,9 +1,20 @@
 //perPage onchange
 let perPage = document.querySelector(".per-page");
+// let coupon = document.querySelector(".coupon");
+let discount = document.querySelector(".discount");
 let searchForm = document.querySelector(".recipe_search");
+
+// console.log(coupon);
+console.log(discount);
+
 perPage.addEventListener("change", function () {
 	searchForm.submit();
 });
+// coupon.addEventListener("change", function () {
+// 	discount.innerText = coupon.value;
+// 	console.log(coupon.value);
+
+// });
 
 // filter hover
 let filterItems = document.querySelectorAll(".filter-item");
@@ -17,68 +28,68 @@ for (let i = 0; i < filterItems.length; i++) {
 	});
 }
 // add new material btn
-let newMaterialBtn = document.querySelector(".new-material-btn");
-let materialName = document.querySelector(".material-name");
-let materialQ = document.querySelector(".material-q");
-let materialContainer = document.querySelector(".material-container");
-let i = 1;
-newMaterialBtn.addEventListener("click", (e) => {
-	e.preventDefault();
-	let row = document.createElement("div");
-	row.classList.add("row", "mb-3");
-	let col_8 = document.createElement("div");
-	col_8.classList.add("col-8");
-	let col_4 = document.createElement("div");
-	col_4.classList.add("col-4");
+// let newMaterialBtn = document.querySelector(".new-material-btn");
+// let materialName = document.querySelector(".material-name");
+// let materialQ = document.querySelector(".material-q");
+// let materialContainer = document.querySelector(".material-container");
+// let i = 1;
+// newMaterialBtn.addEventListener("click", (e) => {
+// 	e.preventDefault();
+// 	let row = document.createElement("div");
+// 	row.classList.add("row", "mb-3");
+// 	let col_8 = document.createElement("div");
+// 	col_8.classList.add("col-8");
+// 	let col_4 = document.createElement("div");
+// 	col_4.classList.add("col-4");
 
-	let newMaterialName = materialName.cloneNode();
-	let newMaterialQ = materialQ.cloneNode();
-	if (i == 1) {
-		newMaterialName.name = `material-name-${i}`;
-		newMaterialQ.name = `material-q-${i}`;
-		i++;
-	} else {
-		newMaterialName.name = `material-name-${i}`;
-		newMaterialQ.name = `material-q-${i}`;
-		i++;
-	}
-	// console.log(newMaterialQ);
-	col_8.appendChild(newMaterialName);
-	col_4.appendChild(newMaterialQ);
-	row.appendChild(col_8);
-	row.appendChild(col_4);
-	materialContainer.appendChild(row);
-});
+// 	let newMaterialName = materialName.cloneNode();
+// 	let newMaterialQ = materialQ.cloneNode();
+// 	if (i == 1) {
+// 		newMaterialName.name = `material-name-${i}`;
+// 		newMaterialQ.name = `material-q-${i}`;
+// 		i++;
+// 	} else {
+// 		newMaterialName.name = `material-name-${i}`;
+// 		newMaterialQ.name = `material-q-${i}`;
+// 		i++;
+// 	}
+// 	// console.log(newMaterialQ);
+// 	col_8.appendChild(newMaterialName);
+// 	col_4.appendChild(newMaterialQ);
+// 	row.appendChild(col_8);
+// 	row.appendChild(col_4);
+// 	materialContainer.appendChild(row);
+// });
 // call add page
-let newRecipePage = document.querySelector(".new-recipe-page");
-let addRecipeBtn = document.querySelector(".add-recipe-btn");
-let backToRecipe = document.querySelector(".back-recipe");
-let xMark = document.querySelector(".addXMark");
-console.log(xMark);
+// let newRecipePage = document.querySelector(".new-recipe-page");
+// let addRecipeBtn = document.querySelector(".add-recipe-btn");
+// let backToRecipe = document.querySelector(".back-recipe");
+// let xMark = document.querySelector(".addXMark");
+// console.log(xMark);
 
-addRecipeBtn.addEventListener("click", function (e) {
-	e.preventDefault();
-	newRecipePage.classList.remove("invisible");
-});
-backToRecipe.addEventListener("click", function (e) {
-	e.preventDefault();
-	newRecipePage.classList.add("invisible");
-});
-xMark.addEventListener("click", function (e) {
-	newRecipePage.classList.add("invisible");
-});
+// addRecipeBtn.addEventListener("click", function (e) {
+// 	e.preventDefault();
+// 	newRecipePage.classList.remove("invisible");
+// });
+// backToRecipe.addEventListener("click", function (e) {
+// 	e.preventDefault();
+// 	newRecipePage.classList.add("invisible");
+// });
+// xMark.addEventListener("click", function (e) {
+// 	newRecipePage.classList.add("invisible");
+// });
 // add page image
-let addImg = document.querySelector("#add-recipe-image");
-let preImg = document.querySelector("#recipeImgPre");
-let preSvg = document.querySelector("#recipeSvgPre");
-addImg.addEventListener("change", (e) => {
-	let file = addImg.files[0].name;
-	if (file) {
-		preImg.classList.remove("d-none");
-		preImg.src = `img/recipe_img/${file}`;
-		preSvg.classList.add("d-none");
-	}
-});
+// let addImg = document.querySelector("#add-recipe-image");
+// let preImg = document.querySelector("#recipeImgPre");
+// let preSvg = document.querySelector("#recipeSvgPre");
+// addImg.addEventListener("change", (e) => {
+// 	let file = addImg.files[0].name;
+// 	if (file) {
+// 		preImg.classList.remove("d-none");
+// 		preImg.src = `img/recipe_img/${file}`;
+// 		preSvg.classList.add("d-none");
+// 	}
+// });
 
 // call detail page
 let detailPage = document.querySelectorAll(".recipe-datail");
@@ -95,27 +106,27 @@ for (let i = 0; i < detailBtn.length; i++) {
 }
 
 //detail page img
-let modifyImg = document.querySelectorAll(".detail-file");
-let detailImg = document.querySelectorAll(".detailImgPre");
-console.log(detailImg);
-console.log(modifyImg);
-for (let i = 0; i < modifyImg.length; i++) {
-	modifyImg[i].addEventListener("change", (e) => {
-		console.log("change");
-		let file = modifyImg[i].files[0].name;
-		console.log(file);
-		if (file) {
-			detailImg[i].src = `img/recipe_img/${file}`;
-		}
-	});
-}
+// let modifyImg = document.querySelectorAll(".detail-file");
+// let detailImg = document.querySelectorAll(".detailImgPre");
+// console.log(detailImg);
+// console.log(modifyImg);
+// for (let i = 0; i < modifyImg.length; i++) {
+// 	modifyImg[i].addEventListener("change", (e) => {
+// 		console.log("change");
+// 		let file = modifyImg[i].files[0].name;
+// 		console.log(file);
+// 		if (file) {
+// 			detailImg[i].src = `img/recipe_img/${file}`;
+// 		}
+// 	});
+// }
 
 // modify detail ---------------------------------------
 // modify & save btn
 let modifyBtn = document.querySelectorAll(".modify-detail-btn");
 let saveBtn = document.querySelectorAll(".save-detail-btn");
 // form
-let modifyForm = document.querySelector(".modify-ricepe-detail-form");
+let modifyForm = document.querySelectorAll(".modify-ricepe-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
 let detailSelects = document.querySelectorAll(".detail-item-select");
@@ -161,6 +172,8 @@ for (let j = 0; j < saveBtn.length; j++) {
 		for (let i = 0; i < detailImgs.length; i++) {
 			detailImgs[i].disabled = true;
 		}
+
+		modifyForm[j].submit();
 	});
 }
 // !! back to recipe index btn
