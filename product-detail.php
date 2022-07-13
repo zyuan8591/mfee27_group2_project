@@ -4,11 +4,7 @@
 		<h2 class="product-title text-center">商品詳細資料</h2>
 		<input type="hidden" value="<?= $row["id"] ?>" name="id">
 		<div class="mb-3 row">
-<<<<<<< HEAD
 			<label for="" class="col-sm-auto col-form-label">店家：</label>
-=======
-			<label for="" class="col-sm-auto col-form-label">廠商　　</label>
->>>>>>> a7eecb95a02a676e95907b50a12539ebb3a9bc78
 			<div class="col">
 				<input type="text" readonly class="form-control-plaintext " name="brand" value="<?= $companyName[$row["company_id"]] ?>" />
 			</div>
@@ -46,7 +42,6 @@
 		<div class="mb-3 row d-flex align-items-center">
 			<label for="" class="col-sm-2 col-form-label py-0">價格：</label>
 			<div class="col-sm-10 product-container row d-flex align-items-center">
-<<<<<<< HEAD
 				<div class="col-5">
 					<input
 						type="number"
@@ -67,20 +62,11 @@
 						value="<?=$row["inventory"]?>"
 						required
 					/>
-=======
-				<div class="col-6">
-					<input type="number" readonly class="form-control-plaintext product-input" name="price" value="<?= $row["price"] ?>" required />
-				</div>
-				<label for="" class="col-sm-2 col-form-label">數量</label>
-				<div class="col-4">
-					<input type="number" readonly class="form-control-plaintext product-input" name="inventory" value="<?= $row["inventory"] ?>" required />
->>>>>>> a7eecb95a02a676e95907b50a12539ebb3a9bc78
 				</div>
 			</div>
 		</div>
 
 		<div class="mb-3 row">
-<<<<<<< HEAD
             <label for="" class="col-sm-auto col-form-label">商品簡介：</label>
 			<div class="col">
             	<textarea cols="30" rows="6" type="text" class="form-control-plaintext product-input " readonly name="intro" required ><?=$row["intro"]?></textarea>
@@ -90,24 +76,12 @@
             <label for="" class="col-sm-auto col-form-label">商品規格：</label>
 			<div class="col">
             	<textarea cols="30" rows="14" type="text" class="form-control-plaintext product-input spec" readonly name="spec" required ><?=$row["spec"]?></textarea>
-=======
-			<label for="" class="col-sm-auto col-form-label">商品簡介</label>
-			<div class="col">
-				<textarea cols="30" rows="10" type="text" class="form-control-plaintext product-input " readonly name="intro" required><?= $row["intro"] ?></textarea>
-			</div>
-		</div>
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">商品規格</label>
-			<div class="col">
-				<textarea cols="30" rows="15" type="text" class="form-control-plaintext product-input spec" readonly name="spec" required><?= $row["spec"] ?></textarea>
->>>>>>> a7eecb95a02a676e95907b50a12539ebb3a9bc78
 			</div>
 		</div>
 
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label py-0">新增日期：</label>
 			<div class="col">
-<<<<<<< HEAD
 				<input
 					type="text"
 					readonly
@@ -116,9 +90,6 @@
 					value="<?=$row["create_time"]?>"
 					disabled
 				/>
-=======
-				<input type="text" readonly class="form-control-plaintext" name="create_time" value="<?= $row["create_time"] ?>" disabled />
->>>>>>> a7eecb95a02a676e95907b50a12539ebb3a9bc78
 			</div>
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">
