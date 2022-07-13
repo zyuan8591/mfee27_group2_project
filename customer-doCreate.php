@@ -55,13 +55,13 @@ if(empty($date)){
 
 $password=md5($_POST["password"]);
 
-$sql="SELECT * FROM customer_users WHERE name='$name'";
+$sql="SELECT * FROM customer_users WHERE email='$email'";
 $result=$conn->query($sql);
 $customerExist=$result->num_rows;
 // echo $customerExist;
 // exit;
 if($customerExist>0){
-    echo"該名稱已存在";
+    echo"該帳號已存在";
     exit;
 }
 

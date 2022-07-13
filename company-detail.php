@@ -40,7 +40,7 @@
 				<input
 					type="email"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext"
 					name="email"
 					value="<?=$row["email"]?>"
 					required

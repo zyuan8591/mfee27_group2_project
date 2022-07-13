@@ -56,7 +56,7 @@ if($userCount>0){
 
 $signupPassword=md5($signupPassword);
 $now=date('Y-m-d H:i:s');
-$sqlCreate="INSERT INTO company_users (name, email, password, phone, address, create_time, logo_img, intro, valid) VALUES ('$signupName', '$signupEmail', '$signupPassword', '$signupPhone', '$signupAddress', '$now', '', '',  1)";
+$sqlCreate="INSERT INTO company_users (name, email, password, phone, address, create_time, logo_img, intro, valid, is_admin) VALUES ('$signupName', '$signupEmail', '$signupPassword', '$signupPhone', '$signupAddress', '$now', '', '',  1, 0)";
 
 if ($conn->query($sqlCreate) === TRUE) {
     echo "新資料輸入成功";
