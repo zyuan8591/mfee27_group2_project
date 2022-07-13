@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("./db-connect.php");
 
 $filterNum = isset($_GET["filter"]) ? $_GET["filter"] : "";
@@ -37,8 +38,14 @@ echo "<br>";
 
 if ($conn->query($sqlRevise) === TRUE) {
     echo "商品已更新";
+    $_SESSION["revise"]=[
+        "id"=>1
+    ];
 } else {
     echo "更新失敗" . $conn->error;
+    $_SESSION["revise"]=[
+        "id"=>2
+    ];
 }
 
 header("location: product-index.php?order=$order&filter=$filterNum&page=$page&id=$id&per=$per&product_search=$search")

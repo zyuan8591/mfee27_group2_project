@@ -1,6 +1,5 @@
 <div class="recipe-datail flex_center invisible">
 	<div class="cover-detail cover position_abs"></div>
-	
 	<form
 		class="container-detail position-rel modify-ricepe-detail-form submit-from"
 		action="customer-detail-modify.php"
@@ -10,11 +9,11 @@
 		<h2 class="recipe-title text-center">會員詳細資料</h2>
 <!-- hidden -->
 		<input
-					type="hidden"
-					class="form-control-plaintext detail-item-input "
-					value="<?=$row["id"]?>"
-					name="id"
-				/>
+			type="hidden"
+			class="form-control-plaintext detail-item-input "
+			value="<?=$row["id"]?>"
+			name="id"
+		/>
 <!-- ------- -->
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">會員名稱：</label>
@@ -163,7 +162,6 @@
 				儲存資料
 			</button>
 			<button class="add-detail-btn back-recipe-de transition">返回會員列表</button>
-			<!-- <button class="transition" type="submit">送出</button> -->
 		</div>
 	</form>
 </div>

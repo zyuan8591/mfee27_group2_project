@@ -14,6 +14,11 @@ $discount=$_POST["discount"];
 // date_default_timezone_set("Asia/Taipei");
 $now=date('Y-m-d H:i:s');
 
+if($endDate<$startDate){
+    echo "結束日期不得小於開始日期";
+    exit;
+}else{
+
 $sql="INSERT INTO coupon (name,number,start_date,end_date,discount,create_time,valid) VALUES ('$name','$number','$startDate','$endDate','$discount','$now','1')";
 
 if($conn->query($sql) === TRUE){
@@ -22,5 +27,5 @@ if($conn->query($sql) === TRUE){
     echo "Error: " .$sql . "<br>" . $conn->error;
 }
 $conn->close();
-header("location: coupon-index.php");
+header("location: coupon-index.php");};
 ?>

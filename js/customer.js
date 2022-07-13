@@ -16,9 +16,6 @@ customerCloseBtn.addEventListener("click", function (e) {
 	userAddPage.classList.add("d-none");
 });
 
-
-
-
 // filter hover
 let filterItems = document.querySelectorAll(".filter-item");
 let filterDropDowm = document.querySelectorAll(".filter-dropdown");

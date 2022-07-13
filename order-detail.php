@@ -1,21 +1,66 @@
 <?php
 require "db-connect.php" ;
-$order_id= $row["id"];
-$sqlOrderProduct = "SELECT order_product.*, products.name AS product_name, products.price AS product_price 
-FROM order_product 
-JOIN products ON order_product.product_id = products.id
-WHERE order_id= $order_id";
+// echo $order_id;
 
+$sqlOrderProduct = "SELECT order_product.*, products.name AS product_name, products.price AS product_price,
+orders.coupon_id AS couponId, products.company_id
+-- , coupon.discount AS coupon_discount , coupon.start_date AS coupon_startDate, coupon.end_date AS coupon_endDate 
+FROM order_product 
+JOIN products ON order_product.product_id = products.id 
+JOIN orders ON order_product.order_id = orders.id
+-- JOIN coupon ON order_product.couponId = coupon.id 
+WHERE order_id= $order_id $sqlUserWhere
+ORDER BY product_id ASC";
+// var_dump($sqlOrderProduct);
 
 $resultOrderProduct = $conn->query($sqlOrderProduct);
 $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
+// var_dump($rowsOrderProduct);
+
+
+$sqlOrderCoupon = "SELECT id, discount, start_date, end_date FROM coupon ";
+$resultOderCoupon = $conn->query($sqlOrderCoupon);
+$rowsOrderCoupon = $resultOderCoupon->fetch_all(MYSQLI_ASSOC);
+// var_dump($rowsOrderCoupon);	
+
+foreach($rowsOrderProduct as $rowOrderProduct){
+	// var_dump ($rowOrderProduct["couponId"]);
+	// var_dump($rowOrderProduct);
+	// echo "<br>";
+	foreach($rowsOrderCoupon as $rowOrderCoupon){
+		// var_dump($rowOrderCoupon);
+		if($rowOrderProduct["couponId"] == $rowOrderCoupon["id"]){
+			$rowOrderProduct["couponDiscount"] = $rowOrderCoupon["discount"];
+		}elseif(empty($rowOrderProduct["couponDiscount"])){
+			$rowOrderProduct["couponDiscount"] = 1;
+		}
+	}
+}
+
+// var_dump($rowOrderProduct);
+
+$order_time = $row["order_time"];
+$ts = strtotime($order_time);
+$order_time_ts = date('Y-m-d', $ts);
+// echo $order_time_ts;
+
+$sqlCouponLimit = "SELECT * FROM coupon WHERE start_date <= '$order_time_ts' AND end_date >= '$order_time_ts' ";
+// echo $sqlCouponLimit . "<br>" ;
+$resultCouponLimit = $conn->query($sqlCouponLimit);
+$rowsCouponLimit = $resultCouponLimit->fetch_all(MYSQLI_ASSOC);
+// var_dump($rowsCouponLimit);
+// foreach($rowsCouponLimit as $rowCouponLimit){
+// 	$rowLimits[$rowCouponLimit["id"]]=$rowCouponLimit["discount"];
+// 	// var_dump($rowLimits);
+// }
 
 
 ?>
+
 <div class="recipe-datail position_abs flex_center invisible ">
 	<div class="cover-detail cover position_abs"></div>
 	<form
-		class="container-detail position-rel modify-ricepe-detail-form "
+		class="recipe_search container-detail position-rel modify-ricepe-detail-form "
 		action="order-update.php
     "	
 		method="GET"
@@ -29,7 +74,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 				<input
 					type="number"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext text-start"
 					value="<?=$row["id"]?>" name="order_id"
 				/>
 			</div>
@@ -40,7 +85,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 				<input
 					type="text"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext text-start"
 					value="<?=$row["name"]?>" name="name"
 				/>
 			</div>
@@ -51,7 +96,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 				<input
 					type="text"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext text-start"
 					value="<?=$row["phone"]?>" name="phone"
 				/>
 			</div>
@@ -62,7 +107,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 				<input
 					type="text"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext text-start"
 					value="<?=$row["address"]?>" name="address"
 				/>
 			</div>
@@ -102,26 +147,50 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 				/>
 			</div>
 		</div>
+		<?php
+			$order_time = $row["order_time"];
+			$ts = strtotime($order_time);
+			$order_time_ts = date('Y-m-d', $ts);		
+			$sqlCouponLimit = "SELECT * FROM coupon WHERE start_date <= '$order_time_ts' AND end_date >= '$order_time_ts'";
+			$resultCouponLimit = $conn->query($sqlCouponLimit);
+			$rowsCouponLimit = $resultCouponLimit->fetch_all(MYSQLI_ASSOC);
+			// var_dump($rowsCouponLimit);
+
+			// foreach ($rowsCouponLimit as $rowLimit){
+			// 	$rowCoupon[$rowLimit["id"]] = $rowLimit["name"];
+			// }
+			// var_dump($rowCoupon);
+		?>
         <div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label detail-label text-end">優惠券：</label>
 			<div class="col">
-				<input
+			<select
 					type="text"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="<?=$row["coupon_id"]?>"
+					disabled="true"
+					class="form-select detail-item-select coupon-select"
 					name="coupon"
-				/>
+					id="coupon"
+				>
+				<option value="0">無</option>
+				
+				<?php foreach($rowsCouponLimit as $rowLimit):?>
+				<option class="coupon"
+				 	value="<?= $rowLimit["id"] ?>"
+				 <?php if($rowLimit["id"]==$row["coupon_id"]) echo "selected";?> >
+				 <?= $rowLimit["name"] ?>
+				</option>
+				<?php endforeach; ?>
+				</select>
 			</div>
 		</div>
-        
+		
         <div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">下單時間：</label>
 			<div class="col">
 				<input
 					type="text"
 					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
+					class="form-control-plaintext text-start"
 					value="<?=$row["order_time"]?>"
 				/>
 			</div>
@@ -134,13 +203,21 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 						<th>品名</th>
 						<th>單價</th>
 						<th>數量</th>
-						<th>總價</th> 
+						<th>小計</th> 
 					</tr>
 					
 				</thead>
 				<tbody>
-					<?php $producti = 1;?>
-					<?php foreach($rowsOrderProduct as $rowProduct ): ?>
+					<?php 
+					$producti = 1;
+					$totalPrice = 0;
+					?>
+					<?php foreach($rowsOrderProduct as $rowProduct ):
+						// var_dump($rowProduct);
+						$totalPrice+=$rowProduct["product_price"]*$rowProduct["product_quantity"];
+					
+					?>
+		
 					<input type="hidden" name="id<?=$producti?>" value="<?= $rowProduct["id"] ?>">
 					
 
@@ -159,6 +236,24 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 					</tr>    
 					<?php $producti+=1;?>
 					<?php endforeach; ?>
+					<tr>
+						<td colspan="5" class="text-end">總計：<span><?=number_format($totalPrice)?></span> <br>
+						<span class="text-danger discount">折扣：
+							<?php
+							// var_dump ($rowOrderProduct["couponId"]);
+
+							// if($rowOrderProduct["couponId"]==0){
+							// 	echo "無";
+							// }elseif($rowOrderProduct["couponDiscount"]===$rowLimits["discount"]){
+							// 	echo $rowOrderProduct["couponDiscount"];
+							// }
+							if($rowOrderProduct["couponDiscount"]==1) {echo "無";}else{echo $rowOrderProduct["couponDiscount"];}
+							// print_r($rowOrderProduct);
+							?></span><br>
+						<span >折扣後：<?=number_format($totalPrice*$rowOrderProduct["couponDiscount"])?></span> 
+						</td>
+					</tr>
+					
 				</tbody>
 			</table>
 		</div>
@@ -198,6 +293,8 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div> -->
 		<div class="d-flex justify-content-center">
+			<?php if(isset($_SESSION["user"])): ?>
+				<?php if($_SESSION["user"]["admin"]==1): ?>
 			<button class="add-detail-btn modify-detail-btn me-3" type="submit transition">
 				編輯訂單
 			</button>
@@ -208,6 +305,8 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			>
 				儲存修改
 			</button>
+				<?php endif; ?>
+			<?php endif; ?>
 			<button class="add-detail-btn back-recipe-de transition">返回訂單列表</button>
 		</div>
 	</form>

@@ -1,11 +1,5 @@
 <?php
-	session_start();
-	// $_SESSION["succes"]=$succes;
-	// if($_SESSION["success"]["id"]==1){
-		
-	// }else{
-		
-	// }
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<title>廚聚</title>
+	<title>廚聚 - 商品總覽</title>
 	<!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,8 +18,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
-	<link href="toastr.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<style>
 		<?php
 		require "./style/style.css";
@@ -205,13 +198,13 @@
 			</ul>
 		</nav>
 	</aside>
-	<?php require "product.php";?>
+	<?php require "product.php"; ?>
 	<?php require "new-product.php"; ?>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script type="text/javascript">
-		<?php require "./js/product.js";?>
+		<?php require "./js/product.js"; ?>
 	</script>
-	<script src="toastr.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+	<?php require("./product-toast.php") ?>
 </body>
 
 </html>

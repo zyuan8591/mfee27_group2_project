@@ -60,22 +60,20 @@ couponXMark.addEventListener("click", function (e) {
 	newCouponPage.classList.add("invisible");
 });
 
-
 // call detail page
 let detailCouponPage = document.querySelectorAll(".detail-coupon-page");
-let couponDetailBtn = document.querySelectorAll(".coupon-detail"); 
+let couponDetailBtn = document.querySelectorAll(".coupon-detail");
 let detailCover = document.querySelector(".cover-detail");
 let backCoupon = document.querySelectorAll(".backCoupon");
 let detailXMark = document.querySelectorAll(".detail-xMark");
 
-console.log(detailCouponPage[1])
+console.log(detailCouponPage[1]);
 for (let i = 0; i < couponDetailBtn.length; i++) {
 	couponDetailBtn[i].addEventListener("click", (e) => {
 		e.preventDefault();
-		detailCouponPage[i].classList.remove("invisible");		
+		detailCouponPage[i].classList.remove("invisible");
 	});
 }
-
 
 let modifyBtn = document.querySelectorAll(".modify-detail-btn");
 let saveBtn = document.querySelectorAll(".save-detail-btn");
@@ -83,7 +81,7 @@ let saveBtn = document.querySelectorAll(".save-detail-btn");
 let modifyForm = document.querySelector(".modify-coupon-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
-11
+11;
 for (let j = 0; j < modifyBtn.length; j++) {
 	modifyBtn[j].addEventListener("click", (e) => {
 		e.preventDefault();
@@ -97,8 +95,6 @@ for (let j = 0; j < modifyBtn.length; j++) {
 			detailInputs[i].classList.remove("form-control-plaintext");
 			detailInputs[i].classList.add("form-control");
 		}
-	
-	
 	});
 }
 for (let j = 0; j < saveBtn.length; j++) {
@@ -114,8 +110,6 @@ for (let j = 0; j < saveBtn.length; j++) {
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
 		}
-	
-		
 	});
 }
 // !! back to coupon index btn
@@ -134,8 +128,6 @@ for (let j = 0; j < backCoupon.length; j++) {
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
 		}
-		
-		
 	});
 }
 for (let j = 0; j < detailXMark.length; j++) {
@@ -143,15 +135,13 @@ for (let j = 0; j < detailXMark.length; j++) {
 		detailCouponPage[j].classList.add("invisible");
 		for (let i = 0; i < modifyBtn.length; i++) {
 			modifyBtn[i].disabled = false;
-			saveBtn[i].disabled = true;	
+			saveBtn[i].disabled = true;
 		}
 		for (let i = 0; i < detailInputs.length; i++) {
 			detailInputs[i].setAttribute("readonly", "readonly");
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
 		}
-		
-		
 	});
 }
 
@@ -163,14 +153,23 @@ perPage.addEventListener("change", function () {
 });
 
 //verify Date
-function dateTest(){
-	var sDate=document.getElementById("sDate").value;
-	var eDate=document.getElementById("eDate").value;
-	if(eDate<sDate){
-		alert("日期錯誤");
+function dateTest() {
+	var sDate = document.getElementById("sDate").value;
+	var eDate = document.getElementById("eDate").value;
+	if (eDate < sDate) {
+		alert("結束日期不得小於起始日期");
 		return false;
-	}
-	else{
+	} else {
 		return true;
-	}            
+	}
+}
+function detailDateTest() {
+	var startDate = document.getElementById("startDate").value;
+	var endDate = document.getElementById("endDate").value;
+	if (startDate > endDate) {
+		alert("結束日期不得小於起始日期");
+		return false;
+	} else {
+		return true;
+	}
 }

@@ -189,3 +189,27 @@ textarea {
 	border: 1px solid #000;
 	border-radius: 0.375rem 0 0 0.375rem!important ;
 }
+.search-hover:hover {
+	/* color: rgb(0, 132, 255); */
+	/* background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,34,121,1) 50%, rgba(0,116,255,1) 100%); */
+	background: -webkit-linear-gradient(90deg, rgba(5,10,43,1) 0%, rgba(9,34,121,1) 50%, rgba(5,10,43,1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.search-hover {
+	/* color: rgb(0, 132, 255); */
+	/* background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,34,121,1) 50%, rgba(0,116,255,1) 100%); */
+	background: rgba(0,51,150,1) ;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.company {
+	height: 700px;
+	width: 315px;
+	/* height: 200px;
+	width: 1000px; */
+}
+.out-of-stock {
+	color: red!important;
+}
+
