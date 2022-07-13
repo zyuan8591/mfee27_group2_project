@@ -196,6 +196,13 @@ textarea {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+.search-hover {
+	/* color: rgb(0, 132, 255); */
+	/* background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,34,121,1) 50%, rgba(0,116,255,1) 100%); */
+	background: rgba(0,51,150,1) ;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
 .company {
 	height: 700px;
 	width: 315px;
