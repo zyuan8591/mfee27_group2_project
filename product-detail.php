@@ -53,7 +53,7 @@
 					/>
 				</div>
 				<label for="" class="col-sm-2 col-form-label py-0">數量：</label>
-				<div class="col-2">
+				<div class="col">
 					<input
 						type="number"
 						readonly

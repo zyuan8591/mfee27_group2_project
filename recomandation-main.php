@@ -126,19 +126,19 @@
 		<div class="sort d-flex align-items-center">
 			<a class="sort-btn transition" href="<?php if (
 														$order == 1
-													) : ?>product-recomandation.php?order=2&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php elseif (
+													) : ?>product-recomandation.php?order=2&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php elseif (
 																																																			$order == 2
-																																																		) : ?>product-recomandation.php?order=1&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php else : ?>product-recomandation.php?order=1&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php endif; ?>">依編號排序</a>
+																																																		) : ?>product-recomandation.php?order=1&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php else : ?>product-recomandation.php?order=1&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php endif; ?>">依編號排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 3
-													) : ?>product-recomandation.php?order=4&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php elseif (
+													) : ?>product-recomandation.php?order=4&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php elseif (
 																																																			$order == 4
-																																																		) : ?>product-recomandation.php?order=3&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php else : ?>product-recomandation.php?order=3&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php endif; ?>">依會員排序</a>
+																																																		) : ?>product-recomandation.php?order=3&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php else : ?>product-recomandation.php?order=3&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php endif; ?>">依會員排序</a>
 			<a class="sort-btn transition" href="<?php if (
 														$order == 5
-													) : ?>product-recomandation.php?order=6&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php elseif (
+													) : ?>product-recomandation.php?order=6&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php elseif (
 																																																			$order == 6
-																																																		) : ?>product-recomandation.php?order=5&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php else : ?>product-recomandation.php?order=5&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php endif; ?>">依評分排序</a>
+																																																		) : ?>product-recomandation.php?order=5&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php else : ?>product-recomandation.php?order=5&per=<?=$per?>&page=<?= $page ?>&comment=<?= $comment ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?><?php endif; ?>">依評分排序</a>
 		</div>
 
 		<form class="comment_search d-flex align-items-center " action="product-recomandation.php" method="get">
@@ -154,9 +154,7 @@
 					<option value="20" <?php if ($per == 20) {
 											echo "selected";
 										} ?>>每頁顯示20筆</option>
-					<option value="<?= $commentCountAll ?>" <?php if ($per == $commentCountAll) {
-																echo "selected";
-															} ?>>全部顯示</option>
+
 
 				</select>
 			</div>
@@ -182,7 +180,7 @@
 
 			<div class="filter-star mx-2">
 				<?php for ($i = 1; $i < 6; $i++) : ?>
-					<a href="product-recomandation.php?per=10&comment=<?= $i ?>&page=<?= $page ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?>"><i class="fa-solid fa-star table-evaluation five-star <?php if ($comment >= $i) echo "star-active" ?>"></i></a>
+					<a href="product-recomandation.php?per=<?=$per?>&comment=<?= $i ?>&page=<?= $page ?>&user=<?= $user ?>&company=<?= $company ?>&product=<?= $product_id ?>"><i class="fa-solid fa-star table-evaluation five-star <?php if ($comment >= $i) echo "star-active" ?>"></i></a>
 				<?php endfor; ?>
 			</div>
 			<div>

@@ -1,4 +1,4 @@
 {
-	"files.autoSave": "onFocusChange",
-	"diffEditor.wordWrap": "on"
+    "files.autoSave": "afterDelay",
+    "diffEditor.wordWrap": "on"
 }
