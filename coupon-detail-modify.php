@@ -10,15 +10,23 @@ $name=$_POST["name"];
 $number=$_POST["number"];
 $startDate=$_POST["startDate"];
 $endDate=$_POST["endDate"];
-$discount=$_POST["discount"];
+$percentDiscount=$_POST["percentDiscount"];
+$undercharged=$_POST["undercharged"];
 // echo "$number,$startDate,$endDate,$discount";
-$sqlUpadate= "UPDATE coupon SET name='$name',number='$number',start_date='$startDate',end_date='$endDate',discount='$discount' WHERE id='$id'";
 
+if($percentDiscount=="" || $percentDiscount==0 || $percentDiscount==null){
+    $discount=-$undercharged;
+
+}else{
+    $discount= (100-$percentDiscount)/100;
+};
 
 if($endDate<$startDate){
     echo "結束日期不得小於開始日期";
     exit;
 }else{
+$sqlUpadate= "UPDATE coupon SET name='$name',number='$number',start_date='$startDate',end_date='$endDate',discount='$discount' WHERE id='$id'";
+
 if($conn->query($sqlUpadate)){
     echo "資料更新成功 <br>";   
 } else {
@@ -27,5 +35,10 @@ if($conn->query($sqlUpadate)){
 $conn->close();}
 
 
+
+
 header("location: coupon-index.php");
+
+
 ?>
+

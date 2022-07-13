@@ -10,9 +10,17 @@ $name=$_POST["name"];
 $number=$_POST["number"];
 $startDate=$_POST["start-date"];
 $endDate=$_POST["end-date"];
-$discount=$_POST["discount"];
+$percentDiscount=$_POST["percentDiscount"];
+$undercharged=$_POST["undercharged"];
 // date_default_timezone_set("Asia/Taipei");
 $now=date('Y-m-d H:i:s');
+
+if($percentDiscount=="" || $percentDiscount==0 || $percentDiscount==null){
+    $discount=-$undercharged;
+
+}else{
+    $discount= (100-$percentDiscount)/100;
+};
 
 if($endDate<$startDate){
     echo "結束日期不得小於開始日期";
