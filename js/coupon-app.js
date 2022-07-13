@@ -81,7 +81,9 @@ let saveBtn = document.querySelectorAll(".save-detail-btn");
 let modifyForm = document.querySelector(".modify-coupon-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
-11;
+let detailSelect = document.querySelectorAll("#detailSelect"); //1
+let originalDiscount = document.querySelectorAll("#originalDiscount"); //1
+
 for (let j = 0; j < modifyBtn.length; j++) {
 	modifyBtn[j].addEventListener("click", (e) => {
 		e.preventDefault();
@@ -94,6 +96,8 @@ for (let j = 0; j < modifyBtn.length; j++) {
 			detailInputs[i].removeAttribute("readonly");
 			detailInputs[i].classList.remove("form-control-plaintext");
 			detailInputs[i].classList.add("form-control");
+			detailSelect[i].style.display = "block"; //1
+			originalDiscount[i].style.display = "none"; //1
 		}
 	});
 }
@@ -112,6 +116,36 @@ for (let j = 0; j < saveBtn.length; j++) {
 		}
 	});
 }
+//detail折扣選單
+let detailDiscountSelect = document.querySelectorAll("#detailDiscountSelect");
+let detailpercentDiscountInput = document.querySelectorAll(
+	"#detailpercentDiscountInput"
+);
+let detailunderchargedInput = document.querySelectorAll(
+	"#detailunderchargedInput"
+);
+for (let i = 0; i < detailDiscountSelect.length; i++) {
+	detailDiscountSelect[i].addEventListener("change", (e) => {
+		switch (e.target.value) {
+			case "A": {
+				detailpercentDiscountInput[i].style.display = "flex";
+				detailunderchargedInput[i].style.display = "none";
+				break;
+			}
+			case "B": {
+				detailpercentDiscountInput[i].style.display = "none";
+				detailunderchargedInput[i].style.display = "flex";
+				break;
+			}
+			default: {
+				detailpercentDiscountInput[i].style.display = "none";
+				detailunderchargedInput[i].style.display = "none";
+				break;
+			}
+		}
+	});
+}
+
 // !! back to coupon index btn
 for (let j = 0; j < backCoupon.length; j++) {
 	backCoupon[j].addEventListener("click", function (e) {
@@ -127,6 +161,8 @@ for (let j = 0; j < backCoupon.length; j++) {
 			detailInputs[i].setAttribute("readonly", "readonly");
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
+			detailSelect[i].style.display = "none"; //1
+			originalDiscount[i].style.display = "flex"; //1
 		}
 	});
 }
@@ -173,3 +209,30 @@ function detailDateTest() {
 		return true;
 	}
 }
+//折扣選單
+const discountSelect = document.getElementById("discountSelect");
+const percentDiscountInput = document.getElementById("percentDiscountInput");
+const underchargedInput = document.getElementById("underchargedInput");
+let percentDiscountRe = document.getElementById("percentDiscount");
+let underchargedRe = document.getElementById("undercharged");
+discountSelect.addEventListener("change", (e) => {
+	switch (e.target.value) {
+		case "A": {
+			underchargedRe.removeAttribute("required");
+			percentDiscountInput.style.display = "flex";
+			underchargedInput.style.display = "none";
+			break;
+		}
+		case "B": {
+			percentDiscountRe.removeAttribute("required");
+			percentDiscountInput.style.display = "none";
+			underchargedInput.style.display = "flex";
+			break;
+		}
+		default: {
+			percentDiscountInput.style.display = "none";
+			underchargedInput.style.display = "none";
+			break;
+		}
+	}
+});
