@@ -222,6 +222,9 @@
 					<li><a class="text-nowrap" href="product-index.php?filter=<?= $filterNum ?>&company=<?= $companyNum ?>&valid=0">下架中</a></li>
 				</ul>
 			</div>
+			<div class=" filter-item position-rel ">
+				<a href="product.php?" class="clean-filter-btn transition">清除篩選<a>
+			</div>
 		</div>
 		<div>
 			<a class="add-product-btn transition" href="">新增商品</a>
