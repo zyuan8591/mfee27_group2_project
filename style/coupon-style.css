@@ -241,9 +241,10 @@
 	cursor: pointer;
 }
 /* 折扣選擇 */
-#underchargedInput,
-#percentDiscountInput,
-#detailSelect,
-#detailpercentDiscountInput,
-#detailunderchargedInput{display:none;}
-
+.underchargedInput,
+.percentDiscountInput,
+.detailSelect,
+.detailpercentDiscountInput,
+.detailunderchargedInput {
+	display: none;
+}
