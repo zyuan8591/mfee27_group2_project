@@ -16,5 +16,8 @@
             <div class="col-auto">
                 <button class="btn btn-main" type="submit">查詢</button>
             </div>
+            <div class="col-auto">
+                <a class="btn btn-main" href="orders-index.php?page=1&order=<?=$order?>&orderStat=&per-page=<?=$perPage?>&startDate=&endDate=">清空</a>
+            </div>
         </div>
 </form> 

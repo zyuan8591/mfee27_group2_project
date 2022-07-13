@@ -144,7 +144,7 @@ $sql="SELECT orders.*, customer_users.name,customer_users.phone,customer_users.a
 WHERE orders.user_id = customer_users.id $orderStatus $sqlDate AND orders.valid = 1
 ORDER BY $orderType LIMIT $start, $perPage
 ";
-// var_dump($sql);
+
 $result = $conn->query($sql);
 // var_dump($result);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -152,9 +152,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 // var_dump($rows);
 
 for($i=1;$i<count($rows);$i++){
-	// $rows[$i]["totalPrice"] = $orderTotal[$i];
+
+	// var_dump($rowsTotal);
+	// $row["totalPrice"] = $orderTotal[$i];
+	// var_dump($row);
+
 }
-// var_dump($rows);
+
+// var_dump($row);
 
 
 $sqlStatus="SELECT * FROM order_status";
@@ -201,8 +206,12 @@ foreach($rowCoupon as $row){
 // }
 // // var_dump($orderDetail);
 
-// for($i=1; $i<=$rows.length;$i++){
+// for($i=1; $i<=count($rows);$i++){
 // 	$orderPrice = $orderTotal[$i];
+// 	$rows[$row["totalPrice"]][$i]=$orderPrice;
+// 	// var_dump($row);
+
+	// var_dump($orderPrice);
 // 	$sqlPrice = "INSERT INTO orders (order_price) VALUES  WHERE id=$i";'$orderPrice'
 
 // 	if ($conn->query($sqlPrice) === TRUE) {
@@ -214,9 +223,8 @@ foreach($rowCoupon as $row){
 
 // }
 
-
-
 $totalPage=ceil($ordersCountAll / $perPage);
+
 ?>
 <!doctype html>
 <html lang="en">
