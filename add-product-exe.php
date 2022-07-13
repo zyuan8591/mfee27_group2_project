@@ -1,7 +1,7 @@
 <?php
 session_start();
 require("./db-connect.php");
-//aaa
+
 $filterNum = isset($_GET["filter"]) ? $_GET["filter"] : "";
 $validNum = isset($_GET["valid"]) ? $_GET["valid"] : "";
 $order = isset($_GET["order"]) ? $_GET["order"] : 1;

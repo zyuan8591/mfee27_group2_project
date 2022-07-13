@@ -484,7 +484,7 @@ if(isset($_GET["user_id"])){
 			<?php if($_SESSION["usersModify"]["condition"]==2): ?>
 			<script type="text/javascript">
 				Toastify({
-				text: "新增成功",
+				text: "會員新增成功",
 				duration: 3000,
 				newWindow: true,
 				close: true,
@@ -500,6 +500,6 @@ if(isset($_GET["user_id"])){
 			<?php unset($_SESSION["usersModify"]); ?>
 			<?php endif; ?>
 		<?php endif; ?>
-
+		<!-- ------ -->
 	</body>
 </html>
