@@ -109,6 +109,9 @@
 
 
 	$per = isset($_GET["per"]) ? $_GET["per"] : 10;
+	if(empty($per)){
+		$per=10;
+	}
 
 	$start = ($page - 1) * $per;
 	$startPage = ($page - 1) * $per + 1;
@@ -166,9 +169,8 @@
 					<option value="20" <?php if ($per == 20) {
 											echo "selected";
 										} ?>>每頁顯示20筆</option>
-					<option value="<?= $productCountAll ?>" <?php if ($per == $productCountAll) {
-																echo "selected";
-															} ?>>全部顯示</option>
+					<option value="" <?php if ($per == "") {
+											echo "selected";}?>>全部顯示</option>
 
 				</select>
 			</div>

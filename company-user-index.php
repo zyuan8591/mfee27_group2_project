@@ -162,7 +162,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         			    </div>
         			</div>
 					<!-- 活動管理 -->
-					<div class="main-item">
+					<!-- <div class="main-item">
         			    <div class="title-bar d-flex align-items-center bg-color5">
 							<h4> 活動管理</h4>
         			    </div>
@@ -171,7 +171,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         			       		<li><a href="coupon-index.php">優惠卷</a></li>
         			      	</ul>
         			    </div>
-        			</div>
+        			</div> -->
 				</div>
 			</div>
 		</div>
