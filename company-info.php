@@ -54,6 +54,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<style>
 		<?php
 		require "./style/style.css";
@@ -119,7 +120,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 							<svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M21 1.49998C21 0.670871 20.2791 0 19.3882 0H1.61175C0.721707 0 0 0.670871 0 1.49998V22.5C0 23.3291 0.721665 24 1.61175 24H13.6316V17.6628C13.6316 17.2482 13.992 16.9128 14.4375 16.9128H21V1.49998ZM2.42308 3.7584H10.5V5.44966H2.42308V3.7584V3.7584ZM2.42308 8.45638H10.5V10.1476H2.42308V8.45638V8.45638ZM10.5 19.5437H2.42308V17.8524H10.5V19.5437ZM18.1731 14.8457H2.42308V13.1544H18.1731V14.8457ZM18.1731 10.1477H13.125V3.7584H18.1731V10.1477Z" fill="black" />
 							</svg>
-							<a class="main_nav_item_content" href="">訂單管理</a>
+							<a class="main_nav_item_content" href="orders-index.php">訂單管理</a>
 						</div>
 
 						<div class="nav_dropdown">
@@ -132,7 +133,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<ul class="unstyled_list sub_nav_item">
 						<div class="sub_nav_item_container translateYtoNone">
 							<li>
-								<a class="sub_nav_item_content" href="">訂單總覽</a>
+								<a class="sub_nav_item_content" href="orders-index.php">訂單總覽</a>
 							</li>
 						</div>
 					</ul>
@@ -143,16 +144,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 	<main class="main position-rel flex_center main-text">
 		<?php foreach ($rows as $row) : ?>
-			<form action="" class="info">
+			<form action="company-info-modify.php" class="info" method="POST">
 				<div class="card-header"></div>
 				<div class="d-flex card-content justify-content-center">
-					
+				<input type="hidden" value="<?= $row["id"] ?>" name="id" >
 					<div>
 						<div class="mx-3">
 							<div class="mb-2 row">
 								<label for="" class="col-sm-auto col-form-label">廠商名稱：</label>
 								<div class="col">
-									<input type="text" readonly class="form-control-plaintext " name="brand" value="<?= $row["name"] ?>" />
+									<input type="text" readonly class="form-control-plaintext product-input" name="brand" value="<?= $row["name"] ?>" />
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -171,7 +172,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						
 					</div>
 					<div>
-						<div class="mx-1 d-flex justify-content-center logo">
+						<div class="mx-1 d-flex justify-content-center logo ">
 							<figure class="avatar">
 								<img class="object-contain" src="./img/company_img/<?= $row["logo_img"] ?>" alt="">
 							</figure>
@@ -179,16 +180,20 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					</div>
 				</div>
 				<div class="row intro d-flex justify-content-center">
-				<div class="mb-2 row">
-								<label for="" class="col-sm-auto col-form-label address">地址：</label>
-								<div class="col">
-									<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
-								</div>
-							</div>
-					<label for="" class="col-sm-auto col-form-label ">介紹：</label>
-					<div class="col">
-						<textarea class="form-control-plaintext product-input w-75" name="intro" id="" cols="30" rows="5" readonly required><?= $row["intro"] ?></textarea>
+					<div class="mb-2 row">
+						<label for="" class="col-sm-auto col-form-label address">地址：</label>
+						<div class="col">
+							<input type="text" readonly class="form-control-plaintext product-input w-75" name="address" value="<?= $row["address"] ?>" required />
+						</div>
 					</div>
+					<label for="" class="col-sm-auto col-form-label ">介紹：</label>
+					<div class="col mb-3">
+						<textarea class="form-control-plaintext product-intro product-input w-75" name="intro" id="" cols="30" rows="5" readonly required><?= $row["intro"] ?></textarea>
+					</div>
+				</div>
+				<div class="flex_center position-rel" >
+					<button class="btn-main transition modify-btn position_abs top-0">修改資料</button>
+					<button class="btn-main transition d-none save-btn position_abs top-0">儲存資料</button>
 				</div>
 				<div class="me-2 row time">
 					<div class="col d-flex justify-content-end">
@@ -198,9 +203,32 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 			</form>
 		<?php endforeach; ?>
 	</main>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script type="text/javascript">
 		<?php require "./js/app.js"; ?>
+		<?php require "./js/company-info.js"; ?>
 	</script>
+	<?php if(isset($_SESSION["modify"])): ?>
+		<?php if($_SESSION["modify"]["condition"]==1): ?>
+			<script>
+				Toastify({
+				text: "資料修改成功",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+					background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+				}).showToast();
+			</script>
+		<?php unset($_SESSION["modify"]); ?>
+		<?php endif; ?>
+	<?php endif; ?>
 </body>
 
 </html>

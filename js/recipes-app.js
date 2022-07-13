@@ -207,12 +207,12 @@ for (let j = 0; j < saveBtn.length; j++) {
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
 		}
-		for (let i = 0; i < detailSelects.length; i++) {
-			detailSelects[i].disabled = true;
-		}
-		for (let i = 0; i < detailImgs.length; i++) {
-			detailImgs[i].disabled = true;
-		}
+		// for (let i = 0; i < detailSelects.length; i++) {
+		// 	detailSelects[i].disabled = true;
+		// }
+		// for (let i = 0; i < detailImgs.length; i++) {
+		// 	detailImgs[i].disabled = true;
+		// }
 		for (let i = 0; i < detailMaterialBtns.length; i++) {
 			detailMaterialBtns[i].classList.add("point-event-none");
 		}
