@@ -97,12 +97,12 @@
 		$companyId = "AND company=$company_id";
 	}
 
-	$sqlAll = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter $userFil $companyFil $productFil $companyId";
+	$sqlAll = "SELECT customer_product_comment.*, products.name AS productsName FROM customer_product_comment JOIN products ON customer_product_comment.product_id = products.id WHERE ((customer_product_comment.content LIKE '%$search%') OR (products.name LIKE '%$search%')) $filter $userFil $companyFil $productFil $companyId";
 	$resultAll = $conn->query($sqlAll);
 	$commentCountAll = $resultAll->num_rows;
 	// echo $sqlAll;
 
-	$sqlComment = "SELECT * FROM customer_product_comment WHERE content LIKE '%$search%' $filter $userFil $companyFil $productFil $companyId ORDER BY $orderType LIMIT $start, $per";
+	$sqlComment = "SELECT customer_product_comment.*, products.name AS productsName FROM customer_product_comment JOIN products ON customer_product_comment.product_id = products.id WHERE ((customer_product_comment.content LIKE '%$search%') OR (products.name LIKE '%$search%')) $filter $userFil $companyFil $productFil $companyId ORDER BY $orderType LIMIT $start, $per";
 	$resultComment = $conn->query($sqlComment);
 	$rowsComment = $resultComment->fetch_all(MYSQLI_ASSOC);
 
