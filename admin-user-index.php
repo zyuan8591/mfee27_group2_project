@@ -138,8 +138,8 @@ session_start();
 							<li>
 								<a class="sub_nav_item_content" href="customer-index.php">一般會員總覽</a>
 							</li>
-							<li class="sub_nav_item_active">
-								<a class="sub_nav_item_content" href="company-user-index.php">廠商會員總覽</a>
+							<li class="">
+								<a class="sub_nav_item_content" href="company-member-all-index.php">廠商會員總覽</a>
 							</li>
 						</div>
 					</ul>

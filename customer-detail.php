@@ -40,19 +40,6 @@
 				/>
 			</div>
 		</div>
-		
-		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">會員電話：</label>
-			<div class="col">
-				<input
-					type="tel"
-					readonly="readonly"
-					class="form-control-plaintext detail-item-input"
-					value="<?=$row["phone"]?>"
-					name="phone"
-				/>
-			</div>
-		</div>
 
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">會員信箱：</label>
@@ -66,7 +53,18 @@
 				/>
 			</div>
 		</div>
-
+		<div class="mb-3 row">
+			<label for="" class="col-sm-auto col-form-label">會員電話：</label>
+			<div class="col">
+				<input
+					type="tel"
+					readonly="readonly"
+					class="form-control-plaintext detail-item-input"
+					value="<?=$row["phone"]?>"
+					name="phone"
+				/>
+			</div>
+		</div>
 		<div class="mb-3 row">
 			<label for="" class="col-sm-auto col-form-label">會員地址：</label>
 			<div class="col">
