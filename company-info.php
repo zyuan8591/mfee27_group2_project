@@ -54,6 +54,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./style/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<style>
 		<?php
 		require "./style/style.css";
@@ -143,16 +144,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 	<main class="main position-rel flex_center main-text">
 		<?php foreach ($rows as $row) : ?>
-			<form action="" class="info">
+			<form action="company-info-modify.php" class="info" method="POST">
 				<div class="card-header"></div>
 				<div class="d-flex card-content justify-content-center">
-					
+				<input type="hidden" value="<?= $row["id"] ?>" name="id" >
 					<div>
 						<div class="mx-3">
 							<div class="mb-2 row">
 								<label for="" class="col-sm-auto col-form-label">廠商名稱：</label>
 								<div class="col">
-									<input type="text" readonly class="form-control-plaintext " name="brand" value="<?= $row["name"] ?>" />
+									<input type="text" readonly class="form-control-plaintext product-input" name="brand" value="<?= $row["name"] ?>" />
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -171,7 +172,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						
 					</div>
 					<div>
-						<div class="mx-1 d-flex justify-content-center logo">
+						<div class="mx-1 d-flex justify-content-center logo ">
 							<figure class="avatar">
 								<img class="object-contain" src="./img/company_img/<?= $row["logo_img"] ?>" alt="">
 							</figure>
@@ -179,16 +180,20 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					</div>
 				</div>
 				<div class="row intro d-flex justify-content-center">
-				<div class="mb-2 row">
-								<label for="" class="col-sm-auto col-form-label address">地址：</label>
-								<div class="col">
-									<input type="text" readonly class="form-control-plaintext product-input" name="address" value="<?= $row["address"] ?>" required />
-								</div>
-							</div>
-					<label for="" class="col-sm-auto col-form-label ">介紹：</label>
-					<div class="col">
-						<textarea class="form-control-plaintext product-input w-75" name="intro" id="" cols="30" rows="5" readonly required><?= $row["intro"] ?></textarea>
+					<div class="mb-2 row">
+						<label for="" class="col-sm-auto col-form-label address">地址：</label>
+						<div class="col">
+							<input type="text" readonly class="form-control-plaintext product-input w-75" name="address" value="<?= $row["address"] ?>" required />
+						</div>
 					</div>
+					<label for="" class="col-sm-auto col-form-label ">介紹：</label>
+					<div class="col mb-3">
+						<textarea class="form-control-plaintext product-intro product-input w-75" name="intro" id="" cols="30" rows="5" readonly required><?= $row["intro"] ?></textarea>
+					</div>
+				</div>
+				<div class="flex_center position-rel" >
+					<button class="btn-main transition modify-btn position_abs top-0">修改資料</button>
+					<button class="btn-main transition d-none save-btn position_abs top-0">儲存資料</button>
 				</div>
 				<div class="me-2 row time">
 					<div class="col d-flex justify-content-end">
@@ -198,9 +203,32 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 			</form>
 		<?php endforeach; ?>
 	</main>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script type="text/javascript">
 		<?php require "./js/app.js"; ?>
+		<?php require "./js/company-info.js"; ?>
 	</script>
+	<?php if(isset($_SESSION["modify"])): ?>
+		<?php if($_SESSION["modify"]["condition"]==1): ?>
+			<script>
+				Toastify({
+				text: "資料修改成功",
+				duration: 3000,
+				destination: "https://github.com/apvarun/toastify-js",
+				newWindow: true,
+				close: true,
+				gravity: "bottom", // `top` or `bottom`
+				position: "left", // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				style: {
+					background: "linear-gradient(135deg, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)",
+				},
+				onClick: function(){} // Callback after click
+				}).showToast();
+			</script>
+		<?php unset($_SESSION["modify"]); ?>
+		<?php endif; ?>
+	<?php endif; ?>
 </body>
 
 </html>
