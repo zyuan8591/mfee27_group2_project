@@ -24,7 +24,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 		<i class="fa-solid fa-xmark position_abs detail-xMark"></i>
 		<h2 class="recipe-title text-center">訂單資料</h2>
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">訂單編號</label>
+			<label for="" class="col-sm-auto col-form-label">訂單編號：</label>
 			<div class="col">
 				<input
 					type="number"
@@ -35,7 +35,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div>
         <div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">購買人</label>
+			<label for="" class="col-sm-auto col-form-label detail-label text-end">購買人：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -46,7 +46,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div>
         <div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">電話</label>
+			<label for="" class="col-sm-auto col-form-label detail-label text-end">電話：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -57,7 +57,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div>
         <div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">地址</label>
+			<label for="" class="col-sm-auto col-form-label detail-label text-end">地址：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -68,7 +68,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div>
         <div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">訂單狀態</label>
+			<label for="" class="col-sm-auto col-form-label">訂單狀態：</label>
 			<div class="col">
 				<select
 					type="text"
@@ -87,7 +87,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div>
         <div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">備註</label>
+			<label for="" class="col-sm-auto col-form-label detail-label text-end">備註：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -103,7 +103,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 			</div>
 		</div>
         <div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">優惠券</label>
+			<label for="" class="col-sm-auto col-form-label detail-label text-end">優惠券：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -116,7 +116,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 		</div>
         
         <div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">下單時間</label>
+			<label for="" class="col-sm-auto col-form-label">下單時間：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -128,7 +128,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 		</div>
 		<div>
 			<table class="table table-bordered">
-				<thead>
+				<thead class="detail-table">
 					<tr>
 						<th>id</th>
 						<th>品名</th>
@@ -148,7 +148,7 @@ $rowsOrderProduct = $resultOrderProduct->fetch_all(MYSQLI_ASSOC);
 	
 					
 					<tr>
-						<td><?= $rowProduct["product_id"] ?></td>
+						<td class="text-center"><?= $rowProduct["product_id"] ?></td>
 						<td><?= $rowProduct["product_name"] ?></td>
 						<td class="text-end"><?= number_format($rowProduct["product_price"]) ?></td>
 						<td><input type="number" 

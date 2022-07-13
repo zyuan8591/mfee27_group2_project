@@ -17,7 +17,7 @@
 				/>
 <!-- ------- -->
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">會員名稱</label>
+			<label for="" class="col-sm-auto col-form-label">會員名稱：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">會員生日</label>
+			<label for="" class="col-sm-auto col-form-label">會員生日：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -43,7 +43,7 @@
 		</div>
 		
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">會員電話</label>
+			<label for="" class="col-sm-auto col-form-label">會員電話：</label>
 			<div class="col">
 				<input
 					type="tel"
@@ -56,7 +56,7 @@
 		</div>
 
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">會員信箱</label>
+			<label for="" class="col-sm-auto col-form-label">會員信箱：</label>
 			<div class="col">
 				<input
 					type="email"
@@ -69,7 +69,7 @@
 		</div>
 
 		<div class="mb-3 row">
-			<label for="" class="col-sm-auto col-form-label">會員地址</label>
+			<label for="" class="col-sm-auto col-form-label">會員地址：</label>
 			<div class="col">
 				<input
 					type="text"
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		<div class="mb-3 d-flex flex-column align-items-start">
-			<label for="" class="form-label">新增圖像</label>
+			<label for="" class="form-label">會員圖像</label>
 			
 			<label for="customer-image-<?=$row["id"]?>" class="recipe-image" >
 			<?php if($row["img"] == " "): ?>	
@@ -151,7 +151,7 @@
 			/>		
 		</div>
 		
-		<div class="mb-3 flex_center">
+		<div class="mb-3 mt-5 flex_center">
 			<button class="add-detail-btn modify-detail-btn me-3 transition" type="submit ">
 				修改會員資料
 			</button>
