@@ -71,12 +71,12 @@
 				<?php 
 					//echo number_format($orderTotal[$row["id"]])
 				?>
-				<?= number_format($totalPrice) ?> 
+				<?= number_format($totalPrice*$rowOrderProduct["couponDiscount"]) ?> 
 			</td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2 flex_center">
 				<?php if(isset($_SESSION["user"])): ?>
 					<?php if($_SESSION["user"]["admin"]==1): ?>
-                	<a class="btn-main transition me-3 " href="orders-dele.php?orderId=<?=$row["id"]?>">刪除</a>
+                <a class="btn-main transition me-3 " href="orders-dele.php?orderId=<?=$row["id"]?>">刪除</a>
 					<?php endif; ?>
 				<?php endif; ?>
 				<a class="btn-main transition detail" href="">詳細資料</a>
