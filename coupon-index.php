@@ -14,6 +14,7 @@ $valid= isset($_GET["valid"]) ? $_GET["valid"] : 1;
 if (empty($valid)) {
 	$valid= 1;
 }
+
 switch($valid){
 	case 1:
 		$validType="";
@@ -24,6 +25,12 @@ switch($valid){
 	case 3:
 		$validType="valid=0 AND";
 		break;	
+	case 4:
+		$validType="abs(discount)<1 AND";
+		break;	
+	case 5:
+		$validType="abs(discount)>1 AND";
+		break;					
 	default:
 		$validType="";
 		break;};
@@ -438,17 +445,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 					<svg width="29" height="25" viewBox="0 0 29 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1.5701 1.9264L1.5739 1.9185C1.69656 1.67109 1.96041 1.5 2.26588 1.5H26.7374C27.0464 1.5 27.309 1.6729 27.4298 1.92489L27.4298 1.9249L27.4337 1.93284C27.5472 2.16604 27.5171 2.43152 27.3273 2.64252L27.3064 2.66581L27.2864 2.68995L16.971 15.1663L16.627 15.5823V16.1221V23.215C16.627 23.3139 16.5713 23.4118 16.4665 23.463L16.4616 23.4654C16.3465 23.5221 16.2115 23.5065 16.1201 23.4386L16.1181 23.4372L12.4927 20.7585L12.4927 20.7585L12.4855 20.7533C12.4167 20.703 12.3762 20.6247 12.3762 20.5363V16.1221V15.5804L12.0301 15.1637L1.66605 2.68731C1.66605 2.6873 1.66604 2.68729 1.66603 2.68728C1.48508 2.46941 1.45046 2.17516 1.5701 1.9264Z" fill="white" stroke="#393939" stroke-width="3"/>
 					</svg>
-
-					<!-- <div class="filter-item  position-rel">
-						<button class="filter-btn transition">食譜類別</button>
-						<ul class="filter-dropdown position_abs unstyled_list invisible text-center">
-							<li><a href="">Coffee</a></li>
-							<li><a href="">Cake</a></li>
-							<li><a href=""></a></li>
-						</ul>							
-					</div> -->
-					<div class=" filter-item position-rel">
-						<button class=" filter-btn transition"><?php if ($valid == 1) {
+					<div class="filter-item  position-rel">
+					<button class=" filter-btn transition"><?php if ($valid == 1) {
 								echo "優惠券狀態";
 							} elseif ($valid == 3) {
 								echo "下架中";
@@ -461,9 +459,26 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 						<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=1">全部</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=2">上架中</a></li>
 							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=3">下架中</a></li>
-						</ul>
+						</ul>						
+					</div> 
+					<div class=" filter-item position-rel">
+					<button class=" filter-btn transition"><?php if ($valid == 1) {
+									echo "優惠種類";
+								} elseif ($valid == 4) {
+									echo "(%)優惠";
+								} elseif ($valid == 5) {
+									echo "折價";
+								} else {
+									echo "優惠種類";
+								} ?></button>
+							<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=1">全部</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=4">(%)優惠</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=5">折價</a></li>
+							</ul>
 					</div>					
-				</div>
+									
+					</div>
 				<div>
 					<a class="add-coupon-btn transition" href="">新增優惠券</a>
 				</div>
@@ -478,3 +493,22 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 		</script>
 	</body>
 </html>
+
+
+</div>
+						<div class=" filter-item position-rel">
+							<button class=" filter-btn transition"><?php if ($valid == 1) {
+									echo "優惠種類";
+								} elseif ($valid == 4) {
+									echo "(%)優惠";
+								} elseif ($valid == 5) {
+									echo "折價";
+								} else {
+									echo "優惠種類";
+								} ?></button>
+							<ul class="filter-dropdown  unstyled_list position_abs invisible text-center">
+							<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=1">全部</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=4">(%)優惠</a></li>
+								<li><a href="coupon-index.php?page=<?=$page?>&order=<?=$order?>&search=<?=$search?>&valid=5">折價</a></li>
+							</ul>
+						</div>	
