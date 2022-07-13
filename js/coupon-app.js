@@ -55,9 +55,13 @@ addCouponBtn.addEventListener("click", function (e) {
 backToCoupon.addEventListener("click", function (e) {
 	e.preventDefault();
 	newCouponPage.classList.add("invisible");
+	percentDiscountInput.style.display = "none";
+	underchargedInput.style.display = "none";
 });
 couponXMark.addEventListener("click", function (e) {
 	newCouponPage.classList.add("invisible");
+	percentDiscountInput.style.display = "none";
+	underchargedInput.style.display = "none";
 });
 
 // call detail page

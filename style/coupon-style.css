@@ -241,8 +241,8 @@
 	cursor: pointer;
 }
 /* 折扣選擇 */
-.underchargedInput,
-.percentDiscountInput,
+#underchargedInput,
+#percentDiscountInput,
 .detailSelect,
 .detailpercentDiscountInput,
 .detailunderchargedInput {
