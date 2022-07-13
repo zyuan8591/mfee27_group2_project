@@ -96,8 +96,8 @@ for (let j = 0; j < modifyBtn.length; j++) {
 			detailInputs[i].removeAttribute("readonly");
 			detailInputs[i].classList.remove("form-control-plaintext");
 			detailInputs[i].classList.add("form-control");
-			detailSelect[i].style.display = "block"; //1
-			originalDiscount[i].style.display = "none"; //1
+			detailSelect[i].style.display = "block"; 
+			originalDiscount[i].style.display = "none"; 
 		}
 	});
 }
@@ -177,6 +177,8 @@ for (let j = 0; j < detailXMark.length; j++) {
 			detailInputs[i].setAttribute("readonly", "readonly");
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
+			detailSelect[i].style.display = "block"; 
+			originalDiscount[i].style.display = "none"; 
 		}
 	});
 }
