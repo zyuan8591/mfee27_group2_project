@@ -35,14 +35,14 @@
             </div>
         </div>
         <!-- 選單 -->
-        <div id="detailSelect" class="my-3 mb-3">
+        <div id="" class="my-3 mb-3 detailSelect">
             <label for="" class="form-label mb-3">優惠選擇</label>
                 <select class="form-select" name="detailDiscountSelect" id="detailDiscountSelect">
                     <option value="">請選擇</option>       
                     <option value="A">(%)優惠</option>
                     <option value="B">折價</option>						
                 </select>        
-            <div class="mb-3 row my-3" id="detailpercentDiscountInput" name="detailpercentDiscountInput">
+            <div class="mb-3 row my-3 detailpercentDiscountInput" id="" name="detailpercentDiscountInput">
                 <label for="" class="form-label ">優惠折扣</label>
             <div class="col-8">
                 <input id="percentDiscount" type="text" man="99" oninput = "value=value.replace(/[^\d]/g,'');if(value>99)value=99"  class="form-control" name="percentDiscount" style="text-align: right;" >
@@ -51,7 +51,7 @@
                 <input class="form-control" type="text" readonly="readonly" value=%off>
             </div>
             </div>
-            <div class="mb-3 row my-3" id="detailunderchargedInput" name="detailunderchargedInput " >
+            <div class="mb-3 row my-3 detailunderchargedInput" id="" name="detailunderchargedInput " >
                 <label for="" class="form-label">優惠折扣</label>
                 <div class="col-4">
                 <input class="form-control" type="text" readonly="readonly" value=-$ style="text-align: right;">
@@ -62,7 +62,7 @@
             </div>
         </div>
         <!-- origina discount -->
-        <div  id="originalDiscount">
+        <div  id="" class="originalDiscount">
         <div class="mb-3 row ">
             <label for="" class=" form-label">優惠折扣</label>
             <div class="col">
@@ -91,7 +91,3 @@
 		</div>
 	</form>
 </div>
-
-    
- 
-      

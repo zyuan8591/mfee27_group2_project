@@ -81,8 +81,8 @@ let saveBtn = document.querySelectorAll(".save-detail-btn");
 let modifyForm = document.querySelector(".modify-coupon-detail-form");
 // inputs
 let detailInputs = document.querySelectorAll(".detail-item-input");
-let detailSelect = document.querySelectorAll("#detailSelect"); //1
-let originalDiscount = document.querySelectorAll("#originalDiscount"); //1
+let detailSelect = document.querySelectorAll(".detailSelect"); //1
+let originalDiscount = document.querySelectorAll(".originalDiscount"); //1
 
 for (let j = 0; j < modifyBtn.length; j++) {
 	modifyBtn[j].addEventListener("click", (e) => {
@@ -96,8 +96,12 @@ for (let j = 0; j < modifyBtn.length; j++) {
 			detailInputs[i].removeAttribute("readonly");
 			detailInputs[i].classList.remove("form-control-plaintext");
 			detailInputs[i].classList.add("form-control");
-			detailSelect[i].style.display = "block"; 
-			originalDiscount[i].style.display = "none"; 
+		}
+		for (let i = 0; i < originalDiscount.length; i++) {
+			originalDiscount[i].style.display = "none"; //1
+		}
+		for (let i = 0; i < detailSelect.length; i++) {
+			detailSelect[i].style.display = "block"; //1
 		}
 	});
 }
@@ -119,10 +123,10 @@ for (let j = 0; j < saveBtn.length; j++) {
 //detail折扣選單
 let detailDiscountSelect = document.querySelectorAll("#detailDiscountSelect");
 let detailpercentDiscountInput = document.querySelectorAll(
-	"#detailpercentDiscountInput"
+	".detailpercentDiscountInput"
 );
 let detailunderchargedInput = document.querySelectorAll(
-	"#detailunderchargedInput"
+	".detailunderchargedInput"
 );
 for (let i = 0; i < detailDiscountSelect.length; i++) {
 	detailDiscountSelect[i].addEventListener("change", (e) => {
@@ -161,8 +165,12 @@ for (let j = 0; j < backCoupon.length; j++) {
 			detailInputs[i].setAttribute("readonly", "readonly");
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
-			detailSelect[i].style.display = "none"; //1
+		}
+		for (let i = 0; i < originalDiscount.length; i++) {
 			originalDiscount[i].style.display = "flex"; //1
+		}
+		for (let i = 0; i < detailSelect.length; i++) {
+			detailSelect[i].style.display = "none"; //1
 		}
 	});
 }
@@ -177,8 +185,6 @@ for (let j = 0; j < detailXMark.length; j++) {
 			detailInputs[i].setAttribute("readonly", "readonly");
 			detailInputs[i].classList.remove("form-control");
 			detailInputs[i].classList.add("form-control-plaintext");
-			detailSelect[i].style.display = "block"; 
-			originalDiscount[i].style.display = "none"; 
 		}
 	});
 }
