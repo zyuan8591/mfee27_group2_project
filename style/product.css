@@ -116,6 +116,10 @@
 	padding: 1.5rem 2.5rem;
 	overflow: auto;
 }
+.detail-page .col-form-label{
+	width: 20%;
+	text-align: end;
+}
 .detail-cover {
 	height: 100vh;
 	width: 100vw;
@@ -205,4 +209,5 @@ textarea {
 .out-of-stock {
 	color: red!important;
 }
+
 
