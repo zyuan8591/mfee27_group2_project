@@ -110,12 +110,15 @@ for (let j = 0; j < modifyBtn.length; j++) {
 		}
 	});
 }
+a=1
 for (let j = 0; j < saveBtn.length; j++) {
 	saveBtn[j].addEventListener("click", (e) => {
+		a=j
 		for (let i = 0; i < modifyBtn.length; i++) {
 			modifyBtn[i].disabled = false;
 			saveBtn.disabled = true;
 			saveBtn.classList.remove("save-detail-btn-hover");
+			
 		}
 
 		for (let i = 0; i < detailInputs.length; i++) {
@@ -249,18 +252,19 @@ discountSelect.addEventListener("change", (e) => {
 });
 
 
-//抓到值了 明天解決
+//
 var startDate = document.querySelectorAll(".startDate");
 var endDate = document.querySelectorAll(".endDate");
-console.log(startDate[3].value)
-
-function detailDateTest() {	
-	for (let j = 0; j <startDate.length; j++) {
-
-	if (startDate[j].value > endDate[j].value) {
-		alert("結束日期不得小於起始日期");
-		return false;
-	} else {		
-		return true;
-	}}
-};
+// console.log(startDate[3].value);
+// console.log(startDate);
+console.log(a)	
+// for (let j = 0; j<startDate.length; j++) {	
+      function detailDateTest() {	
+		
+		if (startDate[a].value > endDate[a].value) {
+			alert("結束日期不得小於起始日期");
+			return false;
+		} else {			
+			return true;
+		}}
+	// };
