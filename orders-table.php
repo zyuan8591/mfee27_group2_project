@@ -71,7 +71,13 @@
 				<?php 
 					//echo number_format($orderTotal[$row["id"]])
 				?>
-				<?= number_format($totalPrice*$rowOrderProduct["couponDiscount"]) ?> 
+				<?php
+					if($rowOrderProduct["couponDiscount"] >= 0 && $rowOrderProduct["couponDiscount"] <=1 ){
+						echo number_format($totalPrice*$rowOrderProduct["couponDiscount"]);
+					} else {
+						echo number_format($totalPrice+$rowOrderProduct["couponDiscount"]);
+					}
+				?> 
 			</td>
 			<td class="d-flex flex-wrap flex-shrink-1 gap-2 flex_center">
 				<?php if(isset($_SESSION["user"])): ?>

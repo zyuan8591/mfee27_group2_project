@@ -159,7 +159,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 							<div class="mb-2 row">
 								<label for="" class="col-sm-auto col-form-label">　　信箱：</label>
 								<div class="col">
-									<input type="text" readonly class="form-control-plaintext product-input" name="email" value="<?= $row["email"] ?>" required />
+									<input type="text" readonly class="form-control-plaintext" name="email" value="<?= $row["email"] ?>" required />
 								</div>
 							</div>
 							<div class="mb-2 row">

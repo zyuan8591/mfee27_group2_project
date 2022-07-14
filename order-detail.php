@@ -247,10 +247,18 @@ $rowsCouponLimit = $resultCouponLimit->fetch_all(MYSQLI_ASSOC);
 							// }elseif($rowOrderProduct["couponDiscount"]===$rowLimits["discount"]){
 							// 	echo $rowOrderProduct["couponDiscount"];
 							// }
-							if($rowOrderProduct["couponDiscount"]==1) {echo "無";}else{echo $rowOrderProduct["couponDiscount"]*100 . "%" ;} 
+							if($rowOrderProduct["couponDiscount"]==1) {echo "無";}else{echo $rowOrderProduct["couponDiscount"];} 
 							// print_r($rowOrderProduct);
 							?></span><br>
-						<span >折扣後：<?=number_format($totalPrice*$rowOrderProduct["couponDiscount"])?></span> 
+						<span >折扣後：
+							<?php
+							if($rowOrderProduct["couponDiscount"] >= 0 && $rowOrderProduct["couponDiscount"] <=1 ){
+								echo number_format($totalPrice*$rowOrderProduct["couponDiscount"]);
+							} else {
+								echo number_format($totalPrice+$rowOrderProduct["couponDiscount"]);
+							}
+							?>
+						</span> 
 						</td>
 					</tr>
 					
