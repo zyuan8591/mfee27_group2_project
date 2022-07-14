@@ -223,7 +223,7 @@
 				</ul>
 			</div>
 			<div class=" filter-item position-rel ">
-				<a href="product.php?" class="clean-filter-btn transition">清除篩選<a>
+				<a href="product-index.php?" class="clean-filter-btn transition">清除篩選<a>
 			</div>
 		</div>
 		<div>
